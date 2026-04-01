@@ -1,6 +1,4 @@
-// Landing Page – Home
-import Navbar from "@/components/layout/Navbar";
-import Hero from "@/components/landing/Hero";
+import ComingSoon from "@/components/landing/ComingSoon";
 import TrustBar from "@/components/landing/TrustBar";
 import Features from "@/components/landing/Features";
 import HowItWorks from "@/components/landing/HowItWorks";
@@ -11,7 +9,7 @@ import Footer from "@/components/layout/Footer";
 export default function HomePage() {
   return (
     <main>
-      <Hero />
+      <ComingSoon />
       <TrustBar />
       <Features />
       <HowItWorks />

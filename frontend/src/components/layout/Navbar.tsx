@@ -237,18 +237,13 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Right side — Desktop */}
+        {/* Right side — Desktop (hidden during coming soon) */}
         <div className="nav-desktop" style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+          {/* Auth links hidden — uncomment when launching
           <a href="/auth" className="login-link">Log in</a>
-
-          <div style={{
-            width: "1px", height: "16px",
-            background: "rgba(255,255,255,0.06)",
-          }} />
-
-          <a href="#" className="nav-cta">
-            ⚡ Install · Free
-          </a>
+          <div style={{ width: "1px", height: "16px", background: "rgba(255,255,255,0.06)" }} />
+          <a href="#" className="nav-cta">⚡ Install · Free</a>
+          */}
         </div>
 
         {/* Hamburger button — Mobile */}
@@ -276,11 +271,10 @@ export default function Navbar() {
 
         <div className="mobile-menu-divider" />
 
+        {/* Auth links hidden — uncomment when launching
         <a href="/auth" className="login-link">Log in</a>
-
-        <a href="#" className="nav-cta">
-          ⚡ Install · Free
-        </a>
+        <a href="#" className="nav-cta">⚡ Install · Free</a>
+        */}
       </div>
     </>
   );
