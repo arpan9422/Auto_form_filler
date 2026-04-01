@@ -1,0 +1,219 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { DashboardOverview } from '@/components/dashboard/DashboardOverview';
+import { ProfileContext } from '@/components/dashboard/ProfileContext';
+import { ProjectsSection } from '@/components/dashboard/ProjectsSection';
+import { AnswersLibrary } from '@/components/dashboard/AnswersLibrary';
+import { ResumeSection } from '@/components/dashboard/ResumeSection';
+import { AIMemory } from '@/components/dashboard/AIMemory';
+import { UsageAnalytics } from '@/components/dashboard/UsageAnalytics';
+import { WalletSection } from '@/components/dashboard/WalletSection';
+import { Home, User, Briefcase, MessageSquare, FileText, Brain, BarChart3, Wallet, Zap, LogOut } from 'lucide-react';
+import { removeToken } from '@/lib/auth';
+import { getCurrentUser } from '@/lib/currentUser';
+
+type TabId = 'overview' | 'profile' | 'projects' | 'answers' | 'resume' | 'memory' | 'analytics' | 'wallet';
+
+const TABS: { id: TabId; label: string; icon: React.ReactNode }[] = [
+  { id: 'overview',  label: 'Overview',  icon: <Home size={14} /> },
+  { id: 'profile',   label: 'Profile',   icon: <User size={14} /> },
+  { id: 'projects',  label: 'Projects',  icon: <Briefcase size={14} /> },
+  { id: 'answers',   label: 'Answers',   icon: <MessageSquare size={14} /> },
+  { id: 'resume',    label: 'Resume',    icon: <FileText size={14} /> },
+  { id: 'memory',    label: 'AI Memory', icon: <Brain size={14} /> },
+  { id: 'analytics', label: 'Analytics', icon: <BarChart3 size={14} /> },
+  { id: 'wallet',    label: 'Wallet',    icon: <Wallet size={14} /> },
+];
+
+const PANELS: Record<TabId, React.ReactNode> = {
+  overview:  <DashboardOverview />,
+  profile:   <ProfileContext />,
+  projects:  <ProjectsSection />,
+  answers:   <AnswersLibrary />,
+  resume:    <ResumeSection />,
+  memory:    <AIMemory />,
+  analytics: <UsageAnalytics />,
+  wallet:    <WalletSection />,
+};
+
+export default function DashboardPage() {
+  const [active, setActive] = useState<TabId>('overview');
+  const [checkingOnboarding, setCheckingOnboarding] = useState(true);
+  const [userName, setUserName] = useState('');
+  const router = useRouter();
+
+  useEffect(() => {
+    let mounted = true;
+
+    void (async () => {
+      try {
+        const currentUser = await getCurrentUser();
+
+        if (!currentUser.onboardingDone) {
+          router.replace('/onboarding');
+          return;
+        }
+
+        if (mounted) {
+          setUserName(currentUser.firstName);
+          setCheckingOnboarding(false);
+        }
+      } catch {
+        removeToken();
+        router.replace('/auth');
+        return;
+      }
+    })();
+
+    return () => {
+      mounted = false;
+    };
+  }, [router]);
+
+  const handleLogout = () => {
+    removeToken();
+    router.push('/auth');
+  };
+
+  if (checkingOnboarding) {
+    return (
+      <div style={{ minHeight: '100vh', background: '#0b0b0c', display: 'grid', placeItems: 'center', color: '#f0ece4', fontFamily: "'DM Sans', sans-serif" }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: '12px', color: '#d97706', fontFamily: "'DM Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '10px' }}>
+            Loading
+          </div>
+          <p style={{ margin: 0, color: '#71717a' }}>Checking your workspace setup.</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ minHeight: '100vh', background: '#0b0b0c', fontFamily: "'DM Sans', sans-serif" }}>
+      <style dangerouslySetInnerHTML={{ __html: `
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Mono:wght@400;500&display=swap');
+
+        @keyframes heroPulse {
+          0%,100% { opacity:1; transform:scale(1); }
+          50%      { opacity:0.3; transform:scale(1.8); }
+        }
+
+        .db-tab {
+          display: inline-flex;
+          align-items: center;
+          gap: 7px;
+          padding: 12px 18px;
+          border: none;
+          background: transparent;
+          color: #52525b;
+          font-size: 11px;
+          font-weight: 600;
+          font-family: 'DM Mono', monospace;
+          text-transform: uppercase;
+          letter-spacing: 0.07em;
+          cursor: pointer;
+          white-space: nowrap;
+          border-bottom: 2px solid transparent;
+          transition: color 0.15s, border-color 0.15s;
+        }
+        .db-tab:hover { color: #a1a1aa; }
+        .db-tab.active { color: #f59e0b; border-bottom-color: #f59e0b; }
+        .db-tab.active svg { color: #f59e0b; }
+
+        .tab-bar::-webkit-scrollbar { height: 0; }
+      `}} />
+
+      {/* ── Top header ── */}
+      <div style={{ background: '#0e0e11', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '36px 36px 0' }}>
+
+          {/* Wordmark row */}
+          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '28px' }}>
+            <div>
+              <div style={{ fontSize: '11px', color: '#3f3f46', marginBottom: '8px', fontFamily: "'DM Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                AI Form Assistant
+              </div>
+              <h1 style={{ fontSize: '38px', fontWeight: 800, lineHeight: 1.0, letterSpacing: '-1.5px', color: '#f0ece4', margin: 0, fontFamily: "'Playfair Display', Georgia, serif" }}>
+                {userName ? `${userName}'s` : 'Your'}{' '}
+                <em style={{ fontStyle: 'italic', background: 'linear-gradient(135deg,#f59e0b 0%,#fde68a 55%,#f59e0b 100%)', backgroundSize: '200% 200%', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                  Dashboard
+                </em>
+              </h1>
+              <p style={{ fontSize: '14px', color: '#52525b', marginTop: '8px', fontWeight: 300 }}>
+                Manage your profile, projects, and AI context.
+              </p>
+            </div>
+
+            {/* Quick status pill */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '8px' }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 16px', borderRadius: '4px', background: 'rgba(245,158,11,0.06)', border: '1px solid rgba(245,158,11,0.2)' }}>
+                <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#f59e0b', display: 'inline-block', animation: 'heroPulse 2.5s infinite' }} />
+                <span style={{ fontSize: '11px', color: '#d97706', fontFamily: "'DM Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 600 }}>
+                  Free Plan · 6/10 forms
+                </span>
+              </div>
+              <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                <button style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '8px 16px', borderRadius: '4px', background: '#f59e0b', color: '#0b0b0c', border: '2px solid #f59e0b', fontSize: '11px', fontWeight: 700, fontFamily: "'DM Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.06em', cursor: 'pointer' }}>
+                  <Zap size={12} /> Upgrade
+                </button>
+                <button
+                  onClick={handleLogout}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    padding: '8px 16px',
+                    borderRadius: '4px',
+                    background: 'transparent',
+                    color: '#a1a1aa',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    fontSize: '11px',
+                    fontWeight: 700,
+                    fontFamily: "'DM Mono', monospace",
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.06em',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.target as HTMLButtonElement).style.color = '#ef4444';
+                    (e.target as HTMLButtonElement).style.borderColor = 'rgba(239,68,68,0.3)';
+                    (e.target as HTMLButtonElement).style.background = 'rgba(239,68,68,0.05)';
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.target as HTMLButtonElement).style.color = '#a1a1aa';
+                    (e.target as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.1)';
+                    (e.target as HTMLButtonElement).style.background = 'transparent';
+                  }}
+                >
+                  <LogOut size={12} /> Logout
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Tab bar */}
+          <div className="tab-bar" style={{ display: 'flex', overflowX: 'auto' }}>
+            {TABS.map(tab => (
+              <button
+                key={tab.id}
+                className={`db-tab${active === tab.id ? ' active' : ''}`}
+                onClick={() => setActive(tab.id)}
+              >
+                {tab.icon}
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── Content ── */}
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '36px' }}>
+        {PANELS[active]}
+      </div>
+    </div>
+  );
+}

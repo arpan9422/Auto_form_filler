@@ -1,0 +1,370 @@
+// schema.prisma — Prisma v7
+// Connection URL is now configured in prisma.config.ts
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+///////////////////////////////////////////////////////
+// ENUMS
+///////////////////////////////////////////////////////
+
+enum WorkType {
+  INTERNSHIP
+  FULL_TIME
+  PART_TIME
+  FREELANCE
+}
+
+enum MemoryType {
+  PERSONAL
+  PROJECT
+  ANSWER
+  RESUME
+  PREFERENCE
+  CUSTOM
+}
+
+enum TransactionType {
+  CREDIT
+  DEBIT
+}
+
+enum TransactionReason {
+  FORM_FILL
+  CHAT_REFINE
+  REGENERATE
+  RESUME_PARSE
+  TOPUP
+  REFERRAL_BONUS
+  SIGNUP_BONUS
+  ADMIN_ADJUSTMENT
+}
+
+enum PurchaseStatus {
+  PENDING
+  SUCCESS
+  FAILED
+  REFUNDED
+}
+
+enum OtpPurpose {
+  SIGNUP
+  LOGIN
+}
+
+///////////////////////////////////////////////////////
+// USER
+///////////////////////////////////////////////////////
+
+model User {
+  id                 String   @id @default(uuid())
+  email              String   @unique
+  referralCode       String   @unique
+
+  firstName          String
+  middleName         String?
+  lastName           String
+
+  phone              String?
+  bio                String?
+  skills             Json?
+  onboardingDone     Boolean @default(false)
+
+  // Credit system
+  credits            Int      @default(0)
+  weeklyFreeCredits  Int      @default(10)
+  lastCreditResetAt  DateTime @default(now())
+
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  links              Link[]
+  educations         Education[]
+  works              Work[]
+  projects           Project[]
+  answers            AnswerLibrary[]
+  resumes            Resume[]
+  memories           Memory[]
+  analytics          UsageAnalytics[]
+
+  transactions       CreditTransaction[]
+  purchases          Purchase[]
+  refreshTokens      RefreshToken[]
+
+  referralsMade      Referral[] @relation("Referrer")
+  referralsReceived  Referral[] @relation("ReferredUser")
+}
+
+///////////////////////////////////////////////////////
+// LINKS
+///////////////////////////////////////////////////////
+
+model Link {
+  id        String   @id @default(uuid())
+  userId    String
+  platform  String
+  url       String
+
+  user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+///////////////////////////////////////////////////////
+// EDUCATION
+///////////////////////////////////////////////////////
+
+model Education {
+  id             String   @id @default(uuid())
+  userId         String
+
+  instituteName  String
+  degree         String
+
+  startDate      DateTime
+  endDate        DateTime?
+
+  gpa            Float?
+
+  user           User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+///////////////////////////////////////////////////////
+// WORK
+///////////////////////////////////////////////////////
+
+model Work {
+  id           String   @id @default(uuid())
+  userId       String
+
+  companyName  String
+  position     String
+  type         WorkType
+
+  startDate    DateTime
+  endDate      DateTime?
+
+  user         User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+///////////////////////////////////////////////////////
+// PROJECTS
+///////////////////////////////////////////////////////
+
+model Project {
+  id            String   @id @default(uuid())
+  userId        String
+
+  name          String
+  description   String
+
+  projectLinks  String[]
+  techStacks    String[]
+
+  createdAt     DateTime @default(now())
+
+  user          User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+///////////////////////////////////////////////////////
+// ANSWER LIBRARY
+///////////////////////////////////////////////////////
+
+model AnswerLibrary {
+  id         String   @id @default(uuid())
+  userId     String
+
+  title      String
+  category   String
+  answer     String
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user       User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+///////////////////////////////////////////////////////
+// RESUME
+///////////////////////////////////////////////////////
+
+model Resume {
+  id           String   @id @default(uuid())
+  userId       String
+
+  label        String
+  target       String?
+  description  String?
+
+  pdfUrl       String
+  isDefault    Boolean  @default(false)
+
+  createdAt    DateTime @default(now())
+
+  user         User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+///////////////////////////////////////////////////////
+// MEMORY (RAG METADATA)
+///////////////////////////////////////////////////////
+
+model Memory {
+  id         String      @id @default(uuid())
+  userId     String
+
+  type       MemoryType
+  value      String
+
+  createdAt  DateTime    @default(now())
+
+  user       User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+///////////////////////////////////////////////////////
+// USAGE ANALYTICS
+///////////////////////////////////////////////////////
+
+model UsageAnalytics {
+  id              String   @id @default(uuid())
+  userId          String
+
+  platform        String
+  websiteUrl      String?
+
+  fieldsFilled    Int
+  timeSavedSec    Int
+
+  creditsUsed     Int      @default(1)
+
+  aiEdits         Int      @default(0)
+  acceptedDirect  Boolean  @default(true)
+
+  createdAt       DateTime @default(now())
+
+  user            User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([platform])
+}
+
+///////////////////////////////////////////////////////
+// CREDIT TRANSACTIONS (LEDGER)
+///////////////////////////////////////////////////////
+
+model CreditTransaction {
+  id          String             @id @default(uuid())
+  userId      String
+
+  type        TransactionType
+  amount      Int
+
+  reason      TransactionReason
+  metadata    Json?
+
+  createdAt   DateTime           @default(now())
+
+  user        User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([reason])
+}
+
+///////////////////////////////////////////////////////
+// PURCHASES / TOPUPS
+///////////////////////////////////////////////////////
+
+model Purchase {
+  id              String          @id @default(uuid())
+  userId          String
+
+  creditsBought   Int
+  amountPaid      Int
+
+  currency        String          @default("INR")
+
+  paymentProvider String?
+  paymentRef      String?
+
+  status          PurchaseStatus
+
+  discountCode    String?
+
+  createdAt       DateTime        @default(now())
+
+  user            User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+///////////////////////////////////////////////////////
+// REFERRALS
+///////////////////////////////////////////////////////
+
+model Referral {
+  id               String   @id @default(uuid())
+
+  referrerId       String
+  referredUserId   String?
+  referralCode     String
+  referredByCode   String
+  rewardCreditsToReferrer Int @default(150)
+  rewardCreditsToReferred Int @default(100)
+
+  referredEmail    String
+
+  rewardCredits    Int      @default(10)
+
+  createdAt        DateTime @default(now())
+
+  referrer         User @relation("Referrer", fields: [referrerId], references: [id], onDelete: Cascade)
+  referredUser     User? @relation("ReferredUser", fields: [referredUserId], references: [id])
+
+  @@index([referrerId])
+  @@unique([referredUserId])
+  @@unique([referredEmail])
+  @@index([referralCode])
+}
+
+model UserOtp {
+  id         String     @id @default(uuid())
+  email      String
+  otp        String
+  purpose    OtpPurpose
+  expiresAt  DateTime
+  usedAt     DateTime?
+  createdAt  DateTime   @default(now())
+
+  @@index([email, purpose])
+  @@index([expiresAt])
+}
+
+model RefreshToken {
+  id           String   @id @default(uuid())
+  userId       String
+  tokenHash    String
+  expiresAt    DateTime
+  revokedAt    DateTime?
+  createdAt    DateTime @default(now())
+
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+}
