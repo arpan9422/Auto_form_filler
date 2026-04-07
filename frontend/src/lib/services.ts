@@ -121,6 +121,17 @@ export const projectsApi = {
   update: (id: string, data: { name: string; description: string; projectLinks?: string[]; techStacks?: string[] }) =>
     api.put<Project>(`/projects/${id}`, data),
   remove: (id: string) => api.delete<{ message: string }>(`/projects/${id}`),
+  voiceDescribe: (audio: string, projectName?: string) =>
+    api.post<{ transcript: string; description: string; warning?: string }>("/projects/voice-describe", { audio, projectName }),
+  githubAnalyze: (repoUrl: string) =>
+    api.post<{
+      name: string; fullName: string; stars: number; forks: number;
+      topics: string[]; languages: string[];
+      description: string; techStack: string[];
+      problemSolved: string; howItWorks: string;
+      fileStructure: string; keyFeatures: string[];
+      warning?: string;
+    }>("/projects/github-analyze", { repoUrl }),
 };
 
 // ── Custom Answers ─────────────────────────────────────────────────────
@@ -175,6 +186,14 @@ export const walletApi = {
   transactions: () => api.get<{ transactions: Transaction[]; purchases: Purchase[] }>("/wallet/transactions"),
   topup: (data: { creditsBought: number; amountPaid: number; currency: string; paymentProvider?: string; paymentRef?: string }) =>
     api.post<{ message: string; purchase: Purchase }>("/wallet/topup", data),
+};
+
+// ── GitHub OAuth ───────────────────────────────────────────────────────
+
+export const githubApi = {
+  getAuthUrl: () => api.get<{ url: string }>("/github/auth-url"),
+  getStatus: () => api.get<{ connected: boolean; login?: string; connectedAt?: string }>("/github/status"),
+  disconnect: () => api.delete<{ message: string }>("/github/disconnect"),
 };
 
 // ── Referrals ──────────────────────────────────────────────────────────

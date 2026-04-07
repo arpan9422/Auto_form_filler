@@ -170,6 +170,8 @@ exports.Prisma.ProjectScalarFieldEnum = {
   userId: 'userId',
   name: 'name',
   description: 'description',
+  repo_url: 'repo_url',
+  depolyed_url: 'depolyed_url',
   projectLinks: 'projectLinks',
   techStacks: 'techStacks',
   createdAt: 'createdAt'
@@ -272,6 +274,73 @@ exports.Prisma.RefreshTokenScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.GitHubConnectionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  accessToken: 'accessToken',
+  githubLogin: 'githubLogin',
+  githubId: 'githubId',
+  scope: 'scope',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AdminScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  name: 'name',
+  role: 'role',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  createdById: 'createdById'
+};
+
+exports.Prisma.AdminOtpScalarFieldEnum = {
+  id: 'id',
+  adminId: 'adminId',
+  otp: 'otp',
+  expiresAt: 'expiresAt',
+  usedAt: 'usedAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.AdminSessionScalarFieldEnum = {
+  id: 'id',
+  adminId: 'adminId',
+  tokenHash: 'tokenHash',
+  expiresAt: 'expiresAt',
+  revokedAt: 'revokedAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.RequestLogScalarFieldEnum = {
+  id: 'id',
+  method: 'method',
+  path: 'path',
+  statusCode: 'statusCode',
+  durationMs: 'durationMs',
+  userId: 'userId',
+  ip: 'ip',
+  userAgent: 'userAgent',
+  body: 'body',
+  query: 'query',
+  errorMsg: 'errorMsg',
+  errorStack: 'errorStack',
+  level: 'level',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.AppLogScalarFieldEnum = {
+  id: 'id',
+  level: 'level',
+  context: 'context',
+  message: 'message',
+  meta: 'meta',
+  userId: 'userId',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -341,6 +410,20 @@ exports.OtpPurpose = exports.$Enums.OtpPurpose = {
   LOGIN: 'LOGIN'
 };
 
+exports.AdminRole = exports.$Enums.AdminRole = {
+  SUPER_ADMIN: 'SUPER_ADMIN',
+  SUPPORT_ADMIN: 'SUPPORT_ADMIN',
+  FINANCE_ADMIN: 'FINANCE_ADMIN',
+  ANALYTICS_VIEWER: 'ANALYTICS_VIEWER'
+};
+
+exports.LogLevel = exports.$Enums.LogLevel = {
+  INFO: 'INFO',
+  WARN: 'WARN',
+  ERROR: 'ERROR',
+  DEBUG: 'DEBUG'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   Link: 'Link',
@@ -355,7 +438,13 @@ exports.Prisma.ModelName = {
   Purchase: 'Purchase',
   Referral: 'Referral',
   UserOtp: 'UserOtp',
-  RefreshToken: 'RefreshToken'
+  RefreshToken: 'RefreshToken',
+  GitHubConnection: 'GitHubConnection',
+  Admin: 'Admin',
+  AdminOtp: 'AdminOtp',
+  AdminSession: 'AdminSession',
+  RequestLog: 'RequestLog',
+  AppLog: 'AppLog'
 };
 
 /**

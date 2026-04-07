@@ -1,3 +1,6 @@
+import GitHub from "next-auth/providers/github";
+import NextAuth from "next-auth";
+
 const TOKEN_COOKIE_NAME = "token";
 const REFRESH_TOKEN_COOKIE_NAME = "refresh_token";
 const TOKEN_MAX_AGE_SECONDS = 60 * 60 * 24 * 7;
@@ -50,3 +53,5 @@ export function removeToken(): void {
 export function isAuthenticated(): boolean {
   return !!getToken();
 }
+
+

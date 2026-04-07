@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { ArrowRight, Copy, Gift, History, Sparkles, TrendingUp, Wallet, Zap } from 'lucide-react';
 import { walletApi, referralApi, type WalletSummary, type WalletAnalytics, type WalletBreakdown, type Transaction, type Purchase, type ReferralStats } from '@/lib/services';
+import { SKELETON_CSS, SkeletonBlock, SkeletonCard } from './Skeleton';
 
 const packs = [
   { credits: 50, price: 'INR 99', popular: false },
@@ -12,6 +13,7 @@ const packs = [
 
 export function WalletSection() {
   const [summary, setSummary] = useState<WalletSummary | null>(null);
+  const [loading, setLoading] = useState(true);
   const [analytics, setAnalytics] = useState<WalletAnalytics | null>(null);
   const [breakdown, setBreakdown] = useState<WalletBreakdown | null>(null);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -31,7 +33,8 @@ export function WalletSection() {
       setBreakdown(b.data);
       setTransactions(t.data.transactions.slice(0, 4));
       setReferral(r.data);
-    }).catch(() => {});
+      setLoading(false);
+    }).catch(() => setLoading(false));
   }, []);
 
   const usageStats = [
@@ -62,7 +65,7 @@ export function WalletSection() {
 
   return (
     <div style={{ fontFamily: "'DM Sans', sans-serif" }}>
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{ __html: SKELETON_CSS + `
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Mono:wght@400;500&display=swap');
         @keyframes fadeSlideIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
         @keyframes heroPulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.3; transform:scale(1.8); } }
@@ -89,6 +92,23 @@ export function WalletSection() {
         }
       `}} />
 
+      {loading ? (
+        <div>
+          <SkeletonBlock w="180px" h="28px" mb="28px" />
+          <div style={{ display:'grid', gridTemplateColumns:'1.35fr .9fr', gap:'16px', marginBottom:'16px' }}>
+            <SkeletonCard><SkeletonBlock w="120px" h="12px" mb="14px" /><SkeletonBlock w="100px" h="52px" mb="10px" /><SkeletonBlock w="180px" h="12px" mb="18px" /><SkeletonBlock w="120px" h="36px" /></SkeletonCard>
+            <SkeletonCard><SkeletonBlock w="100px" h="12px" mb="12px" /><SkeletonBlock w="140px" h="22px" mb="8px" /><SkeletonBlock w="100%" h="40px" mb="16px" /><SkeletonBlock w="140px" h="32px" /></SkeletonCard>
+          </div>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:'12px', marginBottom:'16px' }}>
+            {[1,2,3,4].map(i => <SkeletonCard key={i}><SkeletonBlock w="60px" h="10px" mb="8px" /><SkeletonBlock w="50px" h="30px" /></SkeletonCard>)}
+          </div>
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'16px' }}>
+            <SkeletonCard>{[1,2,3,4].map(i => <SkeletonBlock key={i} w="100%" h="36px" mb="10px" />)}</SkeletonCard>
+            <SkeletonCard>{[1,2,3,4].map(i => <SkeletonBlock key={i} w="100%" h="36px" mb="10px" />)}</SkeletonCard>
+          </div>
+        </div>
+      ) : (
+      <>
       <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', marginBottom:'28px' }}>
         <div>
           <div style={{ fontSize:'10px', color:'#a1a1aa', marginBottom:'6px', fontFamily:"'DM Mono', monospace", textTransform:'uppercase', letterSpacing:'0.07em' }}>
@@ -226,6 +246,8 @@ export function WalletSection() {
           ))}
         </div>
       </div>
+      </>
+      )}
     </div>
   );
 }

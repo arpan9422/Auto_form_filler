@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FileText, Zap, Clock, TrendingUp, ArrowRight, Wallet, Gift } from 'lucide-react';
 import { dashboardApi, type DashboardOverview as DashboardOverviewData } from '@/lib/services';
+import { SKELETON_CSS, SkeletonBlock, SkeletonCard } from './Skeleton';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -80,7 +81,7 @@ export function DashboardOverview() {
 
   return (
     <div ref={wrapRef} style={{ fontFamily: "'DM Sans', sans-serif" }}>
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{ __html: SKELETON_CSS + `
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,700;0,800;1,700;1,800&family=DM+Mono:wght@400;500&display=swap');
 
         @keyframes heroPulse {
@@ -187,6 +188,43 @@ export function DashboardOverview() {
         }
       `}} />
 
+      {loading ? (
+        <div>
+          {/* Wallet hero skeleton */}
+          <SkeletonCard>
+            <SkeletonBlock w="140px" h="12px" mb="16px" />
+            <SkeletonBlock w="100px" h="52px" mb="10px" />
+            <SkeletonBlock w="200px" h="14px" mb="14px" />
+            <div style={{ display:'flex', gap:'16px' }}>
+              <SkeletonBlock w="120px" h="12px" />
+              <SkeletonBlock w="120px" h="12px" />
+            </div>
+          </SkeletonCard>
+          {/* Stat cards skeleton */}
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(150px,1fr))', gap:'16px', margin:'20px 0' }}>
+            {[1,2,3,4].map(i => (
+              <SkeletonCard key={i}>
+                <div style={{ display:'flex', justifyContent:'space-between', marginBottom:'16px' }}>
+                  <SkeletonBlock w="80px" h="10px" />
+                  <SkeletonBlock w="28px" h="28px" radius="4px" />
+                </div>
+                <SkeletonBlock w="60px" h="36px" mb="8px" />
+                <SkeletonBlock w="100%" h="2px" />
+              </SkeletonCard>
+            ))}
+          </div>
+          {/* Bottom cards skeleton */}
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))', gap:'16px' }}>
+            {[1,2].map(i => (
+              <SkeletonCard key={i}>
+                <SkeletonBlock w="120px" h="12px" mb="20px" />
+                {[1,2,3].map(j => <SkeletonBlock key={j} w="100%" h="40px" mb="8px" />)}
+              </SkeletonCard>
+            ))}
+          </div>
+        </div>
+      ) : (
+      <>
       <div className="wallet-hero">
         <div style={{
           position: 'absolute', top: '-70px', right: '-60px',
@@ -373,6 +411,8 @@ export function DashboardOverview() {
           </div>
         </div>
       </div>
+      </>
+      )}
     </div>
   );
 }

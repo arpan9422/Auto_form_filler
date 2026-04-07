@@ -1,18 +1,7 @@
-'use client';
-
 import { useEffect, useState } from 'react';
-import {
-  Brain,
-  Plus,
-  Trash2,
-  Edit2,
-  TrendingUp,
-  X,
-  Check,
-  Clock,
-  Sparkles,
-} from 'lucide-react';
+import { Brain, Plus, Trash2, Edit2, TrendingUp, X, Check, Clock, Sparkles } from 'lucide-react';
 import { memoryApi, type Memory as ApiMemory } from '@/lib/services';
+import { SKELETON_CSS, SkeletonBlock, SkeletonCard } from './Skeleton';
 
 interface Memory {
   id: string;
@@ -230,12 +219,14 @@ function AddMemoryPanel({ onAdd, onClose }: {
 // ── Main Component ─────────────────────────────────────────────────────
 export function AIMemory() {
   const [memories, setMemories] = useState<Memory[]>([]);
+  const [loading, setLoading] = useState(true);
   const [showAdd, setShowAdd] = useState(false);
 
   useEffect(() => {
     memoryApi.list().then(r => {
       setMemories(r.data.map((m: ApiMemory) => ({ id: m.id, type: m.type, value: m.value, mentions: 1 })));
-    }).catch(() => {});
+      setLoading(false);
+    }).catch(() => setLoading(false));
   }, []);
 
   const handleEdit = async (id: string, data: { type: string; value: string }) => {
@@ -451,6 +442,18 @@ export function AIMemory() {
       {/* ── Add Panel ── */}
       {showAdd && <AddMemoryPanel onAdd={handleAdd} onClose={() => setShowAdd(false)} />}
 
+      {loading ? (
+        <div>
+          <style dangerouslySetInnerHTML={{ __html: SKELETON_CSS }} />
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'12px', marginBottom:'16px' }}>
+            {[1,2,3].map(i => <SkeletonCard key={i}><SkeletonBlock w="100px" h="10px" mb="8px" /><SkeletonBlock w="60px" h="32px" /></SkeletonCard>)}
+          </div>
+          <SkeletonCard>
+            {[1,2,3,4].map(i => <SkeletonBlock key={i} w="100%" h="52px" mb="8px" />)}
+          </SkeletonCard>
+        </div>
+      ) : (
+      <>
       {/* ── Stat cards ── */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', marginBottom: '16px' }}>
 
@@ -556,6 +559,8 @@ export function AIMemory() {
           You can manually add, edit, or remove memories at any time to refine how the AI adapts to you.
         </p>
       </div>
+      </>
+      )}
     </div>
   );
 }

@@ -10,7 +10,7 @@ import { ResumeSection } from '@/components/dashboard/ResumeSection';
 import { AIMemory } from '@/components/dashboard/AIMemory';
 import { UsageAnalytics } from '@/components/dashboard/UsageAnalytics';
 import { WalletSection } from '@/components/dashboard/WalletSection';
-import { Home, User, Briefcase, MessageSquare, FileText, Brain, BarChart3, Wallet, Zap, LogOut } from 'lucide-react';
+import { Home, User, Briefcase, MessageSquare, FileText, Brain, BarChart3, Wallet, LogOut } from 'lucide-react';
 import { removeToken } from '@/lib/auth';
 import { getCurrentUser } from '@/lib/currentUser';
 
@@ -71,6 +71,18 @@ export default function DashboardPage() {
       mounted = false;
     };
   }, [router]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const search = new URLSearchParams(window.location.search);
+      const tab = search.get('tab') as TabId;
+      if (tab && TABS.some(t => t.id === tab)) {
+        setActive(tab);
+      } else if (search.has('github')) {
+        setActive('profile');
+      }
+    }
+  }, []);
 
   const handleLogout = () => {
     removeToken();
@@ -146,18 +158,9 @@ export default function DashboardPage() {
               </p>
             </div>
 
-            {/* Quick status pill */}
+            {/* Right side actions */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '8px' }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 16px', borderRadius: '4px', background: 'rgba(245,158,11,0.06)', border: '1px solid rgba(245,158,11,0.2)' }}>
-                <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#f59e0b', display: 'inline-block', animation: 'heroPulse 2.5s infinite' }} />
-                <span style={{ fontSize: '11px', color: '#d97706', fontFamily: "'DM Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 600 }}>
-                  Free Plan · 6/10 forms
-                </span>
-              </div>
               <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                <button style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '8px 16px', borderRadius: '4px', background: '#f59e0b', color: '#0b0b0c', border: '2px solid #f59e0b', fontSize: '11px', fontWeight: 700, fontFamily: "'DM Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.06em', cursor: 'pointer' }}>
-                  <Zap size={12} /> Upgrade
-                </button>
                 <button
                   onClick={handleLogout}
                   style={{

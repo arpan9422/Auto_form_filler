@@ -1,19 +1,9 @@
-﻿'use client';
-
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import {
-  MessageSquare,
-  Plus,
-  Edit2,
-  Trash2,
-  Copy,
-  Search,
-  Check,
-  X,
-  Tag,
-  BookOpen,
+  MessageSquare, Plus, Edit2, Trash2, Copy, Search, Check, X, Tag, BookOpen,
 } from 'lucide-react';
 import { answersApi, type Answer as ApiAnswer } from '@/lib/services';
+import { SKELETON_CSS, SkeletonBlock, SkeletonCard } from './Skeleton';
 
 interface Answer {
   id: string;
@@ -622,7 +612,24 @@ export function AnswersLibrary() {
 
       {/* ── Grid ── */}
       {loadingAnswers ? (
-        <p style={{ fontSize:'12px', color:'#3f3f46', fontFamily:"'DM Mono',monospace", textTransform:'uppercase', letterSpacing:'.06em' }}>Loading…</p>
+        <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(300px, 1fr))', gap:'14px' }}>
+          {[1,2,3,4].map(i => (
+            <SkeletonCard key={i}>
+              <div style={{ display:'flex', gap:'12px', marginBottom:'12px' }}>
+                <SkeletonBlock w="32px" h="32px" radius="4px" />
+                <div style={{ flex:1 }}><SkeletonBlock w="70%" h="14px" mb="6px" /><SkeletonBlock w="50px" h="18px" /></div>
+              </div>
+              <SkeletonBlock w="100%" h="1px" mb="12px" />
+              <SkeletonBlock w="100%" h="12px" mb="6px" />
+              <SkeletonBlock w="80%" h="12px" mb="16px" />
+              <div style={{ display:'flex', gap:'8px' }}>
+                <SkeletonBlock w="70px" h="30px" radius="4px" />
+                <SkeletonBlock w="55px" h="30px" radius="4px" />
+                <SkeletonBlock w="36px" h="30px" radius="4px" />
+              </div>
+            </SkeletonCard>
+          ))}
+        </div>
       ) : filtered.length > 0 ? (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '14px' }}>
           {filtered.map((a, i) => (
@@ -646,4 +653,9 @@ export function AnswersLibrary() {
       )}
     </div>
   );
+}
+
+// Inject skeleton CSS once
+if (typeof document !== 'undefined' && !document.getElementById('sk-css')) {
+  const s = document.createElement('style'); s.id = 'sk-css'; s.textContent = SKELETON_CSS; document.head.appendChild(s);
 }

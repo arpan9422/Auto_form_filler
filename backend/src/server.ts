@@ -17,7 +17,11 @@ import paymentRoutes from "./modules/payment/payment.routes";
 import walletRoutes from "./modules/wallet/wallet.routes";
 import refferalRoutes from "./modules/refferal/refferal.routes";
 import dashboardRoutes from "./modules/dashboard/dashboard.routes";
+import adminRoutes from "./modules/admin/admin.routes";
+import adminAuthRoutes from "./modules/admin/admin.auth.routes";
+import githubRoutes from "./modules/github/github.routes";
 import { errorHandler } from "./middleware/errorHandler";
+import { requestLogger } from "./middleware/requestLogger";
 import { swaggerSpec } from "./config/swagger";
 
 dotenv.config();
@@ -29,7 +33,9 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(helmet());
 app.use(morgan("dev"));
-app.use(express.json());
+app.use(express.json({ limit: "20mb" }));
+app.use(express.urlencoded({ extended: true, limit: "20mb" }));
+app.use(requestLogger);
 
 // Routes
 app.use("/api/auth", authRoutes);
@@ -43,6 +49,9 @@ app.use("/api/payment", paymentRoutes);
 app.use("/api/wallet", walletRoutes);
 app.use("/api/refferals", refferalRoutes);
 app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/admin/auth", adminAuthRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/github", githubRoutes);
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Health check

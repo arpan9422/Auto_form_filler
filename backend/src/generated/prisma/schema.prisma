@@ -92,9 +92,10 @@ model User {
   memories   Memory[]
   analytics  UsageAnalytics[]
 
-  transactions  CreditTransaction[]
-  purchases     Purchase[]
-  refreshTokens RefreshToken[]
+  transactions      CreditTransaction[]
+  purchases         Purchase[]
+  refreshTokens     RefreshToken[]
+  GitHubConnections GitHubConnection[]
 
   referralsMade     Referral[] @relation("Referrer")
   referralsReceived Referral[] @relation("ReferredUser")
@@ -164,8 +165,10 @@ model Project {
   id     String @id @default(uuid())
   userId String
 
-  name        String
-  description String
+  name         String
+  description  String
+  repo_url     String?
+  depolyed_url String?
 
   projectLinks String[]
   techStacks   String[]
@@ -367,4 +370,137 @@ model RefreshToken {
 
   @@index([userId])
   @@index([expiresAt])
+}
+
+model GitHubConnection {
+  id          String   @id @default(uuid())
+  userId      String   @unique
+  accessToken String
+  githubLogin String // GitHub username
+  githubId    Int // GitHub user ID
+  scope       String   @default("repo,read:user")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+///////////////////////////////////////////////////////
+// REQUEST LOGS
+///////////////////////////////////////////////////////
+
+enum LogLevel {
+  INFO
+  WARN
+  ERROR
+  DEBUG
+}
+
+enum AdminRole {
+  SUPER_ADMIN
+  SUPPORT_ADMIN
+  FINANCE_ADMIN
+  ANALYTICS_VIEWER
+}
+
+///////////////////////////////////////////////////////
+// ADMIN
+///////////////////////////////////////////////////////
+
+model Admin {
+  id       String    @id @default(uuid())
+  email    String    @unique
+  name     String
+  role     AdminRole @default(SUPPORT_ADMIN)
+  isActive Boolean   @default(true)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdById String? // which admin created this one
+
+  otps     AdminOtp[]
+  sessions AdminSession[]
+}
+
+model AdminOtp {
+  id        String    @id @default(uuid())
+  adminId   String
+  otp       String
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  admin Admin @relation(fields: [adminId], references: [id], onDelete: Cascade)
+
+  @@index([adminId])
+  @@index([expiresAt])
+}
+
+model AdminSession {
+  id        String    @id @default(uuid())
+  adminId   String
+  tokenHash String    @unique
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+
+  admin Admin @relation(fields: [adminId], references: [id], onDelete: Cascade)
+
+  @@index([adminId])
+  @@index([tokenHash])
+}
+
+model RequestLog {
+  id String @id @default(uuid())
+
+  // HTTP context
+  method     String
+  path       String
+  statusCode Int
+  durationMs Int
+
+  // Auth context (nullable for unauthenticated requests)
+  userId String?
+
+  // Request/response details
+  ip         String?
+  userAgent  String?
+  body       Json? // sanitized — no passwords/tokens
+  query      Json?
+  errorMsg   String?
+  errorStack String?
+
+  level LogLevel @default(INFO)
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([level])
+  @@index([statusCode])
+  @@index([createdAt])
+  @@index([path])
+}
+
+///////////////////////////////////////////////////////
+// APP LOGS (general purpose)
+///////////////////////////////////////////////////////
+
+model AppLog {
+  id String @id @default(uuid())
+
+  level   LogLevel
+  context String // e.g. "sarvam", "ollama", "rag", "auth"
+  message String
+  meta    Json? // any extra structured data
+
+  userId String?
+
+  createdAt DateTime @default(now())
+
+  @@index([level])
+  @@index([context])
+  @@index([userId])
+  @@index([createdAt])
 }

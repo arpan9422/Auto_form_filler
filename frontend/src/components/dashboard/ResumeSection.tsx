@@ -203,12 +203,10 @@ export function ResumeSection() {
 
   return (
     <div style={{ fontFamily: "'DM Sans', sans-serif" }}>
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Mono:wght@400;500&display=swap');
-
-        @keyframes heroPulse {
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+          @keyframes heroPulse {
           0%,100% { opacity:1; transform:scale(1); }
           50%     { opacity:0.3; transform:scale(1.8); }
         }

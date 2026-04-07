@@ -1,17 +1,27 @@
-// Global Error Handler Middleware
 import { Request, Response, NextFunction } from "express";
 import { AppError } from "../utils/AppError";
+import { logger } from "../utils/logger";
+import { AuthRequest } from "./auth";
 
 export const errorHandler = (
   err: Error,
-  _req: Request,
+  req: Request,
   res: Response,
   _next: NextFunction
 ) => {
-  console.error("Error:", err.message);
+  const userId = (req as AuthRequest).userId;
+  const isAppError = err instanceof AppError;
+  const statusCode = isAppError ? err.statusCode : 500;
 
-  if (err instanceof AppError) {
-    res.status(err.statusCode).json({
+  logger.error("errorHandler", err.message, {
+    method: req.method,
+    path: req.path,
+    statusCode,
+    stack: err.stack?.slice(0, 800),
+  }, userId);
+
+  if (isAppError) {
+    res.status(statusCode).json({
       error: err.message,
       details: err.details,
     });

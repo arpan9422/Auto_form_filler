@@ -83,6 +83,36 @@ export type UserOtp = $Result.DefaultSelection<Prisma.$UserOtpPayload>
  * 
  */
 export type RefreshToken = $Result.DefaultSelection<Prisma.$RefreshTokenPayload>
+/**
+ * Model GitHubConnection
+ * 
+ */
+export type GitHubConnection = $Result.DefaultSelection<Prisma.$GitHubConnectionPayload>
+/**
+ * Model Admin
+ * 
+ */
+export type Admin = $Result.DefaultSelection<Prisma.$AdminPayload>
+/**
+ * Model AdminOtp
+ * 
+ */
+export type AdminOtp = $Result.DefaultSelection<Prisma.$AdminOtpPayload>
+/**
+ * Model AdminSession
+ * 
+ */
+export type AdminSession = $Result.DefaultSelection<Prisma.$AdminSessionPayload>
+/**
+ * Model RequestLog
+ * 
+ */
+export type RequestLog = $Result.DefaultSelection<Prisma.$RequestLogPayload>
+/**
+ * Model AppLog
+ * 
+ */
+export type AppLog = $Result.DefaultSelection<Prisma.$AppLogPayload>
 
 /**
  * Enums
@@ -149,6 +179,26 @@ export const OtpPurpose: {
 
 export type OtpPurpose = (typeof OtpPurpose)[keyof typeof OtpPurpose]
 
+
+export const LogLevel: {
+  INFO: 'INFO',
+  WARN: 'WARN',
+  ERROR: 'ERROR',
+  DEBUG: 'DEBUG'
+};
+
+export type LogLevel = (typeof LogLevel)[keyof typeof LogLevel]
+
+
+export const AdminRole: {
+  SUPER_ADMIN: 'SUPER_ADMIN',
+  SUPPORT_ADMIN: 'SUPPORT_ADMIN',
+  FINANCE_ADMIN: 'FINANCE_ADMIN',
+  ANALYTICS_VIEWER: 'ANALYTICS_VIEWER'
+};
+
+export type AdminRole = (typeof AdminRole)[keyof typeof AdminRole]
+
 }
 
 export type WorkType = $Enums.WorkType
@@ -174,6 +224,14 @@ export const PurchaseStatus: typeof $Enums.PurchaseStatus
 export type OtpPurpose = $Enums.OtpPurpose
 
 export const OtpPurpose: typeof $Enums.OtpPurpose
+
+export type LogLevel = $Enums.LogLevel
+
+export const LogLevel: typeof $Enums.LogLevel
+
+export type AdminRole = $Enums.AdminRole
+
+export const AdminRole: typeof $Enums.AdminRole
 
 /**
  * ##  Prisma Client ʲˢ
@@ -435,6 +493,66 @@ export class PrismaClient<
     * ```
     */
   get refreshToken(): Prisma.RefreshTokenDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.gitHubConnection`: Exposes CRUD operations for the **GitHubConnection** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GitHubConnections
+    * const gitHubConnections = await prisma.gitHubConnection.findMany()
+    * ```
+    */
+  get gitHubConnection(): Prisma.GitHubConnectionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.admin`: Exposes CRUD operations for the **Admin** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Admins
+    * const admins = await prisma.admin.findMany()
+    * ```
+    */
+  get admin(): Prisma.AdminDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.adminOtp`: Exposes CRUD operations for the **AdminOtp** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AdminOtps
+    * const adminOtps = await prisma.adminOtp.findMany()
+    * ```
+    */
+  get adminOtp(): Prisma.AdminOtpDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.adminSession`: Exposes CRUD operations for the **AdminSession** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AdminSessions
+    * const adminSessions = await prisma.adminSession.findMany()
+    * ```
+    */
+  get adminSession(): Prisma.AdminSessionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.requestLog`: Exposes CRUD operations for the **RequestLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RequestLogs
+    * const requestLogs = await prisma.requestLog.findMany()
+    * ```
+    */
+  get requestLog(): Prisma.RequestLogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.appLog`: Exposes CRUD operations for the **AppLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AppLogs
+    * const appLogs = await prisma.appLog.findMany()
+    * ```
+    */
+  get appLog(): Prisma.AppLogDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -882,7 +1000,13 @@ export namespace Prisma {
     Purchase: 'Purchase',
     Referral: 'Referral',
     UserOtp: 'UserOtp',
-    RefreshToken: 'RefreshToken'
+    RefreshToken: 'RefreshToken',
+    GitHubConnection: 'GitHubConnection',
+    Admin: 'Admin',
+    AdminOtp: 'AdminOtp',
+    AdminSession: 'AdminSession',
+    RequestLog: 'RequestLog',
+    AppLog: 'AppLog'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -898,7 +1022,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "link" | "education" | "work" | "project" | "answerLibrary" | "resume" | "memory" | "usageAnalytics" | "creditTransaction" | "purchase" | "referral" | "userOtp" | "refreshToken"
+      modelProps: "user" | "link" | "education" | "work" | "project" | "answerLibrary" | "resume" | "memory" | "usageAnalytics" | "creditTransaction" | "purchase" | "referral" | "userOtp" | "refreshToken" | "gitHubConnection" | "admin" | "adminOtp" | "adminSession" | "requestLog" | "appLog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1938,6 +2062,450 @@ export namespace Prisma {
           }
         }
       }
+      GitHubConnection: {
+        payload: Prisma.$GitHubConnectionPayload<ExtArgs>
+        fields: Prisma.GitHubConnectionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GitHubConnectionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubConnectionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GitHubConnectionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubConnectionPayload>
+          }
+          findFirst: {
+            args: Prisma.GitHubConnectionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubConnectionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GitHubConnectionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubConnectionPayload>
+          }
+          findMany: {
+            args: Prisma.GitHubConnectionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubConnectionPayload>[]
+          }
+          create: {
+            args: Prisma.GitHubConnectionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubConnectionPayload>
+          }
+          createMany: {
+            args: Prisma.GitHubConnectionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.GitHubConnectionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubConnectionPayload>[]
+          }
+          delete: {
+            args: Prisma.GitHubConnectionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubConnectionPayload>
+          }
+          update: {
+            args: Prisma.GitHubConnectionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubConnectionPayload>
+          }
+          deleteMany: {
+            args: Prisma.GitHubConnectionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GitHubConnectionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.GitHubConnectionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubConnectionPayload>[]
+          }
+          upsert: {
+            args: Prisma.GitHubConnectionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubConnectionPayload>
+          }
+          aggregate: {
+            args: Prisma.GitHubConnectionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateGitHubConnection>
+          }
+          groupBy: {
+            args: Prisma.GitHubConnectionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<GitHubConnectionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GitHubConnectionCountArgs<ExtArgs>
+            result: $Utils.Optional<GitHubConnectionCountAggregateOutputType> | number
+          }
+        }
+      }
+      Admin: {
+        payload: Prisma.$AdminPayload<ExtArgs>
+        fields: Prisma.AdminFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AdminFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AdminFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
+          }
+          findFirst: {
+            args: Prisma.AdminFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AdminFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
+          }
+          findMany: {
+            args: Prisma.AdminFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>[]
+          }
+          create: {
+            args: Prisma.AdminCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
+          }
+          createMany: {
+            args: Prisma.AdminCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AdminCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>[]
+          }
+          delete: {
+            args: Prisma.AdminDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
+          }
+          update: {
+            args: Prisma.AdminUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
+          }
+          deleteMany: {
+            args: Prisma.AdminDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AdminUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AdminUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>[]
+          }
+          upsert: {
+            args: Prisma.AdminUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
+          }
+          aggregate: {
+            args: Prisma.AdminAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAdmin>
+          }
+          groupBy: {
+            args: Prisma.AdminGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AdminGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AdminCountArgs<ExtArgs>
+            result: $Utils.Optional<AdminCountAggregateOutputType> | number
+          }
+        }
+      }
+      AdminOtp: {
+        payload: Prisma.$AdminOtpPayload<ExtArgs>
+        fields: Prisma.AdminOtpFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AdminOtpFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminOtpPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AdminOtpFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminOtpPayload>
+          }
+          findFirst: {
+            args: Prisma.AdminOtpFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminOtpPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AdminOtpFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminOtpPayload>
+          }
+          findMany: {
+            args: Prisma.AdminOtpFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminOtpPayload>[]
+          }
+          create: {
+            args: Prisma.AdminOtpCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminOtpPayload>
+          }
+          createMany: {
+            args: Prisma.AdminOtpCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AdminOtpCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminOtpPayload>[]
+          }
+          delete: {
+            args: Prisma.AdminOtpDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminOtpPayload>
+          }
+          update: {
+            args: Prisma.AdminOtpUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminOtpPayload>
+          }
+          deleteMany: {
+            args: Prisma.AdminOtpDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AdminOtpUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AdminOtpUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminOtpPayload>[]
+          }
+          upsert: {
+            args: Prisma.AdminOtpUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminOtpPayload>
+          }
+          aggregate: {
+            args: Prisma.AdminOtpAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAdminOtp>
+          }
+          groupBy: {
+            args: Prisma.AdminOtpGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AdminOtpGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AdminOtpCountArgs<ExtArgs>
+            result: $Utils.Optional<AdminOtpCountAggregateOutputType> | number
+          }
+        }
+      }
+      AdminSession: {
+        payload: Prisma.$AdminSessionPayload<ExtArgs>
+        fields: Prisma.AdminSessionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AdminSessionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminSessionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AdminSessionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminSessionPayload>
+          }
+          findFirst: {
+            args: Prisma.AdminSessionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminSessionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AdminSessionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminSessionPayload>
+          }
+          findMany: {
+            args: Prisma.AdminSessionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminSessionPayload>[]
+          }
+          create: {
+            args: Prisma.AdminSessionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminSessionPayload>
+          }
+          createMany: {
+            args: Prisma.AdminSessionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AdminSessionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminSessionPayload>[]
+          }
+          delete: {
+            args: Prisma.AdminSessionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminSessionPayload>
+          }
+          update: {
+            args: Prisma.AdminSessionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminSessionPayload>
+          }
+          deleteMany: {
+            args: Prisma.AdminSessionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AdminSessionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AdminSessionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminSessionPayload>[]
+          }
+          upsert: {
+            args: Prisma.AdminSessionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AdminSessionPayload>
+          }
+          aggregate: {
+            args: Prisma.AdminSessionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAdminSession>
+          }
+          groupBy: {
+            args: Prisma.AdminSessionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AdminSessionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AdminSessionCountArgs<ExtArgs>
+            result: $Utils.Optional<AdminSessionCountAggregateOutputType> | number
+          }
+        }
+      }
+      RequestLog: {
+        payload: Prisma.$RequestLogPayload<ExtArgs>
+        fields: Prisma.RequestLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RequestLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RequestLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestLogPayload>
+          }
+          findFirst: {
+            args: Prisma.RequestLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RequestLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestLogPayload>
+          }
+          findMany: {
+            args: Prisma.RequestLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestLogPayload>[]
+          }
+          create: {
+            args: Prisma.RequestLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestLogPayload>
+          }
+          createMany: {
+            args: Prisma.RequestLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RequestLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestLogPayload>[]
+          }
+          delete: {
+            args: Prisma.RequestLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestLogPayload>
+          }
+          update: {
+            args: Prisma.RequestLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.RequestLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RequestLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RequestLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.RequestLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestLogPayload>
+          }
+          aggregate: {
+            args: Prisma.RequestLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRequestLog>
+          }
+          groupBy: {
+            args: Prisma.RequestLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RequestLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RequestLogCountArgs<ExtArgs>
+            result: $Utils.Optional<RequestLogCountAggregateOutputType> | number
+          }
+        }
+      }
+      AppLog: {
+        payload: Prisma.$AppLogPayload<ExtArgs>
+        fields: Prisma.AppLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AppLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AppLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppLogPayload>
+          }
+          findFirst: {
+            args: Prisma.AppLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AppLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppLogPayload>
+          }
+          findMany: {
+            args: Prisma.AppLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppLogPayload>[]
+          }
+          create: {
+            args: Prisma.AppLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppLogPayload>
+          }
+          createMany: {
+            args: Prisma.AppLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AppLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppLogPayload>[]
+          }
+          delete: {
+            args: Prisma.AppLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppLogPayload>
+          }
+          update: {
+            args: Prisma.AppLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.AppLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AppLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AppLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.AppLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppLogPayload>
+          }
+          aggregate: {
+            args: Prisma.AppLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAppLog>
+          }
+          groupBy: {
+            args: Prisma.AppLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AppLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AppLogCountArgs<ExtArgs>
+            result: $Utils.Optional<AppLogCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2060,6 +2628,12 @@ export namespace Prisma {
     referral?: ReferralOmit
     userOtp?: UserOtpOmit
     refreshToken?: RefreshTokenOmit
+    gitHubConnection?: GitHubConnectionOmit
+    admin?: AdminOmit
+    adminOtp?: AdminOtpOmit
+    adminSession?: AdminSessionOmit
+    requestLog?: RequestLogOmit
+    appLog?: AppLogOmit
   }
 
   /* Types for Logging */
@@ -2151,6 +2725,7 @@ export namespace Prisma {
     transactions: number
     purchases: number
     refreshTokens: number
+    GitHubConnections: number
     referralsMade: number
     referralsReceived: number
   }
@@ -2167,6 +2742,7 @@ export namespace Prisma {
     transactions?: boolean | UserCountOutputTypeCountTransactionsArgs
     purchases?: boolean | UserCountOutputTypeCountPurchasesArgs
     refreshTokens?: boolean | UserCountOutputTypeCountRefreshTokensArgs
+    GitHubConnections?: boolean | UserCountOutputTypeCountGitHubConnectionsArgs
     referralsMade?: boolean | UserCountOutputTypeCountReferralsMadeArgs
     referralsReceived?: boolean | UserCountOutputTypeCountReferralsReceivedArgs
   }
@@ -2262,6 +2838,13 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
+  export type UserCountOutputTypeCountGitHubConnectionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GitHubConnectionWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
   export type UserCountOutputTypeCountReferralsMadeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ReferralWhereInput
   }
@@ -2271,6 +2854,46 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountReferralsReceivedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ReferralWhereInput
+  }
+
+
+  /**
+   * Count Type AdminCountOutputType
+   */
+
+  export type AdminCountOutputType = {
+    otps: number
+    sessions: number
+  }
+
+  export type AdminCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    otps?: boolean | AdminCountOutputTypeCountOtpsArgs
+    sessions?: boolean | AdminCountOutputTypeCountSessionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AdminCountOutputType without action
+   */
+  export type AdminCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminCountOutputType
+     */
+    select?: AdminCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AdminCountOutputType without action
+   */
+  export type AdminCountOutputTypeCountOtpsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AdminOtpWhereInput
+  }
+
+  /**
+   * AdminCountOutputType without action
+   */
+  export type AdminCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AdminSessionWhereInput
   }
 
 
@@ -2567,6 +3190,7 @@ export namespace Prisma {
     transactions?: boolean | User$transactionsArgs<ExtArgs>
     purchases?: boolean | User$purchasesArgs<ExtArgs>
     refreshTokens?: boolean | User$refreshTokensArgs<ExtArgs>
+    GitHubConnections?: boolean | User$GitHubConnectionsArgs<ExtArgs>
     referralsMade?: boolean | User$referralsMadeArgs<ExtArgs>
     referralsReceived?: boolean | User$referralsReceivedArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -2639,6 +3263,7 @@ export namespace Prisma {
     transactions?: boolean | User$transactionsArgs<ExtArgs>
     purchases?: boolean | User$purchasesArgs<ExtArgs>
     refreshTokens?: boolean | User$refreshTokensArgs<ExtArgs>
+    GitHubConnections?: boolean | User$GitHubConnectionsArgs<ExtArgs>
     referralsMade?: boolean | User$referralsMadeArgs<ExtArgs>
     referralsReceived?: boolean | User$referralsReceivedArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -2660,6 +3285,7 @@ export namespace Prisma {
       transactions: Prisma.$CreditTransactionPayload<ExtArgs>[]
       purchases: Prisma.$PurchasePayload<ExtArgs>[]
       refreshTokens: Prisma.$RefreshTokenPayload<ExtArgs>[]
+      GitHubConnections: Prisma.$GitHubConnectionPayload<ExtArgs>[]
       referralsMade: Prisma.$ReferralPayload<ExtArgs>[]
       referralsReceived: Prisma.$ReferralPayload<ExtArgs>[]
     }
@@ -3084,6 +3710,7 @@ export namespace Prisma {
     transactions<T extends User$transactionsArgs<ExtArgs> = {}>(args?: Subset<T, User$transactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CreditTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     purchases<T extends User$purchasesArgs<ExtArgs> = {}>(args?: Subset<T, User$purchasesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PurchasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     refreshTokens<T extends User$refreshTokensArgs<ExtArgs> = {}>(args?: Subset<T, User$refreshTokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    GitHubConnections<T extends User$GitHubConnectionsArgs<ExtArgs> = {}>(args?: Subset<T, User$GitHubConnectionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GitHubConnectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     referralsMade<T extends User$referralsMadeArgs<ExtArgs> = {}>(args?: Subset<T, User$referralsMadeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReferralPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     referralsReceived<T extends User$referralsReceivedArgs<ExtArgs> = {}>(args?: Subset<T, User$referralsReceivedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReferralPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -3784,6 +4411,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: RefreshTokenScalarFieldEnum | RefreshTokenScalarFieldEnum[]
+  }
+
+  /**
+   * User.GitHubConnections
+   */
+  export type User$GitHubConnectionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubConnection
+     */
+    select?: GitHubConnectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubConnection
+     */
+    omit?: GitHubConnectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubConnectionInclude<ExtArgs> | null
+    where?: GitHubConnectionWhereInput
+    orderBy?: GitHubConnectionOrderByWithRelationInput | GitHubConnectionOrderByWithRelationInput[]
+    cursor?: GitHubConnectionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GitHubConnectionScalarFieldEnum | GitHubConnectionScalarFieldEnum[]
   }
 
   /**
@@ -7130,6 +7781,8 @@ export namespace Prisma {
     userId: string | null
     name: string | null
     description: string | null
+    repo_url: string | null
+    depolyed_url: string | null
     createdAt: Date | null
   }
 
@@ -7138,6 +7791,8 @@ export namespace Prisma {
     userId: string | null
     name: string | null
     description: string | null
+    repo_url: string | null
+    depolyed_url: string | null
     createdAt: Date | null
   }
 
@@ -7146,6 +7801,8 @@ export namespace Prisma {
     userId: number
     name: number
     description: number
+    repo_url: number
+    depolyed_url: number
     projectLinks: number
     techStacks: number
     createdAt: number
@@ -7158,6 +7815,8 @@ export namespace Prisma {
     userId?: true
     name?: true
     description?: true
+    repo_url?: true
+    depolyed_url?: true
     createdAt?: true
   }
 
@@ -7166,6 +7825,8 @@ export namespace Prisma {
     userId?: true
     name?: true
     description?: true
+    repo_url?: true
+    depolyed_url?: true
     createdAt?: true
   }
 
@@ -7174,6 +7835,8 @@ export namespace Prisma {
     userId?: true
     name?: true
     description?: true
+    repo_url?: true
+    depolyed_url?: true
     projectLinks?: true
     techStacks?: true
     createdAt?: true
@@ -7257,6 +7920,8 @@ export namespace Prisma {
     userId: string
     name: string
     description: string
+    repo_url: string | null
+    depolyed_url: string | null
     projectLinks: string[]
     techStacks: string[]
     createdAt: Date
@@ -7284,6 +7949,8 @@ export namespace Prisma {
     userId?: boolean
     name?: boolean
     description?: boolean
+    repo_url?: boolean
+    depolyed_url?: boolean
     projectLinks?: boolean
     techStacks?: boolean
     createdAt?: boolean
@@ -7295,6 +7962,8 @@ export namespace Prisma {
     userId?: boolean
     name?: boolean
     description?: boolean
+    repo_url?: boolean
+    depolyed_url?: boolean
     projectLinks?: boolean
     techStacks?: boolean
     createdAt?: boolean
@@ -7306,6 +7975,8 @@ export namespace Prisma {
     userId?: boolean
     name?: boolean
     description?: boolean
+    repo_url?: boolean
+    depolyed_url?: boolean
     projectLinks?: boolean
     techStacks?: boolean
     createdAt?: boolean
@@ -7317,12 +7988,14 @@ export namespace Prisma {
     userId?: boolean
     name?: boolean
     description?: boolean
+    repo_url?: boolean
+    depolyed_url?: boolean
     projectLinks?: boolean
     techStacks?: boolean
     createdAt?: boolean
   }
 
-  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "description" | "projectLinks" | "techStacks" | "createdAt", ExtArgs["result"]["project"]>
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "description" | "repo_url" | "depolyed_url" | "projectLinks" | "techStacks" | "createdAt", ExtArgs["result"]["project"]>
   export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -7343,6 +8016,8 @@ export namespace Prisma {
       userId: string
       name: string
       description: string
+      repo_url: string | null
+      depolyed_url: string | null
       projectLinks: string[]
       techStacks: string[]
       createdAt: Date
@@ -7774,6 +8449,8 @@ export namespace Prisma {
     readonly userId: FieldRef<"Project", 'String'>
     readonly name: FieldRef<"Project", 'String'>
     readonly description: FieldRef<"Project", 'String'>
+    readonly repo_url: FieldRef<"Project", 'String'>
+    readonly depolyed_url: FieldRef<"Project", 'String'>
     readonly projectLinks: FieldRef<"Project", 'String[]'>
     readonly techStacks: FieldRef<"Project", 'String[]'>
     readonly createdAt: FieldRef<"Project", 'DateTime'>
@@ -18209,6 +18886,6605 @@ export namespace Prisma {
 
 
   /**
+   * Model GitHubConnection
+   */
+
+  export type AggregateGitHubConnection = {
+    _count: GitHubConnectionCountAggregateOutputType | null
+    _avg: GitHubConnectionAvgAggregateOutputType | null
+    _sum: GitHubConnectionSumAggregateOutputType | null
+    _min: GitHubConnectionMinAggregateOutputType | null
+    _max: GitHubConnectionMaxAggregateOutputType | null
+  }
+
+  export type GitHubConnectionAvgAggregateOutputType = {
+    githubId: number | null
+  }
+
+  export type GitHubConnectionSumAggregateOutputType = {
+    githubId: number | null
+  }
+
+  export type GitHubConnectionMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    accessToken: string | null
+    githubLogin: string | null
+    githubId: number | null
+    scope: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type GitHubConnectionMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    accessToken: string | null
+    githubLogin: string | null
+    githubId: number | null
+    scope: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type GitHubConnectionCountAggregateOutputType = {
+    id: number
+    userId: number
+    accessToken: number
+    githubLogin: number
+    githubId: number
+    scope: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type GitHubConnectionAvgAggregateInputType = {
+    githubId?: true
+  }
+
+  export type GitHubConnectionSumAggregateInputType = {
+    githubId?: true
+  }
+
+  export type GitHubConnectionMinAggregateInputType = {
+    id?: true
+    userId?: true
+    accessToken?: true
+    githubLogin?: true
+    githubId?: true
+    scope?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type GitHubConnectionMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    accessToken?: true
+    githubLogin?: true
+    githubId?: true
+    scope?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type GitHubConnectionCountAggregateInputType = {
+    id?: true
+    userId?: true
+    accessToken?: true
+    githubLogin?: true
+    githubId?: true
+    scope?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type GitHubConnectionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GitHubConnection to aggregate.
+     */
+    where?: GitHubConnectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GitHubConnections to fetch.
+     */
+    orderBy?: GitHubConnectionOrderByWithRelationInput | GitHubConnectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GitHubConnectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GitHubConnections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GitHubConnections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned GitHubConnections
+    **/
+    _count?: true | GitHubConnectionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GitHubConnectionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GitHubConnectionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GitHubConnectionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GitHubConnectionMaxAggregateInputType
+  }
+
+  export type GetGitHubConnectionAggregateType<T extends GitHubConnectionAggregateArgs> = {
+        [P in keyof T & keyof AggregateGitHubConnection]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGitHubConnection[P]>
+      : GetScalarType<T[P], AggregateGitHubConnection[P]>
+  }
+
+
+
+
+  export type GitHubConnectionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GitHubConnectionWhereInput
+    orderBy?: GitHubConnectionOrderByWithAggregationInput | GitHubConnectionOrderByWithAggregationInput[]
+    by: GitHubConnectionScalarFieldEnum[] | GitHubConnectionScalarFieldEnum
+    having?: GitHubConnectionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GitHubConnectionCountAggregateInputType | true
+    _avg?: GitHubConnectionAvgAggregateInputType
+    _sum?: GitHubConnectionSumAggregateInputType
+    _min?: GitHubConnectionMinAggregateInputType
+    _max?: GitHubConnectionMaxAggregateInputType
+  }
+
+  export type GitHubConnectionGroupByOutputType = {
+    id: string
+    userId: string
+    accessToken: string
+    githubLogin: string
+    githubId: number
+    scope: string
+    createdAt: Date
+    updatedAt: Date
+    _count: GitHubConnectionCountAggregateOutputType | null
+    _avg: GitHubConnectionAvgAggregateOutputType | null
+    _sum: GitHubConnectionSumAggregateOutputType | null
+    _min: GitHubConnectionMinAggregateOutputType | null
+    _max: GitHubConnectionMaxAggregateOutputType | null
+  }
+
+  type GetGitHubConnectionGroupByPayload<T extends GitHubConnectionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GitHubConnectionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GitHubConnectionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GitHubConnectionGroupByOutputType[P]>
+            : GetScalarType<T[P], GitHubConnectionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GitHubConnectionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    accessToken?: boolean
+    githubLogin?: boolean
+    githubId?: boolean
+    scope?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["gitHubConnection"]>
+
+  export type GitHubConnectionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    accessToken?: boolean
+    githubLogin?: boolean
+    githubId?: boolean
+    scope?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["gitHubConnection"]>
+
+  export type GitHubConnectionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    accessToken?: boolean
+    githubLogin?: boolean
+    githubId?: boolean
+    scope?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["gitHubConnection"]>
+
+  export type GitHubConnectionSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    accessToken?: boolean
+    githubLogin?: boolean
+    githubId?: boolean
+    scope?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type GitHubConnectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "accessToken" | "githubLogin" | "githubId" | "scope" | "createdAt" | "updatedAt", ExtArgs["result"]["gitHubConnection"]>
+  export type GitHubConnectionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type GitHubConnectionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type GitHubConnectionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $GitHubConnectionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "GitHubConnection"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      accessToken: string
+      githubLogin: string
+      githubId: number
+      scope: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["gitHubConnection"]>
+    composites: {}
+  }
+
+  type GitHubConnectionGetPayload<S extends boolean | null | undefined | GitHubConnectionDefaultArgs> = $Result.GetResult<Prisma.$GitHubConnectionPayload, S>
+
+  type GitHubConnectionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<GitHubConnectionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: GitHubConnectionCountAggregateInputType | true
+    }
+
+  export interface GitHubConnectionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GitHubConnection'], meta: { name: 'GitHubConnection' } }
+    /**
+     * Find zero or one GitHubConnection that matches the filter.
+     * @param {GitHubConnectionFindUniqueArgs} args - Arguments to find a GitHubConnection
+     * @example
+     * // Get one GitHubConnection
+     * const gitHubConnection = await prisma.gitHubConnection.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends GitHubConnectionFindUniqueArgs>(args: SelectSubset<T, GitHubConnectionFindUniqueArgs<ExtArgs>>): Prisma__GitHubConnectionClient<$Result.GetResult<Prisma.$GitHubConnectionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one GitHubConnection that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {GitHubConnectionFindUniqueOrThrowArgs} args - Arguments to find a GitHubConnection
+     * @example
+     * // Get one GitHubConnection
+     * const gitHubConnection = await prisma.gitHubConnection.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends GitHubConnectionFindUniqueOrThrowArgs>(args: SelectSubset<T, GitHubConnectionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GitHubConnectionClient<$Result.GetResult<Prisma.$GitHubConnectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GitHubConnection that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GitHubConnectionFindFirstArgs} args - Arguments to find a GitHubConnection
+     * @example
+     * // Get one GitHubConnection
+     * const gitHubConnection = await prisma.gitHubConnection.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends GitHubConnectionFindFirstArgs>(args?: SelectSubset<T, GitHubConnectionFindFirstArgs<ExtArgs>>): Prisma__GitHubConnectionClient<$Result.GetResult<Prisma.$GitHubConnectionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GitHubConnection that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GitHubConnectionFindFirstOrThrowArgs} args - Arguments to find a GitHubConnection
+     * @example
+     * // Get one GitHubConnection
+     * const gitHubConnection = await prisma.gitHubConnection.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends GitHubConnectionFindFirstOrThrowArgs>(args?: SelectSubset<T, GitHubConnectionFindFirstOrThrowArgs<ExtArgs>>): Prisma__GitHubConnectionClient<$Result.GetResult<Prisma.$GitHubConnectionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more GitHubConnections that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GitHubConnectionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all GitHubConnections
+     * const gitHubConnections = await prisma.gitHubConnection.findMany()
+     * 
+     * // Get first 10 GitHubConnections
+     * const gitHubConnections = await prisma.gitHubConnection.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const gitHubConnectionWithIdOnly = await prisma.gitHubConnection.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends GitHubConnectionFindManyArgs>(args?: SelectSubset<T, GitHubConnectionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GitHubConnectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a GitHubConnection.
+     * @param {GitHubConnectionCreateArgs} args - Arguments to create a GitHubConnection.
+     * @example
+     * // Create one GitHubConnection
+     * const GitHubConnection = await prisma.gitHubConnection.create({
+     *   data: {
+     *     // ... data to create a GitHubConnection
+     *   }
+     * })
+     * 
+     */
+    create<T extends GitHubConnectionCreateArgs>(args: SelectSubset<T, GitHubConnectionCreateArgs<ExtArgs>>): Prisma__GitHubConnectionClient<$Result.GetResult<Prisma.$GitHubConnectionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many GitHubConnections.
+     * @param {GitHubConnectionCreateManyArgs} args - Arguments to create many GitHubConnections.
+     * @example
+     * // Create many GitHubConnections
+     * const gitHubConnection = await prisma.gitHubConnection.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends GitHubConnectionCreateManyArgs>(args?: SelectSubset<T, GitHubConnectionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many GitHubConnections and returns the data saved in the database.
+     * @param {GitHubConnectionCreateManyAndReturnArgs} args - Arguments to create many GitHubConnections.
+     * @example
+     * // Create many GitHubConnections
+     * const gitHubConnection = await prisma.gitHubConnection.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many GitHubConnections and only return the `id`
+     * const gitHubConnectionWithIdOnly = await prisma.gitHubConnection.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends GitHubConnectionCreateManyAndReturnArgs>(args?: SelectSubset<T, GitHubConnectionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GitHubConnectionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a GitHubConnection.
+     * @param {GitHubConnectionDeleteArgs} args - Arguments to delete one GitHubConnection.
+     * @example
+     * // Delete one GitHubConnection
+     * const GitHubConnection = await prisma.gitHubConnection.delete({
+     *   where: {
+     *     // ... filter to delete one GitHubConnection
+     *   }
+     * })
+     * 
+     */
+    delete<T extends GitHubConnectionDeleteArgs>(args: SelectSubset<T, GitHubConnectionDeleteArgs<ExtArgs>>): Prisma__GitHubConnectionClient<$Result.GetResult<Prisma.$GitHubConnectionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one GitHubConnection.
+     * @param {GitHubConnectionUpdateArgs} args - Arguments to update one GitHubConnection.
+     * @example
+     * // Update one GitHubConnection
+     * const gitHubConnection = await prisma.gitHubConnection.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends GitHubConnectionUpdateArgs>(args: SelectSubset<T, GitHubConnectionUpdateArgs<ExtArgs>>): Prisma__GitHubConnectionClient<$Result.GetResult<Prisma.$GitHubConnectionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more GitHubConnections.
+     * @param {GitHubConnectionDeleteManyArgs} args - Arguments to filter GitHubConnections to delete.
+     * @example
+     * // Delete a few GitHubConnections
+     * const { count } = await prisma.gitHubConnection.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends GitHubConnectionDeleteManyArgs>(args?: SelectSubset<T, GitHubConnectionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GitHubConnections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GitHubConnectionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many GitHubConnections
+     * const gitHubConnection = await prisma.gitHubConnection.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends GitHubConnectionUpdateManyArgs>(args: SelectSubset<T, GitHubConnectionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GitHubConnections and returns the data updated in the database.
+     * @param {GitHubConnectionUpdateManyAndReturnArgs} args - Arguments to update many GitHubConnections.
+     * @example
+     * // Update many GitHubConnections
+     * const gitHubConnection = await prisma.gitHubConnection.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more GitHubConnections and only return the `id`
+     * const gitHubConnectionWithIdOnly = await prisma.gitHubConnection.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends GitHubConnectionUpdateManyAndReturnArgs>(args: SelectSubset<T, GitHubConnectionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GitHubConnectionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one GitHubConnection.
+     * @param {GitHubConnectionUpsertArgs} args - Arguments to update or create a GitHubConnection.
+     * @example
+     * // Update or create a GitHubConnection
+     * const gitHubConnection = await prisma.gitHubConnection.upsert({
+     *   create: {
+     *     // ... data to create a GitHubConnection
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the GitHubConnection we want to update
+     *   }
+     * })
+     */
+    upsert<T extends GitHubConnectionUpsertArgs>(args: SelectSubset<T, GitHubConnectionUpsertArgs<ExtArgs>>): Prisma__GitHubConnectionClient<$Result.GetResult<Prisma.$GitHubConnectionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of GitHubConnections.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GitHubConnectionCountArgs} args - Arguments to filter GitHubConnections to count.
+     * @example
+     * // Count the number of GitHubConnections
+     * const count = await prisma.gitHubConnection.count({
+     *   where: {
+     *     // ... the filter for the GitHubConnections we want to count
+     *   }
+     * })
+    **/
+    count<T extends GitHubConnectionCountArgs>(
+      args?: Subset<T, GitHubConnectionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GitHubConnectionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a GitHubConnection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GitHubConnectionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GitHubConnectionAggregateArgs>(args: Subset<T, GitHubConnectionAggregateArgs>): Prisma.PrismaPromise<GetGitHubConnectionAggregateType<T>>
+
+    /**
+     * Group by GitHubConnection.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GitHubConnectionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GitHubConnectionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GitHubConnectionGroupByArgs['orderBy'] }
+        : { orderBy?: GitHubConnectionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GitHubConnectionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGitHubConnectionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the GitHubConnection model
+   */
+  readonly fields: GitHubConnectionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for GitHubConnection.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GitHubConnectionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the GitHubConnection model
+   */
+  interface GitHubConnectionFieldRefs {
+    readonly id: FieldRef<"GitHubConnection", 'String'>
+    readonly userId: FieldRef<"GitHubConnection", 'String'>
+    readonly accessToken: FieldRef<"GitHubConnection", 'String'>
+    readonly githubLogin: FieldRef<"GitHubConnection", 'String'>
+    readonly githubId: FieldRef<"GitHubConnection", 'Int'>
+    readonly scope: FieldRef<"GitHubConnection", 'String'>
+    readonly createdAt: FieldRef<"GitHubConnection", 'DateTime'>
+    readonly updatedAt: FieldRef<"GitHubConnection", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * GitHubConnection findUnique
+   */
+  export type GitHubConnectionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubConnection
+     */
+    select?: GitHubConnectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubConnection
+     */
+    omit?: GitHubConnectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubConnectionInclude<ExtArgs> | null
+    /**
+     * Filter, which GitHubConnection to fetch.
+     */
+    where: GitHubConnectionWhereUniqueInput
+  }
+
+  /**
+   * GitHubConnection findUniqueOrThrow
+   */
+  export type GitHubConnectionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubConnection
+     */
+    select?: GitHubConnectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubConnection
+     */
+    omit?: GitHubConnectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubConnectionInclude<ExtArgs> | null
+    /**
+     * Filter, which GitHubConnection to fetch.
+     */
+    where: GitHubConnectionWhereUniqueInput
+  }
+
+  /**
+   * GitHubConnection findFirst
+   */
+  export type GitHubConnectionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubConnection
+     */
+    select?: GitHubConnectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubConnection
+     */
+    omit?: GitHubConnectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubConnectionInclude<ExtArgs> | null
+    /**
+     * Filter, which GitHubConnection to fetch.
+     */
+    where?: GitHubConnectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GitHubConnections to fetch.
+     */
+    orderBy?: GitHubConnectionOrderByWithRelationInput | GitHubConnectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GitHubConnections.
+     */
+    cursor?: GitHubConnectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GitHubConnections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GitHubConnections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GitHubConnections.
+     */
+    distinct?: GitHubConnectionScalarFieldEnum | GitHubConnectionScalarFieldEnum[]
+  }
+
+  /**
+   * GitHubConnection findFirstOrThrow
+   */
+  export type GitHubConnectionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubConnection
+     */
+    select?: GitHubConnectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubConnection
+     */
+    omit?: GitHubConnectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubConnectionInclude<ExtArgs> | null
+    /**
+     * Filter, which GitHubConnection to fetch.
+     */
+    where?: GitHubConnectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GitHubConnections to fetch.
+     */
+    orderBy?: GitHubConnectionOrderByWithRelationInput | GitHubConnectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GitHubConnections.
+     */
+    cursor?: GitHubConnectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GitHubConnections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GitHubConnections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GitHubConnections.
+     */
+    distinct?: GitHubConnectionScalarFieldEnum | GitHubConnectionScalarFieldEnum[]
+  }
+
+  /**
+   * GitHubConnection findMany
+   */
+  export type GitHubConnectionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubConnection
+     */
+    select?: GitHubConnectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubConnection
+     */
+    omit?: GitHubConnectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubConnectionInclude<ExtArgs> | null
+    /**
+     * Filter, which GitHubConnections to fetch.
+     */
+    where?: GitHubConnectionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GitHubConnections to fetch.
+     */
+    orderBy?: GitHubConnectionOrderByWithRelationInput | GitHubConnectionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing GitHubConnections.
+     */
+    cursor?: GitHubConnectionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GitHubConnections from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GitHubConnections.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GitHubConnections.
+     */
+    distinct?: GitHubConnectionScalarFieldEnum | GitHubConnectionScalarFieldEnum[]
+  }
+
+  /**
+   * GitHubConnection create
+   */
+  export type GitHubConnectionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubConnection
+     */
+    select?: GitHubConnectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubConnection
+     */
+    omit?: GitHubConnectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubConnectionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a GitHubConnection.
+     */
+    data: XOR<GitHubConnectionCreateInput, GitHubConnectionUncheckedCreateInput>
+  }
+
+  /**
+   * GitHubConnection createMany
+   */
+  export type GitHubConnectionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many GitHubConnections.
+     */
+    data: GitHubConnectionCreateManyInput | GitHubConnectionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * GitHubConnection createManyAndReturn
+   */
+  export type GitHubConnectionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubConnection
+     */
+    select?: GitHubConnectionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubConnection
+     */
+    omit?: GitHubConnectionOmit<ExtArgs> | null
+    /**
+     * The data used to create many GitHubConnections.
+     */
+    data: GitHubConnectionCreateManyInput | GitHubConnectionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubConnectionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * GitHubConnection update
+   */
+  export type GitHubConnectionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubConnection
+     */
+    select?: GitHubConnectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubConnection
+     */
+    omit?: GitHubConnectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubConnectionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a GitHubConnection.
+     */
+    data: XOR<GitHubConnectionUpdateInput, GitHubConnectionUncheckedUpdateInput>
+    /**
+     * Choose, which GitHubConnection to update.
+     */
+    where: GitHubConnectionWhereUniqueInput
+  }
+
+  /**
+   * GitHubConnection updateMany
+   */
+  export type GitHubConnectionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update GitHubConnections.
+     */
+    data: XOR<GitHubConnectionUpdateManyMutationInput, GitHubConnectionUncheckedUpdateManyInput>
+    /**
+     * Filter which GitHubConnections to update
+     */
+    where?: GitHubConnectionWhereInput
+    /**
+     * Limit how many GitHubConnections to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GitHubConnection updateManyAndReturn
+   */
+  export type GitHubConnectionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubConnection
+     */
+    select?: GitHubConnectionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubConnection
+     */
+    omit?: GitHubConnectionOmit<ExtArgs> | null
+    /**
+     * The data used to update GitHubConnections.
+     */
+    data: XOR<GitHubConnectionUpdateManyMutationInput, GitHubConnectionUncheckedUpdateManyInput>
+    /**
+     * Filter which GitHubConnections to update
+     */
+    where?: GitHubConnectionWhereInput
+    /**
+     * Limit how many GitHubConnections to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubConnectionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * GitHubConnection upsert
+   */
+  export type GitHubConnectionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubConnection
+     */
+    select?: GitHubConnectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubConnection
+     */
+    omit?: GitHubConnectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubConnectionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the GitHubConnection to update in case it exists.
+     */
+    where: GitHubConnectionWhereUniqueInput
+    /**
+     * In case the GitHubConnection found by the `where` argument doesn't exist, create a new GitHubConnection with this data.
+     */
+    create: XOR<GitHubConnectionCreateInput, GitHubConnectionUncheckedCreateInput>
+    /**
+     * In case the GitHubConnection was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GitHubConnectionUpdateInput, GitHubConnectionUncheckedUpdateInput>
+  }
+
+  /**
+   * GitHubConnection delete
+   */
+  export type GitHubConnectionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubConnection
+     */
+    select?: GitHubConnectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubConnection
+     */
+    omit?: GitHubConnectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubConnectionInclude<ExtArgs> | null
+    /**
+     * Filter which GitHubConnection to delete.
+     */
+    where: GitHubConnectionWhereUniqueInput
+  }
+
+  /**
+   * GitHubConnection deleteMany
+   */
+  export type GitHubConnectionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GitHubConnections to delete
+     */
+    where?: GitHubConnectionWhereInput
+    /**
+     * Limit how many GitHubConnections to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * GitHubConnection without action
+   */
+  export type GitHubConnectionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubConnection
+     */
+    select?: GitHubConnectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubConnection
+     */
+    omit?: GitHubConnectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubConnectionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Admin
+   */
+
+  export type AggregateAdmin = {
+    _count: AdminCountAggregateOutputType | null
+    _min: AdminMinAggregateOutputType | null
+    _max: AdminMaxAggregateOutputType | null
+  }
+
+  export type AdminMinAggregateOutputType = {
+    id: string | null
+    email: string | null
+    name: string | null
+    role: $Enums.AdminRole | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    createdById: string | null
+  }
+
+  export type AdminMaxAggregateOutputType = {
+    id: string | null
+    email: string | null
+    name: string | null
+    role: $Enums.AdminRole | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    createdById: string | null
+  }
+
+  export type AdminCountAggregateOutputType = {
+    id: number
+    email: number
+    name: number
+    role: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    createdById: number
+    _all: number
+  }
+
+
+  export type AdminMinAggregateInputType = {
+    id?: true
+    email?: true
+    name?: true
+    role?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    createdById?: true
+  }
+
+  export type AdminMaxAggregateInputType = {
+    id?: true
+    email?: true
+    name?: true
+    role?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    createdById?: true
+  }
+
+  export type AdminCountAggregateInputType = {
+    id?: true
+    email?: true
+    name?: true
+    role?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    createdById?: true
+    _all?: true
+  }
+
+  export type AdminAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Admin to aggregate.
+     */
+    where?: AdminWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Admins to fetch.
+     */
+    orderBy?: AdminOrderByWithRelationInput | AdminOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AdminWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Admins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Admins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Admins
+    **/
+    _count?: true | AdminCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AdminMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AdminMaxAggregateInputType
+  }
+
+  export type GetAdminAggregateType<T extends AdminAggregateArgs> = {
+        [P in keyof T & keyof AggregateAdmin]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAdmin[P]>
+      : GetScalarType<T[P], AggregateAdmin[P]>
+  }
+
+
+
+
+  export type AdminGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AdminWhereInput
+    orderBy?: AdminOrderByWithAggregationInput | AdminOrderByWithAggregationInput[]
+    by: AdminScalarFieldEnum[] | AdminScalarFieldEnum
+    having?: AdminScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AdminCountAggregateInputType | true
+    _min?: AdminMinAggregateInputType
+    _max?: AdminMaxAggregateInputType
+  }
+
+  export type AdminGroupByOutputType = {
+    id: string
+    email: string
+    name: string
+    role: $Enums.AdminRole
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    createdById: string | null
+    _count: AdminCountAggregateOutputType | null
+    _min: AdminMinAggregateOutputType | null
+    _max: AdminMaxAggregateOutputType | null
+  }
+
+  type GetAdminGroupByPayload<T extends AdminGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AdminGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AdminGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AdminGroupByOutputType[P]>
+            : GetScalarType<T[P], AdminGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AdminSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    name?: boolean
+    role?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    createdById?: boolean
+    otps?: boolean | Admin$otpsArgs<ExtArgs>
+    sessions?: boolean | Admin$sessionsArgs<ExtArgs>
+    _count?: boolean | AdminCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["admin"]>
+
+  export type AdminSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    name?: boolean
+    role?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    createdById?: boolean
+  }, ExtArgs["result"]["admin"]>
+
+  export type AdminSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    name?: boolean
+    role?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    createdById?: boolean
+  }, ExtArgs["result"]["admin"]>
+
+  export type AdminSelectScalar = {
+    id?: boolean
+    email?: boolean
+    name?: boolean
+    role?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    createdById?: boolean
+  }
+
+  export type AdminOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "role" | "isActive" | "createdAt" | "updatedAt" | "createdById", ExtArgs["result"]["admin"]>
+  export type AdminInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    otps?: boolean | Admin$otpsArgs<ExtArgs>
+    sessions?: boolean | Admin$sessionsArgs<ExtArgs>
+    _count?: boolean | AdminCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type AdminIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type AdminIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $AdminPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Admin"
+    objects: {
+      otps: Prisma.$AdminOtpPayload<ExtArgs>[]
+      sessions: Prisma.$AdminSessionPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      email: string
+      name: string
+      role: $Enums.AdminRole
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+      createdById: string | null
+    }, ExtArgs["result"]["admin"]>
+    composites: {}
+  }
+
+  type AdminGetPayload<S extends boolean | null | undefined | AdminDefaultArgs> = $Result.GetResult<Prisma.$AdminPayload, S>
+
+  type AdminCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AdminFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AdminCountAggregateInputType | true
+    }
+
+  export interface AdminDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Admin'], meta: { name: 'Admin' } }
+    /**
+     * Find zero or one Admin that matches the filter.
+     * @param {AdminFindUniqueArgs} args - Arguments to find a Admin
+     * @example
+     * // Get one Admin
+     * const admin = await prisma.admin.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AdminFindUniqueArgs>(args: SelectSubset<T, AdminFindUniqueArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Admin that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AdminFindUniqueOrThrowArgs} args - Arguments to find a Admin
+     * @example
+     * // Get one Admin
+     * const admin = await prisma.admin.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AdminFindUniqueOrThrowArgs>(args: SelectSubset<T, AdminFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Admin that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminFindFirstArgs} args - Arguments to find a Admin
+     * @example
+     * // Get one Admin
+     * const admin = await prisma.admin.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AdminFindFirstArgs>(args?: SelectSubset<T, AdminFindFirstArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Admin that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminFindFirstOrThrowArgs} args - Arguments to find a Admin
+     * @example
+     * // Get one Admin
+     * const admin = await prisma.admin.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AdminFindFirstOrThrowArgs>(args?: SelectSubset<T, AdminFindFirstOrThrowArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Admins that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Admins
+     * const admins = await prisma.admin.findMany()
+     * 
+     * // Get first 10 Admins
+     * const admins = await prisma.admin.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const adminWithIdOnly = await prisma.admin.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AdminFindManyArgs>(args?: SelectSubset<T, AdminFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Admin.
+     * @param {AdminCreateArgs} args - Arguments to create a Admin.
+     * @example
+     * // Create one Admin
+     * const Admin = await prisma.admin.create({
+     *   data: {
+     *     // ... data to create a Admin
+     *   }
+     * })
+     * 
+     */
+    create<T extends AdminCreateArgs>(args: SelectSubset<T, AdminCreateArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Admins.
+     * @param {AdminCreateManyArgs} args - Arguments to create many Admins.
+     * @example
+     * // Create many Admins
+     * const admin = await prisma.admin.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AdminCreateManyArgs>(args?: SelectSubset<T, AdminCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Admins and returns the data saved in the database.
+     * @param {AdminCreateManyAndReturnArgs} args - Arguments to create many Admins.
+     * @example
+     * // Create many Admins
+     * const admin = await prisma.admin.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Admins and only return the `id`
+     * const adminWithIdOnly = await prisma.admin.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AdminCreateManyAndReturnArgs>(args?: SelectSubset<T, AdminCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Admin.
+     * @param {AdminDeleteArgs} args - Arguments to delete one Admin.
+     * @example
+     * // Delete one Admin
+     * const Admin = await prisma.admin.delete({
+     *   where: {
+     *     // ... filter to delete one Admin
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AdminDeleteArgs>(args: SelectSubset<T, AdminDeleteArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Admin.
+     * @param {AdminUpdateArgs} args - Arguments to update one Admin.
+     * @example
+     * // Update one Admin
+     * const admin = await prisma.admin.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AdminUpdateArgs>(args: SelectSubset<T, AdminUpdateArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Admins.
+     * @param {AdminDeleteManyArgs} args - Arguments to filter Admins to delete.
+     * @example
+     * // Delete a few Admins
+     * const { count } = await prisma.admin.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AdminDeleteManyArgs>(args?: SelectSubset<T, AdminDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Admins.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Admins
+     * const admin = await prisma.admin.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AdminUpdateManyArgs>(args: SelectSubset<T, AdminUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Admins and returns the data updated in the database.
+     * @param {AdminUpdateManyAndReturnArgs} args - Arguments to update many Admins.
+     * @example
+     * // Update many Admins
+     * const admin = await prisma.admin.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Admins and only return the `id`
+     * const adminWithIdOnly = await prisma.admin.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AdminUpdateManyAndReturnArgs>(args: SelectSubset<T, AdminUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Admin.
+     * @param {AdminUpsertArgs} args - Arguments to update or create a Admin.
+     * @example
+     * // Update or create a Admin
+     * const admin = await prisma.admin.upsert({
+     *   create: {
+     *     // ... data to create a Admin
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Admin we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AdminUpsertArgs>(args: SelectSubset<T, AdminUpsertArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Admins.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminCountArgs} args - Arguments to filter Admins to count.
+     * @example
+     * // Count the number of Admins
+     * const count = await prisma.admin.count({
+     *   where: {
+     *     // ... the filter for the Admins we want to count
+     *   }
+     * })
+    **/
+    count<T extends AdminCountArgs>(
+      args?: Subset<T, AdminCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AdminCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Admin.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AdminAggregateArgs>(args: Subset<T, AdminAggregateArgs>): Prisma.PrismaPromise<GetAdminAggregateType<T>>
+
+    /**
+     * Group by Admin.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AdminGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AdminGroupByArgs['orderBy'] }
+        : { orderBy?: AdminGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AdminGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAdminGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Admin model
+   */
+  readonly fields: AdminFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Admin.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AdminClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    otps<T extends Admin$otpsArgs<ExtArgs> = {}>(args?: Subset<T, Admin$otpsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminOtpPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sessions<T extends Admin$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, Admin$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Admin model
+   */
+  interface AdminFieldRefs {
+    readonly id: FieldRef<"Admin", 'String'>
+    readonly email: FieldRef<"Admin", 'String'>
+    readonly name: FieldRef<"Admin", 'String'>
+    readonly role: FieldRef<"Admin", 'AdminRole'>
+    readonly isActive: FieldRef<"Admin", 'Boolean'>
+    readonly createdAt: FieldRef<"Admin", 'DateTime'>
+    readonly updatedAt: FieldRef<"Admin", 'DateTime'>
+    readonly createdById: FieldRef<"Admin", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Admin findUnique
+   */
+  export type AdminFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
+     * Filter, which Admin to fetch.
+     */
+    where: AdminWhereUniqueInput
+  }
+
+  /**
+   * Admin findUniqueOrThrow
+   */
+  export type AdminFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
+     * Filter, which Admin to fetch.
+     */
+    where: AdminWhereUniqueInput
+  }
+
+  /**
+   * Admin findFirst
+   */
+  export type AdminFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
+     * Filter, which Admin to fetch.
+     */
+    where?: AdminWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Admins to fetch.
+     */
+    orderBy?: AdminOrderByWithRelationInput | AdminOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Admins.
+     */
+    cursor?: AdminWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Admins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Admins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Admins.
+     */
+    distinct?: AdminScalarFieldEnum | AdminScalarFieldEnum[]
+  }
+
+  /**
+   * Admin findFirstOrThrow
+   */
+  export type AdminFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
+     * Filter, which Admin to fetch.
+     */
+    where?: AdminWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Admins to fetch.
+     */
+    orderBy?: AdminOrderByWithRelationInput | AdminOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Admins.
+     */
+    cursor?: AdminWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Admins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Admins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Admins.
+     */
+    distinct?: AdminScalarFieldEnum | AdminScalarFieldEnum[]
+  }
+
+  /**
+   * Admin findMany
+   */
+  export type AdminFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
+     * Filter, which Admins to fetch.
+     */
+    where?: AdminWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Admins to fetch.
+     */
+    orderBy?: AdminOrderByWithRelationInput | AdminOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Admins.
+     */
+    cursor?: AdminWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Admins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Admins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Admins.
+     */
+    distinct?: AdminScalarFieldEnum | AdminScalarFieldEnum[]
+  }
+
+  /**
+   * Admin create
+   */
+  export type AdminCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Admin.
+     */
+    data: XOR<AdminCreateInput, AdminUncheckedCreateInput>
+  }
+
+  /**
+   * Admin createMany
+   */
+  export type AdminCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Admins.
+     */
+    data: AdminCreateManyInput | AdminCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Admin createManyAndReturn
+   */
+  export type AdminCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * The data used to create many Admins.
+     */
+    data: AdminCreateManyInput | AdminCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Admin update
+   */
+  export type AdminUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Admin.
+     */
+    data: XOR<AdminUpdateInput, AdminUncheckedUpdateInput>
+    /**
+     * Choose, which Admin to update.
+     */
+    where: AdminWhereUniqueInput
+  }
+
+  /**
+   * Admin updateMany
+   */
+  export type AdminUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Admins.
+     */
+    data: XOR<AdminUpdateManyMutationInput, AdminUncheckedUpdateManyInput>
+    /**
+     * Filter which Admins to update
+     */
+    where?: AdminWhereInput
+    /**
+     * Limit how many Admins to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Admin updateManyAndReturn
+   */
+  export type AdminUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * The data used to update Admins.
+     */
+    data: XOR<AdminUpdateManyMutationInput, AdminUncheckedUpdateManyInput>
+    /**
+     * Filter which Admins to update
+     */
+    where?: AdminWhereInput
+    /**
+     * Limit how many Admins to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Admin upsert
+   */
+  export type AdminUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Admin to update in case it exists.
+     */
+    where: AdminWhereUniqueInput
+    /**
+     * In case the Admin found by the `where` argument doesn't exist, create a new Admin with this data.
+     */
+    create: XOR<AdminCreateInput, AdminUncheckedCreateInput>
+    /**
+     * In case the Admin was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AdminUpdateInput, AdminUncheckedUpdateInput>
+  }
+
+  /**
+   * Admin delete
+   */
+  export type AdminDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
+     * Filter which Admin to delete.
+     */
+    where: AdminWhereUniqueInput
+  }
+
+  /**
+   * Admin deleteMany
+   */
+  export type AdminDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Admins to delete
+     */
+    where?: AdminWhereInput
+    /**
+     * Limit how many Admins to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Admin.otps
+   */
+  export type Admin$otpsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminOtp
+     */
+    select?: AdminOtpSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminOtp
+     */
+    omit?: AdminOtpOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminOtpInclude<ExtArgs> | null
+    where?: AdminOtpWhereInput
+    orderBy?: AdminOtpOrderByWithRelationInput | AdminOtpOrderByWithRelationInput[]
+    cursor?: AdminOtpWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AdminOtpScalarFieldEnum | AdminOtpScalarFieldEnum[]
+  }
+
+  /**
+   * Admin.sessions
+   */
+  export type Admin$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminSession
+     */
+    select?: AdminSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminSession
+     */
+    omit?: AdminSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminSessionInclude<ExtArgs> | null
+    where?: AdminSessionWhereInput
+    orderBy?: AdminSessionOrderByWithRelationInput | AdminSessionOrderByWithRelationInput[]
+    cursor?: AdminSessionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AdminSessionScalarFieldEnum | AdminSessionScalarFieldEnum[]
+  }
+
+  /**
+   * Admin without action
+   */
+  export type AdminDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Admin
+     */
+    omit?: AdminOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AdminOtp
+   */
+
+  export type AggregateAdminOtp = {
+    _count: AdminOtpCountAggregateOutputType | null
+    _min: AdminOtpMinAggregateOutputType | null
+    _max: AdminOtpMaxAggregateOutputType | null
+  }
+
+  export type AdminOtpMinAggregateOutputType = {
+    id: string | null
+    adminId: string | null
+    otp: string | null
+    expiresAt: Date | null
+    usedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type AdminOtpMaxAggregateOutputType = {
+    id: string | null
+    adminId: string | null
+    otp: string | null
+    expiresAt: Date | null
+    usedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type AdminOtpCountAggregateOutputType = {
+    id: number
+    adminId: number
+    otp: number
+    expiresAt: number
+    usedAt: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type AdminOtpMinAggregateInputType = {
+    id?: true
+    adminId?: true
+    otp?: true
+    expiresAt?: true
+    usedAt?: true
+    createdAt?: true
+  }
+
+  export type AdminOtpMaxAggregateInputType = {
+    id?: true
+    adminId?: true
+    otp?: true
+    expiresAt?: true
+    usedAt?: true
+    createdAt?: true
+  }
+
+  export type AdminOtpCountAggregateInputType = {
+    id?: true
+    adminId?: true
+    otp?: true
+    expiresAt?: true
+    usedAt?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type AdminOtpAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AdminOtp to aggregate.
+     */
+    where?: AdminOtpWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdminOtps to fetch.
+     */
+    orderBy?: AdminOtpOrderByWithRelationInput | AdminOtpOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AdminOtpWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdminOtps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdminOtps.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AdminOtps
+    **/
+    _count?: true | AdminOtpCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AdminOtpMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AdminOtpMaxAggregateInputType
+  }
+
+  export type GetAdminOtpAggregateType<T extends AdminOtpAggregateArgs> = {
+        [P in keyof T & keyof AggregateAdminOtp]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAdminOtp[P]>
+      : GetScalarType<T[P], AggregateAdminOtp[P]>
+  }
+
+
+
+
+  export type AdminOtpGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AdminOtpWhereInput
+    orderBy?: AdminOtpOrderByWithAggregationInput | AdminOtpOrderByWithAggregationInput[]
+    by: AdminOtpScalarFieldEnum[] | AdminOtpScalarFieldEnum
+    having?: AdminOtpScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AdminOtpCountAggregateInputType | true
+    _min?: AdminOtpMinAggregateInputType
+    _max?: AdminOtpMaxAggregateInputType
+  }
+
+  export type AdminOtpGroupByOutputType = {
+    id: string
+    adminId: string
+    otp: string
+    expiresAt: Date
+    usedAt: Date | null
+    createdAt: Date
+    _count: AdminOtpCountAggregateOutputType | null
+    _min: AdminOtpMinAggregateOutputType | null
+    _max: AdminOtpMaxAggregateOutputType | null
+  }
+
+  type GetAdminOtpGroupByPayload<T extends AdminOtpGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AdminOtpGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AdminOtpGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AdminOtpGroupByOutputType[P]>
+            : GetScalarType<T[P], AdminOtpGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AdminOtpSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    adminId?: boolean
+    otp?: boolean
+    expiresAt?: boolean
+    usedAt?: boolean
+    createdAt?: boolean
+    admin?: boolean | AdminDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["adminOtp"]>
+
+  export type AdminOtpSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    adminId?: boolean
+    otp?: boolean
+    expiresAt?: boolean
+    usedAt?: boolean
+    createdAt?: boolean
+    admin?: boolean | AdminDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["adminOtp"]>
+
+  export type AdminOtpSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    adminId?: boolean
+    otp?: boolean
+    expiresAt?: boolean
+    usedAt?: boolean
+    createdAt?: boolean
+    admin?: boolean | AdminDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["adminOtp"]>
+
+  export type AdminOtpSelectScalar = {
+    id?: boolean
+    adminId?: boolean
+    otp?: boolean
+    expiresAt?: boolean
+    usedAt?: boolean
+    createdAt?: boolean
+  }
+
+  export type AdminOtpOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "adminId" | "otp" | "expiresAt" | "usedAt" | "createdAt", ExtArgs["result"]["adminOtp"]>
+  export type AdminOtpInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    admin?: boolean | AdminDefaultArgs<ExtArgs>
+  }
+  export type AdminOtpIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    admin?: boolean | AdminDefaultArgs<ExtArgs>
+  }
+  export type AdminOtpIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    admin?: boolean | AdminDefaultArgs<ExtArgs>
+  }
+
+  export type $AdminOtpPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AdminOtp"
+    objects: {
+      admin: Prisma.$AdminPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      adminId: string
+      otp: string
+      expiresAt: Date
+      usedAt: Date | null
+      createdAt: Date
+    }, ExtArgs["result"]["adminOtp"]>
+    composites: {}
+  }
+
+  type AdminOtpGetPayload<S extends boolean | null | undefined | AdminOtpDefaultArgs> = $Result.GetResult<Prisma.$AdminOtpPayload, S>
+
+  type AdminOtpCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AdminOtpFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AdminOtpCountAggregateInputType | true
+    }
+
+  export interface AdminOtpDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AdminOtp'], meta: { name: 'AdminOtp' } }
+    /**
+     * Find zero or one AdminOtp that matches the filter.
+     * @param {AdminOtpFindUniqueArgs} args - Arguments to find a AdminOtp
+     * @example
+     * // Get one AdminOtp
+     * const adminOtp = await prisma.adminOtp.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AdminOtpFindUniqueArgs>(args: SelectSubset<T, AdminOtpFindUniqueArgs<ExtArgs>>): Prisma__AdminOtpClient<$Result.GetResult<Prisma.$AdminOtpPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AdminOtp that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AdminOtpFindUniqueOrThrowArgs} args - Arguments to find a AdminOtp
+     * @example
+     * // Get one AdminOtp
+     * const adminOtp = await prisma.adminOtp.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AdminOtpFindUniqueOrThrowArgs>(args: SelectSubset<T, AdminOtpFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AdminOtpClient<$Result.GetResult<Prisma.$AdminOtpPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AdminOtp that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminOtpFindFirstArgs} args - Arguments to find a AdminOtp
+     * @example
+     * // Get one AdminOtp
+     * const adminOtp = await prisma.adminOtp.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AdminOtpFindFirstArgs>(args?: SelectSubset<T, AdminOtpFindFirstArgs<ExtArgs>>): Prisma__AdminOtpClient<$Result.GetResult<Prisma.$AdminOtpPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AdminOtp that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminOtpFindFirstOrThrowArgs} args - Arguments to find a AdminOtp
+     * @example
+     * // Get one AdminOtp
+     * const adminOtp = await prisma.adminOtp.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AdminOtpFindFirstOrThrowArgs>(args?: SelectSubset<T, AdminOtpFindFirstOrThrowArgs<ExtArgs>>): Prisma__AdminOtpClient<$Result.GetResult<Prisma.$AdminOtpPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AdminOtps that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminOtpFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AdminOtps
+     * const adminOtps = await prisma.adminOtp.findMany()
+     * 
+     * // Get first 10 AdminOtps
+     * const adminOtps = await prisma.adminOtp.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const adminOtpWithIdOnly = await prisma.adminOtp.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AdminOtpFindManyArgs>(args?: SelectSubset<T, AdminOtpFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminOtpPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AdminOtp.
+     * @param {AdminOtpCreateArgs} args - Arguments to create a AdminOtp.
+     * @example
+     * // Create one AdminOtp
+     * const AdminOtp = await prisma.adminOtp.create({
+     *   data: {
+     *     // ... data to create a AdminOtp
+     *   }
+     * })
+     * 
+     */
+    create<T extends AdminOtpCreateArgs>(args: SelectSubset<T, AdminOtpCreateArgs<ExtArgs>>): Prisma__AdminOtpClient<$Result.GetResult<Prisma.$AdminOtpPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AdminOtps.
+     * @param {AdminOtpCreateManyArgs} args - Arguments to create many AdminOtps.
+     * @example
+     * // Create many AdminOtps
+     * const adminOtp = await prisma.adminOtp.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AdminOtpCreateManyArgs>(args?: SelectSubset<T, AdminOtpCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AdminOtps and returns the data saved in the database.
+     * @param {AdminOtpCreateManyAndReturnArgs} args - Arguments to create many AdminOtps.
+     * @example
+     * // Create many AdminOtps
+     * const adminOtp = await prisma.adminOtp.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AdminOtps and only return the `id`
+     * const adminOtpWithIdOnly = await prisma.adminOtp.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AdminOtpCreateManyAndReturnArgs>(args?: SelectSubset<T, AdminOtpCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminOtpPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AdminOtp.
+     * @param {AdminOtpDeleteArgs} args - Arguments to delete one AdminOtp.
+     * @example
+     * // Delete one AdminOtp
+     * const AdminOtp = await prisma.adminOtp.delete({
+     *   where: {
+     *     // ... filter to delete one AdminOtp
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AdminOtpDeleteArgs>(args: SelectSubset<T, AdminOtpDeleteArgs<ExtArgs>>): Prisma__AdminOtpClient<$Result.GetResult<Prisma.$AdminOtpPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AdminOtp.
+     * @param {AdminOtpUpdateArgs} args - Arguments to update one AdminOtp.
+     * @example
+     * // Update one AdminOtp
+     * const adminOtp = await prisma.adminOtp.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AdminOtpUpdateArgs>(args: SelectSubset<T, AdminOtpUpdateArgs<ExtArgs>>): Prisma__AdminOtpClient<$Result.GetResult<Prisma.$AdminOtpPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AdminOtps.
+     * @param {AdminOtpDeleteManyArgs} args - Arguments to filter AdminOtps to delete.
+     * @example
+     * // Delete a few AdminOtps
+     * const { count } = await prisma.adminOtp.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AdminOtpDeleteManyArgs>(args?: SelectSubset<T, AdminOtpDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AdminOtps.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminOtpUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AdminOtps
+     * const adminOtp = await prisma.adminOtp.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AdminOtpUpdateManyArgs>(args: SelectSubset<T, AdminOtpUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AdminOtps and returns the data updated in the database.
+     * @param {AdminOtpUpdateManyAndReturnArgs} args - Arguments to update many AdminOtps.
+     * @example
+     * // Update many AdminOtps
+     * const adminOtp = await prisma.adminOtp.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AdminOtps and only return the `id`
+     * const adminOtpWithIdOnly = await prisma.adminOtp.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AdminOtpUpdateManyAndReturnArgs>(args: SelectSubset<T, AdminOtpUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminOtpPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AdminOtp.
+     * @param {AdminOtpUpsertArgs} args - Arguments to update or create a AdminOtp.
+     * @example
+     * // Update or create a AdminOtp
+     * const adminOtp = await prisma.adminOtp.upsert({
+     *   create: {
+     *     // ... data to create a AdminOtp
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AdminOtp we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AdminOtpUpsertArgs>(args: SelectSubset<T, AdminOtpUpsertArgs<ExtArgs>>): Prisma__AdminOtpClient<$Result.GetResult<Prisma.$AdminOtpPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AdminOtps.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminOtpCountArgs} args - Arguments to filter AdminOtps to count.
+     * @example
+     * // Count the number of AdminOtps
+     * const count = await prisma.adminOtp.count({
+     *   where: {
+     *     // ... the filter for the AdminOtps we want to count
+     *   }
+     * })
+    **/
+    count<T extends AdminOtpCountArgs>(
+      args?: Subset<T, AdminOtpCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AdminOtpCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AdminOtp.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminOtpAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AdminOtpAggregateArgs>(args: Subset<T, AdminOtpAggregateArgs>): Prisma.PrismaPromise<GetAdminOtpAggregateType<T>>
+
+    /**
+     * Group by AdminOtp.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminOtpGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AdminOtpGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AdminOtpGroupByArgs['orderBy'] }
+        : { orderBy?: AdminOtpGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AdminOtpGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAdminOtpGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AdminOtp model
+   */
+  readonly fields: AdminOtpFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AdminOtp.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AdminOtpClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    admin<T extends AdminDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AdminDefaultArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AdminOtp model
+   */
+  interface AdminOtpFieldRefs {
+    readonly id: FieldRef<"AdminOtp", 'String'>
+    readonly adminId: FieldRef<"AdminOtp", 'String'>
+    readonly otp: FieldRef<"AdminOtp", 'String'>
+    readonly expiresAt: FieldRef<"AdminOtp", 'DateTime'>
+    readonly usedAt: FieldRef<"AdminOtp", 'DateTime'>
+    readonly createdAt: FieldRef<"AdminOtp", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AdminOtp findUnique
+   */
+  export type AdminOtpFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminOtp
+     */
+    select?: AdminOtpSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminOtp
+     */
+    omit?: AdminOtpOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminOtpInclude<ExtArgs> | null
+    /**
+     * Filter, which AdminOtp to fetch.
+     */
+    where: AdminOtpWhereUniqueInput
+  }
+
+  /**
+   * AdminOtp findUniqueOrThrow
+   */
+  export type AdminOtpFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminOtp
+     */
+    select?: AdminOtpSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminOtp
+     */
+    omit?: AdminOtpOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminOtpInclude<ExtArgs> | null
+    /**
+     * Filter, which AdminOtp to fetch.
+     */
+    where: AdminOtpWhereUniqueInput
+  }
+
+  /**
+   * AdminOtp findFirst
+   */
+  export type AdminOtpFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminOtp
+     */
+    select?: AdminOtpSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminOtp
+     */
+    omit?: AdminOtpOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminOtpInclude<ExtArgs> | null
+    /**
+     * Filter, which AdminOtp to fetch.
+     */
+    where?: AdminOtpWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdminOtps to fetch.
+     */
+    orderBy?: AdminOtpOrderByWithRelationInput | AdminOtpOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AdminOtps.
+     */
+    cursor?: AdminOtpWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdminOtps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdminOtps.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AdminOtps.
+     */
+    distinct?: AdminOtpScalarFieldEnum | AdminOtpScalarFieldEnum[]
+  }
+
+  /**
+   * AdminOtp findFirstOrThrow
+   */
+  export type AdminOtpFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminOtp
+     */
+    select?: AdminOtpSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminOtp
+     */
+    omit?: AdminOtpOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminOtpInclude<ExtArgs> | null
+    /**
+     * Filter, which AdminOtp to fetch.
+     */
+    where?: AdminOtpWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdminOtps to fetch.
+     */
+    orderBy?: AdminOtpOrderByWithRelationInput | AdminOtpOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AdminOtps.
+     */
+    cursor?: AdminOtpWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdminOtps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdminOtps.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AdminOtps.
+     */
+    distinct?: AdminOtpScalarFieldEnum | AdminOtpScalarFieldEnum[]
+  }
+
+  /**
+   * AdminOtp findMany
+   */
+  export type AdminOtpFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminOtp
+     */
+    select?: AdminOtpSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminOtp
+     */
+    omit?: AdminOtpOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminOtpInclude<ExtArgs> | null
+    /**
+     * Filter, which AdminOtps to fetch.
+     */
+    where?: AdminOtpWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdminOtps to fetch.
+     */
+    orderBy?: AdminOtpOrderByWithRelationInput | AdminOtpOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AdminOtps.
+     */
+    cursor?: AdminOtpWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdminOtps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdminOtps.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AdminOtps.
+     */
+    distinct?: AdminOtpScalarFieldEnum | AdminOtpScalarFieldEnum[]
+  }
+
+  /**
+   * AdminOtp create
+   */
+  export type AdminOtpCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminOtp
+     */
+    select?: AdminOtpSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminOtp
+     */
+    omit?: AdminOtpOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminOtpInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AdminOtp.
+     */
+    data: XOR<AdminOtpCreateInput, AdminOtpUncheckedCreateInput>
+  }
+
+  /**
+   * AdminOtp createMany
+   */
+  export type AdminOtpCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AdminOtps.
+     */
+    data: AdminOtpCreateManyInput | AdminOtpCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AdminOtp createManyAndReturn
+   */
+  export type AdminOtpCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminOtp
+     */
+    select?: AdminOtpSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminOtp
+     */
+    omit?: AdminOtpOmit<ExtArgs> | null
+    /**
+     * The data used to create many AdminOtps.
+     */
+    data: AdminOtpCreateManyInput | AdminOtpCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminOtpIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AdminOtp update
+   */
+  export type AdminOtpUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminOtp
+     */
+    select?: AdminOtpSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminOtp
+     */
+    omit?: AdminOtpOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminOtpInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AdminOtp.
+     */
+    data: XOR<AdminOtpUpdateInput, AdminOtpUncheckedUpdateInput>
+    /**
+     * Choose, which AdminOtp to update.
+     */
+    where: AdminOtpWhereUniqueInput
+  }
+
+  /**
+   * AdminOtp updateMany
+   */
+  export type AdminOtpUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AdminOtps.
+     */
+    data: XOR<AdminOtpUpdateManyMutationInput, AdminOtpUncheckedUpdateManyInput>
+    /**
+     * Filter which AdminOtps to update
+     */
+    where?: AdminOtpWhereInput
+    /**
+     * Limit how many AdminOtps to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AdminOtp updateManyAndReturn
+   */
+  export type AdminOtpUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminOtp
+     */
+    select?: AdminOtpSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminOtp
+     */
+    omit?: AdminOtpOmit<ExtArgs> | null
+    /**
+     * The data used to update AdminOtps.
+     */
+    data: XOR<AdminOtpUpdateManyMutationInput, AdminOtpUncheckedUpdateManyInput>
+    /**
+     * Filter which AdminOtps to update
+     */
+    where?: AdminOtpWhereInput
+    /**
+     * Limit how many AdminOtps to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminOtpIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AdminOtp upsert
+   */
+  export type AdminOtpUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminOtp
+     */
+    select?: AdminOtpSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminOtp
+     */
+    omit?: AdminOtpOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminOtpInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AdminOtp to update in case it exists.
+     */
+    where: AdminOtpWhereUniqueInput
+    /**
+     * In case the AdminOtp found by the `where` argument doesn't exist, create a new AdminOtp with this data.
+     */
+    create: XOR<AdminOtpCreateInput, AdminOtpUncheckedCreateInput>
+    /**
+     * In case the AdminOtp was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AdminOtpUpdateInput, AdminOtpUncheckedUpdateInput>
+  }
+
+  /**
+   * AdminOtp delete
+   */
+  export type AdminOtpDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminOtp
+     */
+    select?: AdminOtpSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminOtp
+     */
+    omit?: AdminOtpOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminOtpInclude<ExtArgs> | null
+    /**
+     * Filter which AdminOtp to delete.
+     */
+    where: AdminOtpWhereUniqueInput
+  }
+
+  /**
+   * AdminOtp deleteMany
+   */
+  export type AdminOtpDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AdminOtps to delete
+     */
+    where?: AdminOtpWhereInput
+    /**
+     * Limit how many AdminOtps to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AdminOtp without action
+   */
+  export type AdminOtpDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminOtp
+     */
+    select?: AdminOtpSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminOtp
+     */
+    omit?: AdminOtpOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminOtpInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AdminSession
+   */
+
+  export type AggregateAdminSession = {
+    _count: AdminSessionCountAggregateOutputType | null
+    _min: AdminSessionMinAggregateOutputType | null
+    _max: AdminSessionMaxAggregateOutputType | null
+  }
+
+  export type AdminSessionMinAggregateOutputType = {
+    id: string | null
+    adminId: string | null
+    tokenHash: string | null
+    expiresAt: Date | null
+    revokedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type AdminSessionMaxAggregateOutputType = {
+    id: string | null
+    adminId: string | null
+    tokenHash: string | null
+    expiresAt: Date | null
+    revokedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type AdminSessionCountAggregateOutputType = {
+    id: number
+    adminId: number
+    tokenHash: number
+    expiresAt: number
+    revokedAt: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type AdminSessionMinAggregateInputType = {
+    id?: true
+    adminId?: true
+    tokenHash?: true
+    expiresAt?: true
+    revokedAt?: true
+    createdAt?: true
+  }
+
+  export type AdminSessionMaxAggregateInputType = {
+    id?: true
+    adminId?: true
+    tokenHash?: true
+    expiresAt?: true
+    revokedAt?: true
+    createdAt?: true
+  }
+
+  export type AdminSessionCountAggregateInputType = {
+    id?: true
+    adminId?: true
+    tokenHash?: true
+    expiresAt?: true
+    revokedAt?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type AdminSessionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AdminSession to aggregate.
+     */
+    where?: AdminSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdminSessions to fetch.
+     */
+    orderBy?: AdminSessionOrderByWithRelationInput | AdminSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AdminSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdminSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdminSessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AdminSessions
+    **/
+    _count?: true | AdminSessionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AdminSessionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AdminSessionMaxAggregateInputType
+  }
+
+  export type GetAdminSessionAggregateType<T extends AdminSessionAggregateArgs> = {
+        [P in keyof T & keyof AggregateAdminSession]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAdminSession[P]>
+      : GetScalarType<T[P], AggregateAdminSession[P]>
+  }
+
+
+
+
+  export type AdminSessionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AdminSessionWhereInput
+    orderBy?: AdminSessionOrderByWithAggregationInput | AdminSessionOrderByWithAggregationInput[]
+    by: AdminSessionScalarFieldEnum[] | AdminSessionScalarFieldEnum
+    having?: AdminSessionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AdminSessionCountAggregateInputType | true
+    _min?: AdminSessionMinAggregateInputType
+    _max?: AdminSessionMaxAggregateInputType
+  }
+
+  export type AdminSessionGroupByOutputType = {
+    id: string
+    adminId: string
+    tokenHash: string
+    expiresAt: Date
+    revokedAt: Date | null
+    createdAt: Date
+    _count: AdminSessionCountAggregateOutputType | null
+    _min: AdminSessionMinAggregateOutputType | null
+    _max: AdminSessionMaxAggregateOutputType | null
+  }
+
+  type GetAdminSessionGroupByPayload<T extends AdminSessionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AdminSessionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AdminSessionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AdminSessionGroupByOutputType[P]>
+            : GetScalarType<T[P], AdminSessionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AdminSessionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    adminId?: boolean
+    tokenHash?: boolean
+    expiresAt?: boolean
+    revokedAt?: boolean
+    createdAt?: boolean
+    admin?: boolean | AdminDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["adminSession"]>
+
+  export type AdminSessionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    adminId?: boolean
+    tokenHash?: boolean
+    expiresAt?: boolean
+    revokedAt?: boolean
+    createdAt?: boolean
+    admin?: boolean | AdminDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["adminSession"]>
+
+  export type AdminSessionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    adminId?: boolean
+    tokenHash?: boolean
+    expiresAt?: boolean
+    revokedAt?: boolean
+    createdAt?: boolean
+    admin?: boolean | AdminDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["adminSession"]>
+
+  export type AdminSessionSelectScalar = {
+    id?: boolean
+    adminId?: boolean
+    tokenHash?: boolean
+    expiresAt?: boolean
+    revokedAt?: boolean
+    createdAt?: boolean
+  }
+
+  export type AdminSessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "adminId" | "tokenHash" | "expiresAt" | "revokedAt" | "createdAt", ExtArgs["result"]["adminSession"]>
+  export type AdminSessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    admin?: boolean | AdminDefaultArgs<ExtArgs>
+  }
+  export type AdminSessionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    admin?: boolean | AdminDefaultArgs<ExtArgs>
+  }
+  export type AdminSessionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    admin?: boolean | AdminDefaultArgs<ExtArgs>
+  }
+
+  export type $AdminSessionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AdminSession"
+    objects: {
+      admin: Prisma.$AdminPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      adminId: string
+      tokenHash: string
+      expiresAt: Date
+      revokedAt: Date | null
+      createdAt: Date
+    }, ExtArgs["result"]["adminSession"]>
+    composites: {}
+  }
+
+  type AdminSessionGetPayload<S extends boolean | null | undefined | AdminSessionDefaultArgs> = $Result.GetResult<Prisma.$AdminSessionPayload, S>
+
+  type AdminSessionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AdminSessionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AdminSessionCountAggregateInputType | true
+    }
+
+  export interface AdminSessionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AdminSession'], meta: { name: 'AdminSession' } }
+    /**
+     * Find zero or one AdminSession that matches the filter.
+     * @param {AdminSessionFindUniqueArgs} args - Arguments to find a AdminSession
+     * @example
+     * // Get one AdminSession
+     * const adminSession = await prisma.adminSession.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AdminSessionFindUniqueArgs>(args: SelectSubset<T, AdminSessionFindUniqueArgs<ExtArgs>>): Prisma__AdminSessionClient<$Result.GetResult<Prisma.$AdminSessionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AdminSession that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AdminSessionFindUniqueOrThrowArgs} args - Arguments to find a AdminSession
+     * @example
+     * // Get one AdminSession
+     * const adminSession = await prisma.adminSession.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AdminSessionFindUniqueOrThrowArgs>(args: SelectSubset<T, AdminSessionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AdminSessionClient<$Result.GetResult<Prisma.$AdminSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AdminSession that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminSessionFindFirstArgs} args - Arguments to find a AdminSession
+     * @example
+     * // Get one AdminSession
+     * const adminSession = await prisma.adminSession.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AdminSessionFindFirstArgs>(args?: SelectSubset<T, AdminSessionFindFirstArgs<ExtArgs>>): Prisma__AdminSessionClient<$Result.GetResult<Prisma.$AdminSessionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AdminSession that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminSessionFindFirstOrThrowArgs} args - Arguments to find a AdminSession
+     * @example
+     * // Get one AdminSession
+     * const adminSession = await prisma.adminSession.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AdminSessionFindFirstOrThrowArgs>(args?: SelectSubset<T, AdminSessionFindFirstOrThrowArgs<ExtArgs>>): Prisma__AdminSessionClient<$Result.GetResult<Prisma.$AdminSessionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AdminSessions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminSessionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AdminSessions
+     * const adminSessions = await prisma.adminSession.findMany()
+     * 
+     * // Get first 10 AdminSessions
+     * const adminSessions = await prisma.adminSession.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const adminSessionWithIdOnly = await prisma.adminSession.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AdminSessionFindManyArgs>(args?: SelectSubset<T, AdminSessionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AdminSession.
+     * @param {AdminSessionCreateArgs} args - Arguments to create a AdminSession.
+     * @example
+     * // Create one AdminSession
+     * const AdminSession = await prisma.adminSession.create({
+     *   data: {
+     *     // ... data to create a AdminSession
+     *   }
+     * })
+     * 
+     */
+    create<T extends AdminSessionCreateArgs>(args: SelectSubset<T, AdminSessionCreateArgs<ExtArgs>>): Prisma__AdminSessionClient<$Result.GetResult<Prisma.$AdminSessionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AdminSessions.
+     * @param {AdminSessionCreateManyArgs} args - Arguments to create many AdminSessions.
+     * @example
+     * // Create many AdminSessions
+     * const adminSession = await prisma.adminSession.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AdminSessionCreateManyArgs>(args?: SelectSubset<T, AdminSessionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AdminSessions and returns the data saved in the database.
+     * @param {AdminSessionCreateManyAndReturnArgs} args - Arguments to create many AdminSessions.
+     * @example
+     * // Create many AdminSessions
+     * const adminSession = await prisma.adminSession.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AdminSessions and only return the `id`
+     * const adminSessionWithIdOnly = await prisma.adminSession.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AdminSessionCreateManyAndReturnArgs>(args?: SelectSubset<T, AdminSessionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminSessionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AdminSession.
+     * @param {AdminSessionDeleteArgs} args - Arguments to delete one AdminSession.
+     * @example
+     * // Delete one AdminSession
+     * const AdminSession = await prisma.adminSession.delete({
+     *   where: {
+     *     // ... filter to delete one AdminSession
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AdminSessionDeleteArgs>(args: SelectSubset<T, AdminSessionDeleteArgs<ExtArgs>>): Prisma__AdminSessionClient<$Result.GetResult<Prisma.$AdminSessionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AdminSession.
+     * @param {AdminSessionUpdateArgs} args - Arguments to update one AdminSession.
+     * @example
+     * // Update one AdminSession
+     * const adminSession = await prisma.adminSession.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AdminSessionUpdateArgs>(args: SelectSubset<T, AdminSessionUpdateArgs<ExtArgs>>): Prisma__AdminSessionClient<$Result.GetResult<Prisma.$AdminSessionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AdminSessions.
+     * @param {AdminSessionDeleteManyArgs} args - Arguments to filter AdminSessions to delete.
+     * @example
+     * // Delete a few AdminSessions
+     * const { count } = await prisma.adminSession.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AdminSessionDeleteManyArgs>(args?: SelectSubset<T, AdminSessionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AdminSessions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminSessionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AdminSessions
+     * const adminSession = await prisma.adminSession.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AdminSessionUpdateManyArgs>(args: SelectSubset<T, AdminSessionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AdminSessions and returns the data updated in the database.
+     * @param {AdminSessionUpdateManyAndReturnArgs} args - Arguments to update many AdminSessions.
+     * @example
+     * // Update many AdminSessions
+     * const adminSession = await prisma.adminSession.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AdminSessions and only return the `id`
+     * const adminSessionWithIdOnly = await prisma.adminSession.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AdminSessionUpdateManyAndReturnArgs>(args: SelectSubset<T, AdminSessionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminSessionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AdminSession.
+     * @param {AdminSessionUpsertArgs} args - Arguments to update or create a AdminSession.
+     * @example
+     * // Update or create a AdminSession
+     * const adminSession = await prisma.adminSession.upsert({
+     *   create: {
+     *     // ... data to create a AdminSession
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AdminSession we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AdminSessionUpsertArgs>(args: SelectSubset<T, AdminSessionUpsertArgs<ExtArgs>>): Prisma__AdminSessionClient<$Result.GetResult<Prisma.$AdminSessionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AdminSessions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminSessionCountArgs} args - Arguments to filter AdminSessions to count.
+     * @example
+     * // Count the number of AdminSessions
+     * const count = await prisma.adminSession.count({
+     *   where: {
+     *     // ... the filter for the AdminSessions we want to count
+     *   }
+     * })
+    **/
+    count<T extends AdminSessionCountArgs>(
+      args?: Subset<T, AdminSessionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AdminSessionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AdminSession.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminSessionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AdminSessionAggregateArgs>(args: Subset<T, AdminSessionAggregateArgs>): Prisma.PrismaPromise<GetAdminSessionAggregateType<T>>
+
+    /**
+     * Group by AdminSession.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminSessionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AdminSessionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AdminSessionGroupByArgs['orderBy'] }
+        : { orderBy?: AdminSessionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AdminSessionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAdminSessionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AdminSession model
+   */
+  readonly fields: AdminSessionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AdminSession.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AdminSessionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    admin<T extends AdminDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AdminDefaultArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AdminSession model
+   */
+  interface AdminSessionFieldRefs {
+    readonly id: FieldRef<"AdminSession", 'String'>
+    readonly adminId: FieldRef<"AdminSession", 'String'>
+    readonly tokenHash: FieldRef<"AdminSession", 'String'>
+    readonly expiresAt: FieldRef<"AdminSession", 'DateTime'>
+    readonly revokedAt: FieldRef<"AdminSession", 'DateTime'>
+    readonly createdAt: FieldRef<"AdminSession", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AdminSession findUnique
+   */
+  export type AdminSessionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminSession
+     */
+    select?: AdminSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminSession
+     */
+    omit?: AdminSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which AdminSession to fetch.
+     */
+    where: AdminSessionWhereUniqueInput
+  }
+
+  /**
+   * AdminSession findUniqueOrThrow
+   */
+  export type AdminSessionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminSession
+     */
+    select?: AdminSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminSession
+     */
+    omit?: AdminSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which AdminSession to fetch.
+     */
+    where: AdminSessionWhereUniqueInput
+  }
+
+  /**
+   * AdminSession findFirst
+   */
+  export type AdminSessionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminSession
+     */
+    select?: AdminSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminSession
+     */
+    omit?: AdminSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which AdminSession to fetch.
+     */
+    where?: AdminSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdminSessions to fetch.
+     */
+    orderBy?: AdminSessionOrderByWithRelationInput | AdminSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AdminSessions.
+     */
+    cursor?: AdminSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdminSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdminSessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AdminSessions.
+     */
+    distinct?: AdminSessionScalarFieldEnum | AdminSessionScalarFieldEnum[]
+  }
+
+  /**
+   * AdminSession findFirstOrThrow
+   */
+  export type AdminSessionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminSession
+     */
+    select?: AdminSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminSession
+     */
+    omit?: AdminSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which AdminSession to fetch.
+     */
+    where?: AdminSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdminSessions to fetch.
+     */
+    orderBy?: AdminSessionOrderByWithRelationInput | AdminSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AdminSessions.
+     */
+    cursor?: AdminSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdminSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdminSessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AdminSessions.
+     */
+    distinct?: AdminSessionScalarFieldEnum | AdminSessionScalarFieldEnum[]
+  }
+
+  /**
+   * AdminSession findMany
+   */
+  export type AdminSessionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminSession
+     */
+    select?: AdminSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminSession
+     */
+    omit?: AdminSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminSessionInclude<ExtArgs> | null
+    /**
+     * Filter, which AdminSessions to fetch.
+     */
+    where?: AdminSessionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdminSessions to fetch.
+     */
+    orderBy?: AdminSessionOrderByWithRelationInput | AdminSessionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AdminSessions.
+     */
+    cursor?: AdminSessionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdminSessions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdminSessions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AdminSessions.
+     */
+    distinct?: AdminSessionScalarFieldEnum | AdminSessionScalarFieldEnum[]
+  }
+
+  /**
+   * AdminSession create
+   */
+  export type AdminSessionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminSession
+     */
+    select?: AdminSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminSession
+     */
+    omit?: AdminSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminSessionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AdminSession.
+     */
+    data: XOR<AdminSessionCreateInput, AdminSessionUncheckedCreateInput>
+  }
+
+  /**
+   * AdminSession createMany
+   */
+  export type AdminSessionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AdminSessions.
+     */
+    data: AdminSessionCreateManyInput | AdminSessionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AdminSession createManyAndReturn
+   */
+  export type AdminSessionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminSession
+     */
+    select?: AdminSessionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminSession
+     */
+    omit?: AdminSessionOmit<ExtArgs> | null
+    /**
+     * The data used to create many AdminSessions.
+     */
+    data: AdminSessionCreateManyInput | AdminSessionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminSessionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AdminSession update
+   */
+  export type AdminSessionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminSession
+     */
+    select?: AdminSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminSession
+     */
+    omit?: AdminSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminSessionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AdminSession.
+     */
+    data: XOR<AdminSessionUpdateInput, AdminSessionUncheckedUpdateInput>
+    /**
+     * Choose, which AdminSession to update.
+     */
+    where: AdminSessionWhereUniqueInput
+  }
+
+  /**
+   * AdminSession updateMany
+   */
+  export type AdminSessionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AdminSessions.
+     */
+    data: XOR<AdminSessionUpdateManyMutationInput, AdminSessionUncheckedUpdateManyInput>
+    /**
+     * Filter which AdminSessions to update
+     */
+    where?: AdminSessionWhereInput
+    /**
+     * Limit how many AdminSessions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AdminSession updateManyAndReturn
+   */
+  export type AdminSessionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminSession
+     */
+    select?: AdminSessionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminSession
+     */
+    omit?: AdminSessionOmit<ExtArgs> | null
+    /**
+     * The data used to update AdminSessions.
+     */
+    data: XOR<AdminSessionUpdateManyMutationInput, AdminSessionUncheckedUpdateManyInput>
+    /**
+     * Filter which AdminSessions to update
+     */
+    where?: AdminSessionWhereInput
+    /**
+     * Limit how many AdminSessions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminSessionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AdminSession upsert
+   */
+  export type AdminSessionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminSession
+     */
+    select?: AdminSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminSession
+     */
+    omit?: AdminSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminSessionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AdminSession to update in case it exists.
+     */
+    where: AdminSessionWhereUniqueInput
+    /**
+     * In case the AdminSession found by the `where` argument doesn't exist, create a new AdminSession with this data.
+     */
+    create: XOR<AdminSessionCreateInput, AdminSessionUncheckedCreateInput>
+    /**
+     * In case the AdminSession was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AdminSessionUpdateInput, AdminSessionUncheckedUpdateInput>
+  }
+
+  /**
+   * AdminSession delete
+   */
+  export type AdminSessionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminSession
+     */
+    select?: AdminSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminSession
+     */
+    omit?: AdminSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminSessionInclude<ExtArgs> | null
+    /**
+     * Filter which AdminSession to delete.
+     */
+    where: AdminSessionWhereUniqueInput
+  }
+
+  /**
+   * AdminSession deleteMany
+   */
+  export type AdminSessionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AdminSessions to delete
+     */
+    where?: AdminSessionWhereInput
+    /**
+     * Limit how many AdminSessions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AdminSession without action
+   */
+  export type AdminSessionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminSession
+     */
+    select?: AdminSessionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AdminSession
+     */
+    omit?: AdminSessionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AdminSessionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model RequestLog
+   */
+
+  export type AggregateRequestLog = {
+    _count: RequestLogCountAggregateOutputType | null
+    _avg: RequestLogAvgAggregateOutputType | null
+    _sum: RequestLogSumAggregateOutputType | null
+    _min: RequestLogMinAggregateOutputType | null
+    _max: RequestLogMaxAggregateOutputType | null
+  }
+
+  export type RequestLogAvgAggregateOutputType = {
+    statusCode: number | null
+    durationMs: number | null
+  }
+
+  export type RequestLogSumAggregateOutputType = {
+    statusCode: number | null
+    durationMs: number | null
+  }
+
+  export type RequestLogMinAggregateOutputType = {
+    id: string | null
+    method: string | null
+    path: string | null
+    statusCode: number | null
+    durationMs: number | null
+    userId: string | null
+    ip: string | null
+    userAgent: string | null
+    errorMsg: string | null
+    errorStack: string | null
+    level: $Enums.LogLevel | null
+    createdAt: Date | null
+  }
+
+  export type RequestLogMaxAggregateOutputType = {
+    id: string | null
+    method: string | null
+    path: string | null
+    statusCode: number | null
+    durationMs: number | null
+    userId: string | null
+    ip: string | null
+    userAgent: string | null
+    errorMsg: string | null
+    errorStack: string | null
+    level: $Enums.LogLevel | null
+    createdAt: Date | null
+  }
+
+  export type RequestLogCountAggregateOutputType = {
+    id: number
+    method: number
+    path: number
+    statusCode: number
+    durationMs: number
+    userId: number
+    ip: number
+    userAgent: number
+    body: number
+    query: number
+    errorMsg: number
+    errorStack: number
+    level: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type RequestLogAvgAggregateInputType = {
+    statusCode?: true
+    durationMs?: true
+  }
+
+  export type RequestLogSumAggregateInputType = {
+    statusCode?: true
+    durationMs?: true
+  }
+
+  export type RequestLogMinAggregateInputType = {
+    id?: true
+    method?: true
+    path?: true
+    statusCode?: true
+    durationMs?: true
+    userId?: true
+    ip?: true
+    userAgent?: true
+    errorMsg?: true
+    errorStack?: true
+    level?: true
+    createdAt?: true
+  }
+
+  export type RequestLogMaxAggregateInputType = {
+    id?: true
+    method?: true
+    path?: true
+    statusCode?: true
+    durationMs?: true
+    userId?: true
+    ip?: true
+    userAgent?: true
+    errorMsg?: true
+    errorStack?: true
+    level?: true
+    createdAt?: true
+  }
+
+  export type RequestLogCountAggregateInputType = {
+    id?: true
+    method?: true
+    path?: true
+    statusCode?: true
+    durationMs?: true
+    userId?: true
+    ip?: true
+    userAgent?: true
+    body?: true
+    query?: true
+    errorMsg?: true
+    errorStack?: true
+    level?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type RequestLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RequestLog to aggregate.
+     */
+    where?: RequestLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RequestLogs to fetch.
+     */
+    orderBy?: RequestLogOrderByWithRelationInput | RequestLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RequestLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RequestLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RequestLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RequestLogs
+    **/
+    _count?: true | RequestLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RequestLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RequestLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RequestLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RequestLogMaxAggregateInputType
+  }
+
+  export type GetRequestLogAggregateType<T extends RequestLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateRequestLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRequestLog[P]>
+      : GetScalarType<T[P], AggregateRequestLog[P]>
+  }
+
+
+
+
+  export type RequestLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RequestLogWhereInput
+    orderBy?: RequestLogOrderByWithAggregationInput | RequestLogOrderByWithAggregationInput[]
+    by: RequestLogScalarFieldEnum[] | RequestLogScalarFieldEnum
+    having?: RequestLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RequestLogCountAggregateInputType | true
+    _avg?: RequestLogAvgAggregateInputType
+    _sum?: RequestLogSumAggregateInputType
+    _min?: RequestLogMinAggregateInputType
+    _max?: RequestLogMaxAggregateInputType
+  }
+
+  export type RequestLogGroupByOutputType = {
+    id: string
+    method: string
+    path: string
+    statusCode: number
+    durationMs: number
+    userId: string | null
+    ip: string | null
+    userAgent: string | null
+    body: JsonValue | null
+    query: JsonValue | null
+    errorMsg: string | null
+    errorStack: string | null
+    level: $Enums.LogLevel
+    createdAt: Date
+    _count: RequestLogCountAggregateOutputType | null
+    _avg: RequestLogAvgAggregateOutputType | null
+    _sum: RequestLogSumAggregateOutputType | null
+    _min: RequestLogMinAggregateOutputType | null
+    _max: RequestLogMaxAggregateOutputType | null
+  }
+
+  type GetRequestLogGroupByPayload<T extends RequestLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RequestLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RequestLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RequestLogGroupByOutputType[P]>
+            : GetScalarType<T[P], RequestLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RequestLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    method?: boolean
+    path?: boolean
+    statusCode?: boolean
+    durationMs?: boolean
+    userId?: boolean
+    ip?: boolean
+    userAgent?: boolean
+    body?: boolean
+    query?: boolean
+    errorMsg?: boolean
+    errorStack?: boolean
+    level?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["requestLog"]>
+
+  export type RequestLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    method?: boolean
+    path?: boolean
+    statusCode?: boolean
+    durationMs?: boolean
+    userId?: boolean
+    ip?: boolean
+    userAgent?: boolean
+    body?: boolean
+    query?: boolean
+    errorMsg?: boolean
+    errorStack?: boolean
+    level?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["requestLog"]>
+
+  export type RequestLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    method?: boolean
+    path?: boolean
+    statusCode?: boolean
+    durationMs?: boolean
+    userId?: boolean
+    ip?: boolean
+    userAgent?: boolean
+    body?: boolean
+    query?: boolean
+    errorMsg?: boolean
+    errorStack?: boolean
+    level?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["requestLog"]>
+
+  export type RequestLogSelectScalar = {
+    id?: boolean
+    method?: boolean
+    path?: boolean
+    statusCode?: boolean
+    durationMs?: boolean
+    userId?: boolean
+    ip?: boolean
+    userAgent?: boolean
+    body?: boolean
+    query?: boolean
+    errorMsg?: boolean
+    errorStack?: boolean
+    level?: boolean
+    createdAt?: boolean
+  }
+
+  export type RequestLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "method" | "path" | "statusCode" | "durationMs" | "userId" | "ip" | "userAgent" | "body" | "query" | "errorMsg" | "errorStack" | "level" | "createdAt", ExtArgs["result"]["requestLog"]>
+
+  export type $RequestLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RequestLog"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      method: string
+      path: string
+      statusCode: number
+      durationMs: number
+      userId: string | null
+      ip: string | null
+      userAgent: string | null
+      body: Prisma.JsonValue | null
+      query: Prisma.JsonValue | null
+      errorMsg: string | null
+      errorStack: string | null
+      level: $Enums.LogLevel
+      createdAt: Date
+    }, ExtArgs["result"]["requestLog"]>
+    composites: {}
+  }
+
+  type RequestLogGetPayload<S extends boolean | null | undefined | RequestLogDefaultArgs> = $Result.GetResult<Prisma.$RequestLogPayload, S>
+
+  type RequestLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RequestLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RequestLogCountAggregateInputType | true
+    }
+
+  export interface RequestLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RequestLog'], meta: { name: 'RequestLog' } }
+    /**
+     * Find zero or one RequestLog that matches the filter.
+     * @param {RequestLogFindUniqueArgs} args - Arguments to find a RequestLog
+     * @example
+     * // Get one RequestLog
+     * const requestLog = await prisma.requestLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RequestLogFindUniqueArgs>(args: SelectSubset<T, RequestLogFindUniqueArgs<ExtArgs>>): Prisma__RequestLogClient<$Result.GetResult<Prisma.$RequestLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RequestLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RequestLogFindUniqueOrThrowArgs} args - Arguments to find a RequestLog
+     * @example
+     * // Get one RequestLog
+     * const requestLog = await prisma.requestLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RequestLogFindUniqueOrThrowArgs>(args: SelectSubset<T, RequestLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RequestLogClient<$Result.GetResult<Prisma.$RequestLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RequestLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RequestLogFindFirstArgs} args - Arguments to find a RequestLog
+     * @example
+     * // Get one RequestLog
+     * const requestLog = await prisma.requestLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RequestLogFindFirstArgs>(args?: SelectSubset<T, RequestLogFindFirstArgs<ExtArgs>>): Prisma__RequestLogClient<$Result.GetResult<Prisma.$RequestLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RequestLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RequestLogFindFirstOrThrowArgs} args - Arguments to find a RequestLog
+     * @example
+     * // Get one RequestLog
+     * const requestLog = await prisma.requestLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RequestLogFindFirstOrThrowArgs>(args?: SelectSubset<T, RequestLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__RequestLogClient<$Result.GetResult<Prisma.$RequestLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RequestLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RequestLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RequestLogs
+     * const requestLogs = await prisma.requestLog.findMany()
+     * 
+     * // Get first 10 RequestLogs
+     * const requestLogs = await prisma.requestLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const requestLogWithIdOnly = await prisma.requestLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RequestLogFindManyArgs>(args?: SelectSubset<T, RequestLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequestLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RequestLog.
+     * @param {RequestLogCreateArgs} args - Arguments to create a RequestLog.
+     * @example
+     * // Create one RequestLog
+     * const RequestLog = await prisma.requestLog.create({
+     *   data: {
+     *     // ... data to create a RequestLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends RequestLogCreateArgs>(args: SelectSubset<T, RequestLogCreateArgs<ExtArgs>>): Prisma__RequestLogClient<$Result.GetResult<Prisma.$RequestLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RequestLogs.
+     * @param {RequestLogCreateManyArgs} args - Arguments to create many RequestLogs.
+     * @example
+     * // Create many RequestLogs
+     * const requestLog = await prisma.requestLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RequestLogCreateManyArgs>(args?: SelectSubset<T, RequestLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RequestLogs and returns the data saved in the database.
+     * @param {RequestLogCreateManyAndReturnArgs} args - Arguments to create many RequestLogs.
+     * @example
+     * // Create many RequestLogs
+     * const requestLog = await prisma.requestLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RequestLogs and only return the `id`
+     * const requestLogWithIdOnly = await prisma.requestLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RequestLogCreateManyAndReturnArgs>(args?: SelectSubset<T, RequestLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequestLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RequestLog.
+     * @param {RequestLogDeleteArgs} args - Arguments to delete one RequestLog.
+     * @example
+     * // Delete one RequestLog
+     * const RequestLog = await prisma.requestLog.delete({
+     *   where: {
+     *     // ... filter to delete one RequestLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RequestLogDeleteArgs>(args: SelectSubset<T, RequestLogDeleteArgs<ExtArgs>>): Prisma__RequestLogClient<$Result.GetResult<Prisma.$RequestLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RequestLog.
+     * @param {RequestLogUpdateArgs} args - Arguments to update one RequestLog.
+     * @example
+     * // Update one RequestLog
+     * const requestLog = await prisma.requestLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RequestLogUpdateArgs>(args: SelectSubset<T, RequestLogUpdateArgs<ExtArgs>>): Prisma__RequestLogClient<$Result.GetResult<Prisma.$RequestLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RequestLogs.
+     * @param {RequestLogDeleteManyArgs} args - Arguments to filter RequestLogs to delete.
+     * @example
+     * // Delete a few RequestLogs
+     * const { count } = await prisma.requestLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RequestLogDeleteManyArgs>(args?: SelectSubset<T, RequestLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RequestLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RequestLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RequestLogs
+     * const requestLog = await prisma.requestLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RequestLogUpdateManyArgs>(args: SelectSubset<T, RequestLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RequestLogs and returns the data updated in the database.
+     * @param {RequestLogUpdateManyAndReturnArgs} args - Arguments to update many RequestLogs.
+     * @example
+     * // Update many RequestLogs
+     * const requestLog = await prisma.requestLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RequestLogs and only return the `id`
+     * const requestLogWithIdOnly = await prisma.requestLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RequestLogUpdateManyAndReturnArgs>(args: SelectSubset<T, RequestLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequestLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RequestLog.
+     * @param {RequestLogUpsertArgs} args - Arguments to update or create a RequestLog.
+     * @example
+     * // Update or create a RequestLog
+     * const requestLog = await prisma.requestLog.upsert({
+     *   create: {
+     *     // ... data to create a RequestLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RequestLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RequestLogUpsertArgs>(args: SelectSubset<T, RequestLogUpsertArgs<ExtArgs>>): Prisma__RequestLogClient<$Result.GetResult<Prisma.$RequestLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RequestLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RequestLogCountArgs} args - Arguments to filter RequestLogs to count.
+     * @example
+     * // Count the number of RequestLogs
+     * const count = await prisma.requestLog.count({
+     *   where: {
+     *     // ... the filter for the RequestLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends RequestLogCountArgs>(
+      args?: Subset<T, RequestLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RequestLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RequestLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RequestLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RequestLogAggregateArgs>(args: Subset<T, RequestLogAggregateArgs>): Prisma.PrismaPromise<GetRequestLogAggregateType<T>>
+
+    /**
+     * Group by RequestLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RequestLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RequestLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RequestLogGroupByArgs['orderBy'] }
+        : { orderBy?: RequestLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RequestLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRequestLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RequestLog model
+   */
+  readonly fields: RequestLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RequestLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RequestLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RequestLog model
+   */
+  interface RequestLogFieldRefs {
+    readonly id: FieldRef<"RequestLog", 'String'>
+    readonly method: FieldRef<"RequestLog", 'String'>
+    readonly path: FieldRef<"RequestLog", 'String'>
+    readonly statusCode: FieldRef<"RequestLog", 'Int'>
+    readonly durationMs: FieldRef<"RequestLog", 'Int'>
+    readonly userId: FieldRef<"RequestLog", 'String'>
+    readonly ip: FieldRef<"RequestLog", 'String'>
+    readonly userAgent: FieldRef<"RequestLog", 'String'>
+    readonly body: FieldRef<"RequestLog", 'Json'>
+    readonly query: FieldRef<"RequestLog", 'Json'>
+    readonly errorMsg: FieldRef<"RequestLog", 'String'>
+    readonly errorStack: FieldRef<"RequestLog", 'String'>
+    readonly level: FieldRef<"RequestLog", 'LogLevel'>
+    readonly createdAt: FieldRef<"RequestLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RequestLog findUnique
+   */
+  export type RequestLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestLog
+     */
+    select?: RequestLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestLog
+     */
+    omit?: RequestLogOmit<ExtArgs> | null
+    /**
+     * Filter, which RequestLog to fetch.
+     */
+    where: RequestLogWhereUniqueInput
+  }
+
+  /**
+   * RequestLog findUniqueOrThrow
+   */
+  export type RequestLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestLog
+     */
+    select?: RequestLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestLog
+     */
+    omit?: RequestLogOmit<ExtArgs> | null
+    /**
+     * Filter, which RequestLog to fetch.
+     */
+    where: RequestLogWhereUniqueInput
+  }
+
+  /**
+   * RequestLog findFirst
+   */
+  export type RequestLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestLog
+     */
+    select?: RequestLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestLog
+     */
+    omit?: RequestLogOmit<ExtArgs> | null
+    /**
+     * Filter, which RequestLog to fetch.
+     */
+    where?: RequestLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RequestLogs to fetch.
+     */
+    orderBy?: RequestLogOrderByWithRelationInput | RequestLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RequestLogs.
+     */
+    cursor?: RequestLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RequestLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RequestLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RequestLogs.
+     */
+    distinct?: RequestLogScalarFieldEnum | RequestLogScalarFieldEnum[]
+  }
+
+  /**
+   * RequestLog findFirstOrThrow
+   */
+  export type RequestLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestLog
+     */
+    select?: RequestLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestLog
+     */
+    omit?: RequestLogOmit<ExtArgs> | null
+    /**
+     * Filter, which RequestLog to fetch.
+     */
+    where?: RequestLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RequestLogs to fetch.
+     */
+    orderBy?: RequestLogOrderByWithRelationInput | RequestLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RequestLogs.
+     */
+    cursor?: RequestLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RequestLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RequestLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RequestLogs.
+     */
+    distinct?: RequestLogScalarFieldEnum | RequestLogScalarFieldEnum[]
+  }
+
+  /**
+   * RequestLog findMany
+   */
+  export type RequestLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestLog
+     */
+    select?: RequestLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestLog
+     */
+    omit?: RequestLogOmit<ExtArgs> | null
+    /**
+     * Filter, which RequestLogs to fetch.
+     */
+    where?: RequestLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RequestLogs to fetch.
+     */
+    orderBy?: RequestLogOrderByWithRelationInput | RequestLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RequestLogs.
+     */
+    cursor?: RequestLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RequestLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RequestLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RequestLogs.
+     */
+    distinct?: RequestLogScalarFieldEnum | RequestLogScalarFieldEnum[]
+  }
+
+  /**
+   * RequestLog create
+   */
+  export type RequestLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestLog
+     */
+    select?: RequestLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestLog
+     */
+    omit?: RequestLogOmit<ExtArgs> | null
+    /**
+     * The data needed to create a RequestLog.
+     */
+    data: XOR<RequestLogCreateInput, RequestLogUncheckedCreateInput>
+  }
+
+  /**
+   * RequestLog createMany
+   */
+  export type RequestLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RequestLogs.
+     */
+    data: RequestLogCreateManyInput | RequestLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RequestLog createManyAndReturn
+   */
+  export type RequestLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestLog
+     */
+    select?: RequestLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestLog
+     */
+    omit?: RequestLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many RequestLogs.
+     */
+    data: RequestLogCreateManyInput | RequestLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RequestLog update
+   */
+  export type RequestLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestLog
+     */
+    select?: RequestLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestLog
+     */
+    omit?: RequestLogOmit<ExtArgs> | null
+    /**
+     * The data needed to update a RequestLog.
+     */
+    data: XOR<RequestLogUpdateInput, RequestLogUncheckedUpdateInput>
+    /**
+     * Choose, which RequestLog to update.
+     */
+    where: RequestLogWhereUniqueInput
+  }
+
+  /**
+   * RequestLog updateMany
+   */
+  export type RequestLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RequestLogs.
+     */
+    data: XOR<RequestLogUpdateManyMutationInput, RequestLogUncheckedUpdateManyInput>
+    /**
+     * Filter which RequestLogs to update
+     */
+    where?: RequestLogWhereInput
+    /**
+     * Limit how many RequestLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RequestLog updateManyAndReturn
+   */
+  export type RequestLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestLog
+     */
+    select?: RequestLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestLog
+     */
+    omit?: RequestLogOmit<ExtArgs> | null
+    /**
+     * The data used to update RequestLogs.
+     */
+    data: XOR<RequestLogUpdateManyMutationInput, RequestLogUncheckedUpdateManyInput>
+    /**
+     * Filter which RequestLogs to update
+     */
+    where?: RequestLogWhereInput
+    /**
+     * Limit how many RequestLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RequestLog upsert
+   */
+  export type RequestLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestLog
+     */
+    select?: RequestLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestLog
+     */
+    omit?: RequestLogOmit<ExtArgs> | null
+    /**
+     * The filter to search for the RequestLog to update in case it exists.
+     */
+    where: RequestLogWhereUniqueInput
+    /**
+     * In case the RequestLog found by the `where` argument doesn't exist, create a new RequestLog with this data.
+     */
+    create: XOR<RequestLogCreateInput, RequestLogUncheckedCreateInput>
+    /**
+     * In case the RequestLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RequestLogUpdateInput, RequestLogUncheckedUpdateInput>
+  }
+
+  /**
+   * RequestLog delete
+   */
+  export type RequestLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestLog
+     */
+    select?: RequestLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestLog
+     */
+    omit?: RequestLogOmit<ExtArgs> | null
+    /**
+     * Filter which RequestLog to delete.
+     */
+    where: RequestLogWhereUniqueInput
+  }
+
+  /**
+   * RequestLog deleteMany
+   */
+  export type RequestLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RequestLogs to delete
+     */
+    where?: RequestLogWhereInput
+    /**
+     * Limit how many RequestLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RequestLog without action
+   */
+  export type RequestLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestLog
+     */
+    select?: RequestLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestLog
+     */
+    omit?: RequestLogOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AppLog
+   */
+
+  export type AggregateAppLog = {
+    _count: AppLogCountAggregateOutputType | null
+    _min: AppLogMinAggregateOutputType | null
+    _max: AppLogMaxAggregateOutputType | null
+  }
+
+  export type AppLogMinAggregateOutputType = {
+    id: string | null
+    level: $Enums.LogLevel | null
+    context: string | null
+    message: string | null
+    userId: string | null
+    createdAt: Date | null
+  }
+
+  export type AppLogMaxAggregateOutputType = {
+    id: string | null
+    level: $Enums.LogLevel | null
+    context: string | null
+    message: string | null
+    userId: string | null
+    createdAt: Date | null
+  }
+
+  export type AppLogCountAggregateOutputType = {
+    id: number
+    level: number
+    context: number
+    message: number
+    meta: number
+    userId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type AppLogMinAggregateInputType = {
+    id?: true
+    level?: true
+    context?: true
+    message?: true
+    userId?: true
+    createdAt?: true
+  }
+
+  export type AppLogMaxAggregateInputType = {
+    id?: true
+    level?: true
+    context?: true
+    message?: true
+    userId?: true
+    createdAt?: true
+  }
+
+  export type AppLogCountAggregateInputType = {
+    id?: true
+    level?: true
+    context?: true
+    message?: true
+    meta?: true
+    userId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type AppLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AppLog to aggregate.
+     */
+    where?: AppLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AppLogs to fetch.
+     */
+    orderBy?: AppLogOrderByWithRelationInput | AppLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AppLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AppLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AppLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AppLogs
+    **/
+    _count?: true | AppLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AppLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AppLogMaxAggregateInputType
+  }
+
+  export type GetAppLogAggregateType<T extends AppLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateAppLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAppLog[P]>
+      : GetScalarType<T[P], AggregateAppLog[P]>
+  }
+
+
+
+
+  export type AppLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AppLogWhereInput
+    orderBy?: AppLogOrderByWithAggregationInput | AppLogOrderByWithAggregationInput[]
+    by: AppLogScalarFieldEnum[] | AppLogScalarFieldEnum
+    having?: AppLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AppLogCountAggregateInputType | true
+    _min?: AppLogMinAggregateInputType
+    _max?: AppLogMaxAggregateInputType
+  }
+
+  export type AppLogGroupByOutputType = {
+    id: string
+    level: $Enums.LogLevel
+    context: string
+    message: string
+    meta: JsonValue | null
+    userId: string | null
+    createdAt: Date
+    _count: AppLogCountAggregateOutputType | null
+    _min: AppLogMinAggregateOutputType | null
+    _max: AppLogMaxAggregateOutputType | null
+  }
+
+  type GetAppLogGroupByPayload<T extends AppLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AppLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AppLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AppLogGroupByOutputType[P]>
+            : GetScalarType<T[P], AppLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AppLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    level?: boolean
+    context?: boolean
+    message?: boolean
+    meta?: boolean
+    userId?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["appLog"]>
+
+  export type AppLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    level?: boolean
+    context?: boolean
+    message?: boolean
+    meta?: boolean
+    userId?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["appLog"]>
+
+  export type AppLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    level?: boolean
+    context?: boolean
+    message?: boolean
+    meta?: boolean
+    userId?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["appLog"]>
+
+  export type AppLogSelectScalar = {
+    id?: boolean
+    level?: boolean
+    context?: boolean
+    message?: boolean
+    meta?: boolean
+    userId?: boolean
+    createdAt?: boolean
+  }
+
+  export type AppLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "level" | "context" | "message" | "meta" | "userId" | "createdAt", ExtArgs["result"]["appLog"]>
+
+  export type $AppLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AppLog"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      level: $Enums.LogLevel
+      context: string
+      message: string
+      meta: Prisma.JsonValue | null
+      userId: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["appLog"]>
+    composites: {}
+  }
+
+  type AppLogGetPayload<S extends boolean | null | undefined | AppLogDefaultArgs> = $Result.GetResult<Prisma.$AppLogPayload, S>
+
+  type AppLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AppLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AppLogCountAggregateInputType | true
+    }
+
+  export interface AppLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AppLog'], meta: { name: 'AppLog' } }
+    /**
+     * Find zero or one AppLog that matches the filter.
+     * @param {AppLogFindUniqueArgs} args - Arguments to find a AppLog
+     * @example
+     * // Get one AppLog
+     * const appLog = await prisma.appLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AppLogFindUniqueArgs>(args: SelectSubset<T, AppLogFindUniqueArgs<ExtArgs>>): Prisma__AppLogClient<$Result.GetResult<Prisma.$AppLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AppLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AppLogFindUniqueOrThrowArgs} args - Arguments to find a AppLog
+     * @example
+     * // Get one AppLog
+     * const appLog = await prisma.appLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AppLogFindUniqueOrThrowArgs>(args: SelectSubset<T, AppLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AppLogClient<$Result.GetResult<Prisma.$AppLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AppLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppLogFindFirstArgs} args - Arguments to find a AppLog
+     * @example
+     * // Get one AppLog
+     * const appLog = await prisma.appLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AppLogFindFirstArgs>(args?: SelectSubset<T, AppLogFindFirstArgs<ExtArgs>>): Prisma__AppLogClient<$Result.GetResult<Prisma.$AppLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AppLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppLogFindFirstOrThrowArgs} args - Arguments to find a AppLog
+     * @example
+     * // Get one AppLog
+     * const appLog = await prisma.appLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AppLogFindFirstOrThrowArgs>(args?: SelectSubset<T, AppLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__AppLogClient<$Result.GetResult<Prisma.$AppLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AppLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AppLogs
+     * const appLogs = await prisma.appLog.findMany()
+     * 
+     * // Get first 10 AppLogs
+     * const appLogs = await prisma.appLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const appLogWithIdOnly = await prisma.appLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AppLogFindManyArgs>(args?: SelectSubset<T, AppLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AppLog.
+     * @param {AppLogCreateArgs} args - Arguments to create a AppLog.
+     * @example
+     * // Create one AppLog
+     * const AppLog = await prisma.appLog.create({
+     *   data: {
+     *     // ... data to create a AppLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends AppLogCreateArgs>(args: SelectSubset<T, AppLogCreateArgs<ExtArgs>>): Prisma__AppLogClient<$Result.GetResult<Prisma.$AppLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AppLogs.
+     * @param {AppLogCreateManyArgs} args - Arguments to create many AppLogs.
+     * @example
+     * // Create many AppLogs
+     * const appLog = await prisma.appLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AppLogCreateManyArgs>(args?: SelectSubset<T, AppLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AppLogs and returns the data saved in the database.
+     * @param {AppLogCreateManyAndReturnArgs} args - Arguments to create many AppLogs.
+     * @example
+     * // Create many AppLogs
+     * const appLog = await prisma.appLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AppLogs and only return the `id`
+     * const appLogWithIdOnly = await prisma.appLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AppLogCreateManyAndReturnArgs>(args?: SelectSubset<T, AppLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AppLog.
+     * @param {AppLogDeleteArgs} args - Arguments to delete one AppLog.
+     * @example
+     * // Delete one AppLog
+     * const AppLog = await prisma.appLog.delete({
+     *   where: {
+     *     // ... filter to delete one AppLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AppLogDeleteArgs>(args: SelectSubset<T, AppLogDeleteArgs<ExtArgs>>): Prisma__AppLogClient<$Result.GetResult<Prisma.$AppLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AppLog.
+     * @param {AppLogUpdateArgs} args - Arguments to update one AppLog.
+     * @example
+     * // Update one AppLog
+     * const appLog = await prisma.appLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AppLogUpdateArgs>(args: SelectSubset<T, AppLogUpdateArgs<ExtArgs>>): Prisma__AppLogClient<$Result.GetResult<Prisma.$AppLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AppLogs.
+     * @param {AppLogDeleteManyArgs} args - Arguments to filter AppLogs to delete.
+     * @example
+     * // Delete a few AppLogs
+     * const { count } = await prisma.appLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AppLogDeleteManyArgs>(args?: SelectSubset<T, AppLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AppLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AppLogs
+     * const appLog = await prisma.appLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AppLogUpdateManyArgs>(args: SelectSubset<T, AppLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AppLogs and returns the data updated in the database.
+     * @param {AppLogUpdateManyAndReturnArgs} args - Arguments to update many AppLogs.
+     * @example
+     * // Update many AppLogs
+     * const appLog = await prisma.appLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AppLogs and only return the `id`
+     * const appLogWithIdOnly = await prisma.appLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AppLogUpdateManyAndReturnArgs>(args: SelectSubset<T, AppLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AppLog.
+     * @param {AppLogUpsertArgs} args - Arguments to update or create a AppLog.
+     * @example
+     * // Update or create a AppLog
+     * const appLog = await prisma.appLog.upsert({
+     *   create: {
+     *     // ... data to create a AppLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AppLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AppLogUpsertArgs>(args: SelectSubset<T, AppLogUpsertArgs<ExtArgs>>): Prisma__AppLogClient<$Result.GetResult<Prisma.$AppLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AppLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppLogCountArgs} args - Arguments to filter AppLogs to count.
+     * @example
+     * // Count the number of AppLogs
+     * const count = await prisma.appLog.count({
+     *   where: {
+     *     // ... the filter for the AppLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends AppLogCountArgs>(
+      args?: Subset<T, AppLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AppLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AppLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AppLogAggregateArgs>(args: Subset<T, AppLogAggregateArgs>): Prisma.PrismaPromise<GetAppLogAggregateType<T>>
+
+    /**
+     * Group by AppLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AppLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AppLogGroupByArgs['orderBy'] }
+        : { orderBy?: AppLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AppLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAppLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AppLog model
+   */
+  readonly fields: AppLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AppLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AppLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AppLog model
+   */
+  interface AppLogFieldRefs {
+    readonly id: FieldRef<"AppLog", 'String'>
+    readonly level: FieldRef<"AppLog", 'LogLevel'>
+    readonly context: FieldRef<"AppLog", 'String'>
+    readonly message: FieldRef<"AppLog", 'String'>
+    readonly meta: FieldRef<"AppLog", 'Json'>
+    readonly userId: FieldRef<"AppLog", 'String'>
+    readonly createdAt: FieldRef<"AppLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AppLog findUnique
+   */
+  export type AppLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppLog
+     */
+    select?: AppLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppLog
+     */
+    omit?: AppLogOmit<ExtArgs> | null
+    /**
+     * Filter, which AppLog to fetch.
+     */
+    where: AppLogWhereUniqueInput
+  }
+
+  /**
+   * AppLog findUniqueOrThrow
+   */
+  export type AppLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppLog
+     */
+    select?: AppLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppLog
+     */
+    omit?: AppLogOmit<ExtArgs> | null
+    /**
+     * Filter, which AppLog to fetch.
+     */
+    where: AppLogWhereUniqueInput
+  }
+
+  /**
+   * AppLog findFirst
+   */
+  export type AppLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppLog
+     */
+    select?: AppLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppLog
+     */
+    omit?: AppLogOmit<ExtArgs> | null
+    /**
+     * Filter, which AppLog to fetch.
+     */
+    where?: AppLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AppLogs to fetch.
+     */
+    orderBy?: AppLogOrderByWithRelationInput | AppLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AppLogs.
+     */
+    cursor?: AppLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AppLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AppLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AppLogs.
+     */
+    distinct?: AppLogScalarFieldEnum | AppLogScalarFieldEnum[]
+  }
+
+  /**
+   * AppLog findFirstOrThrow
+   */
+  export type AppLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppLog
+     */
+    select?: AppLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppLog
+     */
+    omit?: AppLogOmit<ExtArgs> | null
+    /**
+     * Filter, which AppLog to fetch.
+     */
+    where?: AppLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AppLogs to fetch.
+     */
+    orderBy?: AppLogOrderByWithRelationInput | AppLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AppLogs.
+     */
+    cursor?: AppLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AppLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AppLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AppLogs.
+     */
+    distinct?: AppLogScalarFieldEnum | AppLogScalarFieldEnum[]
+  }
+
+  /**
+   * AppLog findMany
+   */
+  export type AppLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppLog
+     */
+    select?: AppLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppLog
+     */
+    omit?: AppLogOmit<ExtArgs> | null
+    /**
+     * Filter, which AppLogs to fetch.
+     */
+    where?: AppLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AppLogs to fetch.
+     */
+    orderBy?: AppLogOrderByWithRelationInput | AppLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AppLogs.
+     */
+    cursor?: AppLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AppLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AppLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AppLogs.
+     */
+    distinct?: AppLogScalarFieldEnum | AppLogScalarFieldEnum[]
+  }
+
+  /**
+   * AppLog create
+   */
+  export type AppLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppLog
+     */
+    select?: AppLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppLog
+     */
+    omit?: AppLogOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AppLog.
+     */
+    data: XOR<AppLogCreateInput, AppLogUncheckedCreateInput>
+  }
+
+  /**
+   * AppLog createMany
+   */
+  export type AppLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AppLogs.
+     */
+    data: AppLogCreateManyInput | AppLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AppLog createManyAndReturn
+   */
+  export type AppLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppLog
+     */
+    select?: AppLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppLog
+     */
+    omit?: AppLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many AppLogs.
+     */
+    data: AppLogCreateManyInput | AppLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AppLog update
+   */
+  export type AppLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppLog
+     */
+    select?: AppLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppLog
+     */
+    omit?: AppLogOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AppLog.
+     */
+    data: XOR<AppLogUpdateInput, AppLogUncheckedUpdateInput>
+    /**
+     * Choose, which AppLog to update.
+     */
+    where: AppLogWhereUniqueInput
+  }
+
+  /**
+   * AppLog updateMany
+   */
+  export type AppLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AppLogs.
+     */
+    data: XOR<AppLogUpdateManyMutationInput, AppLogUncheckedUpdateManyInput>
+    /**
+     * Filter which AppLogs to update
+     */
+    where?: AppLogWhereInput
+    /**
+     * Limit how many AppLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AppLog updateManyAndReturn
+   */
+  export type AppLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppLog
+     */
+    select?: AppLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppLog
+     */
+    omit?: AppLogOmit<ExtArgs> | null
+    /**
+     * The data used to update AppLogs.
+     */
+    data: XOR<AppLogUpdateManyMutationInput, AppLogUncheckedUpdateManyInput>
+    /**
+     * Filter which AppLogs to update
+     */
+    where?: AppLogWhereInput
+    /**
+     * Limit how many AppLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AppLog upsert
+   */
+  export type AppLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppLog
+     */
+    select?: AppLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppLog
+     */
+    omit?: AppLogOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AppLog to update in case it exists.
+     */
+    where: AppLogWhereUniqueInput
+    /**
+     * In case the AppLog found by the `where` argument doesn't exist, create a new AppLog with this data.
+     */
+    create: XOR<AppLogCreateInput, AppLogUncheckedCreateInput>
+    /**
+     * In case the AppLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AppLogUpdateInput, AppLogUncheckedUpdateInput>
+  }
+
+  /**
+   * AppLog delete
+   */
+  export type AppLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppLog
+     */
+    select?: AppLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppLog
+     */
+    omit?: AppLogOmit<ExtArgs> | null
+    /**
+     * Filter which AppLog to delete.
+     */
+    where: AppLogWhereUniqueInput
+  }
+
+  /**
+   * AppLog deleteMany
+   */
+  export type AppLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AppLogs to delete
+     */
+    where?: AppLogWhereInput
+    /**
+     * Limit how many AppLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AppLog without action
+   */
+  export type AppLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppLog
+     */
+    select?: AppLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppLog
+     */
+    omit?: AppLogOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -18284,6 +25560,8 @@ export namespace Prisma {
     userId: 'userId',
     name: 'name',
     description: 'description',
+    repo_url: 'repo_url',
+    depolyed_url: 'depolyed_url',
     projectLinks: 'projectLinks',
     techStacks: 'techStacks',
     createdAt: 'createdAt'
@@ -18414,6 +25692,91 @@ export namespace Prisma {
   };
 
   export type RefreshTokenScalarFieldEnum = (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum]
+
+
+  export const GitHubConnectionScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    accessToken: 'accessToken',
+    githubLogin: 'githubLogin',
+    githubId: 'githubId',
+    scope: 'scope',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type GitHubConnectionScalarFieldEnum = (typeof GitHubConnectionScalarFieldEnum)[keyof typeof GitHubConnectionScalarFieldEnum]
+
+
+  export const AdminScalarFieldEnum: {
+    id: 'id',
+    email: 'email',
+    name: 'name',
+    role: 'role',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    createdById: 'createdById'
+  };
+
+  export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
+
+
+  export const AdminOtpScalarFieldEnum: {
+    id: 'id',
+    adminId: 'adminId',
+    otp: 'otp',
+    expiresAt: 'expiresAt',
+    usedAt: 'usedAt',
+    createdAt: 'createdAt'
+  };
+
+  export type AdminOtpScalarFieldEnum = (typeof AdminOtpScalarFieldEnum)[keyof typeof AdminOtpScalarFieldEnum]
+
+
+  export const AdminSessionScalarFieldEnum: {
+    id: 'id',
+    adminId: 'adminId',
+    tokenHash: 'tokenHash',
+    expiresAt: 'expiresAt',
+    revokedAt: 'revokedAt',
+    createdAt: 'createdAt'
+  };
+
+  export type AdminSessionScalarFieldEnum = (typeof AdminSessionScalarFieldEnum)[keyof typeof AdminSessionScalarFieldEnum]
+
+
+  export const RequestLogScalarFieldEnum: {
+    id: 'id',
+    method: 'method',
+    path: 'path',
+    statusCode: 'statusCode',
+    durationMs: 'durationMs',
+    userId: 'userId',
+    ip: 'ip',
+    userAgent: 'userAgent',
+    body: 'body',
+    query: 'query',
+    errorMsg: 'errorMsg',
+    errorStack: 'errorStack',
+    level: 'level',
+    createdAt: 'createdAt'
+  };
+
+  export type RequestLogScalarFieldEnum = (typeof RequestLogScalarFieldEnum)[keyof typeof RequestLogScalarFieldEnum]
+
+
+  export const AppLogScalarFieldEnum: {
+    id: 'id',
+    level: 'level',
+    context: 'context',
+    message: 'message',
+    meta: 'meta',
+    userId: 'userId',
+    createdAt: 'createdAt'
+  };
+
+  export type AppLogScalarFieldEnum = (typeof AppLogScalarFieldEnum)[keyof typeof AppLogScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -18621,6 +25984,34 @@ export namespace Prisma {
    */
   export type ListEnumOtpPurposeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OtpPurpose[]'>
     
+
+
+  /**
+   * Reference to a field of type 'AdminRole'
+   */
+  export type EnumAdminRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AdminRole'>
+    
+
+
+  /**
+   * Reference to a field of type 'AdminRole[]'
+   */
+  export type ListEnumAdminRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AdminRole[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'LogLevel'
+   */
+  export type EnumLogLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LogLevel'>
+    
+
+
+  /**
+   * Reference to a field of type 'LogLevel[]'
+   */
+  export type ListEnumLogLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LogLevel[]'>
+    
   /**
    * Deep Input Types
    */
@@ -18656,6 +26047,7 @@ export namespace Prisma {
     transactions?: CreditTransactionListRelationFilter
     purchases?: PurchaseListRelationFilter
     refreshTokens?: RefreshTokenListRelationFilter
+    GitHubConnections?: GitHubConnectionListRelationFilter
     referralsMade?: ReferralListRelationFilter
     referralsReceived?: ReferralListRelationFilter
   }
@@ -18687,6 +26079,7 @@ export namespace Prisma {
     transactions?: CreditTransactionOrderByRelationAggregateInput
     purchases?: PurchaseOrderByRelationAggregateInput
     refreshTokens?: RefreshTokenOrderByRelationAggregateInput
+    GitHubConnections?: GitHubConnectionOrderByRelationAggregateInput
     referralsMade?: ReferralOrderByRelationAggregateInput
     referralsReceived?: ReferralOrderByRelationAggregateInput
   }
@@ -18721,6 +26114,7 @@ export namespace Prisma {
     transactions?: CreditTransactionListRelationFilter
     purchases?: PurchaseListRelationFilter
     refreshTokens?: RefreshTokenListRelationFilter
+    GitHubConnections?: GitHubConnectionListRelationFilter
     referralsMade?: ReferralListRelationFilter
     referralsReceived?: ReferralListRelationFilter
   }, "id" | "email" | "referralCode">
@@ -18959,6 +26353,8 @@ export namespace Prisma {
     userId?: StringFilter<"Project"> | string
     name?: StringFilter<"Project"> | string
     description?: StringFilter<"Project"> | string
+    repo_url?: StringNullableFilter<"Project"> | string | null
+    depolyed_url?: StringNullableFilter<"Project"> | string | null
     projectLinks?: StringNullableListFilter<"Project">
     techStacks?: StringNullableListFilter<"Project">
     createdAt?: DateTimeFilter<"Project"> | Date | string
@@ -18970,6 +26366,8 @@ export namespace Prisma {
     userId?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    repo_url?: SortOrderInput | SortOrder
+    depolyed_url?: SortOrderInput | SortOrder
     projectLinks?: SortOrder
     techStacks?: SortOrder
     createdAt?: SortOrder
@@ -18984,6 +26382,8 @@ export namespace Prisma {
     userId?: StringFilter<"Project"> | string
     name?: StringFilter<"Project"> | string
     description?: StringFilter<"Project"> | string
+    repo_url?: StringNullableFilter<"Project"> | string | null
+    depolyed_url?: StringNullableFilter<"Project"> | string | null
     projectLinks?: StringNullableListFilter<"Project">
     techStacks?: StringNullableListFilter<"Project">
     createdAt?: DateTimeFilter<"Project"> | Date | string
@@ -18995,6 +26395,8 @@ export namespace Prisma {
     userId?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    repo_url?: SortOrderInput | SortOrder
+    depolyed_url?: SortOrderInput | SortOrder
     projectLinks?: SortOrder
     techStacks?: SortOrder
     createdAt?: SortOrder
@@ -19011,6 +26413,8 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter<"Project"> | string
     name?: StringWithAggregatesFilter<"Project"> | string
     description?: StringWithAggregatesFilter<"Project"> | string
+    repo_url?: StringNullableWithAggregatesFilter<"Project"> | string | null
+    depolyed_url?: StringNullableWithAggregatesFilter<"Project"> | string | null
     projectLinks?: StringNullableListFilter<"Project">
     techStacks?: StringNullableListFilter<"Project">
     createdAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
@@ -19644,6 +27048,432 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"RefreshToken"> | Date | string
   }
 
+  export type GitHubConnectionWhereInput = {
+    AND?: GitHubConnectionWhereInput | GitHubConnectionWhereInput[]
+    OR?: GitHubConnectionWhereInput[]
+    NOT?: GitHubConnectionWhereInput | GitHubConnectionWhereInput[]
+    id?: StringFilter<"GitHubConnection"> | string
+    userId?: StringFilter<"GitHubConnection"> | string
+    accessToken?: StringFilter<"GitHubConnection"> | string
+    githubLogin?: StringFilter<"GitHubConnection"> | string
+    githubId?: IntFilter<"GitHubConnection"> | number
+    scope?: StringFilter<"GitHubConnection"> | string
+    createdAt?: DateTimeFilter<"GitHubConnection"> | Date | string
+    updatedAt?: DateTimeFilter<"GitHubConnection"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type GitHubConnectionOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    accessToken?: SortOrder
+    githubLogin?: SortOrder
+    githubId?: SortOrder
+    scope?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type GitHubConnectionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: GitHubConnectionWhereInput | GitHubConnectionWhereInput[]
+    OR?: GitHubConnectionWhereInput[]
+    NOT?: GitHubConnectionWhereInput | GitHubConnectionWhereInput[]
+    accessToken?: StringFilter<"GitHubConnection"> | string
+    githubLogin?: StringFilter<"GitHubConnection"> | string
+    githubId?: IntFilter<"GitHubConnection"> | number
+    scope?: StringFilter<"GitHubConnection"> | string
+    createdAt?: DateTimeFilter<"GitHubConnection"> | Date | string
+    updatedAt?: DateTimeFilter<"GitHubConnection"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type GitHubConnectionOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    accessToken?: SortOrder
+    githubLogin?: SortOrder
+    githubId?: SortOrder
+    scope?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: GitHubConnectionCountOrderByAggregateInput
+    _avg?: GitHubConnectionAvgOrderByAggregateInput
+    _max?: GitHubConnectionMaxOrderByAggregateInput
+    _min?: GitHubConnectionMinOrderByAggregateInput
+    _sum?: GitHubConnectionSumOrderByAggregateInput
+  }
+
+  export type GitHubConnectionScalarWhereWithAggregatesInput = {
+    AND?: GitHubConnectionScalarWhereWithAggregatesInput | GitHubConnectionScalarWhereWithAggregatesInput[]
+    OR?: GitHubConnectionScalarWhereWithAggregatesInput[]
+    NOT?: GitHubConnectionScalarWhereWithAggregatesInput | GitHubConnectionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"GitHubConnection"> | string
+    userId?: StringWithAggregatesFilter<"GitHubConnection"> | string
+    accessToken?: StringWithAggregatesFilter<"GitHubConnection"> | string
+    githubLogin?: StringWithAggregatesFilter<"GitHubConnection"> | string
+    githubId?: IntWithAggregatesFilter<"GitHubConnection"> | number
+    scope?: StringWithAggregatesFilter<"GitHubConnection"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"GitHubConnection"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"GitHubConnection"> | Date | string
+  }
+
+  export type AdminWhereInput = {
+    AND?: AdminWhereInput | AdminWhereInput[]
+    OR?: AdminWhereInput[]
+    NOT?: AdminWhereInput | AdminWhereInput[]
+    id?: StringFilter<"Admin"> | string
+    email?: StringFilter<"Admin"> | string
+    name?: StringFilter<"Admin"> | string
+    role?: EnumAdminRoleFilter<"Admin"> | $Enums.AdminRole
+    isActive?: BoolFilter<"Admin"> | boolean
+    createdAt?: DateTimeFilter<"Admin"> | Date | string
+    updatedAt?: DateTimeFilter<"Admin"> | Date | string
+    createdById?: StringNullableFilter<"Admin"> | string | null
+    otps?: AdminOtpListRelationFilter
+    sessions?: AdminSessionListRelationFilter
+  }
+
+  export type AdminOrderByWithRelationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
+    role?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdById?: SortOrderInput | SortOrder
+    otps?: AdminOtpOrderByRelationAggregateInput
+    sessions?: AdminSessionOrderByRelationAggregateInput
+  }
+
+  export type AdminWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    email?: string
+    AND?: AdminWhereInput | AdminWhereInput[]
+    OR?: AdminWhereInput[]
+    NOT?: AdminWhereInput | AdminWhereInput[]
+    name?: StringFilter<"Admin"> | string
+    role?: EnumAdminRoleFilter<"Admin"> | $Enums.AdminRole
+    isActive?: BoolFilter<"Admin"> | boolean
+    createdAt?: DateTimeFilter<"Admin"> | Date | string
+    updatedAt?: DateTimeFilter<"Admin"> | Date | string
+    createdById?: StringNullableFilter<"Admin"> | string | null
+    otps?: AdminOtpListRelationFilter
+    sessions?: AdminSessionListRelationFilter
+  }, "id" | "email">
+
+  export type AdminOrderByWithAggregationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
+    role?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdById?: SortOrderInput | SortOrder
+    _count?: AdminCountOrderByAggregateInput
+    _max?: AdminMaxOrderByAggregateInput
+    _min?: AdminMinOrderByAggregateInput
+  }
+
+  export type AdminScalarWhereWithAggregatesInput = {
+    AND?: AdminScalarWhereWithAggregatesInput | AdminScalarWhereWithAggregatesInput[]
+    OR?: AdminScalarWhereWithAggregatesInput[]
+    NOT?: AdminScalarWhereWithAggregatesInput | AdminScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Admin"> | string
+    email?: StringWithAggregatesFilter<"Admin"> | string
+    name?: StringWithAggregatesFilter<"Admin"> | string
+    role?: EnumAdminRoleWithAggregatesFilter<"Admin"> | $Enums.AdminRole
+    isActive?: BoolWithAggregatesFilter<"Admin"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Admin"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Admin"> | Date | string
+    createdById?: StringNullableWithAggregatesFilter<"Admin"> | string | null
+  }
+
+  export type AdminOtpWhereInput = {
+    AND?: AdminOtpWhereInput | AdminOtpWhereInput[]
+    OR?: AdminOtpWhereInput[]
+    NOT?: AdminOtpWhereInput | AdminOtpWhereInput[]
+    id?: StringFilter<"AdminOtp"> | string
+    adminId?: StringFilter<"AdminOtp"> | string
+    otp?: StringFilter<"AdminOtp"> | string
+    expiresAt?: DateTimeFilter<"AdminOtp"> | Date | string
+    usedAt?: DateTimeNullableFilter<"AdminOtp"> | Date | string | null
+    createdAt?: DateTimeFilter<"AdminOtp"> | Date | string
+    admin?: XOR<AdminScalarRelationFilter, AdminWhereInput>
+  }
+
+  export type AdminOtpOrderByWithRelationInput = {
+    id?: SortOrder
+    adminId?: SortOrder
+    otp?: SortOrder
+    expiresAt?: SortOrder
+    usedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    admin?: AdminOrderByWithRelationInput
+  }
+
+  export type AdminOtpWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AdminOtpWhereInput | AdminOtpWhereInput[]
+    OR?: AdminOtpWhereInput[]
+    NOT?: AdminOtpWhereInput | AdminOtpWhereInput[]
+    adminId?: StringFilter<"AdminOtp"> | string
+    otp?: StringFilter<"AdminOtp"> | string
+    expiresAt?: DateTimeFilter<"AdminOtp"> | Date | string
+    usedAt?: DateTimeNullableFilter<"AdminOtp"> | Date | string | null
+    createdAt?: DateTimeFilter<"AdminOtp"> | Date | string
+    admin?: XOR<AdminScalarRelationFilter, AdminWhereInput>
+  }, "id">
+
+  export type AdminOtpOrderByWithAggregationInput = {
+    id?: SortOrder
+    adminId?: SortOrder
+    otp?: SortOrder
+    expiresAt?: SortOrder
+    usedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: AdminOtpCountOrderByAggregateInput
+    _max?: AdminOtpMaxOrderByAggregateInput
+    _min?: AdminOtpMinOrderByAggregateInput
+  }
+
+  export type AdminOtpScalarWhereWithAggregatesInput = {
+    AND?: AdminOtpScalarWhereWithAggregatesInput | AdminOtpScalarWhereWithAggregatesInput[]
+    OR?: AdminOtpScalarWhereWithAggregatesInput[]
+    NOT?: AdminOtpScalarWhereWithAggregatesInput | AdminOtpScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AdminOtp"> | string
+    adminId?: StringWithAggregatesFilter<"AdminOtp"> | string
+    otp?: StringWithAggregatesFilter<"AdminOtp"> | string
+    expiresAt?: DateTimeWithAggregatesFilter<"AdminOtp"> | Date | string
+    usedAt?: DateTimeNullableWithAggregatesFilter<"AdminOtp"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"AdminOtp"> | Date | string
+  }
+
+  export type AdminSessionWhereInput = {
+    AND?: AdminSessionWhereInput | AdminSessionWhereInput[]
+    OR?: AdminSessionWhereInput[]
+    NOT?: AdminSessionWhereInput | AdminSessionWhereInput[]
+    id?: StringFilter<"AdminSession"> | string
+    adminId?: StringFilter<"AdminSession"> | string
+    tokenHash?: StringFilter<"AdminSession"> | string
+    expiresAt?: DateTimeFilter<"AdminSession"> | Date | string
+    revokedAt?: DateTimeNullableFilter<"AdminSession"> | Date | string | null
+    createdAt?: DateTimeFilter<"AdminSession"> | Date | string
+    admin?: XOR<AdminScalarRelationFilter, AdminWhereInput>
+  }
+
+  export type AdminSessionOrderByWithRelationInput = {
+    id?: SortOrder
+    adminId?: SortOrder
+    tokenHash?: SortOrder
+    expiresAt?: SortOrder
+    revokedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    admin?: AdminOrderByWithRelationInput
+  }
+
+  export type AdminSessionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    tokenHash?: string
+    AND?: AdminSessionWhereInput | AdminSessionWhereInput[]
+    OR?: AdminSessionWhereInput[]
+    NOT?: AdminSessionWhereInput | AdminSessionWhereInput[]
+    adminId?: StringFilter<"AdminSession"> | string
+    expiresAt?: DateTimeFilter<"AdminSession"> | Date | string
+    revokedAt?: DateTimeNullableFilter<"AdminSession"> | Date | string | null
+    createdAt?: DateTimeFilter<"AdminSession"> | Date | string
+    admin?: XOR<AdminScalarRelationFilter, AdminWhereInput>
+  }, "id" | "tokenHash">
+
+  export type AdminSessionOrderByWithAggregationInput = {
+    id?: SortOrder
+    adminId?: SortOrder
+    tokenHash?: SortOrder
+    expiresAt?: SortOrder
+    revokedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: AdminSessionCountOrderByAggregateInput
+    _max?: AdminSessionMaxOrderByAggregateInput
+    _min?: AdminSessionMinOrderByAggregateInput
+  }
+
+  export type AdminSessionScalarWhereWithAggregatesInput = {
+    AND?: AdminSessionScalarWhereWithAggregatesInput | AdminSessionScalarWhereWithAggregatesInput[]
+    OR?: AdminSessionScalarWhereWithAggregatesInput[]
+    NOT?: AdminSessionScalarWhereWithAggregatesInput | AdminSessionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AdminSession"> | string
+    adminId?: StringWithAggregatesFilter<"AdminSession"> | string
+    tokenHash?: StringWithAggregatesFilter<"AdminSession"> | string
+    expiresAt?: DateTimeWithAggregatesFilter<"AdminSession"> | Date | string
+    revokedAt?: DateTimeNullableWithAggregatesFilter<"AdminSession"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"AdminSession"> | Date | string
+  }
+
+  export type RequestLogWhereInput = {
+    AND?: RequestLogWhereInput | RequestLogWhereInput[]
+    OR?: RequestLogWhereInput[]
+    NOT?: RequestLogWhereInput | RequestLogWhereInput[]
+    id?: StringFilter<"RequestLog"> | string
+    method?: StringFilter<"RequestLog"> | string
+    path?: StringFilter<"RequestLog"> | string
+    statusCode?: IntFilter<"RequestLog"> | number
+    durationMs?: IntFilter<"RequestLog"> | number
+    userId?: StringNullableFilter<"RequestLog"> | string | null
+    ip?: StringNullableFilter<"RequestLog"> | string | null
+    userAgent?: StringNullableFilter<"RequestLog"> | string | null
+    body?: JsonNullableFilter<"RequestLog">
+    query?: JsonNullableFilter<"RequestLog">
+    errorMsg?: StringNullableFilter<"RequestLog"> | string | null
+    errorStack?: StringNullableFilter<"RequestLog"> | string | null
+    level?: EnumLogLevelFilter<"RequestLog"> | $Enums.LogLevel
+    createdAt?: DateTimeFilter<"RequestLog"> | Date | string
+  }
+
+  export type RequestLogOrderByWithRelationInput = {
+    id?: SortOrder
+    method?: SortOrder
+    path?: SortOrder
+    statusCode?: SortOrder
+    durationMs?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    ip?: SortOrderInput | SortOrder
+    userAgent?: SortOrderInput | SortOrder
+    body?: SortOrderInput | SortOrder
+    query?: SortOrderInput | SortOrder
+    errorMsg?: SortOrderInput | SortOrder
+    errorStack?: SortOrderInput | SortOrder
+    level?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RequestLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: RequestLogWhereInput | RequestLogWhereInput[]
+    OR?: RequestLogWhereInput[]
+    NOT?: RequestLogWhereInput | RequestLogWhereInput[]
+    method?: StringFilter<"RequestLog"> | string
+    path?: StringFilter<"RequestLog"> | string
+    statusCode?: IntFilter<"RequestLog"> | number
+    durationMs?: IntFilter<"RequestLog"> | number
+    userId?: StringNullableFilter<"RequestLog"> | string | null
+    ip?: StringNullableFilter<"RequestLog"> | string | null
+    userAgent?: StringNullableFilter<"RequestLog"> | string | null
+    body?: JsonNullableFilter<"RequestLog">
+    query?: JsonNullableFilter<"RequestLog">
+    errorMsg?: StringNullableFilter<"RequestLog"> | string | null
+    errorStack?: StringNullableFilter<"RequestLog"> | string | null
+    level?: EnumLogLevelFilter<"RequestLog"> | $Enums.LogLevel
+    createdAt?: DateTimeFilter<"RequestLog"> | Date | string
+  }, "id">
+
+  export type RequestLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    method?: SortOrder
+    path?: SortOrder
+    statusCode?: SortOrder
+    durationMs?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    ip?: SortOrderInput | SortOrder
+    userAgent?: SortOrderInput | SortOrder
+    body?: SortOrderInput | SortOrder
+    query?: SortOrderInput | SortOrder
+    errorMsg?: SortOrderInput | SortOrder
+    errorStack?: SortOrderInput | SortOrder
+    level?: SortOrder
+    createdAt?: SortOrder
+    _count?: RequestLogCountOrderByAggregateInput
+    _avg?: RequestLogAvgOrderByAggregateInput
+    _max?: RequestLogMaxOrderByAggregateInput
+    _min?: RequestLogMinOrderByAggregateInput
+    _sum?: RequestLogSumOrderByAggregateInput
+  }
+
+  export type RequestLogScalarWhereWithAggregatesInput = {
+    AND?: RequestLogScalarWhereWithAggregatesInput | RequestLogScalarWhereWithAggregatesInput[]
+    OR?: RequestLogScalarWhereWithAggregatesInput[]
+    NOT?: RequestLogScalarWhereWithAggregatesInput | RequestLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RequestLog"> | string
+    method?: StringWithAggregatesFilter<"RequestLog"> | string
+    path?: StringWithAggregatesFilter<"RequestLog"> | string
+    statusCode?: IntWithAggregatesFilter<"RequestLog"> | number
+    durationMs?: IntWithAggregatesFilter<"RequestLog"> | number
+    userId?: StringNullableWithAggregatesFilter<"RequestLog"> | string | null
+    ip?: StringNullableWithAggregatesFilter<"RequestLog"> | string | null
+    userAgent?: StringNullableWithAggregatesFilter<"RequestLog"> | string | null
+    body?: JsonNullableWithAggregatesFilter<"RequestLog">
+    query?: JsonNullableWithAggregatesFilter<"RequestLog">
+    errorMsg?: StringNullableWithAggregatesFilter<"RequestLog"> | string | null
+    errorStack?: StringNullableWithAggregatesFilter<"RequestLog"> | string | null
+    level?: EnumLogLevelWithAggregatesFilter<"RequestLog"> | $Enums.LogLevel
+    createdAt?: DateTimeWithAggregatesFilter<"RequestLog"> | Date | string
+  }
+
+  export type AppLogWhereInput = {
+    AND?: AppLogWhereInput | AppLogWhereInput[]
+    OR?: AppLogWhereInput[]
+    NOT?: AppLogWhereInput | AppLogWhereInput[]
+    id?: StringFilter<"AppLog"> | string
+    level?: EnumLogLevelFilter<"AppLog"> | $Enums.LogLevel
+    context?: StringFilter<"AppLog"> | string
+    message?: StringFilter<"AppLog"> | string
+    meta?: JsonNullableFilter<"AppLog">
+    userId?: StringNullableFilter<"AppLog"> | string | null
+    createdAt?: DateTimeFilter<"AppLog"> | Date | string
+  }
+
+  export type AppLogOrderByWithRelationInput = {
+    id?: SortOrder
+    level?: SortOrder
+    context?: SortOrder
+    message?: SortOrder
+    meta?: SortOrderInput | SortOrder
+    userId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AppLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AppLogWhereInput | AppLogWhereInput[]
+    OR?: AppLogWhereInput[]
+    NOT?: AppLogWhereInput | AppLogWhereInput[]
+    level?: EnumLogLevelFilter<"AppLog"> | $Enums.LogLevel
+    context?: StringFilter<"AppLog"> | string
+    message?: StringFilter<"AppLog"> | string
+    meta?: JsonNullableFilter<"AppLog">
+    userId?: StringNullableFilter<"AppLog"> | string | null
+    createdAt?: DateTimeFilter<"AppLog"> | Date | string
+  }, "id">
+
+  export type AppLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    level?: SortOrder
+    context?: SortOrder
+    message?: SortOrder
+    meta?: SortOrderInput | SortOrder
+    userId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: AppLogCountOrderByAggregateInput
+    _max?: AppLogMaxOrderByAggregateInput
+    _min?: AppLogMinOrderByAggregateInput
+  }
+
+  export type AppLogScalarWhereWithAggregatesInput = {
+    AND?: AppLogScalarWhereWithAggregatesInput | AppLogScalarWhereWithAggregatesInput[]
+    OR?: AppLogScalarWhereWithAggregatesInput[]
+    NOT?: AppLogScalarWhereWithAggregatesInput | AppLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AppLog"> | string
+    level?: EnumLogLevelWithAggregatesFilter<"AppLog"> | $Enums.LogLevel
+    context?: StringWithAggregatesFilter<"AppLog"> | string
+    message?: StringWithAggregatesFilter<"AppLog"> | string
+    meta?: JsonNullableWithAggregatesFilter<"AppLog">
+    userId?: StringNullableWithAggregatesFilter<"AppLog"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"AppLog"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -19671,6 +27501,7 @@ export namespace Prisma {
     transactions?: CreditTransactionCreateNestedManyWithoutUserInput
     purchases?: PurchaseCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
     referralsMade?: ReferralCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralCreateNestedManyWithoutReferredUserInput
   }
@@ -19702,6 +27533,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUncheckedCreateNestedManyWithoutUserInput
     purchases?: PurchaseUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
     referralsMade?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralUncheckedCreateNestedManyWithoutReferredUserInput
   }
@@ -19733,6 +27565,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUpdateManyWithoutReferredUserNestedInput
   }
@@ -19764,6 +27597,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUncheckedUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUncheckedUpdateManyWithoutReferredUserNestedInput
   }
@@ -20012,6 +27846,8 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    repo_url?: string | null
+    depolyed_url?: string | null
     projectLinks?: ProjectCreateprojectLinksInput | string[]
     techStacks?: ProjectCreatetechStacksInput | string[]
     createdAt?: Date | string
@@ -20023,6 +27859,8 @@ export namespace Prisma {
     userId: string
     name: string
     description: string
+    repo_url?: string | null
+    depolyed_url?: string | null
     projectLinks?: ProjectCreateprojectLinksInput | string[]
     techStacks?: ProjectCreatetechStacksInput | string[]
     createdAt?: Date | string
@@ -20032,6 +27870,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    repo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    depolyed_url?: NullableStringFieldUpdateOperationsInput | string | null
     projectLinks?: ProjectUpdateprojectLinksInput | string[]
     techStacks?: ProjectUpdatetechStacksInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20043,6 +27883,8 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    repo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    depolyed_url?: NullableStringFieldUpdateOperationsInput | string | null
     projectLinks?: ProjectUpdateprojectLinksInput | string[]
     techStacks?: ProjectUpdatetechStacksInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20053,6 +27895,8 @@ export namespace Prisma {
     userId: string
     name: string
     description: string
+    repo_url?: string | null
+    depolyed_url?: string | null
     projectLinks?: ProjectCreateprojectLinksInput | string[]
     techStacks?: ProjectCreatetechStacksInput | string[]
     createdAt?: Date | string
@@ -20062,6 +27906,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    repo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    depolyed_url?: NullableStringFieldUpdateOperationsInput | string | null
     projectLinks?: ProjectUpdateprojectLinksInput | string[]
     techStacks?: ProjectUpdatetechStacksInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20072,6 +27918,8 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    repo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    depolyed_url?: NullableStringFieldUpdateOperationsInput | string | null
     projectLinks?: ProjectUpdateprojectLinksInput | string[]
     techStacks?: ProjectUpdatetechStacksInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20747,6 +28595,480 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type GitHubConnectionCreateInput = {
+    id?: string
+    accessToken: string
+    githubLogin: string
+    githubId: number
+    scope?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutGitHubConnectionsInput
+  }
+
+  export type GitHubConnectionUncheckedCreateInput = {
+    id?: string
+    userId: string
+    accessToken: string
+    githubLogin: string
+    githubId: number
+    scope?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GitHubConnectionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accessToken?: StringFieldUpdateOperationsInput | string
+    githubLogin?: StringFieldUpdateOperationsInput | string
+    githubId?: IntFieldUpdateOperationsInput | number
+    scope?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutGitHubConnectionsNestedInput
+  }
+
+  export type GitHubConnectionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    accessToken?: StringFieldUpdateOperationsInput | string
+    githubLogin?: StringFieldUpdateOperationsInput | string
+    githubId?: IntFieldUpdateOperationsInput | number
+    scope?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GitHubConnectionCreateManyInput = {
+    id?: string
+    userId: string
+    accessToken: string
+    githubLogin: string
+    githubId: number
+    scope?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GitHubConnectionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accessToken?: StringFieldUpdateOperationsInput | string
+    githubLogin?: StringFieldUpdateOperationsInput | string
+    githubId?: IntFieldUpdateOperationsInput | number
+    scope?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GitHubConnectionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    accessToken?: StringFieldUpdateOperationsInput | string
+    githubLogin?: StringFieldUpdateOperationsInput | string
+    githubId?: IntFieldUpdateOperationsInput | number
+    scope?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdminCreateInput = {
+    id?: string
+    email: string
+    name: string
+    role?: $Enums.AdminRole
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdById?: string | null
+    otps?: AdminOtpCreateNestedManyWithoutAdminInput
+    sessions?: AdminSessionCreateNestedManyWithoutAdminInput
+  }
+
+  export type AdminUncheckedCreateInput = {
+    id?: string
+    email: string
+    name: string
+    role?: $Enums.AdminRole
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdById?: string | null
+    otps?: AdminOtpUncheckedCreateNestedManyWithoutAdminInput
+    sessions?: AdminSessionUncheckedCreateNestedManyWithoutAdminInput
+  }
+
+  export type AdminUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    otps?: AdminOtpUpdateManyWithoutAdminNestedInput
+    sessions?: AdminSessionUpdateManyWithoutAdminNestedInput
+  }
+
+  export type AdminUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    otps?: AdminOtpUncheckedUpdateManyWithoutAdminNestedInput
+    sessions?: AdminSessionUncheckedUpdateManyWithoutAdminNestedInput
+  }
+
+  export type AdminCreateManyInput = {
+    id?: string
+    email: string
+    name: string
+    role?: $Enums.AdminRole
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdById?: string | null
+  }
+
+  export type AdminUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AdminUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AdminOtpCreateInput = {
+    id?: string
+    otp: string
+    expiresAt: Date | string
+    usedAt?: Date | string | null
+    createdAt?: Date | string
+    admin: AdminCreateNestedOneWithoutOtpsInput
+  }
+
+  export type AdminOtpUncheckedCreateInput = {
+    id?: string
+    adminId: string
+    otp: string
+    expiresAt: Date | string
+    usedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type AdminOtpUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    otp?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    admin?: AdminUpdateOneRequiredWithoutOtpsNestedInput
+  }
+
+  export type AdminOtpUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    adminId?: StringFieldUpdateOperationsInput | string
+    otp?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdminOtpCreateManyInput = {
+    id?: string
+    adminId: string
+    otp: string
+    expiresAt: Date | string
+    usedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type AdminOtpUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    otp?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdminOtpUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    adminId?: StringFieldUpdateOperationsInput | string
+    otp?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdminSessionCreateInput = {
+    id?: string
+    tokenHash: string
+    expiresAt: Date | string
+    revokedAt?: Date | string | null
+    createdAt?: Date | string
+    admin: AdminCreateNestedOneWithoutSessionsInput
+  }
+
+  export type AdminSessionUncheckedCreateInput = {
+    id?: string
+    adminId: string
+    tokenHash: string
+    expiresAt: Date | string
+    revokedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type AdminSessionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    admin?: AdminUpdateOneRequiredWithoutSessionsNestedInput
+  }
+
+  export type AdminSessionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    adminId?: StringFieldUpdateOperationsInput | string
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdminSessionCreateManyInput = {
+    id?: string
+    adminId: string
+    tokenHash: string
+    expiresAt: Date | string
+    revokedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type AdminSessionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdminSessionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    adminId?: StringFieldUpdateOperationsInput | string
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RequestLogCreateInput = {
+    id?: string
+    method: string
+    path: string
+    statusCode: number
+    durationMs: number
+    userId?: string | null
+    ip?: string | null
+    userAgent?: string | null
+    body?: NullableJsonNullValueInput | InputJsonValue
+    query?: NullableJsonNullValueInput | InputJsonValue
+    errorMsg?: string | null
+    errorStack?: string | null
+    level?: $Enums.LogLevel
+    createdAt?: Date | string
+  }
+
+  export type RequestLogUncheckedCreateInput = {
+    id?: string
+    method: string
+    path: string
+    statusCode: number
+    durationMs: number
+    userId?: string | null
+    ip?: string | null
+    userAgent?: string | null
+    body?: NullableJsonNullValueInput | InputJsonValue
+    query?: NullableJsonNullValueInput | InputJsonValue
+    errorMsg?: string | null
+    errorStack?: string | null
+    level?: $Enums.LogLevel
+    createdAt?: Date | string
+  }
+
+  export type RequestLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    statusCode?: IntFieldUpdateOperationsInput | number
+    durationMs?: IntFieldUpdateOperationsInput | number
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    body?: NullableJsonNullValueInput | InputJsonValue
+    query?: NullableJsonNullValueInput | InputJsonValue
+    errorMsg?: NullableStringFieldUpdateOperationsInput | string | null
+    errorStack?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: EnumLogLevelFieldUpdateOperationsInput | $Enums.LogLevel
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RequestLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    statusCode?: IntFieldUpdateOperationsInput | number
+    durationMs?: IntFieldUpdateOperationsInput | number
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    body?: NullableJsonNullValueInput | InputJsonValue
+    query?: NullableJsonNullValueInput | InputJsonValue
+    errorMsg?: NullableStringFieldUpdateOperationsInput | string | null
+    errorStack?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: EnumLogLevelFieldUpdateOperationsInput | $Enums.LogLevel
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RequestLogCreateManyInput = {
+    id?: string
+    method: string
+    path: string
+    statusCode: number
+    durationMs: number
+    userId?: string | null
+    ip?: string | null
+    userAgent?: string | null
+    body?: NullableJsonNullValueInput | InputJsonValue
+    query?: NullableJsonNullValueInput | InputJsonValue
+    errorMsg?: string | null
+    errorStack?: string | null
+    level?: $Enums.LogLevel
+    createdAt?: Date | string
+  }
+
+  export type RequestLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    statusCode?: IntFieldUpdateOperationsInput | number
+    durationMs?: IntFieldUpdateOperationsInput | number
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    body?: NullableJsonNullValueInput | InputJsonValue
+    query?: NullableJsonNullValueInput | InputJsonValue
+    errorMsg?: NullableStringFieldUpdateOperationsInput | string | null
+    errorStack?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: EnumLogLevelFieldUpdateOperationsInput | $Enums.LogLevel
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RequestLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    method?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    statusCode?: IntFieldUpdateOperationsInput | number
+    durationMs?: IntFieldUpdateOperationsInput | number
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    body?: NullableJsonNullValueInput | InputJsonValue
+    query?: NullableJsonNullValueInput | InputJsonValue
+    errorMsg?: NullableStringFieldUpdateOperationsInput | string | null
+    errorStack?: NullableStringFieldUpdateOperationsInput | string | null
+    level?: EnumLogLevelFieldUpdateOperationsInput | $Enums.LogLevel
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AppLogCreateInput = {
+    id?: string
+    level: $Enums.LogLevel
+    context: string
+    message: string
+    meta?: NullableJsonNullValueInput | InputJsonValue
+    userId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type AppLogUncheckedCreateInput = {
+    id?: string
+    level: $Enums.LogLevel
+    context: string
+    message: string
+    meta?: NullableJsonNullValueInput | InputJsonValue
+    userId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type AppLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    level?: EnumLogLevelFieldUpdateOperationsInput | $Enums.LogLevel
+    context?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    meta?: NullableJsonNullValueInput | InputJsonValue
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AppLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    level?: EnumLogLevelFieldUpdateOperationsInput | $Enums.LogLevel
+    context?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    meta?: NullableJsonNullValueInput | InputJsonValue
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AppLogCreateManyInput = {
+    id?: string
+    level: $Enums.LogLevel
+    context: string
+    message: string
+    meta?: NullableJsonNullValueInput | InputJsonValue
+    userId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type AppLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    level?: EnumLogLevelFieldUpdateOperationsInput | $Enums.LogLevel
+    context?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    meta?: NullableJsonNullValueInput | InputJsonValue
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AppLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    level?: EnumLogLevelFieldUpdateOperationsInput | $Enums.LogLevel
+    context?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    meta?: NullableJsonNullValueInput | InputJsonValue
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -20893,6 +29215,12 @@ export namespace Prisma {
     none?: RefreshTokenWhereInput
   }
 
+  export type GitHubConnectionListRelationFilter = {
+    every?: GitHubConnectionWhereInput
+    some?: GitHubConnectionWhereInput
+    none?: GitHubConnectionWhereInput
+  }
+
   export type ReferralListRelationFilter = {
     every?: ReferralWhereInput
     some?: ReferralWhereInput
@@ -20945,6 +29273,10 @@ export namespace Prisma {
   }
 
   export type RefreshTokenOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type GitHubConnectionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -21290,6 +29622,8 @@ export namespace Prisma {
     userId?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    repo_url?: SortOrder
+    depolyed_url?: SortOrder
     projectLinks?: SortOrder
     techStacks?: SortOrder
     createdAt?: SortOrder
@@ -21300,6 +29634,8 @@ export namespace Prisma {
     userId?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    repo_url?: SortOrder
+    depolyed_url?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -21308,6 +29644,8 @@ export namespace Prisma {
     userId?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    repo_url?: SortOrder
+    depolyed_url?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -21734,6 +30072,278 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type GitHubConnectionCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    accessToken?: SortOrder
+    githubLogin?: SortOrder
+    githubId?: SortOrder
+    scope?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type GitHubConnectionAvgOrderByAggregateInput = {
+    githubId?: SortOrder
+  }
+
+  export type GitHubConnectionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    accessToken?: SortOrder
+    githubLogin?: SortOrder
+    githubId?: SortOrder
+    scope?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type GitHubConnectionMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    accessToken?: SortOrder
+    githubLogin?: SortOrder
+    githubId?: SortOrder
+    scope?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type GitHubConnectionSumOrderByAggregateInput = {
+    githubId?: SortOrder
+  }
+
+  export type EnumAdminRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.AdminRole | EnumAdminRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.AdminRole[] | ListEnumAdminRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AdminRole[] | ListEnumAdminRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumAdminRoleFilter<$PrismaModel> | $Enums.AdminRole
+  }
+
+  export type AdminOtpListRelationFilter = {
+    every?: AdminOtpWhereInput
+    some?: AdminOtpWhereInput
+    none?: AdminOtpWhereInput
+  }
+
+  export type AdminSessionListRelationFilter = {
+    every?: AdminSessionWhereInput
+    some?: AdminSessionWhereInput
+    none?: AdminSessionWhereInput
+  }
+
+  export type AdminOtpOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AdminSessionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AdminCountOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
+    role?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdById?: SortOrder
+  }
+
+  export type AdminMaxOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
+    role?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdById?: SortOrder
+  }
+
+  export type AdminMinOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
+    role?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdById?: SortOrder
+  }
+
+  export type EnumAdminRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AdminRole | EnumAdminRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.AdminRole[] | ListEnumAdminRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AdminRole[] | ListEnumAdminRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumAdminRoleWithAggregatesFilter<$PrismaModel> | $Enums.AdminRole
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAdminRoleFilter<$PrismaModel>
+    _max?: NestedEnumAdminRoleFilter<$PrismaModel>
+  }
+
+  export type AdminScalarRelationFilter = {
+    is?: AdminWhereInput
+    isNot?: AdminWhereInput
+  }
+
+  export type AdminOtpCountOrderByAggregateInput = {
+    id?: SortOrder
+    adminId?: SortOrder
+    otp?: SortOrder
+    expiresAt?: SortOrder
+    usedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AdminOtpMaxOrderByAggregateInput = {
+    id?: SortOrder
+    adminId?: SortOrder
+    otp?: SortOrder
+    expiresAt?: SortOrder
+    usedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AdminOtpMinOrderByAggregateInput = {
+    id?: SortOrder
+    adminId?: SortOrder
+    otp?: SortOrder
+    expiresAt?: SortOrder
+    usedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AdminSessionCountOrderByAggregateInput = {
+    id?: SortOrder
+    adminId?: SortOrder
+    tokenHash?: SortOrder
+    expiresAt?: SortOrder
+    revokedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AdminSessionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    adminId?: SortOrder
+    tokenHash?: SortOrder
+    expiresAt?: SortOrder
+    revokedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AdminSessionMinOrderByAggregateInput = {
+    id?: SortOrder
+    adminId?: SortOrder
+    tokenHash?: SortOrder
+    expiresAt?: SortOrder
+    revokedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EnumLogLevelFilter<$PrismaModel = never> = {
+    equals?: $Enums.LogLevel | EnumLogLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.LogLevel[] | ListEnumLogLevelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.LogLevel[] | ListEnumLogLevelFieldRefInput<$PrismaModel>
+    not?: NestedEnumLogLevelFilter<$PrismaModel> | $Enums.LogLevel
+  }
+
+  export type RequestLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    method?: SortOrder
+    path?: SortOrder
+    statusCode?: SortOrder
+    durationMs?: SortOrder
+    userId?: SortOrder
+    ip?: SortOrder
+    userAgent?: SortOrder
+    body?: SortOrder
+    query?: SortOrder
+    errorMsg?: SortOrder
+    errorStack?: SortOrder
+    level?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RequestLogAvgOrderByAggregateInput = {
+    statusCode?: SortOrder
+    durationMs?: SortOrder
+  }
+
+  export type RequestLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    method?: SortOrder
+    path?: SortOrder
+    statusCode?: SortOrder
+    durationMs?: SortOrder
+    userId?: SortOrder
+    ip?: SortOrder
+    userAgent?: SortOrder
+    errorMsg?: SortOrder
+    errorStack?: SortOrder
+    level?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RequestLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    method?: SortOrder
+    path?: SortOrder
+    statusCode?: SortOrder
+    durationMs?: SortOrder
+    userId?: SortOrder
+    ip?: SortOrder
+    userAgent?: SortOrder
+    errorMsg?: SortOrder
+    errorStack?: SortOrder
+    level?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RequestLogSumOrderByAggregateInput = {
+    statusCode?: SortOrder
+    durationMs?: SortOrder
+  }
+
+  export type EnumLogLevelWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.LogLevel | EnumLogLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.LogLevel[] | ListEnumLogLevelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.LogLevel[] | ListEnumLogLevelFieldRefInput<$PrismaModel>
+    not?: NestedEnumLogLevelWithAggregatesFilter<$PrismaModel> | $Enums.LogLevel
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLogLevelFilter<$PrismaModel>
+    _max?: NestedEnumLogLevelFilter<$PrismaModel>
+  }
+
+  export type AppLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    level?: SortOrder
+    context?: SortOrder
+    message?: SortOrder
+    meta?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AppLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    level?: SortOrder
+    context?: SortOrder
+    message?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AppLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    level?: SortOrder
+    context?: SortOrder
+    message?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+  }
+
   export type LinkCreateNestedManyWithoutUserInput = {
     create?: XOR<LinkCreateWithoutUserInput, LinkUncheckedCreateWithoutUserInput> | LinkCreateWithoutUserInput[] | LinkUncheckedCreateWithoutUserInput[]
     connectOrCreate?: LinkCreateOrConnectWithoutUserInput | LinkCreateOrConnectWithoutUserInput[]
@@ -21809,6 +30419,13 @@ export namespace Prisma {
     connectOrCreate?: RefreshTokenCreateOrConnectWithoutUserInput | RefreshTokenCreateOrConnectWithoutUserInput[]
     createMany?: RefreshTokenCreateManyUserInputEnvelope
     connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+  }
+
+  export type GitHubConnectionCreateNestedManyWithoutUserInput = {
+    create?: XOR<GitHubConnectionCreateWithoutUserInput, GitHubConnectionUncheckedCreateWithoutUserInput> | GitHubConnectionCreateWithoutUserInput[] | GitHubConnectionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: GitHubConnectionCreateOrConnectWithoutUserInput | GitHubConnectionCreateOrConnectWithoutUserInput[]
+    createMany?: GitHubConnectionCreateManyUserInputEnvelope
+    connect?: GitHubConnectionWhereUniqueInput | GitHubConnectionWhereUniqueInput[]
   }
 
   export type ReferralCreateNestedManyWithoutReferrerInput = {
@@ -21900,6 +30517,13 @@ export namespace Prisma {
     connectOrCreate?: RefreshTokenCreateOrConnectWithoutUserInput | RefreshTokenCreateOrConnectWithoutUserInput[]
     createMany?: RefreshTokenCreateManyUserInputEnvelope
     connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+  }
+
+  export type GitHubConnectionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<GitHubConnectionCreateWithoutUserInput, GitHubConnectionUncheckedCreateWithoutUserInput> | GitHubConnectionCreateWithoutUserInput[] | GitHubConnectionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: GitHubConnectionCreateOrConnectWithoutUserInput | GitHubConnectionCreateOrConnectWithoutUserInput[]
+    createMany?: GitHubConnectionCreateManyUserInputEnvelope
+    connect?: GitHubConnectionWhereUniqueInput | GitHubConnectionWhereUniqueInput[]
   }
 
   export type ReferralUncheckedCreateNestedManyWithoutReferrerInput = {
@@ -22094,6 +30718,20 @@ export namespace Prisma {
     deleteMany?: RefreshTokenScalarWhereInput | RefreshTokenScalarWhereInput[]
   }
 
+  export type GitHubConnectionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<GitHubConnectionCreateWithoutUserInput, GitHubConnectionUncheckedCreateWithoutUserInput> | GitHubConnectionCreateWithoutUserInput[] | GitHubConnectionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: GitHubConnectionCreateOrConnectWithoutUserInput | GitHubConnectionCreateOrConnectWithoutUserInput[]
+    upsert?: GitHubConnectionUpsertWithWhereUniqueWithoutUserInput | GitHubConnectionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: GitHubConnectionCreateManyUserInputEnvelope
+    set?: GitHubConnectionWhereUniqueInput | GitHubConnectionWhereUniqueInput[]
+    disconnect?: GitHubConnectionWhereUniqueInput | GitHubConnectionWhereUniqueInput[]
+    delete?: GitHubConnectionWhereUniqueInput | GitHubConnectionWhereUniqueInput[]
+    connect?: GitHubConnectionWhereUniqueInput | GitHubConnectionWhereUniqueInput[]
+    update?: GitHubConnectionUpdateWithWhereUniqueWithoutUserInput | GitHubConnectionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: GitHubConnectionUpdateManyWithWhereWithoutUserInput | GitHubConnectionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: GitHubConnectionScalarWhereInput | GitHubConnectionScalarWhereInput[]
+  }
+
   export type ReferralUpdateManyWithoutReferrerNestedInput = {
     create?: XOR<ReferralCreateWithoutReferrerInput, ReferralUncheckedCreateWithoutReferrerInput> | ReferralCreateWithoutReferrerInput[] | ReferralUncheckedCreateWithoutReferrerInput[]
     connectOrCreate?: ReferralCreateOrConnectWithoutReferrerInput | ReferralCreateOrConnectWithoutReferrerInput[]
@@ -22274,6 +30912,20 @@ export namespace Prisma {
     update?: RefreshTokenUpdateWithWhereUniqueWithoutUserInput | RefreshTokenUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: RefreshTokenUpdateManyWithWhereWithoutUserInput | RefreshTokenUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: RefreshTokenScalarWhereInput | RefreshTokenScalarWhereInput[]
+  }
+
+  export type GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<GitHubConnectionCreateWithoutUserInput, GitHubConnectionUncheckedCreateWithoutUserInput> | GitHubConnectionCreateWithoutUserInput[] | GitHubConnectionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: GitHubConnectionCreateOrConnectWithoutUserInput | GitHubConnectionCreateOrConnectWithoutUserInput[]
+    upsert?: GitHubConnectionUpsertWithWhereUniqueWithoutUserInput | GitHubConnectionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: GitHubConnectionCreateManyUserInputEnvelope
+    set?: GitHubConnectionWhereUniqueInput | GitHubConnectionWhereUniqueInput[]
+    disconnect?: GitHubConnectionWhereUniqueInput | GitHubConnectionWhereUniqueInput[]
+    delete?: GitHubConnectionWhereUniqueInput | GitHubConnectionWhereUniqueInput[]
+    connect?: GitHubConnectionWhereUniqueInput | GitHubConnectionWhereUniqueInput[]
+    update?: GitHubConnectionUpdateWithWhereUniqueWithoutUserInput | GitHubConnectionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: GitHubConnectionUpdateManyWithWhereWithoutUserInput | GitHubConnectionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: GitHubConnectionScalarWhereInput | GitHubConnectionScalarWhereInput[]
   }
 
   export type ReferralUncheckedUpdateManyWithoutReferrerNestedInput = {
@@ -22540,6 +31192,140 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutRefreshTokensInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRefreshTokensInput, UserUpdateWithoutRefreshTokensInput>, UserUncheckedUpdateWithoutRefreshTokensInput>
+  }
+
+  export type UserCreateNestedOneWithoutGitHubConnectionsInput = {
+    create?: XOR<UserCreateWithoutGitHubConnectionsInput, UserUncheckedCreateWithoutGitHubConnectionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutGitHubConnectionsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutGitHubConnectionsNestedInput = {
+    create?: XOR<UserCreateWithoutGitHubConnectionsInput, UserUncheckedCreateWithoutGitHubConnectionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutGitHubConnectionsInput
+    upsert?: UserUpsertWithoutGitHubConnectionsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutGitHubConnectionsInput, UserUpdateWithoutGitHubConnectionsInput>, UserUncheckedUpdateWithoutGitHubConnectionsInput>
+  }
+
+  export type AdminOtpCreateNestedManyWithoutAdminInput = {
+    create?: XOR<AdminOtpCreateWithoutAdminInput, AdminOtpUncheckedCreateWithoutAdminInput> | AdminOtpCreateWithoutAdminInput[] | AdminOtpUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: AdminOtpCreateOrConnectWithoutAdminInput | AdminOtpCreateOrConnectWithoutAdminInput[]
+    createMany?: AdminOtpCreateManyAdminInputEnvelope
+    connect?: AdminOtpWhereUniqueInput | AdminOtpWhereUniqueInput[]
+  }
+
+  export type AdminSessionCreateNestedManyWithoutAdminInput = {
+    create?: XOR<AdminSessionCreateWithoutAdminInput, AdminSessionUncheckedCreateWithoutAdminInput> | AdminSessionCreateWithoutAdminInput[] | AdminSessionUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: AdminSessionCreateOrConnectWithoutAdminInput | AdminSessionCreateOrConnectWithoutAdminInput[]
+    createMany?: AdminSessionCreateManyAdminInputEnvelope
+    connect?: AdminSessionWhereUniqueInput | AdminSessionWhereUniqueInput[]
+  }
+
+  export type AdminOtpUncheckedCreateNestedManyWithoutAdminInput = {
+    create?: XOR<AdminOtpCreateWithoutAdminInput, AdminOtpUncheckedCreateWithoutAdminInput> | AdminOtpCreateWithoutAdminInput[] | AdminOtpUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: AdminOtpCreateOrConnectWithoutAdminInput | AdminOtpCreateOrConnectWithoutAdminInput[]
+    createMany?: AdminOtpCreateManyAdminInputEnvelope
+    connect?: AdminOtpWhereUniqueInput | AdminOtpWhereUniqueInput[]
+  }
+
+  export type AdminSessionUncheckedCreateNestedManyWithoutAdminInput = {
+    create?: XOR<AdminSessionCreateWithoutAdminInput, AdminSessionUncheckedCreateWithoutAdminInput> | AdminSessionCreateWithoutAdminInput[] | AdminSessionUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: AdminSessionCreateOrConnectWithoutAdminInput | AdminSessionCreateOrConnectWithoutAdminInput[]
+    createMany?: AdminSessionCreateManyAdminInputEnvelope
+    connect?: AdminSessionWhereUniqueInput | AdminSessionWhereUniqueInput[]
+  }
+
+  export type EnumAdminRoleFieldUpdateOperationsInput = {
+    set?: $Enums.AdminRole
+  }
+
+  export type AdminOtpUpdateManyWithoutAdminNestedInput = {
+    create?: XOR<AdminOtpCreateWithoutAdminInput, AdminOtpUncheckedCreateWithoutAdminInput> | AdminOtpCreateWithoutAdminInput[] | AdminOtpUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: AdminOtpCreateOrConnectWithoutAdminInput | AdminOtpCreateOrConnectWithoutAdminInput[]
+    upsert?: AdminOtpUpsertWithWhereUniqueWithoutAdminInput | AdminOtpUpsertWithWhereUniqueWithoutAdminInput[]
+    createMany?: AdminOtpCreateManyAdminInputEnvelope
+    set?: AdminOtpWhereUniqueInput | AdminOtpWhereUniqueInput[]
+    disconnect?: AdminOtpWhereUniqueInput | AdminOtpWhereUniqueInput[]
+    delete?: AdminOtpWhereUniqueInput | AdminOtpWhereUniqueInput[]
+    connect?: AdminOtpWhereUniqueInput | AdminOtpWhereUniqueInput[]
+    update?: AdminOtpUpdateWithWhereUniqueWithoutAdminInput | AdminOtpUpdateWithWhereUniqueWithoutAdminInput[]
+    updateMany?: AdminOtpUpdateManyWithWhereWithoutAdminInput | AdminOtpUpdateManyWithWhereWithoutAdminInput[]
+    deleteMany?: AdminOtpScalarWhereInput | AdminOtpScalarWhereInput[]
+  }
+
+  export type AdminSessionUpdateManyWithoutAdminNestedInput = {
+    create?: XOR<AdminSessionCreateWithoutAdminInput, AdminSessionUncheckedCreateWithoutAdminInput> | AdminSessionCreateWithoutAdminInput[] | AdminSessionUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: AdminSessionCreateOrConnectWithoutAdminInput | AdminSessionCreateOrConnectWithoutAdminInput[]
+    upsert?: AdminSessionUpsertWithWhereUniqueWithoutAdminInput | AdminSessionUpsertWithWhereUniqueWithoutAdminInput[]
+    createMany?: AdminSessionCreateManyAdminInputEnvelope
+    set?: AdminSessionWhereUniqueInput | AdminSessionWhereUniqueInput[]
+    disconnect?: AdminSessionWhereUniqueInput | AdminSessionWhereUniqueInput[]
+    delete?: AdminSessionWhereUniqueInput | AdminSessionWhereUniqueInput[]
+    connect?: AdminSessionWhereUniqueInput | AdminSessionWhereUniqueInput[]
+    update?: AdminSessionUpdateWithWhereUniqueWithoutAdminInput | AdminSessionUpdateWithWhereUniqueWithoutAdminInput[]
+    updateMany?: AdminSessionUpdateManyWithWhereWithoutAdminInput | AdminSessionUpdateManyWithWhereWithoutAdminInput[]
+    deleteMany?: AdminSessionScalarWhereInput | AdminSessionScalarWhereInput[]
+  }
+
+  export type AdminOtpUncheckedUpdateManyWithoutAdminNestedInput = {
+    create?: XOR<AdminOtpCreateWithoutAdminInput, AdminOtpUncheckedCreateWithoutAdminInput> | AdminOtpCreateWithoutAdminInput[] | AdminOtpUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: AdminOtpCreateOrConnectWithoutAdminInput | AdminOtpCreateOrConnectWithoutAdminInput[]
+    upsert?: AdminOtpUpsertWithWhereUniqueWithoutAdminInput | AdminOtpUpsertWithWhereUniqueWithoutAdminInput[]
+    createMany?: AdminOtpCreateManyAdminInputEnvelope
+    set?: AdminOtpWhereUniqueInput | AdminOtpWhereUniqueInput[]
+    disconnect?: AdminOtpWhereUniqueInput | AdminOtpWhereUniqueInput[]
+    delete?: AdminOtpWhereUniqueInput | AdminOtpWhereUniqueInput[]
+    connect?: AdminOtpWhereUniqueInput | AdminOtpWhereUniqueInput[]
+    update?: AdminOtpUpdateWithWhereUniqueWithoutAdminInput | AdminOtpUpdateWithWhereUniqueWithoutAdminInput[]
+    updateMany?: AdminOtpUpdateManyWithWhereWithoutAdminInput | AdminOtpUpdateManyWithWhereWithoutAdminInput[]
+    deleteMany?: AdminOtpScalarWhereInput | AdminOtpScalarWhereInput[]
+  }
+
+  export type AdminSessionUncheckedUpdateManyWithoutAdminNestedInput = {
+    create?: XOR<AdminSessionCreateWithoutAdminInput, AdminSessionUncheckedCreateWithoutAdminInput> | AdminSessionCreateWithoutAdminInput[] | AdminSessionUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: AdminSessionCreateOrConnectWithoutAdminInput | AdminSessionCreateOrConnectWithoutAdminInput[]
+    upsert?: AdminSessionUpsertWithWhereUniqueWithoutAdminInput | AdminSessionUpsertWithWhereUniqueWithoutAdminInput[]
+    createMany?: AdminSessionCreateManyAdminInputEnvelope
+    set?: AdminSessionWhereUniqueInput | AdminSessionWhereUniqueInput[]
+    disconnect?: AdminSessionWhereUniqueInput | AdminSessionWhereUniqueInput[]
+    delete?: AdminSessionWhereUniqueInput | AdminSessionWhereUniqueInput[]
+    connect?: AdminSessionWhereUniqueInput | AdminSessionWhereUniqueInput[]
+    update?: AdminSessionUpdateWithWhereUniqueWithoutAdminInput | AdminSessionUpdateWithWhereUniqueWithoutAdminInput[]
+    updateMany?: AdminSessionUpdateManyWithWhereWithoutAdminInput | AdminSessionUpdateManyWithWhereWithoutAdminInput[]
+    deleteMany?: AdminSessionScalarWhereInput | AdminSessionScalarWhereInput[]
+  }
+
+  export type AdminCreateNestedOneWithoutOtpsInput = {
+    create?: XOR<AdminCreateWithoutOtpsInput, AdminUncheckedCreateWithoutOtpsInput>
+    connectOrCreate?: AdminCreateOrConnectWithoutOtpsInput
+    connect?: AdminWhereUniqueInput
+  }
+
+  export type AdminUpdateOneRequiredWithoutOtpsNestedInput = {
+    create?: XOR<AdminCreateWithoutOtpsInput, AdminUncheckedCreateWithoutOtpsInput>
+    connectOrCreate?: AdminCreateOrConnectWithoutOtpsInput
+    upsert?: AdminUpsertWithoutOtpsInput
+    connect?: AdminWhereUniqueInput
+    update?: XOR<XOR<AdminUpdateToOneWithWhereWithoutOtpsInput, AdminUpdateWithoutOtpsInput>, AdminUncheckedUpdateWithoutOtpsInput>
+  }
+
+  export type AdminCreateNestedOneWithoutSessionsInput = {
+    create?: XOR<AdminCreateWithoutSessionsInput, AdminUncheckedCreateWithoutSessionsInput>
+    connectOrCreate?: AdminCreateOrConnectWithoutSessionsInput
+    connect?: AdminWhereUniqueInput
+  }
+
+  export type AdminUpdateOneRequiredWithoutSessionsNestedInput = {
+    create?: XOR<AdminCreateWithoutSessionsInput, AdminUncheckedCreateWithoutSessionsInput>
+    connectOrCreate?: AdminCreateOrConnectWithoutSessionsInput
+    upsert?: AdminUpsertWithoutSessionsInput
+    connect?: AdminWhereUniqueInput
+    update?: XOR<XOR<AdminUpdateToOneWithWhereWithoutSessionsInput, AdminUpdateWithoutSessionsInput>, AdminUncheckedUpdateWithoutSessionsInput>
+  }
+
+  export type EnumLogLevelFieldUpdateOperationsInput = {
+    set?: $Enums.LogLevel
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -22868,6 +31654,40 @@ export namespace Prisma {
     _max?: NestedEnumOtpPurposeFilter<$PrismaModel>
   }
 
+  export type NestedEnumAdminRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.AdminRole | EnumAdminRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.AdminRole[] | ListEnumAdminRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AdminRole[] | ListEnumAdminRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumAdminRoleFilter<$PrismaModel> | $Enums.AdminRole
+  }
+
+  export type NestedEnumAdminRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AdminRole | EnumAdminRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.AdminRole[] | ListEnumAdminRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AdminRole[] | ListEnumAdminRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumAdminRoleWithAggregatesFilter<$PrismaModel> | $Enums.AdminRole
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAdminRoleFilter<$PrismaModel>
+    _max?: NestedEnumAdminRoleFilter<$PrismaModel>
+  }
+
+  export type NestedEnumLogLevelFilter<$PrismaModel = never> = {
+    equals?: $Enums.LogLevel | EnumLogLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.LogLevel[] | ListEnumLogLevelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.LogLevel[] | ListEnumLogLevelFieldRefInput<$PrismaModel>
+    not?: NestedEnumLogLevelFilter<$PrismaModel> | $Enums.LogLevel
+  }
+
+  export type NestedEnumLogLevelWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.LogLevel | EnumLogLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.LogLevel[] | ListEnumLogLevelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.LogLevel[] | ListEnumLogLevelFieldRefInput<$PrismaModel>
+    not?: NestedEnumLogLevelWithAggregatesFilter<$PrismaModel> | $Enums.LogLevel
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLogLevelFilter<$PrismaModel>
+    _max?: NestedEnumLogLevelFilter<$PrismaModel>
+  }
+
   export type LinkCreateWithoutUserInput = {
     id?: string
     platform: string
@@ -22950,6 +31770,8 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    repo_url?: string | null
+    depolyed_url?: string | null
     projectLinks?: ProjectCreateprojectLinksInput | string[]
     techStacks?: ProjectCreatetechStacksInput | string[]
     createdAt?: Date | string
@@ -22959,6 +31781,8 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    repo_url?: string | null
+    depolyed_url?: string | null
     projectLinks?: ProjectCreateprojectLinksInput | string[]
     techStacks?: ProjectCreatetechStacksInput | string[]
     createdAt?: Date | string
@@ -23178,6 +32002,36 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type GitHubConnectionCreateWithoutUserInput = {
+    id?: string
+    accessToken: string
+    githubLogin: string
+    githubId: number
+    scope?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GitHubConnectionUncheckedCreateWithoutUserInput = {
+    id?: string
+    accessToken: string
+    githubLogin: string
+    githubId: number
+    scope?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GitHubConnectionCreateOrConnectWithoutUserInput = {
+    where: GitHubConnectionWhereUniqueInput
+    create: XOR<GitHubConnectionCreateWithoutUserInput, GitHubConnectionUncheckedCreateWithoutUserInput>
+  }
+
+  export type GitHubConnectionCreateManyUserInputEnvelope = {
+    data: GitHubConnectionCreateManyUserInput | GitHubConnectionCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ReferralCreateWithoutReferrerInput = {
     id?: string
     referralCode: string
@@ -23354,6 +32208,8 @@ export namespace Prisma {
     userId?: StringFilter<"Project"> | string
     name?: StringFilter<"Project"> | string
     description?: StringFilter<"Project"> | string
+    repo_url?: StringNullableFilter<"Project"> | string | null
+    depolyed_url?: StringNullableFilter<"Project"> | string | null
     projectLinks?: StringNullableListFilter<"Project">
     techStacks?: StringNullableListFilter<"Project">
     createdAt?: DateTimeFilter<"Project"> | Date | string
@@ -23566,6 +32422,36 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"RefreshToken"> | Date | string
   }
 
+  export type GitHubConnectionUpsertWithWhereUniqueWithoutUserInput = {
+    where: GitHubConnectionWhereUniqueInput
+    update: XOR<GitHubConnectionUpdateWithoutUserInput, GitHubConnectionUncheckedUpdateWithoutUserInput>
+    create: XOR<GitHubConnectionCreateWithoutUserInput, GitHubConnectionUncheckedCreateWithoutUserInput>
+  }
+
+  export type GitHubConnectionUpdateWithWhereUniqueWithoutUserInput = {
+    where: GitHubConnectionWhereUniqueInput
+    data: XOR<GitHubConnectionUpdateWithoutUserInput, GitHubConnectionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type GitHubConnectionUpdateManyWithWhereWithoutUserInput = {
+    where: GitHubConnectionScalarWhereInput
+    data: XOR<GitHubConnectionUpdateManyMutationInput, GitHubConnectionUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type GitHubConnectionScalarWhereInput = {
+    AND?: GitHubConnectionScalarWhereInput | GitHubConnectionScalarWhereInput[]
+    OR?: GitHubConnectionScalarWhereInput[]
+    NOT?: GitHubConnectionScalarWhereInput | GitHubConnectionScalarWhereInput[]
+    id?: StringFilter<"GitHubConnection"> | string
+    userId?: StringFilter<"GitHubConnection"> | string
+    accessToken?: StringFilter<"GitHubConnection"> | string
+    githubLogin?: StringFilter<"GitHubConnection"> | string
+    githubId?: IntFilter<"GitHubConnection"> | number
+    scope?: StringFilter<"GitHubConnection"> | string
+    createdAt?: DateTimeFilter<"GitHubConnection"> | Date | string
+    updatedAt?: DateTimeFilter<"GitHubConnection"> | Date | string
+  }
+
   export type ReferralUpsertWithWhereUniqueWithoutReferrerInput = {
     where: ReferralWhereUniqueInput
     update: XOR<ReferralUpdateWithoutReferrerInput, ReferralUncheckedUpdateWithoutReferrerInput>
@@ -23640,6 +32526,7 @@ export namespace Prisma {
     transactions?: CreditTransactionCreateNestedManyWithoutUserInput
     purchases?: PurchaseCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
     referralsMade?: ReferralCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralCreateNestedManyWithoutReferredUserInput
   }
@@ -23670,6 +32557,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUncheckedCreateNestedManyWithoutUserInput
     purchases?: PurchaseUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
     referralsMade?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralUncheckedCreateNestedManyWithoutReferredUserInput
   }
@@ -23716,6 +32604,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUpdateManyWithoutReferredUserNestedInput
   }
@@ -23746,6 +32635,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUncheckedUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUncheckedUpdateManyWithoutReferredUserNestedInput
   }
@@ -23776,6 +32666,7 @@ export namespace Prisma {
     transactions?: CreditTransactionCreateNestedManyWithoutUserInput
     purchases?: PurchaseCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
     referralsMade?: ReferralCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralCreateNestedManyWithoutReferredUserInput
   }
@@ -23806,6 +32697,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUncheckedCreateNestedManyWithoutUserInput
     purchases?: PurchaseUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
     referralsMade?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralUncheckedCreateNestedManyWithoutReferredUserInput
   }
@@ -23852,6 +32744,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUpdateManyWithoutReferredUserNestedInput
   }
@@ -23882,6 +32775,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUncheckedUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUncheckedUpdateManyWithoutReferredUserNestedInput
   }
@@ -23912,6 +32806,7 @@ export namespace Prisma {
     transactions?: CreditTransactionCreateNestedManyWithoutUserInput
     purchases?: PurchaseCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
     referralsMade?: ReferralCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralCreateNestedManyWithoutReferredUserInput
   }
@@ -23942,6 +32837,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUncheckedCreateNestedManyWithoutUserInput
     purchases?: PurchaseUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
     referralsMade?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralUncheckedCreateNestedManyWithoutReferredUserInput
   }
@@ -23988,6 +32884,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUpdateManyWithoutReferredUserNestedInput
   }
@@ -24018,6 +32915,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUncheckedUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUncheckedUpdateManyWithoutReferredUserNestedInput
   }
@@ -24048,6 +32946,7 @@ export namespace Prisma {
     transactions?: CreditTransactionCreateNestedManyWithoutUserInput
     purchases?: PurchaseCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
     referralsMade?: ReferralCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralCreateNestedManyWithoutReferredUserInput
   }
@@ -24078,6 +32977,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUncheckedCreateNestedManyWithoutUserInput
     purchases?: PurchaseUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
     referralsMade?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralUncheckedCreateNestedManyWithoutReferredUserInput
   }
@@ -24124,6 +33024,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUpdateManyWithoutReferredUserNestedInput
   }
@@ -24154,6 +33055,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUncheckedUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUncheckedUpdateManyWithoutReferredUserNestedInput
   }
@@ -24184,6 +33086,7 @@ export namespace Prisma {
     transactions?: CreditTransactionCreateNestedManyWithoutUserInput
     purchases?: PurchaseCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
     referralsMade?: ReferralCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralCreateNestedManyWithoutReferredUserInput
   }
@@ -24214,6 +33117,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUncheckedCreateNestedManyWithoutUserInput
     purchases?: PurchaseUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
     referralsMade?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralUncheckedCreateNestedManyWithoutReferredUserInput
   }
@@ -24260,6 +33164,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUpdateManyWithoutReferredUserNestedInput
   }
@@ -24290,6 +33195,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUncheckedUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUncheckedUpdateManyWithoutReferredUserNestedInput
   }
@@ -24320,6 +33226,7 @@ export namespace Prisma {
     transactions?: CreditTransactionCreateNestedManyWithoutUserInput
     purchases?: PurchaseCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
     referralsMade?: ReferralCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralCreateNestedManyWithoutReferredUserInput
   }
@@ -24350,6 +33257,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUncheckedCreateNestedManyWithoutUserInput
     purchases?: PurchaseUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
     referralsMade?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralUncheckedCreateNestedManyWithoutReferredUserInput
   }
@@ -24396,6 +33304,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUpdateManyWithoutReferredUserNestedInput
   }
@@ -24426,6 +33335,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUncheckedUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUncheckedUpdateManyWithoutReferredUserNestedInput
   }
@@ -24456,6 +33366,7 @@ export namespace Prisma {
     transactions?: CreditTransactionCreateNestedManyWithoutUserInput
     purchases?: PurchaseCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
     referralsMade?: ReferralCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralCreateNestedManyWithoutReferredUserInput
   }
@@ -24486,6 +33397,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUncheckedCreateNestedManyWithoutUserInput
     purchases?: PurchaseUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
     referralsMade?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralUncheckedCreateNestedManyWithoutReferredUserInput
   }
@@ -24532,6 +33444,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUpdateManyWithoutReferredUserNestedInput
   }
@@ -24562,6 +33475,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUncheckedUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUncheckedUpdateManyWithoutReferredUserNestedInput
   }
@@ -24592,6 +33506,7 @@ export namespace Prisma {
     transactions?: CreditTransactionCreateNestedManyWithoutUserInput
     purchases?: PurchaseCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
     referralsMade?: ReferralCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralCreateNestedManyWithoutReferredUserInput
   }
@@ -24622,6 +33537,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUncheckedCreateNestedManyWithoutUserInput
     purchases?: PurchaseUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
     referralsMade?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralUncheckedCreateNestedManyWithoutReferredUserInput
   }
@@ -24668,6 +33584,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUpdateManyWithoutReferredUserNestedInput
   }
@@ -24698,6 +33615,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUncheckedUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUncheckedUpdateManyWithoutReferredUserNestedInput
   }
@@ -24728,6 +33646,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
     purchases?: PurchaseCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
     referralsMade?: ReferralCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralCreateNestedManyWithoutReferredUserInput
   }
@@ -24758,6 +33677,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
     purchases?: PurchaseUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
     referralsMade?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralUncheckedCreateNestedManyWithoutReferredUserInput
   }
@@ -24804,6 +33724,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUpdateManyWithoutReferredUserNestedInput
   }
@@ -24834,6 +33755,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUncheckedUpdateManyWithoutReferredUserNestedInput
   }
@@ -24864,6 +33786,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
     transactions?: CreditTransactionCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
     referralsMade?: ReferralCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralCreateNestedManyWithoutReferredUserInput
   }
@@ -24894,6 +33817,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
     transactions?: CreditTransactionUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
     referralsMade?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralUncheckedCreateNestedManyWithoutReferredUserInput
   }
@@ -24940,6 +33864,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
     transactions?: CreditTransactionUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUpdateManyWithoutReferredUserNestedInput
   }
@@ -24970,6 +33895,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
     transactions?: CreditTransactionUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUncheckedUpdateManyWithoutReferredUserNestedInput
   }
@@ -25001,6 +33927,7 @@ export namespace Prisma {
     transactions?: CreditTransactionCreateNestedManyWithoutUserInput
     purchases?: PurchaseCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
     referralsReceived?: ReferralCreateNestedManyWithoutReferredUserInput
   }
 
@@ -25031,6 +33958,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUncheckedCreateNestedManyWithoutUserInput
     purchases?: PurchaseUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
     referralsReceived?: ReferralUncheckedCreateNestedManyWithoutReferredUserInput
   }
 
@@ -25066,6 +33994,7 @@ export namespace Prisma {
     transactions?: CreditTransactionCreateNestedManyWithoutUserInput
     purchases?: PurchaseCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
     referralsMade?: ReferralCreateNestedManyWithoutReferrerInput
   }
 
@@ -25096,6 +34025,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUncheckedCreateNestedManyWithoutUserInput
     purchases?: PurchaseUncheckedCreateNestedManyWithoutUserInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
     referralsMade?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
   }
 
@@ -25142,6 +34072,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
     referralsReceived?: ReferralUpdateManyWithoutReferredUserNestedInput
   }
 
@@ -25172,6 +34103,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUncheckedUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
     referralsReceived?: ReferralUncheckedUpdateManyWithoutReferredUserNestedInput
   }
 
@@ -25213,6 +34145,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUpdateManyWithoutReferrerNestedInput
   }
 
@@ -25243,6 +34176,7 @@ export namespace Prisma {
     transactions?: CreditTransactionUncheckedUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUncheckedUpdateManyWithoutUserNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
   }
 
@@ -25272,6 +34206,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
     transactions?: CreditTransactionCreateNestedManyWithoutUserInput
     purchases?: PurchaseCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
     referralsMade?: ReferralCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralCreateNestedManyWithoutReferredUserInput
   }
@@ -25302,6 +34237,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
     transactions?: CreditTransactionUncheckedCreateNestedManyWithoutUserInput
     purchases?: PurchaseUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
     referralsMade?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
     referralsReceived?: ReferralUncheckedCreateNestedManyWithoutReferredUserInput
   }
@@ -25348,6 +34284,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
     transactions?: CreditTransactionUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUpdateManyWithoutReferredUserNestedInput
   }
@@ -25378,8 +34315,385 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
     transactions?: CreditTransactionUncheckedUpdateManyWithoutUserNestedInput
     purchases?: PurchaseUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
     referralsMade?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
     referralsReceived?: ReferralUncheckedUpdateManyWithoutReferredUserNestedInput
+  }
+
+  export type UserCreateWithoutGitHubConnectionsInput = {
+    id?: string
+    email: string
+    referralCode: string
+    firstName: string
+    middleName?: string | null
+    lastName: string
+    phone?: string | null
+    bio?: string | null
+    skills?: NullableJsonNullValueInput | InputJsonValue
+    onboardingDone?: boolean
+    credits?: number
+    weeklyFreeCredits?: number
+    lastCreditResetAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    links?: LinkCreateNestedManyWithoutUserInput
+    educations?: EducationCreateNestedManyWithoutUserInput
+    works?: WorkCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+    answers?: AnswerLibraryCreateNestedManyWithoutUserInput
+    resumes?: ResumeCreateNestedManyWithoutUserInput
+    memories?: MemoryCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
+    transactions?: CreditTransactionCreateNestedManyWithoutUserInput
+    purchases?: PurchaseCreateNestedManyWithoutUserInput
+    refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+    referralsMade?: ReferralCreateNestedManyWithoutReferrerInput
+    referralsReceived?: ReferralCreateNestedManyWithoutReferredUserInput
+  }
+
+  export type UserUncheckedCreateWithoutGitHubConnectionsInput = {
+    id?: string
+    email: string
+    referralCode: string
+    firstName: string
+    middleName?: string | null
+    lastName: string
+    phone?: string | null
+    bio?: string | null
+    skills?: NullableJsonNullValueInput | InputJsonValue
+    onboardingDone?: boolean
+    credits?: number
+    weeklyFreeCredits?: number
+    lastCreditResetAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    links?: LinkUncheckedCreateNestedManyWithoutUserInput
+    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
+    works?: WorkUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    answers?: AnswerLibraryUncheckedCreateNestedManyWithoutUserInput
+    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
+    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
+    transactions?: CreditTransactionUncheckedCreateNestedManyWithoutUserInput
+    purchases?: PurchaseUncheckedCreateNestedManyWithoutUserInput
+    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+    referralsMade?: ReferralUncheckedCreateNestedManyWithoutReferrerInput
+    referralsReceived?: ReferralUncheckedCreateNestedManyWithoutReferredUserInput
+  }
+
+  export type UserCreateOrConnectWithoutGitHubConnectionsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutGitHubConnectionsInput, UserUncheckedCreateWithoutGitHubConnectionsInput>
+  }
+
+  export type UserUpsertWithoutGitHubConnectionsInput = {
+    update: XOR<UserUpdateWithoutGitHubConnectionsInput, UserUncheckedUpdateWithoutGitHubConnectionsInput>
+    create: XOR<UserCreateWithoutGitHubConnectionsInput, UserUncheckedCreateWithoutGitHubConnectionsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutGitHubConnectionsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutGitHubConnectionsInput, UserUncheckedUpdateWithoutGitHubConnectionsInput>
+  }
+
+  export type UserUpdateWithoutGitHubConnectionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    referralCode?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    middleName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    skills?: NullableJsonNullValueInput | InputJsonValue
+    onboardingDone?: BoolFieldUpdateOperationsInput | boolean
+    credits?: IntFieldUpdateOperationsInput | number
+    weeklyFreeCredits?: IntFieldUpdateOperationsInput | number
+    lastCreditResetAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    links?: LinkUpdateManyWithoutUserNestedInput
+    educations?: EducationUpdateManyWithoutUserNestedInput
+    works?: WorkUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+    answers?: AnswerLibraryUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUpdateManyWithoutUserNestedInput
+    memories?: MemoryUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
+    transactions?: CreditTransactionUpdateManyWithoutUserNestedInput
+    purchases?: PurchaseUpdateManyWithoutUserNestedInput
+    refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+    referralsMade?: ReferralUpdateManyWithoutReferrerNestedInput
+    referralsReceived?: ReferralUpdateManyWithoutReferredUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutGitHubConnectionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    referralCode?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    middleName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    skills?: NullableJsonNullValueInput | InputJsonValue
+    onboardingDone?: BoolFieldUpdateOperationsInput | boolean
+    credits?: IntFieldUpdateOperationsInput | number
+    weeklyFreeCredits?: IntFieldUpdateOperationsInput | number
+    lastCreditResetAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
+    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
+    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    answers?: AnswerLibraryUncheckedUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
+    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
+    transactions?: CreditTransactionUncheckedUpdateManyWithoutUserNestedInput
+    purchases?: PurchaseUncheckedUpdateManyWithoutUserNestedInput
+    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+    referralsMade?: ReferralUncheckedUpdateManyWithoutReferrerNestedInput
+    referralsReceived?: ReferralUncheckedUpdateManyWithoutReferredUserNestedInput
+  }
+
+  export type AdminOtpCreateWithoutAdminInput = {
+    id?: string
+    otp: string
+    expiresAt: Date | string
+    usedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type AdminOtpUncheckedCreateWithoutAdminInput = {
+    id?: string
+    otp: string
+    expiresAt: Date | string
+    usedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type AdminOtpCreateOrConnectWithoutAdminInput = {
+    where: AdminOtpWhereUniqueInput
+    create: XOR<AdminOtpCreateWithoutAdminInput, AdminOtpUncheckedCreateWithoutAdminInput>
+  }
+
+  export type AdminOtpCreateManyAdminInputEnvelope = {
+    data: AdminOtpCreateManyAdminInput | AdminOtpCreateManyAdminInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AdminSessionCreateWithoutAdminInput = {
+    id?: string
+    tokenHash: string
+    expiresAt: Date | string
+    revokedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type AdminSessionUncheckedCreateWithoutAdminInput = {
+    id?: string
+    tokenHash: string
+    expiresAt: Date | string
+    revokedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type AdminSessionCreateOrConnectWithoutAdminInput = {
+    where: AdminSessionWhereUniqueInput
+    create: XOR<AdminSessionCreateWithoutAdminInput, AdminSessionUncheckedCreateWithoutAdminInput>
+  }
+
+  export type AdminSessionCreateManyAdminInputEnvelope = {
+    data: AdminSessionCreateManyAdminInput | AdminSessionCreateManyAdminInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AdminOtpUpsertWithWhereUniqueWithoutAdminInput = {
+    where: AdminOtpWhereUniqueInput
+    update: XOR<AdminOtpUpdateWithoutAdminInput, AdminOtpUncheckedUpdateWithoutAdminInput>
+    create: XOR<AdminOtpCreateWithoutAdminInput, AdminOtpUncheckedCreateWithoutAdminInput>
+  }
+
+  export type AdminOtpUpdateWithWhereUniqueWithoutAdminInput = {
+    where: AdminOtpWhereUniqueInput
+    data: XOR<AdminOtpUpdateWithoutAdminInput, AdminOtpUncheckedUpdateWithoutAdminInput>
+  }
+
+  export type AdminOtpUpdateManyWithWhereWithoutAdminInput = {
+    where: AdminOtpScalarWhereInput
+    data: XOR<AdminOtpUpdateManyMutationInput, AdminOtpUncheckedUpdateManyWithoutAdminInput>
+  }
+
+  export type AdminOtpScalarWhereInput = {
+    AND?: AdminOtpScalarWhereInput | AdminOtpScalarWhereInput[]
+    OR?: AdminOtpScalarWhereInput[]
+    NOT?: AdminOtpScalarWhereInput | AdminOtpScalarWhereInput[]
+    id?: StringFilter<"AdminOtp"> | string
+    adminId?: StringFilter<"AdminOtp"> | string
+    otp?: StringFilter<"AdminOtp"> | string
+    expiresAt?: DateTimeFilter<"AdminOtp"> | Date | string
+    usedAt?: DateTimeNullableFilter<"AdminOtp"> | Date | string | null
+    createdAt?: DateTimeFilter<"AdminOtp"> | Date | string
+  }
+
+  export type AdminSessionUpsertWithWhereUniqueWithoutAdminInput = {
+    where: AdminSessionWhereUniqueInput
+    update: XOR<AdminSessionUpdateWithoutAdminInput, AdminSessionUncheckedUpdateWithoutAdminInput>
+    create: XOR<AdminSessionCreateWithoutAdminInput, AdminSessionUncheckedCreateWithoutAdminInput>
+  }
+
+  export type AdminSessionUpdateWithWhereUniqueWithoutAdminInput = {
+    where: AdminSessionWhereUniqueInput
+    data: XOR<AdminSessionUpdateWithoutAdminInput, AdminSessionUncheckedUpdateWithoutAdminInput>
+  }
+
+  export type AdminSessionUpdateManyWithWhereWithoutAdminInput = {
+    where: AdminSessionScalarWhereInput
+    data: XOR<AdminSessionUpdateManyMutationInput, AdminSessionUncheckedUpdateManyWithoutAdminInput>
+  }
+
+  export type AdminSessionScalarWhereInput = {
+    AND?: AdminSessionScalarWhereInput | AdminSessionScalarWhereInput[]
+    OR?: AdminSessionScalarWhereInput[]
+    NOT?: AdminSessionScalarWhereInput | AdminSessionScalarWhereInput[]
+    id?: StringFilter<"AdminSession"> | string
+    adminId?: StringFilter<"AdminSession"> | string
+    tokenHash?: StringFilter<"AdminSession"> | string
+    expiresAt?: DateTimeFilter<"AdminSession"> | Date | string
+    revokedAt?: DateTimeNullableFilter<"AdminSession"> | Date | string | null
+    createdAt?: DateTimeFilter<"AdminSession"> | Date | string
+  }
+
+  export type AdminCreateWithoutOtpsInput = {
+    id?: string
+    email: string
+    name: string
+    role?: $Enums.AdminRole
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdById?: string | null
+    sessions?: AdminSessionCreateNestedManyWithoutAdminInput
+  }
+
+  export type AdminUncheckedCreateWithoutOtpsInput = {
+    id?: string
+    email: string
+    name: string
+    role?: $Enums.AdminRole
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdById?: string | null
+    sessions?: AdminSessionUncheckedCreateNestedManyWithoutAdminInput
+  }
+
+  export type AdminCreateOrConnectWithoutOtpsInput = {
+    where: AdminWhereUniqueInput
+    create: XOR<AdminCreateWithoutOtpsInput, AdminUncheckedCreateWithoutOtpsInput>
+  }
+
+  export type AdminUpsertWithoutOtpsInput = {
+    update: XOR<AdminUpdateWithoutOtpsInput, AdminUncheckedUpdateWithoutOtpsInput>
+    create: XOR<AdminCreateWithoutOtpsInput, AdminUncheckedCreateWithoutOtpsInput>
+    where?: AdminWhereInput
+  }
+
+  export type AdminUpdateToOneWithWhereWithoutOtpsInput = {
+    where?: AdminWhereInput
+    data: XOR<AdminUpdateWithoutOtpsInput, AdminUncheckedUpdateWithoutOtpsInput>
+  }
+
+  export type AdminUpdateWithoutOtpsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    sessions?: AdminSessionUpdateManyWithoutAdminNestedInput
+  }
+
+  export type AdminUncheckedUpdateWithoutOtpsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    sessions?: AdminSessionUncheckedUpdateManyWithoutAdminNestedInput
+  }
+
+  export type AdminCreateWithoutSessionsInput = {
+    id?: string
+    email: string
+    name: string
+    role?: $Enums.AdminRole
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdById?: string | null
+    otps?: AdminOtpCreateNestedManyWithoutAdminInput
+  }
+
+  export type AdminUncheckedCreateWithoutSessionsInput = {
+    id?: string
+    email: string
+    name: string
+    role?: $Enums.AdminRole
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdById?: string | null
+    otps?: AdminOtpUncheckedCreateNestedManyWithoutAdminInput
+  }
+
+  export type AdminCreateOrConnectWithoutSessionsInput = {
+    where: AdminWhereUniqueInput
+    create: XOR<AdminCreateWithoutSessionsInput, AdminUncheckedCreateWithoutSessionsInput>
+  }
+
+  export type AdminUpsertWithoutSessionsInput = {
+    update: XOR<AdminUpdateWithoutSessionsInput, AdminUncheckedUpdateWithoutSessionsInput>
+    create: XOR<AdminCreateWithoutSessionsInput, AdminUncheckedCreateWithoutSessionsInput>
+    where?: AdminWhereInput
+  }
+
+  export type AdminUpdateToOneWithWhereWithoutSessionsInput = {
+    where?: AdminWhereInput
+    data: XOR<AdminUpdateWithoutSessionsInput, AdminUncheckedUpdateWithoutSessionsInput>
+  }
+
+  export type AdminUpdateWithoutSessionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    otps?: AdminOtpUpdateManyWithoutAdminNestedInput
+  }
+
+  export type AdminUncheckedUpdateWithoutSessionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    role?: EnumAdminRoleFieldUpdateOperationsInput | $Enums.AdminRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdById?: NullableStringFieldUpdateOperationsInput | string | null
+    otps?: AdminOtpUncheckedUpdateManyWithoutAdminNestedInput
   }
 
   export type LinkCreateManyUserInput = {
@@ -25410,6 +34724,8 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    repo_url?: string | null
+    depolyed_url?: string | null
     projectLinks?: ProjectCreateprojectLinksInput | string[]
     techStacks?: ProjectCreatetechStacksInput | string[]
     createdAt?: Date | string
@@ -25480,6 +34796,16 @@ export namespace Prisma {
     expiresAt: Date | string
     revokedAt?: Date | string | null
     createdAt?: Date | string
+  }
+
+  export type GitHubConnectionCreateManyUserInput = {
+    id?: string
+    accessToken: string
+    githubLogin: string
+    githubId: number
+    scope?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ReferralCreateManyReferrerInput = {
@@ -25582,6 +34908,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    repo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    depolyed_url?: NullableStringFieldUpdateOperationsInput | string | null
     projectLinks?: ProjectUpdateprojectLinksInput | string[]
     techStacks?: ProjectUpdatetechStacksInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25591,6 +34919,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    repo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    depolyed_url?: NullableStringFieldUpdateOperationsInput | string | null
     projectLinks?: ProjectUpdateprojectLinksInput | string[]
     techStacks?: ProjectUpdatetechStacksInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25600,6 +34930,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    repo_url?: NullableStringFieldUpdateOperationsInput | string | null
+    depolyed_url?: NullableStringFieldUpdateOperationsInput | string | null
     projectLinks?: ProjectUpdateprojectLinksInput | string[]
     techStacks?: ProjectUpdatetechStacksInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25806,6 +35138,36 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type GitHubConnectionUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accessToken?: StringFieldUpdateOperationsInput | string
+    githubLogin?: StringFieldUpdateOperationsInput | string
+    githubId?: IntFieldUpdateOperationsInput | number
+    scope?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GitHubConnectionUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accessToken?: StringFieldUpdateOperationsInput | string
+    githubLogin?: StringFieldUpdateOperationsInput | string
+    githubId?: IntFieldUpdateOperationsInput | number
+    scope?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GitHubConnectionUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accessToken?: StringFieldUpdateOperationsInput | string
+    githubLogin?: StringFieldUpdateOperationsInput | string
+    githubId?: IntFieldUpdateOperationsInput | number
+    scope?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ReferralUpdateWithoutReferrerInput = {
     id?: StringFieldUpdateOperationsInput | string
     referralCode?: StringFieldUpdateOperationsInput | string
@@ -25875,6 +35237,70 @@ export namespace Prisma {
     rewardCreditsToReferred?: IntFieldUpdateOperationsInput | number
     referredEmail?: StringFieldUpdateOperationsInput | string
     rewardCredits?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdminOtpCreateManyAdminInput = {
+    id?: string
+    otp: string
+    expiresAt: Date | string
+    usedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type AdminSessionCreateManyAdminInput = {
+    id?: string
+    tokenHash: string
+    expiresAt: Date | string
+    revokedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type AdminOtpUpdateWithoutAdminInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    otp?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdminOtpUncheckedUpdateWithoutAdminInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    otp?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdminOtpUncheckedUpdateManyWithoutAdminInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    otp?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdminSessionUpdateWithoutAdminInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdminSessionUncheckedUpdateWithoutAdminInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AdminSessionUncheckedUpdateManyWithoutAdminInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

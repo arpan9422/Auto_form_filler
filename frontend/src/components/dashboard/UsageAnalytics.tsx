@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { BarChart3, TrendingUp, Calendar, CheckCircle, Clock, Globe, Sparkles } from 'lucide-react';
 import { dashboardApi, type DashboardAnalytics } from '@/lib/services';
+import { SKELETON_CSS, SkeletonBlock, SkeletonCard } from './Skeleton';
 
 export function UsageAnalytics() {
   const [data, setData] = useState<DashboardAnalytics | null>(null);
@@ -37,7 +38,7 @@ export function UsageAnalytics() {
 
   return (
     <div style={{ fontFamily: "'DM Sans', sans-serif" }}>
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{ __html: SKELETON_CSS + `
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Mono:wght@400;500&display=swap');
         @keyframes fadeSlideIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
         @keyframes neuralPulse { 0%,100% { opacity:.15; transform:scale(1); } 50% { opacity:.4; transform:scale(1.06); } }
@@ -82,6 +83,20 @@ export function UsageAnalytics() {
         .section-label-line-ua { flex:1; height:1px; background:rgba(255,255,255,0.05); }
       `}} />
 
+      {loading ? (
+        <div>
+          <SkeletonBlock w="200px" h="28px" mb="28px" />
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:'12px', marginBottom:'16px' }}>
+            {[1,2,3,4].map(i => <SkeletonCard key={i}><SkeletonBlock w="80px" h="10px" mb="10px" /><SkeletonBlock w="60px" h="28px" /></SkeletonCard>)}
+          </div>
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'12px', marginBottom:'16px' }}>
+            <SkeletonCard><SkeletonBlock w="100%" h="140px" /></SkeletonCard>
+            <SkeletonCard>{[1,2,3,4,5].map(i => <SkeletonBlock key={i} w="100%" h="28px" mb="10px" />)}</SkeletonCard>
+          </div>
+          <SkeletonCard><SkeletonBlock w="100%" h="60px" /></SkeletonCard>
+        </div>
+      ) : (
+      <>
       <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', marginBottom:'28px' }}>
         <div>
           <div style={{ fontSize:'10px', color:'#a1a1aa', marginBottom:'6px', fontFamily:"'DM Mono', monospace", textTransform:'uppercase', letterSpacing:'0.07em' }}>
@@ -179,6 +194,8 @@ export function UsageAnalytics() {
           ))}
         </div>
       </div>
+      </>
+      )}
     </div>
   );
 }

@@ -17,6 +17,8 @@ import {
   X,
 } from 'lucide-react';
 import { getCurrentUser, updateCurrentUser } from '@/lib/currentUser';
+import { SKELETON_CSS, SkeletonBlock, SkeletonCard } from './Skeleton';
+import { GitHubConnect } from './GitHubConnect';
 
 type EducationItem = {
   school: string;
@@ -40,6 +42,7 @@ type ExperienceItem = {
 export function ProfileContext() {
   const [isEditing, setIsEditing] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [profileLoading, setProfileLoading] = useState(true);
   const [profile, setProfile] = useState({
     fullName: '',
     email: '',
@@ -51,6 +54,7 @@ export function ProfileContext() {
     skills: [] as string[],
     education: [] as EducationItem[],
     experience: [] as ExperienceItem[],
+    extraLinks: [] as { platform: string; url: string }[],
   });
   // snapshot taken when edit mode opens — used to detect actual changes
   const [savedSnapshot, setSavedSnapshot] = useState('');
@@ -88,11 +92,14 @@ export function ProfileContext() {
           endDate: w.endDate ?? undefined,
           period: `${w.startDate.slice(0, 4)}${w.endDate ? ' - ' + w.endDate.slice(0, 4) : ' - Present'}`,
         })),
+        extraLinks: user.links.filter(l => !['linkedin', 'github', 'portfolio'].includes(l.platform.toLowerCase())).map(l => ({ platform: l.platform, url: l.url })),
       });
-    }).catch(() => {});
+      setProfileLoading(false);
+    }).catch(() => setProfileLoading(false));
   }, []);
 
   useEffect(() => {
+    if (profileLoading) return;
     const cards = wrapRef.current?.querySelectorAll('.profile-card');
     if (cards) {
       gsap.fromTo(
@@ -101,7 +108,7 @@ export function ProfileContext() {
         { y: 0, opacity: 1, duration: 0.65, stagger: 0.09, ease: 'power3.out', delay: 0.05 }
       );
     }
-  }, []);
+  }, [profileLoading]);
 
   const handleEditStart = () => {
     setSavedSnapshot(JSON.stringify(profile));
@@ -128,6 +135,7 @@ export function ProfileContext() {
       profile.linkedin && { platform: 'linkedin', url: ensureUrl(profile.linkedin) },
       profile.github && { platform: 'github', url: ensureUrl(profile.github) },
       profile.portfolio && { platform: 'portfolio', url: ensureUrl(profile.portfolio) },
+      ...profile.extraLinks.filter(l => l.platform.trim() && l.url.trim()).map(l => ({ platform: l.platform.trim(), url: ensureUrl(l.url) })),
     ].filter(Boolean) as { platform: string; url: string }[];
 
     try {
@@ -253,7 +261,6 @@ export function ProfileContext() {
           position: relative;
           overflow: hidden;
           box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04);
-          opacity: 0;
         }
 
         .link-row {
@@ -500,6 +507,34 @@ export function ProfileContext() {
         </button>
       </div>
 
+      {profileLoading ? (
+        <>
+          <style dangerouslySetInnerHTML={{ __html: SKELETON_CSS }} />
+          <div style={{ display:'grid', gridTemplateColumns:'2fr 1fr', gap:'16px', marginBottom:'16px' }}>
+            <SkeletonCard>
+              <SkeletonBlock w="120px" h="12px" mb="22px" />
+              <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'18px', marginBottom:'18px' }}>
+                {[1,2,3,4].map(i => <div key={i}><SkeletonBlock w="80px" h="10px" mb="7px" /><SkeletonBlock w="100%" h="38px" /></div>)}
+              </div>
+              <SkeletonBlock w="80px" h="10px" mb="7px" />
+              <SkeletonBlock w="100%" h="72px" />
+            </SkeletonCard>
+            <SkeletonCard>
+              <SkeletonBlock w="80px" h="12px" mb="20px" />
+              {[1,2,3].map(i => <SkeletonBlock key={i} w="100%" h="44px" mb="8px" />)}
+            </SkeletonCard>
+          </div>
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:'16px' }}>
+            {[1,2,3].map(i => (
+              <SkeletonCard key={i}>
+                <SkeletonBlock w="100px" h="12px" mb="20px" />
+                {[1,2,3].map(j => <SkeletonBlock key={j} w="100%" h="52px" mb="10px" />)}
+              </SkeletonCard>
+            ))}
+          </div>
+        </>
+      ) : (
+      <>
       <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '16px', marginBottom: '16px' }}>
         <div className="profile-card">
           <div
@@ -592,88 +627,83 @@ export function ProfileContext() {
 
         <div className="profile-card">
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '20px' }}>
-            <div
-              style={{
-                width: '26px',
-                height: '26px',
-                borderRadius: '4px',
-                background: 'rgba(245,158,11,0.08)',
-                border: '1px solid rgba(245,158,11,0.2)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#d97706',
-              }}
-            >
+            <div style={{ width: '26px', height: '26px', borderRadius: '4px', background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#d97706' }}>
               <Linkedin size={13} />
             </div>
-            <h3
-              style={{
-                fontSize: '17px',
-                fontWeight: 800,
-                color: '#f0ece4',
-                letterSpacing: '-0.3px',
-                fontFamily: "'Playfair Display', Georgia, serif",
-                margin: 0,
-              }}
-            >
+            <h3 style={{ fontSize: '17px', fontWeight: 800, color: '#f0ece4', letterSpacing: '-0.3px', fontFamily: "'Playfair Display', Georgia, serif", margin: 0 }}>
               Links
             </h3>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '16px' }}>
+          {/* Fixed links — editable in edit mode */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '12px' }}>
             {[
-              { icon: <Linkedin size={14} />, label: 'LinkedIn', value: profile.linkedin },
-              { icon: <Github size={14} />, label: 'GitHub', value: profile.github },
-              { icon: <FileText size={14} />, label: 'Portfolio', value: profile.portfolio },
-            ].map(({ icon, label, value }) => (
+              { icon: <Linkedin size={14} />, label: 'LinkedIn', key: 'linkedin' as const },
+              { icon: <Github size={14} />, label: 'GitHub', key: 'github' as const },
+              { icon: <FileText size={14} />, label: 'Portfolio', key: 'portfolio' as const },
+            ].map(({ icon, label, key }) => (
               <div key={label} className="link-row">
                 <span style={{ color: '#52525b', flexShrink: 0 }}>{icon}</span>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <p
-                    style={{
-                      fontSize: '12px',
-                      color: '#3f3f46',
-                      margin: '0 0 2px',
-                      fontFamily: "'DM Mono', monospace",
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.06em',
-                    }}
-                  >
+                  <p style={{ fontSize: '12px', color: '#3f3f46', margin: '0 0 2px', fontFamily: "'DM Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                     {label}
                   </p>
-                  <p
-                    style={{
-                      fontSize: '14px',
-                      color: '#71717a',
-                      margin: 0,
-                      fontWeight: 300,
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                      whiteSpace: 'nowrap',
-                    }}
-                  >
-                    {value}
+                  {isEditing ? (
+                    <input
+                      value={profile[key]}
+                      onChange={e => setProfile({ ...profile, [key]: e.target.value })}
+                      onFocus={() => setFocusedField(key)}
+                      onBlur={() => setFocusedField(null)}
+                      placeholder={`https://${label.toLowerCase()}.com/...`}
+                      style={{ ...inputStyle(key), padding: '5px 8px', fontSize: '13px' }}
+                    />
+                  ) : (
+                    <p style={{ fontSize: '14px', color: '#71717a', margin: 0, fontWeight: 300, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      {profile[key] || <span style={{ color: '#3f3f46', fontStyle: 'italic' }}>Not set</span>}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))}
+
+            {/* Extra custom links */}
+            {profile.extraLinks.map((link, i) => (
+              <div key={i} className="link-row">
+                <span style={{ color: '#52525b', flexShrink: 0 }}><FileText size={14} /></span>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <p style={{ fontSize: '12px', color: '#3f3f46', margin: '0 0 2px', fontFamily: "'DM Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                    {link.platform}
+                  </p>
+                  <p style={{ fontSize: '14px', color: '#71717a', margin: 0, fontWeight: 300, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {link.url}
                   </p>
                 </div>
+                {isEditing && (
+                  <button onClick={() => setProfile({ ...profile, extraLinks: profile.extraLinks.filter((_, idx) => idx !== i) })}
+                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#52525b', padding: '4px', display: 'flex', flexShrink: 0 }}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#f87171')}
+                    onMouseLeave={e => (e.currentTarget.style.color = '#52525b')}>
+                    <X size={13} />
+                  </button>
+                )}
               </div>
             ))}
           </div>
 
-          <button className="add-btn" style={{ width: '100%', justifyContent: 'center' }}>
-            <Plus size={11} /> Add Link
-          </button>
+          {/* Add link form — only in edit mode */}
+          {isEditing && <AddLinkRow onAdd={link => setProfile({ ...profile, extraLinks: [...profile.extraLinks, link] })} inputStyle={inputStyle} setFocusedField={setFocusedField} />}
 
-          <div style={{ marginTop: '20px' }}>
+          {/* GitHub OAuth connect */}
+          <div style={{ marginTop: '16px' }}>
+            <div style={{ fontSize: '10px', color: '#52525b', fontFamily: "'DM Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: '8px' }}>
+              GitHub Account
+            </div>
+            <GitHubConnect />
+          </div>
+
+          <div style={{ marginTop: '16px' }}>
             <svg width="80" height="8" viewBox="0 0 80 8" fill="none">
-              <path
-                d="M2 6 C15 2, 35 7, 50 4 C62 2, 72 6, 78 4"
-                stroke="#f59e0b"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                fill="none"
-                opacity="0.3"
-              />
+              <path d="M2 6 C15 2, 35 7, 50 4 C62 2, 72 6, 78 4" stroke="#f59e0b" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.3" />
             </svg>
           </div>
         </div>
@@ -981,6 +1011,60 @@ export function ProfileContext() {
             Used by AI to fill forms
           </div>
         </div>
+      </div>
+      </>
+      )}
+    </div>
+  );
+}
+
+function AddLinkRow({
+  onAdd,
+  inputStyle,
+  setFocusedField,
+}: {
+  onAdd: (link: { platform: string; url: string }) => void;
+  inputStyle: (field: string) => React.CSSProperties;
+  setFocusedField: (field: string | null) => void;
+}) {
+  const [form, setForm] = useState({ platform: '', url: '' });
+  const [open, setOpen] = useState(false);
+
+  const submit = () => {
+    if (!form.platform.trim() || !form.url.trim()) return;
+    onAdd({ platform: form.platform.trim(), url: form.url.trim() });
+    setForm({ platform: '', url: '' });
+    setOpen(false);
+  };
+
+  if (!open) {
+    return (
+      <button className="add-btn" style={{ width: '100%', justifyContent: 'center' }} onClick={() => setOpen(true)}>
+        <Plus size={11} /> Add Link
+      </button>
+    );
+  }
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', padding: '12px', borderRadius: '4px', border: '1px solid rgba(245,158,11,0.2)', background: 'rgba(245,158,11,0.03)', marginBottom: '8px' }}>
+      <input placeholder="Platform (e.g. Twitter)" value={form.platform}
+        onChange={e => setForm(f => ({ ...f, platform: e.target.value }))}
+        onFocus={() => setFocusedField('link-platform')} onBlur={() => setFocusedField(null)}
+        style={{ ...inputStyle('link-platform'), padding: '7px 10px', fontSize: '13px' }} />
+      <input placeholder="URL (e.g. https://twitter.com/...)" value={form.url}
+        onChange={e => setForm(f => ({ ...f, url: e.target.value }))}
+        onFocus={() => setFocusedField('link-url')} onBlur={() => setFocusedField(null)}
+        style={{ ...inputStyle('link-url'), padding: '7px 10px', fontSize: '13px' }} />
+      <div style={{ display: 'flex', gap: '8px' }}>
+        <button className="add-btn" onClick={submit}
+          disabled={!form.platform.trim() || !form.url.trim()}
+          style={{ flex: 1, justifyContent: 'center' }}>
+          <Plus size={11} /> Add
+        </button>
+        <button className="add-btn" onClick={() => setOpen(false)}
+          style={{ justifyContent: 'center', borderColor: 'rgba(255,255,255,0.08)', color: '#52525b' }}>
+          <X size={11} />
+        </button>
       </div>
     </div>
   );
