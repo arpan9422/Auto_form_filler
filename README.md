@@ -147,8 +147,8 @@ FormPilot embeds an industry-leading **Universal LLM Gateway** that empowers use
 | Database | PostgreSQL 15 (Docker) |
 | Vector Store | ChromaDB (Docker) |
 | AI Orchestration | LangGraph (LangChain.js) |
-| LLM | OpenAI GPT-4o / GPT-4o-mini |
-| Embeddings | OpenAI text-embedding-3-small |
+| LLM & Inference | Universal Gateway (OpenAI, Gemini, Groq, Ollama, OpenRouter, Custom) |
+| Embeddings | OpenAI text-embedding-3-small / Local Vectors |
 | File Storage | AWS S3 |
 | Auth | JWT (Access + Refresh tokens) |
 
@@ -431,7 +431,7 @@ After any profile update (work, education, project, answer):
 
 - Node.js 18+
 - Docker + Docker Compose
-- OpenAI API key
+- AI Provider Key or local inference setup (Optional — configure keys directly in the Dashboard UI via our Zero-XSS Vault; switch between Ollama, OpenAI, Gemini, Groq, and OpenRouter without editing `.env`!)
 - AWS S3 bucket (for resume uploads)
 - GitHub OAuth App (optional)
 
@@ -499,6 +499,9 @@ Load in Chrome:
 
 ## Environment Variables
 
+> [!NOTE]
+> **No Mandatory `OPENAI_API_KEY` in `.env`**: Thanks to FormPilot's built-in **Universal LLM Gateway & Zero-XSS Secure Database Vault**, you do **not** need to hardcode API keys here! Users can securely input their AI credentials directly inside the web dashboard under the **LLM Gateway** tab, or switch to local air-gapped **Ollama** models (`http://localhost:11434`) without requiring an API key at all.
+
 Create `backend/.env` from `backend/.env.example`:
 
 ```env
@@ -517,7 +520,7 @@ JWT_REFRESH_SECRET=your-refresh-jwt-secret
 JWT_ACCESS_EXPIRES_IN=15m
 JWT_REFRESH_EXPIRES_IN=7d
 
-# OpenAI (required)
+# AI Provider Fallback Key (OPTIONAL: You can safely configure all LLM keys in the frontend UI via the secure database vault!)
 OPENAI_API_KEY=sk-...
 
 # AWS S3 (for resume uploads)
