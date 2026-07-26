@@ -292,31 +292,31 @@ export function DashboardOverview() {
           </div>
         </div>
 
-        {/* AI Edits */}
+        {/* Total Tokens Consumed */}
         <div className="bottom-card">
           <div style={{ fontSize: '12px', color: '#a1a1aa', marginBottom: '6px', fontFamily: "'DM Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em' }}>
-            This week
+            All-time usage
           </div>
 
           <h3 style={{ fontSize: 'clamp(16px, 3vw, 20px)', fontWeight: 800, color: '#f0ece4', letterSpacing: '-0.5px', fontFamily: "'Playfair Display', Georgia, serif", marginBottom: '16px' }}>
-            AI{' '}
+            Tokens{' '}
             <em style={{ fontStyle: 'italic', background: 'linear-gradient(135deg, #f59e0b 0%, #fde68a 55%, #f59e0b 100%)', backgroundSize: '200% 200%', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-              Edits
+              Consumed
             </em>
           </h3>
 
-          <div style={{ fontSize: 'clamp(48px, 10vw, 64px)', fontWeight: 800, lineHeight: 1, letterSpacing: '-3px', color: '#f0ece4', fontFamily: "'Playfair Display', Georgia, serif", marginBottom: '4px' }}>
-            {loading ? '—' : (data?.aiEdits.thisWeek ?? 0)}
+          <div style={{ fontSize: 'clamp(36px, 7vw, 54px)', fontWeight: 800, lineHeight: 1, letterSpacing: '-2px', color: '#f0ece4', fontFamily: "'Playfair Display', Georgia, serif", marginBottom: '4px' }}>
+            {loading ? '—' : ((data?.stats.totalTokens ?? data?.totalTokens ?? 0).toLocaleString())}
           </div>
 
           <p style={{ fontSize: '15px', color: '#52525b', fontWeight: 300, marginBottom: '20px' }}>
-            Applied this week
+            Total LLM tokens consumed
           </p>
 
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', padding: '4px 12px 4px 7px', borderRadius: '4px', border: '1px solid rgba(245,158,11,0.2)', background: 'rgba(245,158,11,0.05)', marginBottom: '16px' }}>
             <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#f59e0b', animation: 'heroPulse 2.5s infinite', display: 'inline-block' }} />
             <span style={{ fontSize: '12px', color: '#d97706', fontFamily: "'DM Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 500 }}>
-              AI Autofill Enabled
+              AI Engine Active
             </span>
           </div>
 

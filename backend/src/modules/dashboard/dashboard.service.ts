@@ -23,16 +23,20 @@ export const getDashboardOverviewService = async (userId: string) => {
   const weekStart = startOfWeek(new Date());
   const weekItems = usageItems.filter((i) => i.createdAt >= weekStart);
 
+  const totalTokens = usageItems.reduce((t, i) => t + i.tokensUsed, 0);
+
   return {
     stats: {
       timeSavedMinutesThisWeek: Math.round(weekItems.reduce((t, i) => t + i.timeSavedSec, 0) / 60),
       formsFilled: usageItems.length,
+      totalTokens,
     },
     recentSites: usageItems.slice(0, 3).map((i) => ({ name: i.platform, timeLabel: fmt(i.createdAt) })),
     aiEdits: {
       thisWeek: weekItems.reduce((t, i) => t + i.aiEdits, 0),
       quotaPercent: Math.min(100, Math.round((weekItems.reduce((t, i) => t + i.aiEdits, 0) / 20) * 100)),
     },
+    totalTokens,
   };
 };
 

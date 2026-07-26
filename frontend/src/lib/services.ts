@@ -42,9 +42,11 @@ export type DashboardOverview = {
   stats: {
     timeSavedMinutesThisWeek: number;
     formsFilled: number;
+    totalTokens?: number;
   };
   recentSites: { name: string; timeLabel: string }[];
   aiEdits: { thisWeek: number; quotaPercent: number };
+  totalTokens?: number;
 };
 
 export type DashboardAnalytics = {
