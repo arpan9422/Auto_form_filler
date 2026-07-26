@@ -68,6 +68,7 @@ model User {
   analytics    UsageAnalytics[]
   formSessions FormSession[]
   chatEpisodes ChatEpisode[]
+  llmConfig    LLMGatewayConfig?
 
   GitHubConnections GitHubConnection[]
 }
@@ -396,4 +397,24 @@ model ChatMessage {
 
   @@index([episodeId])
   @@index([createdAt])
+}
+
+///////////////////////////////////////////////////////
+// LLM GATEWAY CONFIG
+///////////////////////////////////////////////////////
+
+model LLMGatewayConfig {
+  id          String   @id @default(uuid())
+  userId      String   @unique
+  provider    String   @default("ollama") // "ollama" | "openai" | "gemini" | "groq" | "openrouter" | "custom"
+  model       String?
+  apiKey      String?
+  baseURL     String?
+  temperature Float    @default(0.2)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }

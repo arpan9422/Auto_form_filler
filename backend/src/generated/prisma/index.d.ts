@@ -93,6 +93,11 @@ export type ChatEpisode = $Result.DefaultSelection<Prisma.$ChatEpisodePayload>
  * 
  */
 export type ChatMessage = $Result.DefaultSelection<Prisma.$ChatMessagePayload>
+/**
+ * Model LLMGatewayConfig
+ * 
+ */
+export type LLMGatewayConfig = $Result.DefaultSelection<Prisma.$LLMGatewayConfigPayload>
 
 /**
  * Enums
@@ -437,6 +442,16 @@ export class PrismaClient<
     * ```
     */
   get chatMessage(): Prisma.ChatMessageDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.lLMGatewayConfig`: Exposes CRUD operations for the **LLMGatewayConfig** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LLMGatewayConfigs
+    * const lLMGatewayConfigs = await prisma.lLMGatewayConfig.findMany()
+    * ```
+    */
+  get lLMGatewayConfig(): Prisma.LLMGatewayConfigDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -886,7 +901,8 @@ export namespace Prisma {
     AppLog: 'AppLog',
     FormSession: 'FormSession',
     ChatEpisode: 'ChatEpisode',
-    ChatMessage: 'ChatMessage'
+    ChatMessage: 'ChatMessage',
+    LLMGatewayConfig: 'LLMGatewayConfig'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -902,7 +918,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "link" | "address" | "education" | "work" | "project" | "answerLibrary" | "resume" | "memory" | "usageAnalytics" | "gitHubConnection" | "requestLog" | "appLog" | "formSession" | "chatEpisode" | "chatMessage"
+      modelProps: "user" | "link" | "address" | "education" | "work" | "project" | "answerLibrary" | "resume" | "memory" | "usageAnalytics" | "gitHubConnection" | "requestLog" | "appLog" | "formSession" | "chatEpisode" | "chatMessage" | "lLMGatewayConfig"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2090,6 +2106,80 @@ export namespace Prisma {
           }
         }
       }
+      LLMGatewayConfig: {
+        payload: Prisma.$LLMGatewayConfigPayload<ExtArgs>
+        fields: Prisma.LLMGatewayConfigFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LLMGatewayConfigFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LLMGatewayConfigPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LLMGatewayConfigFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LLMGatewayConfigPayload>
+          }
+          findFirst: {
+            args: Prisma.LLMGatewayConfigFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LLMGatewayConfigPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LLMGatewayConfigFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LLMGatewayConfigPayload>
+          }
+          findMany: {
+            args: Prisma.LLMGatewayConfigFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LLMGatewayConfigPayload>[]
+          }
+          create: {
+            args: Prisma.LLMGatewayConfigCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LLMGatewayConfigPayload>
+          }
+          createMany: {
+            args: Prisma.LLMGatewayConfigCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LLMGatewayConfigCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LLMGatewayConfigPayload>[]
+          }
+          delete: {
+            args: Prisma.LLMGatewayConfigDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LLMGatewayConfigPayload>
+          }
+          update: {
+            args: Prisma.LLMGatewayConfigUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LLMGatewayConfigPayload>
+          }
+          deleteMany: {
+            args: Prisma.LLMGatewayConfigDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LLMGatewayConfigUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LLMGatewayConfigUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LLMGatewayConfigPayload>[]
+          }
+          upsert: {
+            args: Prisma.LLMGatewayConfigUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LLMGatewayConfigPayload>
+          }
+          aggregate: {
+            args: Prisma.LLMGatewayConfigAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLLMGatewayConfig>
+          }
+          groupBy: {
+            args: Prisma.LLMGatewayConfigGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LLMGatewayConfigGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LLMGatewayConfigCountArgs<ExtArgs>
+            result: $Utils.Optional<LLMGatewayConfigCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2214,6 +2304,7 @@ export namespace Prisma {
     formSession?: FormSessionOmit
     chatEpisode?: ChatEpisodeOmit
     chatMessage?: ChatMessageOmit
+    lLMGatewayConfig?: LLMGatewayConfigOmit
   }
 
   /* Types for Logging */
@@ -2681,6 +2772,7 @@ export namespace Prisma {
     analytics?: boolean | User$analyticsArgs<ExtArgs>
     formSessions?: boolean | User$formSessionsArgs<ExtArgs>
     chatEpisodes?: boolean | User$chatEpisodesArgs<ExtArgs>
+    llmConfig?: boolean | User$llmConfigArgs<ExtArgs>
     GitHubConnections?: boolean | User$GitHubConnectionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -2743,6 +2835,7 @@ export namespace Prisma {
     analytics?: boolean | User$analyticsArgs<ExtArgs>
     formSessions?: boolean | User$formSessionsArgs<ExtArgs>
     chatEpisodes?: boolean | User$chatEpisodesArgs<ExtArgs>
+    llmConfig?: boolean | User$llmConfigArgs<ExtArgs>
     GitHubConnections?: boolean | User$GitHubConnectionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -2763,6 +2856,7 @@ export namespace Prisma {
       analytics: Prisma.$UsageAnalyticsPayload<ExtArgs>[]
       formSessions: Prisma.$FormSessionPayload<ExtArgs>[]
       chatEpisodes: Prisma.$ChatEpisodePayload<ExtArgs>[]
+      llmConfig: Prisma.$LLMGatewayConfigPayload<ExtArgs> | null
       GitHubConnections: Prisma.$GitHubConnectionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -3183,6 +3277,7 @@ export namespace Prisma {
     analytics<T extends User$analyticsArgs<ExtArgs> = {}>(args?: Subset<T, User$analyticsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsageAnalyticsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     formSessions<T extends User$formSessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$formSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FormSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     chatEpisodes<T extends User$chatEpisodesArgs<ExtArgs> = {}>(args?: Subset<T, User$chatEpisodesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChatEpisodePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    llmConfig<T extends User$llmConfigArgs<ExtArgs> = {}>(args?: Subset<T, User$llmConfigArgs<ExtArgs>>): Prisma__LLMGatewayConfigClient<$Result.GetResult<Prisma.$LLMGatewayConfigPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     GitHubConnections<T extends User$GitHubConnectionsArgs<ExtArgs> = {}>(args?: Subset<T, User$GitHubConnectionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GitHubConnectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3879,6 +3974,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ChatEpisodeScalarFieldEnum | ChatEpisodeScalarFieldEnum[]
+  }
+
+  /**
+   * User.llmConfig
+   */
+  export type User$llmConfigArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LLMGatewayConfig
+     */
+    select?: LLMGatewayConfigSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LLMGatewayConfig
+     */
+    omit?: LLMGatewayConfigOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LLMGatewayConfigInclude<ExtArgs> | null
+    where?: LLMGatewayConfigWhereInput
   }
 
   /**
@@ -20534,6 +20648,1155 @@ export namespace Prisma {
 
 
   /**
+   * Model LLMGatewayConfig
+   */
+
+  export type AggregateLLMGatewayConfig = {
+    _count: LLMGatewayConfigCountAggregateOutputType | null
+    _avg: LLMGatewayConfigAvgAggregateOutputType | null
+    _sum: LLMGatewayConfigSumAggregateOutputType | null
+    _min: LLMGatewayConfigMinAggregateOutputType | null
+    _max: LLMGatewayConfigMaxAggregateOutputType | null
+  }
+
+  export type LLMGatewayConfigAvgAggregateOutputType = {
+    temperature: number | null
+  }
+
+  export type LLMGatewayConfigSumAggregateOutputType = {
+    temperature: number | null
+  }
+
+  export type LLMGatewayConfigMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    provider: string | null
+    model: string | null
+    apiKey: string | null
+    baseURL: string | null
+    temperature: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type LLMGatewayConfigMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    provider: string | null
+    model: string | null
+    apiKey: string | null
+    baseURL: string | null
+    temperature: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type LLMGatewayConfigCountAggregateOutputType = {
+    id: number
+    userId: number
+    provider: number
+    model: number
+    apiKey: number
+    baseURL: number
+    temperature: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type LLMGatewayConfigAvgAggregateInputType = {
+    temperature?: true
+  }
+
+  export type LLMGatewayConfigSumAggregateInputType = {
+    temperature?: true
+  }
+
+  export type LLMGatewayConfigMinAggregateInputType = {
+    id?: true
+    userId?: true
+    provider?: true
+    model?: true
+    apiKey?: true
+    baseURL?: true
+    temperature?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type LLMGatewayConfigMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    provider?: true
+    model?: true
+    apiKey?: true
+    baseURL?: true
+    temperature?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type LLMGatewayConfigCountAggregateInputType = {
+    id?: true
+    userId?: true
+    provider?: true
+    model?: true
+    apiKey?: true
+    baseURL?: true
+    temperature?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type LLMGatewayConfigAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LLMGatewayConfig to aggregate.
+     */
+    where?: LLMGatewayConfigWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LLMGatewayConfigs to fetch.
+     */
+    orderBy?: LLMGatewayConfigOrderByWithRelationInput | LLMGatewayConfigOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LLMGatewayConfigWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LLMGatewayConfigs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LLMGatewayConfigs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LLMGatewayConfigs
+    **/
+    _count?: true | LLMGatewayConfigCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LLMGatewayConfigAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LLMGatewayConfigSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LLMGatewayConfigMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LLMGatewayConfigMaxAggregateInputType
+  }
+
+  export type GetLLMGatewayConfigAggregateType<T extends LLMGatewayConfigAggregateArgs> = {
+        [P in keyof T & keyof AggregateLLMGatewayConfig]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLLMGatewayConfig[P]>
+      : GetScalarType<T[P], AggregateLLMGatewayConfig[P]>
+  }
+
+
+
+
+  export type LLMGatewayConfigGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LLMGatewayConfigWhereInput
+    orderBy?: LLMGatewayConfigOrderByWithAggregationInput | LLMGatewayConfigOrderByWithAggregationInput[]
+    by: LLMGatewayConfigScalarFieldEnum[] | LLMGatewayConfigScalarFieldEnum
+    having?: LLMGatewayConfigScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LLMGatewayConfigCountAggregateInputType | true
+    _avg?: LLMGatewayConfigAvgAggregateInputType
+    _sum?: LLMGatewayConfigSumAggregateInputType
+    _min?: LLMGatewayConfigMinAggregateInputType
+    _max?: LLMGatewayConfigMaxAggregateInputType
+  }
+
+  export type LLMGatewayConfigGroupByOutputType = {
+    id: string
+    userId: string
+    provider: string
+    model: string | null
+    apiKey: string | null
+    baseURL: string | null
+    temperature: number
+    createdAt: Date
+    updatedAt: Date
+    _count: LLMGatewayConfigCountAggregateOutputType | null
+    _avg: LLMGatewayConfigAvgAggregateOutputType | null
+    _sum: LLMGatewayConfigSumAggregateOutputType | null
+    _min: LLMGatewayConfigMinAggregateOutputType | null
+    _max: LLMGatewayConfigMaxAggregateOutputType | null
+  }
+
+  type GetLLMGatewayConfigGroupByPayload<T extends LLMGatewayConfigGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LLMGatewayConfigGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LLMGatewayConfigGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LLMGatewayConfigGroupByOutputType[P]>
+            : GetScalarType<T[P], LLMGatewayConfigGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LLMGatewayConfigSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    provider?: boolean
+    model?: boolean
+    apiKey?: boolean
+    baseURL?: boolean
+    temperature?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["lLMGatewayConfig"]>
+
+  export type LLMGatewayConfigSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    provider?: boolean
+    model?: boolean
+    apiKey?: boolean
+    baseURL?: boolean
+    temperature?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["lLMGatewayConfig"]>
+
+  export type LLMGatewayConfigSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    provider?: boolean
+    model?: boolean
+    apiKey?: boolean
+    baseURL?: boolean
+    temperature?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["lLMGatewayConfig"]>
+
+  export type LLMGatewayConfigSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    provider?: boolean
+    model?: boolean
+    apiKey?: boolean
+    baseURL?: boolean
+    temperature?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type LLMGatewayConfigOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "provider" | "model" | "apiKey" | "baseURL" | "temperature" | "createdAt" | "updatedAt", ExtArgs["result"]["lLMGatewayConfig"]>
+  export type LLMGatewayConfigInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type LLMGatewayConfigIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type LLMGatewayConfigIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $LLMGatewayConfigPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LLMGatewayConfig"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      provider: string
+      model: string | null
+      apiKey: string | null
+      baseURL: string | null
+      temperature: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["lLMGatewayConfig"]>
+    composites: {}
+  }
+
+  type LLMGatewayConfigGetPayload<S extends boolean | null | undefined | LLMGatewayConfigDefaultArgs> = $Result.GetResult<Prisma.$LLMGatewayConfigPayload, S>
+
+  type LLMGatewayConfigCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LLMGatewayConfigFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LLMGatewayConfigCountAggregateInputType | true
+    }
+
+  export interface LLMGatewayConfigDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LLMGatewayConfig'], meta: { name: 'LLMGatewayConfig' } }
+    /**
+     * Find zero or one LLMGatewayConfig that matches the filter.
+     * @param {LLMGatewayConfigFindUniqueArgs} args - Arguments to find a LLMGatewayConfig
+     * @example
+     * // Get one LLMGatewayConfig
+     * const lLMGatewayConfig = await prisma.lLMGatewayConfig.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LLMGatewayConfigFindUniqueArgs>(args: SelectSubset<T, LLMGatewayConfigFindUniqueArgs<ExtArgs>>): Prisma__LLMGatewayConfigClient<$Result.GetResult<Prisma.$LLMGatewayConfigPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LLMGatewayConfig that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LLMGatewayConfigFindUniqueOrThrowArgs} args - Arguments to find a LLMGatewayConfig
+     * @example
+     * // Get one LLMGatewayConfig
+     * const lLMGatewayConfig = await prisma.lLMGatewayConfig.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LLMGatewayConfigFindUniqueOrThrowArgs>(args: SelectSubset<T, LLMGatewayConfigFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LLMGatewayConfigClient<$Result.GetResult<Prisma.$LLMGatewayConfigPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LLMGatewayConfig that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LLMGatewayConfigFindFirstArgs} args - Arguments to find a LLMGatewayConfig
+     * @example
+     * // Get one LLMGatewayConfig
+     * const lLMGatewayConfig = await prisma.lLMGatewayConfig.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LLMGatewayConfigFindFirstArgs>(args?: SelectSubset<T, LLMGatewayConfigFindFirstArgs<ExtArgs>>): Prisma__LLMGatewayConfigClient<$Result.GetResult<Prisma.$LLMGatewayConfigPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LLMGatewayConfig that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LLMGatewayConfigFindFirstOrThrowArgs} args - Arguments to find a LLMGatewayConfig
+     * @example
+     * // Get one LLMGatewayConfig
+     * const lLMGatewayConfig = await prisma.lLMGatewayConfig.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LLMGatewayConfigFindFirstOrThrowArgs>(args?: SelectSubset<T, LLMGatewayConfigFindFirstOrThrowArgs<ExtArgs>>): Prisma__LLMGatewayConfigClient<$Result.GetResult<Prisma.$LLMGatewayConfigPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LLMGatewayConfigs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LLMGatewayConfigFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LLMGatewayConfigs
+     * const lLMGatewayConfigs = await prisma.lLMGatewayConfig.findMany()
+     * 
+     * // Get first 10 LLMGatewayConfigs
+     * const lLMGatewayConfigs = await prisma.lLMGatewayConfig.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const lLMGatewayConfigWithIdOnly = await prisma.lLMGatewayConfig.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LLMGatewayConfigFindManyArgs>(args?: SelectSubset<T, LLMGatewayConfigFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LLMGatewayConfigPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LLMGatewayConfig.
+     * @param {LLMGatewayConfigCreateArgs} args - Arguments to create a LLMGatewayConfig.
+     * @example
+     * // Create one LLMGatewayConfig
+     * const LLMGatewayConfig = await prisma.lLMGatewayConfig.create({
+     *   data: {
+     *     // ... data to create a LLMGatewayConfig
+     *   }
+     * })
+     * 
+     */
+    create<T extends LLMGatewayConfigCreateArgs>(args: SelectSubset<T, LLMGatewayConfigCreateArgs<ExtArgs>>): Prisma__LLMGatewayConfigClient<$Result.GetResult<Prisma.$LLMGatewayConfigPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LLMGatewayConfigs.
+     * @param {LLMGatewayConfigCreateManyArgs} args - Arguments to create many LLMGatewayConfigs.
+     * @example
+     * // Create many LLMGatewayConfigs
+     * const lLMGatewayConfig = await prisma.lLMGatewayConfig.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LLMGatewayConfigCreateManyArgs>(args?: SelectSubset<T, LLMGatewayConfigCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LLMGatewayConfigs and returns the data saved in the database.
+     * @param {LLMGatewayConfigCreateManyAndReturnArgs} args - Arguments to create many LLMGatewayConfigs.
+     * @example
+     * // Create many LLMGatewayConfigs
+     * const lLMGatewayConfig = await prisma.lLMGatewayConfig.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LLMGatewayConfigs and only return the `id`
+     * const lLMGatewayConfigWithIdOnly = await prisma.lLMGatewayConfig.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LLMGatewayConfigCreateManyAndReturnArgs>(args?: SelectSubset<T, LLMGatewayConfigCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LLMGatewayConfigPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LLMGatewayConfig.
+     * @param {LLMGatewayConfigDeleteArgs} args - Arguments to delete one LLMGatewayConfig.
+     * @example
+     * // Delete one LLMGatewayConfig
+     * const LLMGatewayConfig = await prisma.lLMGatewayConfig.delete({
+     *   where: {
+     *     // ... filter to delete one LLMGatewayConfig
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LLMGatewayConfigDeleteArgs>(args: SelectSubset<T, LLMGatewayConfigDeleteArgs<ExtArgs>>): Prisma__LLMGatewayConfigClient<$Result.GetResult<Prisma.$LLMGatewayConfigPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LLMGatewayConfig.
+     * @param {LLMGatewayConfigUpdateArgs} args - Arguments to update one LLMGatewayConfig.
+     * @example
+     * // Update one LLMGatewayConfig
+     * const lLMGatewayConfig = await prisma.lLMGatewayConfig.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LLMGatewayConfigUpdateArgs>(args: SelectSubset<T, LLMGatewayConfigUpdateArgs<ExtArgs>>): Prisma__LLMGatewayConfigClient<$Result.GetResult<Prisma.$LLMGatewayConfigPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LLMGatewayConfigs.
+     * @param {LLMGatewayConfigDeleteManyArgs} args - Arguments to filter LLMGatewayConfigs to delete.
+     * @example
+     * // Delete a few LLMGatewayConfigs
+     * const { count } = await prisma.lLMGatewayConfig.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LLMGatewayConfigDeleteManyArgs>(args?: SelectSubset<T, LLMGatewayConfigDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LLMGatewayConfigs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LLMGatewayConfigUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LLMGatewayConfigs
+     * const lLMGatewayConfig = await prisma.lLMGatewayConfig.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LLMGatewayConfigUpdateManyArgs>(args: SelectSubset<T, LLMGatewayConfigUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LLMGatewayConfigs and returns the data updated in the database.
+     * @param {LLMGatewayConfigUpdateManyAndReturnArgs} args - Arguments to update many LLMGatewayConfigs.
+     * @example
+     * // Update many LLMGatewayConfigs
+     * const lLMGatewayConfig = await prisma.lLMGatewayConfig.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LLMGatewayConfigs and only return the `id`
+     * const lLMGatewayConfigWithIdOnly = await prisma.lLMGatewayConfig.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LLMGatewayConfigUpdateManyAndReturnArgs>(args: SelectSubset<T, LLMGatewayConfigUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LLMGatewayConfigPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LLMGatewayConfig.
+     * @param {LLMGatewayConfigUpsertArgs} args - Arguments to update or create a LLMGatewayConfig.
+     * @example
+     * // Update or create a LLMGatewayConfig
+     * const lLMGatewayConfig = await prisma.lLMGatewayConfig.upsert({
+     *   create: {
+     *     // ... data to create a LLMGatewayConfig
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LLMGatewayConfig we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LLMGatewayConfigUpsertArgs>(args: SelectSubset<T, LLMGatewayConfigUpsertArgs<ExtArgs>>): Prisma__LLMGatewayConfigClient<$Result.GetResult<Prisma.$LLMGatewayConfigPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LLMGatewayConfigs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LLMGatewayConfigCountArgs} args - Arguments to filter LLMGatewayConfigs to count.
+     * @example
+     * // Count the number of LLMGatewayConfigs
+     * const count = await prisma.lLMGatewayConfig.count({
+     *   where: {
+     *     // ... the filter for the LLMGatewayConfigs we want to count
+     *   }
+     * })
+    **/
+    count<T extends LLMGatewayConfigCountArgs>(
+      args?: Subset<T, LLMGatewayConfigCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LLMGatewayConfigCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LLMGatewayConfig.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LLMGatewayConfigAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LLMGatewayConfigAggregateArgs>(args: Subset<T, LLMGatewayConfigAggregateArgs>): Prisma.PrismaPromise<GetLLMGatewayConfigAggregateType<T>>
+
+    /**
+     * Group by LLMGatewayConfig.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LLMGatewayConfigGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LLMGatewayConfigGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LLMGatewayConfigGroupByArgs['orderBy'] }
+        : { orderBy?: LLMGatewayConfigGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LLMGatewayConfigGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLLMGatewayConfigGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LLMGatewayConfig model
+   */
+  readonly fields: LLMGatewayConfigFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LLMGatewayConfig.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LLMGatewayConfigClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LLMGatewayConfig model
+   */
+  interface LLMGatewayConfigFieldRefs {
+    readonly id: FieldRef<"LLMGatewayConfig", 'String'>
+    readonly userId: FieldRef<"LLMGatewayConfig", 'String'>
+    readonly provider: FieldRef<"LLMGatewayConfig", 'String'>
+    readonly model: FieldRef<"LLMGatewayConfig", 'String'>
+    readonly apiKey: FieldRef<"LLMGatewayConfig", 'String'>
+    readonly baseURL: FieldRef<"LLMGatewayConfig", 'String'>
+    readonly temperature: FieldRef<"LLMGatewayConfig", 'Float'>
+    readonly createdAt: FieldRef<"LLMGatewayConfig", 'DateTime'>
+    readonly updatedAt: FieldRef<"LLMGatewayConfig", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LLMGatewayConfig findUnique
+   */
+  export type LLMGatewayConfigFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LLMGatewayConfig
+     */
+    select?: LLMGatewayConfigSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LLMGatewayConfig
+     */
+    omit?: LLMGatewayConfigOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LLMGatewayConfigInclude<ExtArgs> | null
+    /**
+     * Filter, which LLMGatewayConfig to fetch.
+     */
+    where: LLMGatewayConfigWhereUniqueInput
+  }
+
+  /**
+   * LLMGatewayConfig findUniqueOrThrow
+   */
+  export type LLMGatewayConfigFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LLMGatewayConfig
+     */
+    select?: LLMGatewayConfigSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LLMGatewayConfig
+     */
+    omit?: LLMGatewayConfigOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LLMGatewayConfigInclude<ExtArgs> | null
+    /**
+     * Filter, which LLMGatewayConfig to fetch.
+     */
+    where: LLMGatewayConfigWhereUniqueInput
+  }
+
+  /**
+   * LLMGatewayConfig findFirst
+   */
+  export type LLMGatewayConfigFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LLMGatewayConfig
+     */
+    select?: LLMGatewayConfigSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LLMGatewayConfig
+     */
+    omit?: LLMGatewayConfigOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LLMGatewayConfigInclude<ExtArgs> | null
+    /**
+     * Filter, which LLMGatewayConfig to fetch.
+     */
+    where?: LLMGatewayConfigWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LLMGatewayConfigs to fetch.
+     */
+    orderBy?: LLMGatewayConfigOrderByWithRelationInput | LLMGatewayConfigOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LLMGatewayConfigs.
+     */
+    cursor?: LLMGatewayConfigWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LLMGatewayConfigs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LLMGatewayConfigs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LLMGatewayConfigs.
+     */
+    distinct?: LLMGatewayConfigScalarFieldEnum | LLMGatewayConfigScalarFieldEnum[]
+  }
+
+  /**
+   * LLMGatewayConfig findFirstOrThrow
+   */
+  export type LLMGatewayConfigFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LLMGatewayConfig
+     */
+    select?: LLMGatewayConfigSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LLMGatewayConfig
+     */
+    omit?: LLMGatewayConfigOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LLMGatewayConfigInclude<ExtArgs> | null
+    /**
+     * Filter, which LLMGatewayConfig to fetch.
+     */
+    where?: LLMGatewayConfigWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LLMGatewayConfigs to fetch.
+     */
+    orderBy?: LLMGatewayConfigOrderByWithRelationInput | LLMGatewayConfigOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LLMGatewayConfigs.
+     */
+    cursor?: LLMGatewayConfigWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LLMGatewayConfigs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LLMGatewayConfigs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LLMGatewayConfigs.
+     */
+    distinct?: LLMGatewayConfigScalarFieldEnum | LLMGatewayConfigScalarFieldEnum[]
+  }
+
+  /**
+   * LLMGatewayConfig findMany
+   */
+  export type LLMGatewayConfigFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LLMGatewayConfig
+     */
+    select?: LLMGatewayConfigSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LLMGatewayConfig
+     */
+    omit?: LLMGatewayConfigOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LLMGatewayConfigInclude<ExtArgs> | null
+    /**
+     * Filter, which LLMGatewayConfigs to fetch.
+     */
+    where?: LLMGatewayConfigWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LLMGatewayConfigs to fetch.
+     */
+    orderBy?: LLMGatewayConfigOrderByWithRelationInput | LLMGatewayConfigOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LLMGatewayConfigs.
+     */
+    cursor?: LLMGatewayConfigWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LLMGatewayConfigs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LLMGatewayConfigs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LLMGatewayConfigs.
+     */
+    distinct?: LLMGatewayConfigScalarFieldEnum | LLMGatewayConfigScalarFieldEnum[]
+  }
+
+  /**
+   * LLMGatewayConfig create
+   */
+  export type LLMGatewayConfigCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LLMGatewayConfig
+     */
+    select?: LLMGatewayConfigSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LLMGatewayConfig
+     */
+    omit?: LLMGatewayConfigOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LLMGatewayConfigInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LLMGatewayConfig.
+     */
+    data: XOR<LLMGatewayConfigCreateInput, LLMGatewayConfigUncheckedCreateInput>
+  }
+
+  /**
+   * LLMGatewayConfig createMany
+   */
+  export type LLMGatewayConfigCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LLMGatewayConfigs.
+     */
+    data: LLMGatewayConfigCreateManyInput | LLMGatewayConfigCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LLMGatewayConfig createManyAndReturn
+   */
+  export type LLMGatewayConfigCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LLMGatewayConfig
+     */
+    select?: LLMGatewayConfigSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LLMGatewayConfig
+     */
+    omit?: LLMGatewayConfigOmit<ExtArgs> | null
+    /**
+     * The data used to create many LLMGatewayConfigs.
+     */
+    data: LLMGatewayConfigCreateManyInput | LLMGatewayConfigCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LLMGatewayConfigIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LLMGatewayConfig update
+   */
+  export type LLMGatewayConfigUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LLMGatewayConfig
+     */
+    select?: LLMGatewayConfigSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LLMGatewayConfig
+     */
+    omit?: LLMGatewayConfigOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LLMGatewayConfigInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LLMGatewayConfig.
+     */
+    data: XOR<LLMGatewayConfigUpdateInput, LLMGatewayConfigUncheckedUpdateInput>
+    /**
+     * Choose, which LLMGatewayConfig to update.
+     */
+    where: LLMGatewayConfigWhereUniqueInput
+  }
+
+  /**
+   * LLMGatewayConfig updateMany
+   */
+  export type LLMGatewayConfigUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LLMGatewayConfigs.
+     */
+    data: XOR<LLMGatewayConfigUpdateManyMutationInput, LLMGatewayConfigUncheckedUpdateManyInput>
+    /**
+     * Filter which LLMGatewayConfigs to update
+     */
+    where?: LLMGatewayConfigWhereInput
+    /**
+     * Limit how many LLMGatewayConfigs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LLMGatewayConfig updateManyAndReturn
+   */
+  export type LLMGatewayConfigUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LLMGatewayConfig
+     */
+    select?: LLMGatewayConfigSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LLMGatewayConfig
+     */
+    omit?: LLMGatewayConfigOmit<ExtArgs> | null
+    /**
+     * The data used to update LLMGatewayConfigs.
+     */
+    data: XOR<LLMGatewayConfigUpdateManyMutationInput, LLMGatewayConfigUncheckedUpdateManyInput>
+    /**
+     * Filter which LLMGatewayConfigs to update
+     */
+    where?: LLMGatewayConfigWhereInput
+    /**
+     * Limit how many LLMGatewayConfigs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LLMGatewayConfigIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LLMGatewayConfig upsert
+   */
+  export type LLMGatewayConfigUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LLMGatewayConfig
+     */
+    select?: LLMGatewayConfigSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LLMGatewayConfig
+     */
+    omit?: LLMGatewayConfigOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LLMGatewayConfigInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LLMGatewayConfig to update in case it exists.
+     */
+    where: LLMGatewayConfigWhereUniqueInput
+    /**
+     * In case the LLMGatewayConfig found by the `where` argument doesn't exist, create a new LLMGatewayConfig with this data.
+     */
+    create: XOR<LLMGatewayConfigCreateInput, LLMGatewayConfigUncheckedCreateInput>
+    /**
+     * In case the LLMGatewayConfig was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LLMGatewayConfigUpdateInput, LLMGatewayConfigUncheckedUpdateInput>
+  }
+
+  /**
+   * LLMGatewayConfig delete
+   */
+  export type LLMGatewayConfigDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LLMGatewayConfig
+     */
+    select?: LLMGatewayConfigSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LLMGatewayConfig
+     */
+    omit?: LLMGatewayConfigOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LLMGatewayConfigInclude<ExtArgs> | null
+    /**
+     * Filter which LLMGatewayConfig to delete.
+     */
+    where: LLMGatewayConfigWhereUniqueInput
+  }
+
+  /**
+   * LLMGatewayConfig deleteMany
+   */
+  export type LLMGatewayConfigDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LLMGatewayConfigs to delete
+     */
+    where?: LLMGatewayConfigWhereInput
+    /**
+     * Limit how many LLMGatewayConfigs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LLMGatewayConfig without action
+   */
+  export type LLMGatewayConfigDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LLMGatewayConfig
+     */
+    select?: LLMGatewayConfigSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LLMGatewayConfig
+     */
+    omit?: LLMGatewayConfigOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LLMGatewayConfigInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -20776,6 +22039,21 @@ export namespace Prisma {
   export type ChatMessageScalarFieldEnum = (typeof ChatMessageScalarFieldEnum)[keyof typeof ChatMessageScalarFieldEnum]
 
 
+  export const LLMGatewayConfigScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    provider: 'provider',
+    model: 'model',
+    apiKey: 'apiKey',
+    baseURL: 'baseURL',
+    temperature: 'temperature',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type LLMGatewayConfigScalarFieldEnum = (typeof LLMGatewayConfigScalarFieldEnum)[keyof typeof LLMGatewayConfigScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -20992,6 +22270,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsListRelationFilter
     formSessions?: FormSessionListRelationFilter
     chatEpisodes?: ChatEpisodeListRelationFilter
+    llmConfig?: XOR<LLMGatewayConfigNullableScalarRelationFilter, LLMGatewayConfigWhereInput> | null
     GitHubConnections?: GitHubConnectionListRelationFilter
   }
 
@@ -21019,6 +22298,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsOrderByRelationAggregateInput
     formSessions?: FormSessionOrderByRelationAggregateInput
     chatEpisodes?: ChatEpisodeOrderByRelationAggregateInput
+    llmConfig?: LLMGatewayConfigOrderByWithRelationInput
     GitHubConnections?: GitHubConnectionOrderByRelationAggregateInput
   }
 
@@ -21049,6 +22329,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsListRelationFilter
     formSessions?: FormSessionListRelationFilter
     chatEpisodes?: ChatEpisodeListRelationFilter
+    llmConfig?: XOR<LLMGatewayConfigNullableScalarRelationFilter, LLMGatewayConfigWhereInput> | null
     GitHubConnections?: GitHubConnectionListRelationFilter
   }, "id" | "email" | "referralCode">
 
@@ -22150,6 +23431,83 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"ChatMessage"> | Date | string
   }
 
+  export type LLMGatewayConfigWhereInput = {
+    AND?: LLMGatewayConfigWhereInput | LLMGatewayConfigWhereInput[]
+    OR?: LLMGatewayConfigWhereInput[]
+    NOT?: LLMGatewayConfigWhereInput | LLMGatewayConfigWhereInput[]
+    id?: StringFilter<"LLMGatewayConfig"> | string
+    userId?: StringFilter<"LLMGatewayConfig"> | string
+    provider?: StringFilter<"LLMGatewayConfig"> | string
+    model?: StringNullableFilter<"LLMGatewayConfig"> | string | null
+    apiKey?: StringNullableFilter<"LLMGatewayConfig"> | string | null
+    baseURL?: StringNullableFilter<"LLMGatewayConfig"> | string | null
+    temperature?: FloatFilter<"LLMGatewayConfig"> | number
+    createdAt?: DateTimeFilter<"LLMGatewayConfig"> | Date | string
+    updatedAt?: DateTimeFilter<"LLMGatewayConfig"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type LLMGatewayConfigOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    provider?: SortOrder
+    model?: SortOrderInput | SortOrder
+    apiKey?: SortOrderInput | SortOrder
+    baseURL?: SortOrderInput | SortOrder
+    temperature?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type LLMGatewayConfigWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: LLMGatewayConfigWhereInput | LLMGatewayConfigWhereInput[]
+    OR?: LLMGatewayConfigWhereInput[]
+    NOT?: LLMGatewayConfigWhereInput | LLMGatewayConfigWhereInput[]
+    provider?: StringFilter<"LLMGatewayConfig"> | string
+    model?: StringNullableFilter<"LLMGatewayConfig"> | string | null
+    apiKey?: StringNullableFilter<"LLMGatewayConfig"> | string | null
+    baseURL?: StringNullableFilter<"LLMGatewayConfig"> | string | null
+    temperature?: FloatFilter<"LLMGatewayConfig"> | number
+    createdAt?: DateTimeFilter<"LLMGatewayConfig"> | Date | string
+    updatedAt?: DateTimeFilter<"LLMGatewayConfig"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type LLMGatewayConfigOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    provider?: SortOrder
+    model?: SortOrderInput | SortOrder
+    apiKey?: SortOrderInput | SortOrder
+    baseURL?: SortOrderInput | SortOrder
+    temperature?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: LLMGatewayConfigCountOrderByAggregateInput
+    _avg?: LLMGatewayConfigAvgOrderByAggregateInput
+    _max?: LLMGatewayConfigMaxOrderByAggregateInput
+    _min?: LLMGatewayConfigMinOrderByAggregateInput
+    _sum?: LLMGatewayConfigSumOrderByAggregateInput
+  }
+
+  export type LLMGatewayConfigScalarWhereWithAggregatesInput = {
+    AND?: LLMGatewayConfigScalarWhereWithAggregatesInput | LLMGatewayConfigScalarWhereWithAggregatesInput[]
+    OR?: LLMGatewayConfigScalarWhereWithAggregatesInput[]
+    NOT?: LLMGatewayConfigScalarWhereWithAggregatesInput | LLMGatewayConfigScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"LLMGatewayConfig"> | string
+    userId?: StringWithAggregatesFilter<"LLMGatewayConfig"> | string
+    provider?: StringWithAggregatesFilter<"LLMGatewayConfig"> | string
+    model?: StringNullableWithAggregatesFilter<"LLMGatewayConfig"> | string | null
+    apiKey?: StringNullableWithAggregatesFilter<"LLMGatewayConfig"> | string | null
+    baseURL?: StringNullableWithAggregatesFilter<"LLMGatewayConfig"> | string | null
+    temperature?: FloatWithAggregatesFilter<"LLMGatewayConfig"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"LLMGatewayConfig"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"LLMGatewayConfig"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -22174,6 +23532,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
     formSessions?: FormSessionCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
   }
 
@@ -22201,6 +23560,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
     formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -22228,6 +23588,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
   }
 
@@ -22255,6 +23616,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -23456,6 +24818,89 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type LLMGatewayConfigCreateInput = {
+    id?: string
+    provider?: string
+    model?: string | null
+    apiKey?: string | null
+    baseURL?: string | null
+    temperature?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutLlmConfigInput
+  }
+
+  export type LLMGatewayConfigUncheckedCreateInput = {
+    id?: string
+    userId: string
+    provider?: string
+    model?: string | null
+    apiKey?: string | null
+    baseURL?: string | null
+    temperature?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LLMGatewayConfigUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    apiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    baseURL?: NullableStringFieldUpdateOperationsInput | string | null
+    temperature?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutLlmConfigNestedInput
+  }
+
+  export type LLMGatewayConfigUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    apiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    baseURL?: NullableStringFieldUpdateOperationsInput | string | null
+    temperature?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LLMGatewayConfigCreateManyInput = {
+    id?: string
+    userId: string
+    provider?: string
+    model?: string | null
+    apiKey?: string | null
+    baseURL?: string | null
+    temperature?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LLMGatewayConfigUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    apiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    baseURL?: NullableStringFieldUpdateOperationsInput | string | null
+    temperature?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LLMGatewayConfigUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    apiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    baseURL?: NullableStringFieldUpdateOperationsInput | string | null
+    temperature?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -23589,6 +25034,11 @@ export namespace Prisma {
     every?: ChatEpisodeWhereInput
     some?: ChatEpisodeWhereInput
     none?: ChatEpisodeWhereInput
+  }
+
+  export type LLMGatewayConfigNullableScalarRelationFilter = {
+    is?: LLMGatewayConfigWhereInput | null
+    isNot?: LLMGatewayConfigWhereInput | null
   }
 
   export type GitHubConnectionListRelationFilter = {
@@ -24535,6 +25985,77 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type LLMGatewayConfigCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    provider?: SortOrder
+    model?: SortOrder
+    apiKey?: SortOrder
+    baseURL?: SortOrder
+    temperature?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LLMGatewayConfigAvgOrderByAggregateInput = {
+    temperature?: SortOrder
+  }
+
+  export type LLMGatewayConfigMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    provider?: SortOrder
+    model?: SortOrder
+    apiKey?: SortOrder
+    baseURL?: SortOrder
+    temperature?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LLMGatewayConfigMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    provider?: SortOrder
+    model?: SortOrder
+    apiKey?: SortOrder
+    baseURL?: SortOrder
+    temperature?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LLMGatewayConfigSumOrderByAggregateInput = {
+    temperature?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
   export type LinkCreateNestedManyWithoutUserInput = {
     create?: XOR<LinkCreateWithoutUserInput, LinkUncheckedCreateWithoutUserInput> | LinkCreateWithoutUserInput[] | LinkUncheckedCreateWithoutUserInput[]
     connectOrCreate?: LinkCreateOrConnectWithoutUserInput | LinkCreateOrConnectWithoutUserInput[]
@@ -24610,6 +26131,12 @@ export namespace Prisma {
     connectOrCreate?: ChatEpisodeCreateOrConnectWithoutUserInput | ChatEpisodeCreateOrConnectWithoutUserInput[]
     createMany?: ChatEpisodeCreateManyUserInputEnvelope
     connect?: ChatEpisodeWhereUniqueInput | ChatEpisodeWhereUniqueInput[]
+  }
+
+  export type LLMGatewayConfigCreateNestedOneWithoutUserInput = {
+    create?: XOR<LLMGatewayConfigCreateWithoutUserInput, LLMGatewayConfigUncheckedCreateWithoutUserInput>
+    connectOrCreate?: LLMGatewayConfigCreateOrConnectWithoutUserInput
+    connect?: LLMGatewayConfigWhereUniqueInput
   }
 
   export type GitHubConnectionCreateNestedManyWithoutUserInput = {
@@ -24694,6 +26221,12 @@ export namespace Prisma {
     connectOrCreate?: ChatEpisodeCreateOrConnectWithoutUserInput | ChatEpisodeCreateOrConnectWithoutUserInput[]
     createMany?: ChatEpisodeCreateManyUserInputEnvelope
     connect?: ChatEpisodeWhereUniqueInput | ChatEpisodeWhereUniqueInput[]
+  }
+
+  export type LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<LLMGatewayConfigCreateWithoutUserInput, LLMGatewayConfigUncheckedCreateWithoutUserInput>
+    connectOrCreate?: LLMGatewayConfigCreateOrConnectWithoutUserInput
+    connect?: LLMGatewayConfigWhereUniqueInput
   }
 
   export type GitHubConnectionUncheckedCreateNestedManyWithoutUserInput = {
@@ -24873,6 +26406,16 @@ export namespace Prisma {
     deleteMany?: ChatEpisodeScalarWhereInput | ChatEpisodeScalarWhereInput[]
   }
 
+  export type LLMGatewayConfigUpdateOneWithoutUserNestedInput = {
+    create?: XOR<LLMGatewayConfigCreateWithoutUserInput, LLMGatewayConfigUncheckedCreateWithoutUserInput>
+    connectOrCreate?: LLMGatewayConfigCreateOrConnectWithoutUserInput
+    upsert?: LLMGatewayConfigUpsertWithoutUserInput
+    disconnect?: LLMGatewayConfigWhereInput | boolean
+    delete?: LLMGatewayConfigWhereInput | boolean
+    connect?: LLMGatewayConfigWhereUniqueInput
+    update?: XOR<XOR<LLMGatewayConfigUpdateToOneWithWhereWithoutUserInput, LLMGatewayConfigUpdateWithoutUserInput>, LLMGatewayConfigUncheckedUpdateWithoutUserInput>
+  }
+
   export type GitHubConnectionUpdateManyWithoutUserNestedInput = {
     create?: XOR<GitHubConnectionCreateWithoutUserInput, GitHubConnectionUncheckedCreateWithoutUserInput> | GitHubConnectionCreateWithoutUserInput[] | GitHubConnectionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: GitHubConnectionCreateOrConnectWithoutUserInput | GitHubConnectionCreateOrConnectWithoutUserInput[]
@@ -25039,6 +26582,16 @@ export namespace Prisma {
     update?: ChatEpisodeUpdateWithWhereUniqueWithoutUserInput | ChatEpisodeUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: ChatEpisodeUpdateManyWithWhereWithoutUserInput | ChatEpisodeUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: ChatEpisodeScalarWhereInput | ChatEpisodeScalarWhereInput[]
+  }
+
+  export type LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<LLMGatewayConfigCreateWithoutUserInput, LLMGatewayConfigUncheckedCreateWithoutUserInput>
+    connectOrCreate?: LLMGatewayConfigCreateOrConnectWithoutUserInput
+    upsert?: LLMGatewayConfigUpsertWithoutUserInput
+    disconnect?: LLMGatewayConfigWhereInput | boolean
+    delete?: LLMGatewayConfigWhereInput | boolean
+    connect?: LLMGatewayConfigWhereUniqueInput
+    update?: XOR<XOR<LLMGatewayConfigUpdateToOneWithWhereWithoutUserInput, LLMGatewayConfigUpdateWithoutUserInput>, LLMGatewayConfigUncheckedUpdateWithoutUserInput>
   }
 
   export type GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput = {
@@ -25331,6 +26884,28 @@ export namespace Prisma {
     upsert?: ChatEpisodeUpsertWithoutMessagesInput
     connect?: ChatEpisodeWhereUniqueInput
     update?: XOR<XOR<ChatEpisodeUpdateToOneWithWhereWithoutMessagesInput, ChatEpisodeUpdateWithoutMessagesInput>, ChatEpisodeUncheckedUpdateWithoutMessagesInput>
+  }
+
+  export type UserCreateNestedOneWithoutLlmConfigInput = {
+    create?: XOR<UserCreateWithoutLlmConfigInput, UserUncheckedCreateWithoutLlmConfigInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLlmConfigInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type UserUpdateOneRequiredWithoutLlmConfigNestedInput = {
+    create?: XOR<UserCreateWithoutLlmConfigInput, UserUncheckedCreateWithoutLlmConfigInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLlmConfigInput
+    upsert?: UserUpsertWithoutLlmConfigInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLlmConfigInput, UserUpdateWithoutLlmConfigInput>, UserUncheckedUpdateWithoutLlmConfigInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -25646,6 +27221,22 @@ export namespace Prisma {
     gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type LinkCreateWithoutUserInput = {
@@ -25974,6 +27565,33 @@ export namespace Prisma {
   export type ChatEpisodeCreateManyUserInputEnvelope = {
     data: ChatEpisodeCreateManyUserInput | ChatEpisodeCreateManyUserInput[]
     skipDuplicates?: boolean
+  }
+
+  export type LLMGatewayConfigCreateWithoutUserInput = {
+    id?: string
+    provider?: string
+    model?: string | null
+    apiKey?: string | null
+    baseURL?: string | null
+    temperature?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LLMGatewayConfigUncheckedCreateWithoutUserInput = {
+    id?: string
+    provider?: string
+    model?: string | null
+    apiKey?: string | null
+    baseURL?: string | null
+    temperature?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LLMGatewayConfigCreateOrConnectWithoutUserInput = {
+    where: LLMGatewayConfigWhereUniqueInput
+    create: XOR<LLMGatewayConfigCreateWithoutUserInput, LLMGatewayConfigUncheckedCreateWithoutUserInput>
   }
 
   export type GitHubConnectionCreateWithoutUserInput = {
@@ -26334,6 +27952,39 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"ChatEpisode"> | Date | string
   }
 
+  export type LLMGatewayConfigUpsertWithoutUserInput = {
+    update: XOR<LLMGatewayConfigUpdateWithoutUserInput, LLMGatewayConfigUncheckedUpdateWithoutUserInput>
+    create: XOR<LLMGatewayConfigCreateWithoutUserInput, LLMGatewayConfigUncheckedCreateWithoutUserInput>
+    where?: LLMGatewayConfigWhereInput
+  }
+
+  export type LLMGatewayConfigUpdateToOneWithWhereWithoutUserInput = {
+    where?: LLMGatewayConfigWhereInput
+    data: XOR<LLMGatewayConfigUpdateWithoutUserInput, LLMGatewayConfigUncheckedUpdateWithoutUserInput>
+  }
+
+  export type LLMGatewayConfigUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    apiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    baseURL?: NullableStringFieldUpdateOperationsInput | string | null
+    temperature?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LLMGatewayConfigUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    provider?: StringFieldUpdateOperationsInput | string
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    apiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    baseURL?: NullableStringFieldUpdateOperationsInput | string | null
+    temperature?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type GitHubConnectionUpsertWithWhereUniqueWithoutUserInput = {
     where: GitHubConnectionWhereUniqueInput
     update: XOR<GitHubConnectionUpdateWithoutUserInput, GitHubConnectionUncheckedUpdateWithoutUserInput>
@@ -26387,6 +28038,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
     formSessions?: FormSessionCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
   }
 
@@ -26413,6 +28065,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
     formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -26455,6 +28108,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
   }
 
@@ -26481,6 +28135,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -26507,6 +28162,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
     formSessions?: FormSessionCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
   }
 
@@ -26533,6 +28189,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
     formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -26575,6 +28232,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
   }
 
@@ -26601,6 +28259,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -26627,6 +28286,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
     formSessions?: FormSessionCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
   }
 
@@ -26653,6 +28313,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
     formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -26695,6 +28356,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
   }
 
@@ -26721,6 +28383,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -26747,6 +28410,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
     formSessions?: FormSessionCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
   }
 
@@ -26773,6 +28437,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
     formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -26815,6 +28480,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
   }
 
@@ -26841,6 +28507,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -26867,6 +28534,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
     formSessions?: FormSessionCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
   }
 
@@ -26893,6 +28561,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
     formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -26935,6 +28604,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
   }
 
@@ -26961,6 +28631,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -26987,6 +28658,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
     formSessions?: FormSessionCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
   }
 
@@ -27013,6 +28685,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
     formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -27055,6 +28728,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
   }
 
@@ -27081,6 +28755,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -27107,6 +28782,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
     formSessions?: FormSessionCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
   }
 
@@ -27133,6 +28809,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
     formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -27175,6 +28852,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
   }
 
@@ -27201,6 +28879,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -27227,6 +28906,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
     formSessions?: FormSessionCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
   }
 
@@ -27253,6 +28933,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
     formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -27295,6 +28976,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
   }
 
@@ -27321,6 +29003,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -27347,6 +29030,7 @@ export namespace Prisma {
     memories?: MemoryCreateNestedManyWithoutUserInput
     formSessions?: FormSessionCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
   }
 
@@ -27373,6 +29057,7 @@ export namespace Prisma {
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
     formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -27415,6 +29100,7 @@ export namespace Prisma {
     memories?: MemoryUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
   }
 
@@ -27441,6 +29127,7 @@ export namespace Prisma {
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -27468,6 +29155,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
     formSessions?: FormSessionCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutGitHubConnectionsInput = {
@@ -27494,6 +29182,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
     formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutGitHubConnectionsInput = {
@@ -27536,6 +29225,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutGitHubConnectionsInput = {
@@ -27562,6 +29252,7 @@ export namespace Prisma {
     analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutFormSessionsInput = {
@@ -27587,6 +29278,7 @@ export namespace Prisma {
     memories?: MemoryCreateNestedManyWithoutUserInput
     analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
   }
 
@@ -27613,6 +29305,7 @@ export namespace Prisma {
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
     analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -27655,6 +29348,7 @@ export namespace Prisma {
     memories?: MemoryUpdateManyWithoutUserNestedInput
     analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
   }
 
@@ -27681,6 +29375,7 @@ export namespace Prisma {
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
     analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -27707,6 +29402,7 @@ export namespace Prisma {
     memories?: MemoryCreateNestedManyWithoutUserInput
     analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
     formSessions?: FormSessionCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
   }
 
@@ -27733,6 +29429,7 @@ export namespace Prisma {
     memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
     analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
     formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
+    llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
     GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -27801,6 +29498,7 @@ export namespace Prisma {
     memories?: MemoryUpdateManyWithoutUserNestedInput
     analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
   }
 
@@ -27827,6 +29525,7 @@ export namespace Prisma {
     memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
     analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
     GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -27908,6 +29607,130 @@ export namespace Prisma {
     summary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserCreateWithoutLlmConfigInput = {
+    id?: string
+    email: string
+    referralCode: string
+    firstName: string
+    middleName?: string | null
+    lastName: string
+    phone?: string | null
+    bio?: string | null
+    skills?: NullableJsonNullValueInput | InputJsonValue
+    onboardingDone?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    links?: LinkCreateNestedManyWithoutUserInput
+    addresses?: AddressCreateNestedManyWithoutUserInput
+    educations?: EducationCreateNestedManyWithoutUserInput
+    works?: WorkCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+    answers?: AnswerLibraryCreateNestedManyWithoutUserInput
+    resumes?: ResumeCreateNestedManyWithoutUserInput
+    memories?: MemoryCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionCreateNestedManyWithoutUserInput
+    chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutLlmConfigInput = {
+    id?: string
+    email: string
+    referralCode: string
+    firstName: string
+    middleName?: string | null
+    lastName: string
+    phone?: string | null
+    bio?: string | null
+    skills?: NullableJsonNullValueInput | InputJsonValue
+    onboardingDone?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    links?: LinkUncheckedCreateNestedManyWithoutUserInput
+    addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
+    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
+    works?: WorkUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    answers?: AnswerLibraryUncheckedCreateNestedManyWithoutUserInput
+    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
+    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
+    chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutLlmConfigInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutLlmConfigInput, UserUncheckedCreateWithoutLlmConfigInput>
+  }
+
+  export type UserUpsertWithoutLlmConfigInput = {
+    update: XOR<UserUpdateWithoutLlmConfigInput, UserUncheckedUpdateWithoutLlmConfigInput>
+    create: XOR<UserCreateWithoutLlmConfigInput, UserUncheckedCreateWithoutLlmConfigInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutLlmConfigInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutLlmConfigInput, UserUncheckedUpdateWithoutLlmConfigInput>
+  }
+
+  export type UserUpdateWithoutLlmConfigInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    referralCode?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    middleName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    skills?: NullableJsonNullValueInput | InputJsonValue
+    onboardingDone?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    links?: LinkUpdateManyWithoutUserNestedInput
+    addresses?: AddressUpdateManyWithoutUserNestedInput
+    educations?: EducationUpdateManyWithoutUserNestedInput
+    works?: WorkUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+    answers?: AnswerLibraryUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUpdateManyWithoutUserNestedInput
+    memories?: MemoryUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
+    chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutLlmConfigInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    referralCode?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    middleName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    skills?: NullableJsonNullValueInput | InputJsonValue
+    onboardingDone?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
+    addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
+    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
+    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    answers?: AnswerLibraryUncheckedUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
+    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
+    chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type LinkCreateManyUserInput = {

@@ -22,8 +22,8 @@ import {
   Flame,
   LayoutDashboard,
   Boxes,
-  Lock,
 } from "lucide-react";
+import { LLMGatewayShowcase } from "../components/LLMGatewayShowcase";
 
 const GITHUB_REPO_URL = "https://github.com/arpan9422/Auto_form_filler";
 
@@ -127,6 +127,7 @@ export default function IdentityPage() {
           <a href="#simulator" style={navLinkStyle}>Live Demo</a>
           <a href="#agent" style={navLinkStyle}>Agent Flow</a>
           <a href="#rag" style={navLinkStyle}>RAG System</a>
+          <a href="#gateway" style={{ ...navLinkStyle, color: "#38bdf8", fontWeight: 700 }}>LLM Gateway</a>
           <a href="#tech" style={navLinkStyle}>Tech Stack</a>
           <a href="#opensource" style={navLinkStyle}>Open Source</a>
         </nav>
@@ -557,6 +558,9 @@ export default function IdentityPage() {
           </div>
         </div>
       </section>
+
+      {/* ─── MULTI-PROVIDER LLM GATEWAY SHOWCASE ────────────────────────── */}
+      <LLMGatewayShowcase />
 
       {/* ─── TECH STACK BREAKDOWN ─────────────────────────────────────────── */}
       <section

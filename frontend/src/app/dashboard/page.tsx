@@ -10,15 +10,17 @@ import { ResumeSection } from '@/components/dashboard/ResumeSection';
 import { AIMemory } from '@/components/dashboard/AIMemory';
 import { UsageAnalytics } from '@/components/dashboard/UsageAnalytics';
 import { ChatAgent } from '@/components/dashboard/ChatAgent';
-import { Home, User, Briefcase, MessageSquare, FileText, Brain, BarChart3, LogOut, Bot } from 'lucide-react';
+import { LLMGateway } from '@/components/dashboard/LLMGateway';
+import { Home, User, Briefcase, MessageSquare, FileText, Brain, BarChart3, LogOut, Bot, Cpu } from 'lucide-react';
 import { removeToken } from '@/lib/auth';
 import { getCurrentUser } from '@/lib/currentUser';
 
-type TabId = 'overview' | 'chat' | 'profile' | 'projects' | 'answers' | 'resume' | 'memory' | 'analytics';
+type TabId = 'overview' | 'chat' | 'gateway' | 'profile' | 'projects' | 'answers' | 'resume' | 'memory' | 'analytics';
 
 const TABS: { id: TabId; label: string; icon: React.ReactNode }[] = [
   { id: 'overview',  label: 'Overview',  icon: <Home size={14} /> },
   { id: 'chat',      label: 'Chat Agent',icon: <Bot size={14} color="#a855f7" /> },
+  { id: 'gateway',   label: 'LLM Gateway', icon: <Cpu size={14} color="#3b82f6" /> },
   { id: 'profile',   label: 'Profile',   icon: <User size={14} /> },
   { id: 'projects',  label: 'Projects',  icon: <Briefcase size={14} /> },
   { id: 'answers',   label: 'Answers',   icon: <MessageSquare size={14} /> },
@@ -30,6 +32,7 @@ const TABS: { id: TabId; label: string; icon: React.ReactNode }[] = [
 const PANELS: Record<TabId, React.ReactNode> = {
   overview:  <DashboardOverview />,
   chat:      <ChatAgent />,
+  gateway:   <LLMGateway />,
   profile:   <ProfileContext />,
   projects:  <ProjectsSection />,
   answers:   <AnswersLibrary />,

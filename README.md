@@ -1,13 +1,59 @@
-# FormPilot — AI Form Filler
+<div align="center">
+  <br />
+  <h1 align="center" style="font-size: 3.5rem; font-weight: 800;">
+    <img src="./frontend/public/logo.png" alt="FormPilot Logo" width="72" style="vertical-align: middle; margin-right: 14px;" />
+    <span style="vertical-align: middle;">FormPilot AI</span>
+  </h1>
+  <h2 align="center" style="font-size: 1.8rem; font-weight: 600; margin-top: 0;">
+    The AI web form & browser agent
+  </h2>
+  <p align="center">
+    <code>[ 100% ] DETERMINISTIC AUTO-FILL</code> &nbsp;&nbsp;&bull;&nbsp;&nbsp; <code>[ ZERO-XSS ] SECURE LLM VAULT</code> &nbsp;&nbsp;&bull;&nbsp;&nbsp; <code>[ MIT ] OPEN SOURCE</code>
+  </p>
+  <br />
+</div>
 
-> **Intelligent form auto-completion powered by LangGraph, RAG, and your personal knowledge base.**
-> Fill any web form instantly — from job applications to surveys — with AI-generated answers rooted in your real profile.
+<hr />
+
+<div align="center">
+  <p>
+    <a href="#what-can-formpilot-do"><b>OVERVIEW</b></a> &nbsp;&bull;&nbsp;
+    <a href="#universal-llm-gateway--multi-provider-engine"><b>LLM GATEWAY</b></a> &nbsp;&bull;&nbsp;
+    <a href="#architecture"><b>ARCHITECTURE</b></a> &nbsp;&bull;&nbsp;
+    <a href="#project-structure"><b>WEB IDENTITY</b></a> &nbsp;&bull;&nbsp;
+    <a href="#getting-started"><b>QUICK START</b></a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://github.com/arpan9422/Auto_form_filler/stargazers"><img src="https://img.shields.io/github/stars/arpan9422/Auto_form_filler?style=flat&logo=github&color=f59e0b" alt="GitHub Stars" style="vertical-align: middle;" /></a>
+    <a href="https://github.com/arpan9422/Auto_form_filler/issues"><img src="https://img.shields.io/github/issues/arpan9422/Auto_form_filler?style=flat&logo=github&color=3b82f6" alt="GitHub Issues" style="vertical-align: middle;" /></a>
+    <a href="https://github.com/arpan9422/Auto_form_filler/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-10b981?style=flat" alt="MIT License" style="vertical-align: middle;" /></a>
+    <a href="#universal-llm-gateway--multi-provider-engine"><img src="https://img.shields.io/badge/GATEWAY-6%20LLM%20Engines-ea580c?style=for-the-badge&logo=openai" alt="LLM Gateway" style="vertical-align: middle;" /></a>
+  </p>
+</div>
+
+<hr />
+
+## What can FormPilot do?
+
+FormPilot lets an AI agent use a web browser the exact same way you do — it scans web pages, detects form inputs, understands complex semantic fields, retrieves verified grounding facts from your personal profile, and completes multi-step job applications and questionnaires in seconds. You describe your professional background, and FormPilot completes the task. For example, you can have it:
+
+### 📋 Fill Forms & Job Applications
+**Task: "Fill in this job application with my resume and tailored accomplishments."**
+* FormPilot universally detects inputs, dropdowns, radio buttons, and textareas across any website. Using a 5-node LangGraph multi-step reasoning workflow, it retrieves prioritized project facts and verified career history from ChromaDB vector embeddings to generate precise, human-sounding answers.
+
+### ⚡ Switch Frontier AI Engines (Universal LLM Gateway)
+**Task: "Run local Ollama for zero-leakage privacy on internal questionnaires, or toggle to Groq LPUs for instant autocompletion at 450 tokens/sec."**
+* Equipped with an encrypted **Zero-XSS Secure Database Vault**, FormPilot stores AI credentials safely in PostgreSQL and scopes them per request via Node.js `AsyncLocalStorage`. Easily switch between **OpenAI**, **Google Gemini**, **Groq LPU**, **Ollama**, and **OpenRouter** straight from your UI without exposing keys in browser `localStorage`.
+
+### 🧠 Retain Continuous Context with Episodic Memory
+**Task: "Remember my preferred communication style and architectural decision framework across future sessions."**
+* Automatically synthesizes chat episodes into vector representations, providing seamless cross-session memory without context bloating.
 
 ---
 
 ## Table of Contents
 
-- [Overview](#overview)
+- [What can FormPilot do?](#what-can-formpilot-do)
+- [Universal LLM Gateway & Multi-Provider Engine](#universal-llm-gateway--multi-provider-engine)
 - [Architecture](#architecture)
 - [Tech Stack](#tech-stack)
 - [Features](#features)
@@ -20,14 +66,31 @@
 - [API Reference](#api-reference)
 - [Chrome Extension](#chrome-extension)
 - [Dashboard](#dashboard)
+- [Web Identity & Showcase](#web-identity--showcase)
 
 ---
 
-## Overview
+## Universal LLM Gateway & Multi-Provider Engine
 
-FormPilot is a full-stack AI application built to automate form filling across any website. It combines a **Chrome extension** that detects and fills form fields on any page, a **Next.js dashboard** for managing your profile and viewing analytics, and a **Node.js/Express backend** that runs a multi-step LangGraph agent to generate contextually accurate answers.
+FormPilot embeds an industry-leading **Universal LLM Gateway** that empowers users to switch inference providers on the fly directly from their user dashboard or settings without editing application code.
 
-The core intelligence comes from a **RAG (Retrieval-Augmented Generation)** pipeline backed by ChromaDB that stores and retrieves your personal profile data — work experience, education, projects, answers, and episodic chat history — to generate personalized, human-sounding responses for each form field.
+```
++-------------------------------------------------------------------------+
+|                  Universal LLM Gateway (Zero-XSS Vault)                 |
+|                                                                         |
+|  +--------------------+   +---------------------+   +----------------+  |
+|  |  OpenAI (GPT-4o)   |   |   Google Gemini 2   |   |  Groq LPU      |  |
+|  +--------------------+   +---------------------+   +----------------+  |
+|  |  Ollama (Local)    |   |   OpenRouter Hub    |   | Custom Gateway |  |
+|  +--------------------+   +---------------------+   +----------------+  |
+|                                                                         |
+|   Encrypted DB Key Storage ---> Node AsyncLocalStorage Scoped Context   |
++-------------------------------------------------------------------------+
+```
+
+* **Zero-XSS Security Architecture**: API keys are securely encrypted at rest in PostgreSQL via Prisma and never sent in plain-text to the browser or cached in vulnerable `localStorage`.
+* **Dynamic Request Scoping**: Utilizing Node's native `AsyncLocalStorage`, active user configurations are injected seamlessly into `getBaseFastModel()` and `getReasoningModel()`.
+* **Real-Time Latency Diagnostic Tester**: Test live model handshakes directly from the dashboard and inspect token generation speeds (`⚡ ms`).
 
 ---
 
@@ -215,6 +278,12 @@ Auto_form_filler/
 |       +-- utils/
 |           +-- api.ts            # Extension API client + auth helpers
 |
++-- web-identity/                 # Interactive Open-Source Showcase Website
+    +-- src/
+        +-- app/
+        |   +-- page.tsx          # Homepage with RAG simulation & architecture hub
+        +-- components/
+            +-- LLMGatewayShowcase.tsx # Interactive Multi-Provider AI console
 +-- docker-compose.yml            # PostgreSQL + ChromaDB
 ```
 
@@ -578,6 +647,15 @@ CHROMADB_PORT=8080
 | **Answers** | Custom answer library per category — answers are embedded into RAG |
 | **Chat** | Episodic AI chat assistant — ask it to write LinkedIn messages, emails, etc. |
 | **Analytics** | Form fill history, 7-day chart, top platforms, token usage |
+
+---
+
+## Web Identity & Showcase
+
+FormPilot maintains a dedicated open-source architectural identity application under [`web-identity/`](./web-identity). Built with Next.js 14 and custom vanilla CSS design tokens, it offers an engaging interactive demonstration of:
+* **Live AI Agent Form Completion Simulator**: Visualizing step-by-step progress through DOM Intake, LangGraph Planning, RAG Vector Search, and JSON Schema Validation.
+* **Interactive Multi-Provider Gateway Hub**: Clicking and testing speed handshakes across OpenAI, Gemini, Groq LPUs, and local Ollama clusters.
+* **Open Source Alignment**: Fully linked to [arpan9422/Auto_form_filler](https://github.com/arpan9422/Auto_form_filler) with custom high-contrast inverted brand favicons and assets.
 
 ---
 

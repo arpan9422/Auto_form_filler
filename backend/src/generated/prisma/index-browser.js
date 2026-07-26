@@ -301,6 +301,18 @@ exports.Prisma.ChatMessageScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.LLMGatewayConfigScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  provider: 'provider',
+  model: 'model',
+  apiKey: 'apiKey',
+  baseURL: 'baseURL',
+  temperature: 'temperature',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -376,7 +388,8 @@ exports.Prisma.ModelName = {
   AppLog: 'AppLog',
   FormSession: 'FormSession',
   ChatEpisode: 'ChatEpisode',
-  ChatMessage: 'ChatMessage'
+  ChatMessage: 'ChatMessage',
+  LLMGatewayConfig: 'LLMGatewayConfig'
 };
 
 /**

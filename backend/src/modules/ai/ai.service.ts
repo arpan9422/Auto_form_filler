@@ -1,4 +1,4 @@
-import openai from "../../config/openai";
+import { getBaseFastModel } from "./llm/models/chatModels";
 import { getUserById } from "../user/user.repository";
 
 interface FormField {
@@ -88,14 +88,15 @@ Return JSON:
   "fieldName": "updated value"
 }`;
 
-  const response = await openai.chat.completions.create({
-    model: "gpt-4o-mini",
-    messages: [{ role: "user", content: prompt }],
-    temperature: 0.7,
-    response_format: { type: "json_object" },
-  });
-
-  return JSON.parse(response.choices[0].message.content || "{}");
+  const model = getBaseFastModel(0.7);
+  const res = await model.invoke([["user", prompt]]);
+  const contentStr = typeof res.content === "string" ? res.content : JSON.stringify(res.content);
+  const jsonMatch = contentStr.match(/\{[\s\S]*\}/);
+  try {
+    return JSON.parse(jsonMatch ? jsonMatch[0] : "{}");
+  } catch {
+    return {};
+  }
 }
 
 

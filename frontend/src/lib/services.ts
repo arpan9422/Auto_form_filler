@@ -179,3 +179,51 @@ export const aiChatApi = {
   deleteEpisode: (id: string) =>
     api.delete<{ success: boolean }>(`/ai/agent/episodes/${id}`),
 };
+
+// ── Universal LLM Gateway (Multi-Provider AI Switcher) ────────────────────────
+
+export interface GatewayProviderModel {
+  id: string;
+  name: string;
+}
+
+export interface GatewayProvider {
+  id: string;
+  name: string;
+  description: string;
+  color: string;
+  requiresApiKey: boolean;
+  defaultBaseURL: string;
+  models: GatewayProviderModel[];
+}
+
+export interface GatewayConfig {
+  id?: string;
+  provider: string;
+  model: string;
+  apiKey?: string;
+  hasKey?: boolean;
+  baseURL?: string;
+  temperature?: number;
+}
+
+export interface GatewayTestResponse {
+  success: boolean;
+  latencyMs: number;
+  provider: string;
+  model: string;
+  message?: string;
+  error?: string;
+  rawResponse?: unknown;
+}
+
+export const llmGatewayApi = {
+  getProviders: () =>
+    api.get<{ providers: GatewayProvider[] }>("/ai/gateway/providers"),
+  getConfig: () =>
+    api.get<GatewayConfig>("/ai/gateway/config"),
+  updateConfig: (config: Partial<GatewayConfig>) =>
+    api.put<{ message: string; config: GatewayConfig }>("/ai/gateway/config", config),
+  testConnection: (config: Partial<GatewayConfig>) =>
+    api.post<GatewayTestResponse>("/ai/gateway/test", config),
+};
