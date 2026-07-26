@@ -1,7 +1,7 @@
 <div align="center">
   <br />
   <h1 align="center" style="font-size: 3.5rem; font-weight: 800;">
-    <img src="./frontend/public/logo.png" alt="FormPilot Logo" width="72" style="vertical-align: middle; margin-right: 14px;" />
+    <img src="./frontend/public/logo-inverted.png" alt="FormPilot Logo" width="72" style="vertical-align: middle; margin-right: 14px;" />
     <span style="vertical-align: middle;">FormPilot AI</span>
   </h1>
   <h2 align="center" style="font-size: 1.8rem; font-weight: 600; margin-top: 0;">
