@@ -1,15 +1,18 @@
 import OpenAI from "openai";
+import { getAIProviderConfig } from "./aiProvider";
 
-// Chat/completion client — uses aicredits.in proxy
+const aiProviderConfig = getAIProviderConfig();
+
+// Chat/completion client for OpenAI-compatible providers.
 export const openai = new OpenAI({
-  apiKey: process.env.AICREDITS_API_KEY,
-  baseURL: "https://api.aicredits.in/v1",
+  apiKey: aiProviderConfig.apiKey,
+  baseURL: aiProviderConfig.baseURL,
 });
 
-// Embedding client — same proxy, same key
+// Embedding client using the same provider config.
 export const ragEmbeddingClient = new OpenAI({
-  apiKey: process.env.AICREDITS_API_KEY,
-  baseURL: "https://api.aicredits.in/v1",
+  apiKey: aiProviderConfig.apiKey,
+  baseURL: aiProviderConfig.baseURL,
 });
 
 export default openai;

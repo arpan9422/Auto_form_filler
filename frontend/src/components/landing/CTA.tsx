@@ -200,7 +200,7 @@ export default function CTA() {
               letterSpacing: "0.02em",
               border: "2px solid #f59e0b",
             }}>
-              ⚡ Install · Free
+              ⚡ Install · Open Source
             </a>
             <a href="#how-it-works" style={{
               display: "inline-flex", alignItems: "center", gap: "8px",

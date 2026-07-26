@@ -15,6 +15,7 @@ export const getUserProfileService = async (userId: string) => {
 export const updateUserProfileService = async (
   userId: string,
   updateData: {
+    email?: string;
     firstName?: string;
     middleName?: string;
     lastName?: string;
@@ -25,6 +26,16 @@ export const updateUserProfileService = async (
     links?: Array<{
       platform: string;
       url: string;
+    }>;
+    addresses?: Array<{
+      type: "PERMANENT" | "CURRENT" | "OTHER";
+      label?: string;
+      line1: string;
+      line2?: string;
+      city: string;
+      state: string;
+      postalCode: string;
+      country: string;
     }>;
     educations?: Array<{
       instituteName: string;

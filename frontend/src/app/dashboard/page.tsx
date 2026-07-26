@@ -9,33 +9,33 @@ import { AnswersLibrary } from '@/components/dashboard/AnswersLibrary';
 import { ResumeSection } from '@/components/dashboard/ResumeSection';
 import { AIMemory } from '@/components/dashboard/AIMemory';
 import { UsageAnalytics } from '@/components/dashboard/UsageAnalytics';
-import { WalletSection } from '@/components/dashboard/WalletSection';
-import { Home, User, Briefcase, MessageSquare, FileText, Brain, BarChart3, Wallet, LogOut } from 'lucide-react';
+import { ChatAgent } from '@/components/dashboard/ChatAgent';
+import { Home, User, Briefcase, MessageSquare, FileText, Brain, BarChart3, LogOut, Bot } from 'lucide-react';
 import { removeToken } from '@/lib/auth';
 import { getCurrentUser } from '@/lib/currentUser';
 
-type TabId = 'overview' | 'profile' | 'projects' | 'answers' | 'resume' | 'memory' | 'analytics' | 'wallet';
+type TabId = 'overview' | 'chat' | 'profile' | 'projects' | 'answers' | 'resume' | 'memory' | 'analytics';
 
 const TABS: { id: TabId; label: string; icon: React.ReactNode }[] = [
   { id: 'overview',  label: 'Overview',  icon: <Home size={14} /> },
+  { id: 'chat',      label: 'Chat Agent',icon: <Bot size={14} color="#a855f7" /> },
   { id: 'profile',   label: 'Profile',   icon: <User size={14} /> },
   { id: 'projects',  label: 'Projects',  icon: <Briefcase size={14} /> },
   { id: 'answers',   label: 'Answers',   icon: <MessageSquare size={14} /> },
   { id: 'resume',    label: 'Resume',    icon: <FileText size={14} /> },
   { id: 'memory',    label: 'AI Memory', icon: <Brain size={14} /> },
   { id: 'analytics', label: 'Analytics', icon: <BarChart3 size={14} /> },
-  { id: 'wallet',    label: 'Wallet',    icon: <Wallet size={14} /> },
 ];
 
 const PANELS: Record<TabId, React.ReactNode> = {
   overview:  <DashboardOverview />,
+  chat:      <ChatAgent />,
   profile:   <ProfileContext />,
   projects:  <ProjectsSection />,
   answers:   <AnswersLibrary />,
   resume:    <ResumeSection />,
   memory:    <AIMemory />,
   analytics: <UsageAnalytics />,
-  wallet:    <WalletSection />,
 };
 
 export default function DashboardPage() {
@@ -62,7 +62,7 @@ export default function DashboardPage() {
         }
       } catch {
         removeToken();
-        router.replace('/auth');
+        router.replace('/');
         return;
       }
     })();
@@ -86,7 +86,7 @@ export default function DashboardPage() {
 
   const handleLogout = () => {
     removeToken();
-    router.push('/auth');
+    router.push('/');
   };
 
   if (checkingOnboarding) {

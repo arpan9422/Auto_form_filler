@@ -62,6 +62,7 @@ export const topupWalletSchema = z.object({
 
 export const updateProfileSchema = z.object({
   body: z.object({
+    email: z.string().trim().email().optional(),
     firstName: z.string().trim().min(1).optional(),
     middleName: z.string().trim().optional(),
     lastName: z.string().trim().min(1).optional(),
@@ -74,6 +75,20 @@ export const updateProfileSchema = z.object({
         z.object({
           platform: z.string().trim().min(1),
           url: z.string().trim().min(1),
+        })
+      )
+      .optional(),
+    addresses: z
+      .array(
+        z.object({
+          type: z.enum(["PERMANENT", "CURRENT", "OTHER"]),
+          label: z.string().trim().optional(),
+          line1: z.string().trim().min(1),
+          line2: z.string().trim().optional(),
+          city: z.string().trim().min(1),
+          state: z.string().trim().min(1),
+          postalCode: z.string().trim().min(1),
+          country: z.string().trim().min(1),
         })
       )
       .optional(),
@@ -106,6 +121,7 @@ export const updateProfileSchema = z.object({
           description: z.string().trim().min(1),
           projectLinks: z.array(z.string().trim().min(1)).optional(),
           techStacks: z.array(z.string().trim()).optional(),
+          priority: z.number().int().min(0).max(5).optional(),
         })
       )
       .optional(),
@@ -118,6 +134,7 @@ export const projectSchema = z.object({
     description: z.string().trim().min(1),
     projectLinks: z.array(z.string().trim().min(1)).default([]),
     techStacks: z.array(z.string().trim().min(1)).default([]),
+    priority: z.number().int().min(0).max(5).optional().default(0),
   }),
 });
 

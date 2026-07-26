@@ -1,31 +1,31 @@
-// JWT Authentication Middleware
 import { Request, Response, NextFunction } from "express";
+import { prisma } from "../config/database";
 import { AppError } from "../utils/AppError";
-import { verifyAccessToken } from "../utils/jwt";
 
 export interface AuthRequest extends Request {
   userId?: string;
   userEmail?: string;
 }
 
-export const authenticate = (req: AuthRequest, _res: Response, next: NextFunction) => {
+export const authenticate = async (req: AuthRequest, _res: Response, next: NextFunction) => {
   try {
-    const token = req.headers.authorization?.split(" ")[1];
-    if (!token) {
-      next(new AppError("Authentication required", 401));
-      return;
+    let user = await prisma.user.findFirst();
+
+    if (!user) {
+      user = await prisma.user.create({
+        data: {
+          email: "local@user.local",
+          firstName: "Local",
+          lastName: "User",
+          referralCode: "LOCAL_USER"
+        }
+      });
     }
 
-    const decoded = verifyAccessToken(token);
-    if (decoded.type !== "access") {
-      next(new AppError("Invalid access token", 401));
-      return;
-    }
-
-    req.userId = decoded.userId;
-    req.userEmail = decoded.email;
+    req.userId = user.id;
+    req.userEmail = user.email;
     next();
   } catch (error) {
-    next(new AppError("Invalid token", 401));
+    next(new AppError("Failed to initialize local user session", 500));
   }
 };

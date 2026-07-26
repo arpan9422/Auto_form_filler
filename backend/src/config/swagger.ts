@@ -82,6 +82,23 @@ const swaggerDefinition = {
           lastName: { type: "string" },
           phone: { type: "string" },
           bio: { type: "string" },
+          addresses: {
+            type: "array",
+            items: {
+              type: "object",
+              required: ["type", "line1", "city", "state", "postalCode", "country"],
+              properties: {
+                type: { type: "string", enum: ["PERMANENT", "CURRENT", "OTHER"] },
+                label: { type: "string", example: "Family home" },
+                line1: { type: "string", example: "221B Baker Street" },
+                line2: { type: "string", example: "Near Central Park" },
+                city: { type: "string", example: "London" },
+                state: { type: "string", example: "Greater London" },
+                postalCode: { type: "string", example: "NW1 6XE" },
+                country: { type: "string", example: "United Kingdom" },
+              },
+            },
+          },
           skills: {
             type: "array",
             items: { type: "string" },

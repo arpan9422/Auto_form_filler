@@ -1,109 +1,124 @@
 // Content script injected into every page.
-// It prepares form data, handles autofill events, and controls the floating button.
+// Prepares form data, handles autofill events, controls the floating button, and hosts the chat UI.
 
 import { detectFormFields } from "./formDetector";
 import { fillFormFields, highlightField } from "./formFiller";
-import { injectChatUI } from "./chatInjector";
-import { injectFloatingButton } from "./floatingButton";
 import { getFormFields } from "./scraper";
 
-// Initialize extension on page load.
-async function init() {
-  if (!document.body && !document.documentElement) {
-    window.addEventListener(
-      "load",
-      () => {
-        injectFloatingButton();
-      },
-      { once: true }
-    );
-    return;
-  }
+// ─── Init ─────────────────────────────────────────────────────────────────────
 
-  injectFloatingButton();
-  console.log("Extension initialized");
+async function init() {
+  console.log("[FormPilot] Extension initialized");
 }
 
-// Scan forms and prepare data when the user triggers autofill.
+
+// ─── Scan forms on demand (triggered by floating button click) ─────────────────
+
 export function scanFormsOnDemand() {
   try {
     const formFields = getFormFields();
-    console.log(`Form Scraper: Found ${formFields.length} form fields`);
-    console.log("Detected Fields:", formFields);
+    console.log(`[FormPilot] Found ${formFields.length} form fields`);
 
-    formFields.forEach((field, index) => {
-      console.group(`Field ${index + 1}: ${field.label || field.name || "N/A"}`);
-      console.log("ID:", field.id);
-      console.log("Label:", field.label);
-      console.log("Type:", field.inputType || field.tag);
-      console.log("Placeholder:", field.placeholder);
-      console.log("Required:", field.required);
-      console.log("Selector:", field.selector);
-      if (field.options?.length) {
-        console.log("Options:", field.options);
-      }
-      console.groupEnd();
-    });
-
-    if (formFields.length > 0) {
-      chrome.runtime.sendMessage(
-        { type: "FORM_FIELDS_DETECTED", data: formFields },
-        () => {
-          if (chrome.runtime.lastError) {
-            console.warn("Message delivery warning:", chrome.runtime.lastError);
-          } else {
-            console.log("Form fields sent to background");
-          }
-        }
-      );
+    if (!formFields.length) {
+      console.warn("[FormPilot] No fields found on this page");
+      return [];
     }
+
+    // Gather raw HTML for refine context
+    const forms = document.querySelectorAll("form");
+    let rawHtml = "";
+    if (forms.length > 0) {
+      rawHtml = Array.from(forms).map((f) => f.outerHTML).join("\n\n");
+    } else {
+      const bodyClone = document.body.cloneNode(true) as HTMLElement;
+      bodyClone.querySelectorAll("script, style, svg, img").forEach((el) => el.remove());
+      rawHtml = bodyClone.innerHTML;
+    }
+    if (rawHtml.length > 50000) {
+      rawHtml = rawHtml.substring(0, 50000) + "\n...[truncated]";
+    }
+
+    // Send to background which will call /agent/fill → /generate → fallback
+    chrome.runtime.sendMessage(
+      { 
+        type: "FORM_FIELDS_DETECTED", 
+        data: formFields,
+        rawHtml: rawHtml,
+        url: window.location.href 
+      },
+      () => {
+        if (chrome.runtime.lastError) {
+          console.warn("[FormPilot] Message warning:", chrome.runtime.lastError);
+        } else {
+          console.log("[FormPilot] Fields sent to background");
+        }
+      }
+    );
 
     return formFields;
   } catch (error) {
-    console.error("Error in form scraper:", error);
+    console.error("[FormPilot] Error scanning forms:", error);
     return [];
   }
 }
 
+// ─── AUTOFILL_CLICKED event (from floating button) ───────────────────────────
+
 window.addEventListener("AUTOFILL_CLICKED", () => {
-  console.log("Content script received AUTOFILL_CLICKED event");
+  console.log("[FormPilot] AUTOFILL_CLICKED received");
   scanFormsOnDemand();
 });
 
+// ─── Message listener (from background and chatInjector) ──────────────────────
+
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   switch (message.type) {
+
+    // ── Popup / external trigger ──────────────────────────────────────────────
     case "SCAN_AND_FILL":
-      console.log("Received SCAN_AND_FILL message from popup");
       scanFormsOnDemand();
       sendResponse({ success: true });
       break;
+
+    // ── Background requests current fields ────────────────────────────────────
     case "DETECT_FIELDS": {
       const fields = detectFormFields();
       sendResponse({ fields });
       break;
     }
 
+    // ── Background sends filled answer map ────────────────────────────────────
     case "FILL_FIELDS":
-      fillFormFields(message.data);
-      injectChatUI();
+      void fillFormFields(message.data as Record<string, string>);
       sendResponse({ success: true });
       break;
 
+    // ── Background sends partial update from refine agent ─────────────────────
     case "UPDATE_FIELDS":
-      Object.entries(message.data).forEach(([fieldName, value]) => {
-        fillFormFields({ [fieldName]: value as string });
-        highlightField(fieldName);
-      });
+      void (async () => {
+        for (const [key, value] of Object.entries(message.data as Record<string, string>)) {
+          await fillFormFields({ [key]: value });
+          highlightField(key);
+        }
+      })();
       sendResponse({ success: true });
       break;
+
+    // ── Background bubbles agent warnings/unresolved fields ───────────────────
+    // chatInjector handles AGENT_FILL_META and CHAT_REFINE_RESULT directly
+    // because it registers its own chrome.runtime.onMessage listener.
+    // No duplication needed here.
   }
 
+  // Return true to keep the message channel open for async sendResponse callers
   return true;
 });
+
+// ─── Bootstrap ────────────────────────────────────────────────────────────────
+
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", () => {
-    void init();
-  });
+  document.addEventListener("DOMContentLoaded", () => void init());
 } else {
   void init();
 }
+

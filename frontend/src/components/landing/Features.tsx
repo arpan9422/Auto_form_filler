@@ -75,10 +75,10 @@ const features = [
     ),
   },
   {
-    Icon: Icons.Chat,
-    title: "Chat Refinement",
-    description: 'Say "make it shorter" or "add project Wisdomly" — AI updates fields live without restarting.',
-    tag: "interaction",
+    Icon: Icons.Brain,
+    title: "Smart Context Matching",
+    description: "Deep RAG retrieval pairs your real projects, skills, and work history with every form field accurately.",
+    tag: "intelligence",
     preview: (active: boolean) => (
       <div style={{
         marginTop: "20px",
@@ -89,21 +89,21 @@ const features = [
         transition: "border-color 0.3s ease",
       }}>
         {[
-          { role: "ai", text: "Form filled. Refine?" },
-          { role: "user", text: "Make it formal" },
-          { role: "ai", text: "Updated 3 fields ✓" },
+          { label: "Target Role", val: "Full Stack Engineer" },
+          { label: "RAG Context", val: "TypeScript • Node • Prisma" },
+          { label: "Match Score", val: "98% High Precision" },
         ].map((m, i) => (
           <div key={i} style={{
+            display: "flex", justifyContent: "space-between",
             padding: "5px 8px", borderRadius: "4px",
             fontSize: "10px",
-            color: m.role === "user" ? "#d4d4d8" : "#52525b",
-            background: m.role === "user" ? "rgba(245,158,11,0.07)" : "transparent",
+            color: "#d4d4d8",
+            background: i === 1 ? "rgba(245,158,11,0.07)" : "transparent",
             marginBottom: "4px",
-            maxWidth: m.role === "user" ? "80%" : "100%",
-            marginLeft: m.role === "user" ? "auto" : 0,
             fontFamily: "'DM Sans', sans-serif",
           }}>
-            {m.text}
+            <span style={{ color: "#71717a", fontFamily: "'DM Mono', monospace" }}>{m.label}</span>
+            <span>{m.val}</span>
           </div>
         ))}
       </div>

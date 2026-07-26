@@ -1,6 +1,7 @@
 import { AppError } from "../../utils/AppError";
 import { scheduleUserKnowledgeSync } from "../ai/rag.service";
-import { buildS3Key, buildS3Url, deleteS3Object, extractS3Key, generatePresignedUploadUrl } from "../../utils/s3Upload";
+import fs from "fs";
+import path from "path";
 import {
   clearDefaultResumeFlag,
   createResumeDb,
@@ -39,16 +40,7 @@ const ensureResumeOwnership = async (userId: string, resumeId: string) => {
 
 export const getResumesService = async (userId: string) => getResumesByUserId(userId);
 
-export const getPresignedUploadUrlService = async (
-  userId: string,
-  filename: string,
-  contentType = "application/pdf"
-) => {
-  const key = buildS3Key(userId, filename);
-  const uploadUrl = await generatePresignedUploadUrl(key, contentType);
-  const fileUrl = buildS3Url(key);
-  return { uploadUrl, fileUrl, key };
-};
+
 
 export const createResumeService = async (userId: string, data: ResumePayload) => {
   const payload = normalizeResumePayload(data);
@@ -129,12 +121,17 @@ export const deleteResumeService = async (userId: string, resumeId: string) => {
     }
   });
 
-  // Delete from S3 after DB record is gone — non-fatal if it fails
-  const s3Key = extractS3Key(resume.pdfUrl);
-  if (s3Key) {
-    deleteS3Object(s3Key).catch((err) =>
-      console.error(`[S3] Failed to delete object ${s3Key}:`, err)
-    );
+  // Delete local file after DB record is gone — non-fatal if it fails
+  try {
+    const filename = resume.pdfUrl.split('/').pop();
+    if (filename) {
+      const filePath = path.join(process.cwd(), "uploads/resumes", filename);
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+      }
+    }
+  } catch (err) {
+    console.error(`[Local] Failed to delete object ${resume.pdfUrl}:`, err);
   }
 
   scheduleUserKnowledgeSync(userId);

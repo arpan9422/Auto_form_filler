@@ -3,7 +3,7 @@
   "name": "AI Form Assistant",
   "version": "0.1.0",
   "description": "Your Form Copilot. Fill forms instantly. Refine with AI.",
-  "permissions": ["activeTab", "storage", "tabs"],
+  "permissions": ["activeTab", "storage", "tabs", "cookies", "downloads"],
   "host_permissions": ["<all_urls>"],
   "action": {
     "default_popup": "popup.html",

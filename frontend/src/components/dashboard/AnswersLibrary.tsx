@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   MessageSquare, Plus, Edit2, Trash2, Copy, Search, Check, X, Tag, BookOpen,
 } from 'lucide-react';
@@ -296,8 +296,9 @@ export function AnswersLibrary() {
   });
 
   const handleEdit = async (id: string, data: { question: string; answer: string; category: string }) => {
-    setAnswers(prev => prev.map(a => a.id === id ? { ...a, ...data } : a));
-    await answersApi.update(id, { title: data.question, answer: data.answer, category: data.category }).catch(() => {});
+    const finalCategory = data.category.trim() || 'General';
+    setAnswers(prev => prev.map(a => a.id === id ? { ...a, ...data, category: finalCategory } : a));
+    await answersApi.update(id, { title: data.question, answer: data.answer, category: finalCategory }).catch(() => {});
   };
 
   const handleDelete = async (id: string) => {
@@ -306,11 +307,12 @@ export function AnswersLibrary() {
   };
 
   const handleAdd = async (data: { question: string; answer: string; category: string }) => {
+    const finalCategory = data.category.trim() || 'General';
     try {
-      const res = await answersApi.create({ title: data.question, answer: data.answer, category: data.category });
+      const res = await answersApi.create({ title: data.question, answer: data.answer, category: finalCategory });
       setAnswers(prev => [...prev, { id: res.data.id, question: res.data.title, answer: res.data.answer, category: res.data.category }]);
     } catch {
-      setAnswers(prev => [...prev, { id: Date.now().toString(), ...data }]);
+      setAnswers(prev => [...prev, { id: Date.now().toString(), ...data, category: finalCategory }]);
     }
   };
 

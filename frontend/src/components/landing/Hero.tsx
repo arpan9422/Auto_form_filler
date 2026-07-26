@@ -229,7 +229,7 @@ export default function Hero() {
           letterSpacing: "0.02em",
           border: "2px solid #f59e0b",
         }}>
-          ⚡ Install · Free
+          ⚡ Install · Open Source
         </a>
         <a href="#how-it-works" className="cta-secondary" style={{
           display: "inline-flex", alignItems: "center", gap: "8px",
@@ -254,12 +254,11 @@ export default function Hero() {
       }}>
         {[
           { value: "2,400+", label: "Forms filled" },
-          { value: "10s", label: "Avg. fill time" },
           { value: "4.9★", label: "User rating" },
         ].map((s, i) => (
           <div key={i} className="stat-item" style={{
             textAlign: "center", padding: "0 32px",
-            borderRight: i < 2 ? "1px solid rgba(255,255,255,0.07)" : "none",
+            borderRight: i < 1 ? "1px solid rgba(255,255,255,0.07)" : "none",
           }}>
             <div style={{
               fontSize: "22px", fontWeight: 700, color: "#f0ece4",

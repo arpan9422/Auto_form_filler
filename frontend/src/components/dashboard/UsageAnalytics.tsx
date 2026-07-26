@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useEffect, useState } from 'react';
 import { BarChart3, TrendingUp, Calendar, CheckCircle, Clock, Globe, Sparkles } from 'lucide-react';
@@ -8,6 +8,7 @@ import { SKELETON_CSS, SkeletonBlock, SkeletonCard } from './Skeleton';
 export function UsageAnalytics() {
   const [data, setData] = useState<DashboardAnalytics | null>(null);
   const [loading, setLoading] = useState(true);
+  const [selectedAnswer, setSelectedAnswer] = useState<{label: string, answer: string} | null>(null);
 
   useEffect(() => {
     dashboardApi.analytics().then(r => {
@@ -26,6 +27,7 @@ export function UsageAnalytics() {
 
   const stats = [
     { label: 'Forms Filled',           value: loading ? '—' : String(data?.stats.formsFilled ?? 0),       trend: '',       icon: <BarChart3 size={16} />,   accent: '#6366f1', bg: 'rgba(99,102,241,0.1)',  border: 'rgba(99,102,241,0.2)'  },
+    { label: 'Total Tokens',           value: loading ? '—' : String(data?.stats.totalTokens?.toLocaleString() ?? 0), trend: '',       icon: <Sparkles size={16} />,    accent: '#f43f5e', bg: 'rgba(244,63,94,0.1)', border: 'rgba(244,63,94,0.2)' },
     { label: 'Accepted Without Edits', value: loading ? '—' : `${data?.stats.acceptedWithoutEdits ?? 0}%`, trend: '',       icon: <CheckCircle size={16} />, accent: '#34d399', bg: 'rgba(52,211,153,0.08)', border: 'rgba(52,211,153,0.18)' },
     { label: 'Time Saved',             value: loading ? '—' : timeSavedDisplay,                            trend: '',       icon: <Clock size={16} />,       accent: '#8b5cf6', bg: 'rgba(139,92,246,0.1)', border: 'rgba(139,92,246,0.2)'  },
     { label: 'Most Used Site',         value: loading ? '—' : (data?.stats.mostUsedSite ?? 'N/A'),         trend: '',       icon: <Globe size={16} />,       accent: '#f59e0b', bg: 'rgba(245,158,11,0.08)', border: 'rgba(245,158,11,0.18)' },
@@ -86,8 +88,8 @@ export function UsageAnalytics() {
       {loading ? (
         <div>
           <SkeletonBlock w="200px" h="28px" mb="28px" />
-          <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:'12px', marginBottom:'16px' }}>
-            {[1,2,3,4].map(i => <SkeletonCard key={i}><SkeletonBlock w="80px" h="10px" mb="10px" /><SkeletonBlock w="60px" h="28px" /></SkeletonCard>)}
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(5,1fr)', gap:'12px', marginBottom:'16px' }}>
+            {[1,2,3,4,5].map(i => <SkeletonCard key={i}><SkeletonBlock w="80px" h="10px" mb="10px" /><SkeletonBlock w="60px" h="28px" /></SkeletonCard>)}
           </div>
           <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'12px', marginBottom:'16px' }}>
             <SkeletonCard><SkeletonBlock w="100%" h="140px" /></SkeletonCard>
@@ -114,7 +116,7 @@ export function UsageAnalytics() {
         </div>
       </div>
 
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:'12px', marginBottom:'16px' }}>
+      <div style={{ display:'grid', gridTemplateColumns:'repeat(5,1fr)', gap:'12px', marginBottom:'16px' }}>
         {stats.map((s, i) => (
           <div className="ua-stat-card" key={i} style={{ animationDelay:`${i*0.07}s` }}>
             <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', marginBottom:'10px' }}>
@@ -176,25 +178,98 @@ export function UsageAnalytics() {
         </div>
       </div>
 
-      <div className="ua-info-card">
-        <div style={{ display:'flex', alignItems:'center', gap:'8px', marginBottom:'12px' }}>
+      <div className="ua-info-card" style={{ marginTop: '16px' }}>
+        <div style={{ display:'flex', alignItems:'center', gap:'8px', marginBottom:'16px' }}>
           <div style={{ width:'28px', height:'28px', borderRadius:'4px', background:'rgba(99,102,241,0.1)', border:'1px solid rgba(99,102,241,0.2)', display:'flex', alignItems:'center', justifyContent:'center' }}>
-            <Sparkles size={13} style={{ color:'#818cf8' }} />
+            <Calendar size={13} style={{ color:'#818cf8' }} />
           </div>
           <span style={{ fontSize:'10px', color:'#818cf8', fontFamily:"'DM Mono',monospace", textTransform:'uppercase', letterSpacing:'.07em' }}>
-            Insights
+            Recent Fills Details
           </span>
         </div>
-        <div style={{ display:'flex', flexDirection:'column', gap:'8px' }}>
-          {insights.map((tip, i) => (
-            <div key={i} style={{ display:'flex', alignItems:'flex-start', gap:'10px' }}>
-              <div style={{ width:'4px', height:'4px', borderRadius:'50%', background:'#6366f1', marginTop:'6px', flexShrink:0 }} />
-              <p style={{ fontSize:'12px', color:'#71717a', margin:0, fontWeight:300, lineHeight:1.65 }}>{tip}</p>
-            </div>
-          ))}
-        </div>
+        
+        {(!data?.recentFills || data.recentFills.length === 0) ? (
+          <p style={{ fontSize:'12px', color:'#71717a' }}>No recent fills to display.</p>
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            {data.recentFills.map((fill) => (
+              <div key={fill.id} style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '6px', padding: '16px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '12px' }}>
+                  <div>
+                    <div style={{ color: '#f0ece4', fontSize: '14px', fontWeight: 500 }}>{fill.platform}</div>
+                    <a href={fill.websiteUrl || '#'} target="_blank" rel="noreferrer" style={{ color: '#6366f1', fontSize: '11px', textDecoration: 'none' }}>{fill.websiteUrl || 'Unknown URL'}</a>
+                  </div>
+                  <div style={{ textAlign: 'right' }}>
+                    <div style={{ color: '#a1a1aa', fontSize: '11px', fontFamily: "'DM Mono',monospace" }}>{new Date(fill.date).toLocaleString()}</div>
+                    <div style={{ color: '#8b5cf6', fontSize: '11px', marginTop: '4px' }}>Tokens: {fill.tokensUsed.toLocaleString()}</div>
+                  </div>
+                </div>
+                
+                <div style={{ display: 'flex', gap: '24px' }}>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontSize: '11px', color: '#34d399', marginBottom: '8px', textTransform: 'uppercase', fontFamily: "'DM Mono',monospace" }}>
+                      Answered ({fill.fieldsFilled}/{fill.totalFields})
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxHeight: '120px', overflowY: 'auto', paddingRight: '8px' }}>
+                      {(fill.fieldsAnswered || []).slice(0, 15).map((f: any, i: number) => (
+                        <div 
+                          key={i} 
+                          onClick={() => f.answer && setSelectedAnswer({label: f.label || 'Unnamed Field', answer: f.answer})}
+                          style={{ fontSize: '12px', color: '#a1a1aa', display: 'flex', gap: '6px', alignItems: 'flex-start', background: 'rgba(52,211,153,0.05)', padding: '6px 8px', borderRadius: '4px', cursor: f.answer ? 'pointer' : 'default', transition: 'background 0.2s' }}
+                          onMouseOver={e => f.answer && (e.currentTarget.style.background = 'rgba(52,211,153,0.1)')}
+                          onMouseOut={e => e.currentTarget.style.background = 'rgba(52,211,153,0.05)'}
+                        >
+                          <CheckCircle size={12} style={{ color: '#34d399', flexShrink: 0, marginTop: '2px' }} />
+                          <span style={{ color: '#f0ece4', fontWeight: 500, wordBreak: 'break-word', lineHeight: 1.4 }}>{f.label || 'Unnamed Field'}</span>
+                        </div>
+                      ))}
+                      {(fill.fieldsAnswered || []).length > 15 && <div style={{ fontSize: '11px', color: '#52525b' }}>+ {(fill.fieldsAnswered || []).length - 15} more</div>}
+                      {(fill.fieldsAnswered || []).length === 0 && <div style={{ fontSize: '11px', color: '#52525b' }}>None</div>}
+                    </div>
+                  </div>
+                  
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontSize: '11px', color: '#f43f5e', marginBottom: '8px', textTransform: 'uppercase', fontFamily: "'DM Mono',monospace" }}>
+                      Unanswered ({(fill.fieldsUnanswered || []).length})
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxHeight: '120px', overflowY: 'auto', paddingRight: '8px' }}>
+                      {(fill.fieldsUnanswered || []).map((f: any, i: number) => (
+                        <div key={i} style={{ fontSize: '12px', color: '#a1a1aa', display: 'flex', flexDirection: 'column', gap: '2px', background: 'rgba(244,63,94,0.05)', padding: '6px 8px', borderRadius: '4px' }}>
+                          <span style={{ color: '#f0ece4', fontWeight: 500, wordBreak: 'break-word' }}>{f.label || 'Unnamed Field'}</span>
+                          <span style={{ color: '#f43f5e', fontSize: '10px' }}>{f.reason}</span>
+                        </div>
+                      ))}
+                      {!(fill.fieldsUnanswered || []).length && <div style={{ fontSize: '11px', color: '#52525b' }}>All fields answered!</div>}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
       </>
+      )}
+
+      {selectedAnswer && (
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 999, backdropFilter: 'blur(4px)' }} onClick={() => setSelectedAnswer(null)}>
+          <div style={{ background: '#111114', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '24px', width: '90%', maxWidth: '400px', boxShadow: '0 10px 40px rgba(0,0,0,0.5)' }} onClick={e => e.stopPropagation()}>
+            <div style={{ fontSize: '10px', color: '#a1a1aa', marginBottom: '8px', fontFamily: "'DM Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              LLM Generated Answer
+            </div>
+            <h3 style={{ margin: '0 0 16px', color: '#f0ece4', fontSize: '16px', fontWeight: 600 }}>{selectedAnswer.label}</h3>
+            <div style={{ background: 'rgba(255,255,255,0.03)', padding: '16px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.05)' }}>
+              <p style={{ margin: 0, color: '#34d399', fontSize: '14px', lineHeight: 1.5, wordBreak: 'break-word', fontFamily: "'DM Mono', monospace" }}>
+                {selectedAnswer.answer}
+              </p>
+            </div>
+            <div style={{ marginTop: '24px', display: 'flex', justifyContent: 'flex-end' }}>
+              <button onClick={() => setSelectedAnswer(null)} style={{ background: '#6366f1', color: '#fff', border: 'none', padding: '8px 16px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', fontWeight: 500, transition: 'background 0.2s' }} onMouseOver={e => e.currentTarget.style.background = '#4f46e5'} onMouseOut={e => e.currentTarget.style.background = '#6366f1'}>
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

@@ -1,0 +1,126 @@
+import { StateGraph, END, START, Annotation } from "@langchain/langgraph";
+import { queryContext, inferRelevantChunkTypes } from "../../rag.service";
+import { getUserById } from "../../../user/user.repository";
+import { getReasoningModel } from "../models/chatModels";
+import { ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate } from "@langchain/core/prompts";
+import { HumanMessage, AIMessage, SystemMessage, BaseMessage } from "@langchain/core/messages";
+
+// ─── State ────────────────────────────────────────────────────────────────────
+
+export const ChatAgentState = Annotation.Root({
+  userId:           Annotation<string>,
+  message:          Annotation<string>,
+  chatHistory:      Annotation<Array<{ role: string; content: string }>>,
+  userProfile:      Annotation<any>,
+  retrievedContext: Annotation<string[]>,
+  response:         Annotation<string>,
+  sources:          Annotation<string[]>,
+});
+
+type State = typeof ChatAgentState.State;
+
+// ─── Node 1: gather_user_intelligence ─────────────────────────────────────────
+
+async function gatherUserIntelligence(state: State): Promise<Partial<State>> {
+  console.log("[chat.graph] Node: gather_user_intelligence for user:", state.userId);
+  
+  // 1. Fetch complete user profile from database
+  const user = await getUserById(state.userId);
+
+  // 2. Perform RAG retrieval across all knowledge types based on user query
+  const types = inferRelevantChunkTypes(state.message);
+  const chunks = await queryContext(state.message, state.userId, { topK: 6, types });
+
+  const sources: string[] = [];
+  if (user?.projects?.length) sources.push("Projects Portfolio");
+  if (user?.works?.length) sources.push("Work History");
+  if (chunks.length > 0) {
+    sources.push("Semantic RAG Knowledge Base");
+    sources.push("Episodic Memory & Past Sessions");
+  }
+
+  return { 
+    userProfile: user ?? {}, 
+    retrievedContext: chunks,
+    sources
+  };
+}
+
+// ─── Node 2: generate_agent_response ──────────────────────────────────────────
+
+async function generateAgentResponse(state: State): Promise<Partial<State>> {
+  console.log("[chat.graph] Node: generate_agent_response");
+  const model = getReasoningModel(0.6);
+
+  const user = state.userProfile || {};
+  const systemPrompt = `You are the user's executive Career & Job Application Copilot, built with LangChain and LangGraph.
+
+Your mission is to help the user effortlessly draft messages, emails, LinkedIn responses to recruiters, cover letters, elevator pitches, and interview answers using their real personal career history and RAG memory base.
+
+═══ USER PROFILE & IDENTITY ═══
+Name: ${user.firstName ?? ""} ${user.lastName ?? ""}
+Email: ${user.email ?? ""}
+Phone: ${user.phone ?? ""}
+Bio: ${user.bio ?? ""}
+Skills: ${(user.skills ?? []).join(", ")}
+
+═══ WORK HISTORY ═══
+${JSON.stringify(user.works ?? [], null, 2)}
+
+═══ PROJECTS & PORTFOLIO ═══
+${JSON.stringify(user.projects ?? [], null, 2)}
+
+═══ EDUCATION ═══
+${JSON.stringify(user.educations ?? [], null, 2)}
+
+═══ RETRIEVED RAG & EPISODIC MEMORY CONTEXT (FROM PAST CHAT EPISODES) ═══
+${(state.retrievedContext ?? []).join("\n\n") || "No historical episodic memory relevant to this query."}
+
+═══ OPERATING RULES & VOICE GUIDELINES ═══
+1. **Be Humanized & Natural**: Write in a genuine, confident, and natural human voice. Strictly avoid stereotypical AI phrases, corporate buzzwords, robotic transitions, and preachy introductory or concluding filler.
+2. **No Formatting or Asterisks**: Strictly do NOT use markdown formatting and NEVER use asterisks or double asterisks like "**" anywhere in your output. Do not include headers ('###'), bullet points, or bolding of any kind. Output entirely clean, natural plain text that looks like an authentic chat message, email, or LinkedIn reply.
+3. **Be Short & Concise Always**: Keep responses brief, crisp, and directly to the point by default, UNLESS the user explicitly requests a detailed, comprehensive, or longer response.
+4. **Factual Grounding**: Ground all claims strictly in the provided user profile, work history, projects, and RAG context. Never invent degrees, employers, or nonexistent achievements.
+5. **Ready to Copy**: Deliver clean text that is immediately ready for the user to copy, paste, and send without requiring editing or removing AI chatter.
+6. **Episodic Continuity**: You maintain persistent episodic memory across different conversation sessions. If retrieved context reveals user style preferences or decisions from previous episodes, respect them seamlessly without preachy callbacks.`;
+
+  // Construct chat history messages for LangChain
+  const historyMessages: BaseMessage[] = (state.chatHistory ?? []).map(msg => 
+    msg.role === "assistant" || msg.role === "ai" 
+      ? new AIMessage(msg.content) 
+      : new HumanMessage(msg.content)
+  );
+
+  const prompt = ChatPromptTemplate.fromMessages([
+    new SystemMessage(systemPrompt),
+    ...historyMessages,
+    HumanMessagePromptTemplate.fromTemplate("{currentMessage}")
+  ]);
+
+  try {
+    const formattedPrompt = await prompt.formatMessages({
+      currentMessage: state.message
+    });
+    
+    const res = await model.invoke(formattedPrompt);
+    const responseText = typeof res.content === "string" ? res.content : JSON.stringify(res.content);
+
+    return { response: responseText };
+  } catch (error) {
+    console.error("[chat.graph] Error in generateAgentResponse:", error);
+    return { response: "I encountered an issue generating your response. Please try again or check your backend connection." };
+  }
+}
+
+// ─── Build Graph ──────────────────────────────────────────────────────────────
+
+export function buildChatGraph() {
+  const graph = new StateGraph(ChatAgentState)
+    .addNode("gather_user_intelligence", gatherUserIntelligence)
+    .addNode("generate_agent_response",  generateAgentResponse)
+    .addEdge(START,                      "gather_user_intelligence")
+    .addEdge("gather_user_intelligence", "generate_agent_response")
+    .addEdge("generate_agent_response",  END);
+
+  return graph.compile();
+}

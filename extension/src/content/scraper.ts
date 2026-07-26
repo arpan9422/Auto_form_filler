@@ -12,6 +12,12 @@ export type FormField = {
   selector: string;
   formId?: string;
   role?: string;
+  maxLength?: number;
+  minLength?: number;
+  pattern?: string;
+  helpText?: string;
+  sectionHeading?: string;
+  rawHtml?: string;
 };
 
 function getPlaceholder(element: HTMLElement): string {
@@ -42,10 +48,13 @@ function getFieldTag(
   if (
     role === "textbox" ||
     role === "combobox" ||
-    role === "slider" ||
-    role === "radio"
+    role === "slider"
   ) {
     return "text";
+  }
+
+  if (role === "radiogroup" || role === "group") {
+    return "select";
   }
 
   if (element.hasAttribute("contenteditable")) {
@@ -60,12 +69,36 @@ export function getFormFields(): FormField[] {
   const fields: FormField[] = [];
   let fieldIndex = 0;
 
+  // Clear previous scrape markers to allow re-scanning without missing fields
+  document.querySelectorAll('[data-formpilot-scraped="true"]').forEach((el) => {
+    delete (el as HTMLElement).dataset.formpilotScraped;
+  });
+
   // Helper to create a FormField from any element
   const createField = (element: HTMLElement, formId: string): void => {
     if (shouldSkip(element)) return;
 
     const tag = getFieldTag(element);
     const role = element.getAttribute("role");
+
+    // Extract maxLength / minLength from input and textarea elements
+    let maxLength: number | undefined;
+    let minLength: number | undefined;
+    let pattern: string | undefined;
+    if (
+      element instanceof HTMLInputElement ||
+      element instanceof HTMLTextAreaElement
+    ) {
+      if (element.maxLength > 0 && element.maxLength < 1000000) {
+        maxLength = element.maxLength;
+      }
+      if (element.minLength > 0) {
+        minLength = element.minLength;
+      }
+    }
+    if (element instanceof HTMLInputElement && element.pattern) {
+      pattern = element.pattern;
+    }
 
     const field: FormField = {
       id: element.id || `field-${fieldIndex}`,
@@ -86,13 +119,107 @@ export function getFormFields(): FormField[] {
       selector: getSelector(element),
       formId: formId,
       role: role || undefined,
+      maxLength,
+      minLength,
+      pattern,
+      helpText: extractHelpText(element),
+      sectionHeading: extractSectionHeading(element),
+    };
+
+    const isWeak = !field.label && !field.name && !field.placeholder;
+    if (isWeak || tag === "div" || field.options === undefined) {
+      const container = element.parentElement || element;
+      const html = container.outerHTML || "";
+      field.rawHtml = html
+        .replace(/<svg.*?>.*?<\/svg>/gs, "<svg>...</svg>")
+        .replace(/<!--.*?-->/gs, "")
+        .slice(0, 300);
+    }
+
+    fields.push(field);
+    element.dataset.formpilotScraped = "true";
+    fieldIndex++;
+  };
+
+  // Step 1: Pre-process radio and checkboxes into groups
+  const radioCheckGroups = new Map<string, HTMLInputElement[]>();
+  document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach((el) => {
+    const input = el as HTMLInputElement;
+    
+    // Check basic skip criteria (visibility, etc) without considering input type
+    const style = window.getComputedStyle(input);
+    if (style.display === "none" || style.visibility === "hidden" || input.offsetParent === null) {
+      return;
+    }
+
+    let groupKey = input.name;
+    if (!groupKey) {
+      const fieldset = input.closest("fieldset");
+      if (fieldset && fieldset.id) groupKey = fieldset.id;
+      else groupKey = input.id || input.value || "unnamed-group";
+    }
+
+    if (!radioCheckGroups.has(groupKey)) {
+      radioCheckGroups.set(groupKey, []);
+    }
+    radioCheckGroups.get(groupKey)!.push(input);
+  });
+
+  for (const [groupKey, inputs] of radioCheckGroups.entries()) {
+    const first = inputs[0];
+    const type = first.type;
+
+    const options = inputs.map(input => {
+      let labelText = "";
+      if (input.id) {
+         const label = document.querySelector(`label[for="${input.id}"]`);
+         if (label) labelText = cleanText(label.textContent || "");
+      }
+      if (!labelText && input.parentElement?.tagName.toLowerCase() === 'label') {
+         labelText = cleanText(input.parentElement.textContent || "");
+      }
+      if (!labelText) {
+         let next = input.nextSibling;
+         while (next && next.nodeType === Node.TEXT_NODE && !cleanText(next.textContent || "")) {
+             next = next.nextSibling;
+         }
+         if (next && next.nodeType === Node.TEXT_NODE) {
+             labelText = cleanText(next.textContent || "");
+         }
+      }
+      return labelText || input.value;
+    }).filter(Boolean);
+
+    let groupLabel = extractSectionHeading(first) || extractLabel(first);
+    if (!groupLabel) {
+      const fieldset = first.closest("fieldset");
+      if (fieldset) {
+         const legend = fieldset.querySelector("legend");
+         if (legend) groupLabel = cleanText(legend.textContent || "");
+      }
+    }
+
+    const field: FormField = {
+      id: `group-${groupKey}`,
+      label: groupLabel || groupKey,
+      name: first.name || groupKey,
+      tag: "select", 
+      inputType: type,
+      required: inputs.some(i => i.required),
+      options: Array.from(new Set(options)), 
+      selector: first.name ? `input[name="${first.name}"]` : getSelector(first),
+      formId: first.closest("form")?.id || "default-form"
     };
 
     fields.push(field);
     fieldIndex++;
-  };
 
-  // Step 1: Try to find form elements first
+    inputs.forEach(i => {
+      i.dataset.formpilotScraped = "true";
+    });
+  }
+
+  // Step 2: Try to find form elements first
   const forms = document.querySelectorAll("form");
 
   if (forms.length > 0) {
@@ -114,7 +241,7 @@ export function getFormFields(): FormField[] {
 
       // Find ARIA-based and contenteditable form-like elements
       const ariaFields = form.querySelectorAll(
-        '[role="textbox"], [role="combobox"], [role="slider"], [role="radio"], [contenteditable="true"], div[tabindex]'
+        '[role="textbox"], [role="combobox"], [role="slider"], [role="radiogroup"], [role="group"], [contenteditable="true"], div[tabindex]'
       );
       ariaFields.forEach((el) => {
         createField(el as HTMLElement, formId);
@@ -136,7 +263,7 @@ export function getFormFields(): FormField[] {
 
     // Find ARIA-based and contenteditable form-like elements
     const ariaElements = document.querySelectorAll(
-      '[role="textbox"], [role="combobox"], [role="slider"], [role="radio"], [contenteditable="true"], div[tabindex]'
+      '[role="textbox"], [role="combobox"], [role="slider"], [role="radiogroup"], [role="group"], [contenteditable="true"], div[tabindex]'
     );
     ariaElements.forEach((el) => {
       createField(el as HTMLElement, "default-form");
@@ -150,15 +277,79 @@ export function getFormFields(): FormField[] {
 // 🧠 HELPERS
 ///////////////////////////////////////////////////////////
 
+// 💡 Extract help text from aria-describedby or adjacent help elements
+function extractHelpText(element: HTMLElement): string | undefined {
+  // Strategy 1: aria-describedby
+  const describedBy = element.getAttribute("aria-describedby");
+  if (describedBy) {
+    const ids = describedBy.split(/\s+/);
+    const texts: string[] = [];
+    for (const id of ids) {
+      const helpEl = document.getElementById(id);
+      if (helpEl) {
+        const text = cleanText(helpEl.textContent || "");
+        if (text && text.length > 2) texts.push(text);
+      }
+    }
+    if (texts.length) return texts.join(" ");
+  }
+
+  // Strategy 2: Look for a sibling or nearby element with a help/hint class
+  const parent = element.parentElement;
+  if (parent) {
+    const helpEl = parent.querySelector(
+      ".help-text, .hint, .field-help, .form-text, [class*='help'], [class*='hint'], [class*='description']"
+    );
+    if (helpEl && helpEl !== element) {
+      const text = cleanText(helpEl.textContent || "");
+      if (text && text.length > 2 && text.length < 200) return text;
+    }
+  }
+
+  return undefined;
+}
+
+// 📑 Extract the nearest section heading above the field
+function extractSectionHeading(element: HTMLElement): string | undefined {
+  // Strategy 1: Walk up to find a fieldset > legend
+  const fieldset = element.closest("fieldset");
+  if (fieldset) {
+    const legend = fieldset.querySelector("legend");
+    if (legend) {
+      const text = cleanText(legend.textContent || "");
+      if (text && text.length > 1 && text.length < 150) return text;
+    }
+  }
+
+  // Strategy 2: Walk backwards through previous siblings and ancestors to find heading
+  let current: HTMLElement | null = element;
+  for (let depth = 0; depth < 10 && current; depth++) {
+    // Check previous siblings for headings
+    let sibling = current.previousElementSibling;
+    while (sibling) {
+      const tag = sibling.tagName.toLowerCase();
+      if (["h1", "h2", "h3", "h4", "h5", "h6"].includes(tag)) {
+        const text = cleanText(sibling.textContent || "");
+        if (text && text.length > 1 && text.length < 150) return text;
+      }
+      sibling = sibling.previousElementSibling;
+    }
+    current = current.parentElement;
+  }
+
+  return undefined;
+}
+
 // ❌ Skip hidden / irrelevant fields
 function shouldSkip(element: HTMLElement): boolean {
-  // Skip specific input types (checkboxes, radio buttons, hidden, etc.)
+  if (element.dataset.formpilotScraped === "true") return true;
+
+  // Skip specific input types (hidden, etc.)
   if (element instanceof HTMLInputElement) {
     const skipTypes = [
       "hidden",
       "submit",
       "button",
-      "checkbox",
       "file",
       "image",
       "reset",
@@ -184,6 +375,21 @@ function shouldSkip(element: HTMLElement): boolean {
   ) {
     const tabindex = parseInt(element.getAttribute("tabindex") || "0");
     if (tabindex < 0) return true;
+  }
+
+  // Skip "Clear form" and "Submit" elements often picked up as div[tabindex] (like in Google Forms)
+  const textContent = (element.textContent || (element as HTMLElement).innerText || "").toLowerCase().trim();
+  const ariaLabel = (element.getAttribute("aria-label") || "").toLowerCase().trim();
+  const value = element instanceof HTMLInputElement ? element.value.toLowerCase().trim() : "";
+  
+  const skipPhrases = ["submit", "clear form", "reset"];
+  
+  if (
+    skipPhrases.includes(textContent) || 
+    skipPhrases.includes(ariaLabel) || 
+    skipPhrases.includes(value)
+  ) {
+    return true;
   }
 
   return false;
@@ -325,13 +531,13 @@ function getOptions(element: HTMLElement): string[] | undefined {
     }
   }
 
-  // For role="radio", find radio options
-  if (element.getAttribute("role") === "radio") {
-    const parent = element.closest('[role="radiogroup"]');
-    if (parent) {
-      const radios = parent.querySelectorAll('[role="radio"]');
-      return Array.from(radios).map((radio) =>
-        cleanText(radio.textContent || radio.getAttribute("aria-label") || "")
+  // For ARIA groups (radiogroup, group)
+  const role = element.getAttribute("role");
+  if (role === "radiogroup" || role === "group") {
+    const options = element.querySelectorAll('[role="radio"], [role="checkbox"]');
+    if (options.length > 0) {
+      return Array.from(options).map((opt) =>
+        cleanText(opt.textContent || opt.getAttribute("aria-label") || "")
       );
     }
   }
@@ -343,8 +549,15 @@ function getOptions(element: HTMLElement): string[] | undefined {
 
 // 🔍 Generate reliable selector for filling forms later
 function getSelector(element: Element): string {
-  // Priority 1: ID (most reliable)
-  if (element.id) {
+  const isStableId = (id: string) => {
+    if (!id) return false;
+    if (/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(id)) return false;
+    if (id.includes(':')) return false;
+    return true;
+  };
+
+  // Priority 1: ID (most reliable if stable)
+  if (isStableId(element.id)) {
     return `#${element.id}`;
   }
 
@@ -366,7 +579,7 @@ function getSelector(element: Element): string {
     let selector = tag;
 
     // If this element has an ID, anchor to it and stop
-    if (current.id) {
+    if (isStableId(current.id)) {
       selector += `#${current.id}`;
       path.unshift(selector);
       break;

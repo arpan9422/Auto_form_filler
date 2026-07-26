@@ -13,6 +13,7 @@ type ProjectPayload = {
   description: string;
   projectLinks?: string[];
   techStacks?: string[];
+  priority?: number;
 };
 
 const normalizeProjectPayload = (data: ProjectPayload) => ({
@@ -20,6 +21,7 @@ const normalizeProjectPayload = (data: ProjectPayload) => ({
   description: data.description.trim(),
   projectLinks: data.projectLinks ?? [],
   techStacks: data.techStacks ?? [],
+  priority: typeof data.priority === 'number' ? Math.min(5, Math.max(0, data.priority)) : 0,
 });
 
 export const getProjectsService = async (userId: string) => getProjectsByUserId(userId);

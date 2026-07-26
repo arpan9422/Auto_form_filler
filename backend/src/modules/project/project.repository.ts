@@ -3,7 +3,7 @@ import prisma from "../../config/database";
 export const getProjectsByUserId = async (userId: string) => {
   return prisma.project.findMany({
     where: { userId },
-    orderBy: { createdAt: "desc" },
+    orderBy: [{ priority: 'desc' }, { createdAt: 'desc' }],
   });
 };
 
@@ -18,6 +18,7 @@ export const createProjectDb = async (data: {
   description: string;
   projectLinks: string[];
   techStacks: string[];
+  priority: number;
 }) =>
   prisma.project.create({
     data,
@@ -30,6 +31,7 @@ export const updateProjectDb = async (
     description: string;
     projectLinks: string[];
     techStacks: string[];
+    priority: number;
   }
 ) =>
   prisma.project.update({

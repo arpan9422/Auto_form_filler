@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
@@ -43,22 +43,6 @@ export function DashboardOverview() {
 
   const stats = [
     {
-      label: 'Credits Used',
-      value: data ? String(data.stats.creditsUsedThisWeek) : '—',
-      suffix: 'this week',
-      icon: <FileText size={15} />,
-      progress: data ? Math.min(100, Math.round((data.stats.creditsUsedThisWeek / (data.wallet.weeklyFreeCredits || 10)) * 100)) : null,
-      sub: null,
-    },
-    {
-      label: 'Free Left',
-      value: data ? String(data.stats.freeLeftThisWeek) : '—',
-      suffix: 'this week',
-      icon: <Zap size={15} />,
-      progress: null,
-      sub: 'Resets on Monday',
-    },
-    {
       label: 'Time Saved',
       value: data ? String(data.stats.timeSavedMinutesThisWeek) : '—',
       suffix: 'mins',
@@ -67,14 +51,13 @@ export function DashboardOverview() {
       sub: 'This week',
     },
     {
-      label: 'Paid Credits',
-      value: data ? String(data.stats.paidCredits) : '—',
+      label: 'Forms Filled',
+      value: data ? String(data.stats.formsFilled) : '—',
       suffix: null,
-      icon: <TrendingUp size={15} />,
+      icon: <FileText size={15} />,
       progress: null,
-      sub: null,
-      cta: true,
-    },
+      sub: 'Total',
+    }
   ];
 
   const recentSites = data?.recentSites ?? [];
@@ -190,16 +173,6 @@ export function DashboardOverview() {
 
       {loading ? (
         <div>
-          {/* Wallet hero skeleton */}
-          <SkeletonCard>
-            <SkeletonBlock w="140px" h="12px" mb="16px" />
-            <SkeletonBlock w="100px" h="52px" mb="10px" />
-            <SkeletonBlock w="200px" h="14px" mb="14px" />
-            <div style={{ display:'flex', gap:'16px' }}>
-              <SkeletonBlock w="120px" h="12px" />
-              <SkeletonBlock w="120px" h="12px" />
-            </div>
-          </SkeletonCard>
           {/* Stat cards skeleton */}
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(150px,1fr))', gap:'16px', margin:'20px 0' }}>
             {[1,2,3,4].map(i => (
@@ -225,60 +198,7 @@ export function DashboardOverview() {
         </div>
       ) : (
       <>
-      <div className="wallet-hero">
-        <div style={{
-          position: 'absolute', top: '-70px', right: '-60px',
-          width: '190px', height: '190px', borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(245,158,11,0.16) 0%, transparent 72%)',
-          pointerEvents: 'none',
-        }} />
 
-        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '20px', flexWrap: 'wrap', position: 'relative' }}>
-          <div>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
-              <Wallet size={13} style={{ color: '#f59e0b' }} />
-              <span style={{ fontSize: '12px', color: '#d97706', fontFamily: "'DM Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.07em' }}>
-                Credits Balance
-              </span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: '10px', marginBottom: '10px' }}>
-              <span style={{ fontSize: 'clamp(40px, 8vw, 56px)', fontWeight: 800, lineHeight: 1, letterSpacing: '-2px', color: '#f0ece4', fontFamily: "'Playfair Display', Georgia, serif" }}>
-                {loading ? '—' : (data?.wallet.credits ?? 0)}
-              </span>
-              <span style={{ fontSize: '22px', color: '#f59e0b' }}>⚡</span>
-            </div>
-            <p style={{ fontSize: '15px', color: '#71717a', margin: '0 0 14px', fontWeight: 300 }}>
-              {loading ? '—' : `${data?.wallet.freeLeftThisWeek ?? 0} free left this week`}
-            </p>
-            <div style={{ display: 'flex', gap: '18px', flexWrap: 'wrap' }}>
-              <span style={{ fontSize: '12px', color: '#a1a1aa', fontFamily: "'DM Mono', monospace" }}>
-                Free Weekly: {loading ? '—' : `${data?.wallet.freeLeftThisWeek ?? 0} left`}
-              </span>
-              <span style={{ fontSize: '12px', color: '#a1a1aa', fontFamily: "'DM Mono', monospace" }}>
-                Paid Credits: {loading ? '—' : (data?.wallet.paidCredits ?? 0)}
-              </span>
-            </div>
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '12px' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', padding: '4px 12px 4px 7px', borderRadius: '4px', border: '1px solid rgba(52,211,153,0.2)', background: 'rgba(52,211,153,0.05)' }}>
-              <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#34d399', animation: 'heroPulse 2.5s infinite', display: 'inline-block' }} />
-              <span style={{ fontSize: '12px', color: '#34d399', fontFamily: "'DM Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                Wallet Active
-              </span>
-            </div>
-            <button className="upgrade-btn" style={{ marginTop: 0, minWidth: '170px' }}>
-              Buy Credits
-            </button>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-              <Gift size={12} style={{ color: '#34d399' }} />
-              <span style={{ fontSize: '12px', color: '#71717a', fontFamily: "'DM Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                Earn 10 per referral
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Stats Grid */}
       <div ref={statsRef} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 'clamp(12px, 2vw, 16px)', marginBottom: '20px' }}>
@@ -318,9 +238,7 @@ export function DashboardOverview() {
               </p>
             )}
 
-            {s.cta && (
-              <button className="upgrade-btn">Buy Credits</button>
-            )}
+
           </div>
         ))}
       </div>
@@ -398,12 +316,8 @@ export function DashboardOverview() {
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', padding: '4px 12px 4px 7px', borderRadius: '4px', border: '1px solid rgba(245,158,11,0.2)', background: 'rgba(245,158,11,0.05)', marginBottom: '16px' }}>
             <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#f59e0b', animation: 'heroPulse 2.5s infinite', display: 'inline-block' }} />
             <span style={{ fontSize: '12px', color: '#d97706', fontFamily: "'DM Mono', monospace", textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 500 }}>
-              {loading ? '—' : `${data?.aiEdits.quotaPercent ?? 0}% of quota`}
+              AI Autofill Enabled
             </span>
-          </div>
-
-          <div style={{ width: '100%', height: '2px', background: 'rgba(255,255,255,0.06)', borderRadius: '2px' }}>
-            <div style={{ height: '2px', borderRadius: '2px', background: 'linear-gradient(90deg, #f59e0b, #fde68a)', width: `${data?.aiEdits.quotaPercent ?? 0}%`, boxShadow: '0 0 8px rgba(245,158,11,0.4)' }} />
           </div>
 
           <div style={{ marginTop: '20px', fontFamily: "'DM Mono', monospace", fontSize: '12px', color: 'rgba(255,255,255,0.08)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>

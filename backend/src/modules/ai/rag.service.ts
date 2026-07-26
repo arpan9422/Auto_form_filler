@@ -1,5 +1,4 @@
-import { openai } from "../../config/openai";
-import { getIndex } from "../../config/pinecone";
+import { getCollection } from "../../config/chroma";
 import prisma from "../../config/database";
 import { Prisma } from "../../generated/prisma";
 
@@ -9,7 +8,8 @@ export type RagChunkType =
   | "EXPERIENCE"
   | "EDUCATION"
   | "ANSWER"
-  | "RESUME";
+  | "RESUME"
+  | "EPISODIC";
 
 type RagMetadata = {
   userId: string;
@@ -45,7 +45,6 @@ type QueryContextOptions = {
 
 const EMBEDDING_MODEL = "text-embedding-3-small";
 const DEFAULT_TOP_K = 5;
-const DEFAULT_NAMESPACE = process.env.PINECONE_NAMESPACE ?? "main";
 
 const PERSONAL_KEYWORDS = [
   "name",
@@ -143,48 +142,29 @@ const chunkText = (parts: Array<string | undefined | null>) =>
     .filter(Boolean)
     .join("\n");
 
-const getScopedIndex = () => getIndex().namespace(DEFAULT_NAMESPACE);
+const getScopedCollection = async () => await getCollection();
 const userSyncJobs = new Map<string, Promise<void>>();
 const USER_VECTOR_ID_PREFIX = "user:";
 
-export async function generateEmbedding(text: string): Promise<number[]> {
-  const embeddings = await generateEmbeddingsBatch([text]);
-  return embeddings[0];
-}
+type VectorRecord = {
+  id: string;
+  metadata: Record<string, unknown> | null;
+};
 
-async function generateEmbeddingsBatch(texts: string[]): Promise<number[][]> {
-  const apiKey = process.env.AICREDITS_API_KEY;
-  const body = JSON.stringify({ model: EMBEDDING_MODEL, input: texts });
 
-  const response = await fetch("https://api.aicredits.in/v1/embeddings", {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body,
-  });
 
-  if (!response.ok) {
-    const text = await response.text().catch(() => "");
-    console.error(`[RAG] Batch embedding failed — status=${response.status} body=${text}`);
-    throw new Error(`Embedding request failed: ${response.status} ${text}`);
+export async function getVectorRecordById(id: string): Promise<VectorRecord | undefined> {
+  const collection = await getScopedCollection();
+  const response = await collection.get({ ids: [id] });
+
+  if (!response || !response.ids || response.ids.length === 0) {
+    return undefined;
   }
 
-  const data = await response.json() as {
-    data: { index: number; embedding: number[] }[];
+  return {
+    id: response.ids[0],
+    metadata: response.metadatas?.[0] ?? null,
   };
-
-  return data.data
-    .sort((a, b) => a.index - b.index)
-    .map((item) => item.embedding);
-}
-
-export async function getVectorRecordById(id: string) {
-  const scopedIndex = getScopedIndex();
-  const response = await scopedIndex.fetch([id]);
-
-  return response.records?.[id];
 }
 
 const inferRelevantChunkTypes = (query: string): RagChunkType[] => {
@@ -216,7 +196,7 @@ const inferRelevantChunkTypes = (query: string): RagChunkType[] => {
   }
 
   if (detectedTypes.size === 0) {
-    return ["PERSONAL", "PROJECT", "EXPERIENCE", "EDUCATION", "ANSWER", "RESUME"];
+    return ["PERSONAL", "PROJECT", "EXPERIENCE", "EDUCATION", "ANSWER", "RESUME", "EPISODIC"];
   }
 
   if (
@@ -226,6 +206,8 @@ const inferRelevantChunkTypes = (query: string): RagChunkType[] => {
   ) {
     detectedTypes.add("RESUME");
   }
+
+  detectedTypes.add("EPISODIC");
 
   return Array.from(detectedTypes);
 };
@@ -272,6 +254,7 @@ const buildProjectChunks = (user: UserKnowledgeRecord | null): RagChunk[] =>
     id: `user:${user.id}:project:${project.id}`,
     text: chunkText([
       `Project: ${project.name}`,
+      project.priority > 0 ? `Priority: ${project.priority}/5 (${project.priority >= 4 ? "Featured" : project.priority >= 3 ? "Important" : "Standard"})` : undefined,
       `Description: ${project.description}`,
       project.techStacks.length ? `Tech Stack: ${project.techStacks.join(", ")}` : undefined,
       project.projectLinks.length ? `Project Links: ${project.projectLinks.join(", ")}` : undefined,
@@ -281,7 +264,7 @@ const buildProjectChunks = (user: UserKnowledgeRecord | null): RagChunk[] =>
       type: "PROJECT",
       title: project.name,
       tags: unique(project.techStacks.map((tag: string) => tag.toLowerCase())),
-      priority: 8,
+      priority: project.priority > 0 ? Math.min(10, 5 + project.priority) : 8,
       createdAt: toEpochSeconds(project.createdAt),
     },
   })) ?? [];
@@ -385,51 +368,33 @@ const buildUserKnowledgeChunks = (
 const upsertChunks = async (chunks: RagChunk[]) => {
   if (chunks.length === 0) return;
 
-  const scopedIndex = getScopedIndex();
+  const collection = await getScopedCollection();
   const BATCH_SIZE = 20;
 
   for (let i = 0; i < chunks.length; i += BATCH_SIZE) {
     const batch = chunks.slice(i, i + BATCH_SIZE);
     const texts = batch.map((c) => c.text);
 
-    // Single API call for the whole batch — avoids concurrent request issues with the proxy
-    const embeddings = await generateEmbeddingsBatch(texts);
-
-    const records = batch.map((chunk, idx) => ({
-      id: chunk.id,
-      values: embeddings[idx],
-      metadata: {
-        ...chunk.metadata,
-        content: chunk.text,
-      },
+    const ids = batch.map((c) => c.id);
+    const metadatas = batch.map((c) => ({
+      ...c.metadata,
+      tags: c.metadata.tags?.join(",") || "",
+      content: c.text,
     }));
 
-    await scopedIndex.upsert(records);
+    await collection.upsert({
+      ids,
+      metadatas,
+      documents: texts,
+    });
   }
 };
 
 const deleteUserKnowledgeChunks = async (userId: string) => {
-  const scopedIndex = getScopedIndex();
-  const prefix = `${USER_VECTOR_ID_PREFIX}${userId}:`;
-  let paginationToken: string | undefined;
-
-  do {
-    const page = await scopedIndex.listPaginated({
-      prefix,
-      paginationToken,
-    });
-
-    const recordIds =
-      page.vectors
-        ?.map((vector) => vector.id)
-        .filter((id): id is string => Boolean(id)) ?? [];
-
-    if (recordIds.length > 0) {
-      await scopedIndex.deleteMany(recordIds);
-    }
-
-    paginationToken = page.pagination?.next;
-  } while (paginationToken);
+  const collection = await getScopedCollection();
+  await collection.delete({
+    where: { userId: { $eq: userId } },
+  });
 };
 
 export async function reembedAndUpsertVectorRecord(
@@ -437,19 +402,17 @@ export async function reembedAndUpsertVectorRecord(
   content: string,
   metadata: Omit<RagMetadata, "content">
 ) {
-  const scopedIndex = getScopedIndex();
-  const embedding = await generateEmbedding(content);
+  const collection = await getScopedCollection();
 
-  await scopedIndex.upsert([
-    {
-      id,
-      values: embedding,
-      metadata: {
-        ...metadata,
-        content,
-      },
-    },
-  ]);
+  await collection.upsert({
+    ids: [id],
+    metadatas: [{
+      ...metadata,
+      tags: metadata.tags?.join(",") || "",
+      content,
+    }],
+    documents: [content],
+  });
 }
 
 export async function updateVectorRecordWithLatestData(
@@ -488,7 +451,7 @@ export async function syncUserKnowledgeBase(userId: string) {
     },
   });
 
-  const scopedIndex = getScopedIndex();
+  const collection = await getScopedCollection();
   await deleteUserKnowledgeChunks(userId);
 
   if (!user) {
@@ -532,36 +495,60 @@ export async function queryContext(
   userId: string,
   options: QueryContextOptions = {}
 ): Promise<string[]> {
-  const scopedIndex = getScopedIndex();
-  const embedding = await generateEmbedding(query);
+  const collection = await getScopedCollection();
   const types = options.types?.length ? options.types : inferRelevantChunkTypes(query);
-  const results = await scopedIndex.query({
-    vector: embedding,
-    topK: options.topK ?? DEFAULT_TOP_K,
-    filter: {
-      userId,
-      type: {
-        $in: types,
-      },
+  const results = await collection.query({
+    queryTexts: [query],
+    nResults: options.topK ?? DEFAULT_TOP_K,
+    where: {
+      $and: [
+        { userId: { $eq: userId } },
+        { type: { $in: types } },
+      ],
     },
-    includeMetadata: true,
   });
 
+  if (!results.metadatas || results.metadatas.length === 0 || !results.metadatas[0]) {
+    return [];
+  }
+
+  const matches = results.metadatas[0].map((metadata, idx) => ({
+    metadata,
+    score: results.distances ? results.distances[0][idx] : 0,
+  }));
+
   return (
-    results.matches
-      ?.sort((left, right) => {
+    matches
+      .sort((left, right) => {
         const rightPriority = Number(right.metadata?.priority ?? 0);
         const leftPriority = Number(left.metadata?.priority ?? 0);
         return rightPriority - leftPriority;
       })
       .map((match) => String(match.metadata?.content ?? ""))
-      .filter(Boolean) ?? []
+      .filter(Boolean)
   );
 }
 
 export async function deleteEmbedding(id: string) {
-  const scopedIndex = getScopedIndex();
-  await scopedIndex.deleteOne(id);
+  const collection = await getScopedCollection();
+  await collection.delete({ ids: [id] });
+}
+
+export async function syncEpisodicMemoryChunk(
+  userId: string,
+  episodeId: string,
+  title: string,
+  summaryText: string
+) {
+  const chunkId = `user:${userId}:episodic:${episodeId}`;
+  await reembedAndUpsertVectorRecord(chunkId, summaryText, {
+    userId,
+    type: "EPISODIC",
+    title,
+    tags: ["episode", "chat", "memory", ...title.toLowerCase().split(/\s+/)],
+    priority: 8,
+    createdAt: Math.floor(Date.now() / 1000),
+  });
 }
 
 export { inferRelevantChunkTypes };

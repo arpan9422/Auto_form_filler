@@ -27,34 +27,14 @@ enum MemoryType {
   RESUME
   PREFERENCE
   CUSTOM
+  EPISODIC
 }
 
-enum TransactionType {
-  CREDIT
-  DEBIT
-}
 
-enum TransactionReason {
-  FORM_FILL
-  CHAT_REFINE
-  REGENERATE
-  RESUME_PARSE
-  TOPUP
-  REFERRAL_BONUS
-  SIGNUP_BONUS
-  ADMIN_ADJUSTMENT
-}
-
-enum PurchaseStatus {
-  PENDING
-  SUCCESS
-  FAILED
-  REFUNDED
-}
-
-enum OtpPurpose {
-  SIGNUP
-  LOGIN
+enum AddressType {
+  PERMANENT
+  CURRENT
+  OTHER
 }
 
 ///////////////////////////////////////////////////////
@@ -75,15 +55,11 @@ model User {
   skills             Json?
   onboardingDone     Boolean @default(false)
 
-  // Credit system
-  credits            Int      @default(0)
-  weeklyFreeCredits  Int      @default(10)
-  lastCreditResetAt  DateTime @default(now())
-
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
 
   links              Link[]
+  addresses          Address[]
   educations         Education[]
   works              Work[]
   projects           Project[]
@@ -91,14 +67,10 @@ model User {
   resumes            Resume[]
   memories           Memory[]
   analytics          UsageAnalytics[]
+  formSessions       FormSession[]
+  chatEpisodes       ChatEpisode[]
 
-  transactions       CreditTransaction[]
-  purchases          Purchase[]
-  refreshTokens      RefreshToken[]
   GitHubConnections  GitHubConnection[]
-
-  referralsMade      Referral[] @relation("Referrer")
-  referralsReceived  Referral[] @relation("ReferredUser")
 }
 
 ///////////////////////////////////////////////////////
@@ -114,6 +86,28 @@ model Link {
   user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+}
+
+///////////////////////////////////////////////////////
+// ADDRESSES
+///////////////////////////////////////////////////////
+
+model Address {
+  id          String      @id @default(uuid())
+  userId      String
+  type        AddressType
+  label       String?
+  line1       String
+  line2       String?
+  city        String
+  state       String
+  postalCode  String
+  country     String
+
+  user        User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([type])
 }
 
 ///////////////////////////////////////////////////////
@@ -172,6 +166,7 @@ model Project {
 
   projectLinks  String[]
   techStacks    String[]
+  priority      Int      @default(0)
 
   createdAt     DateTime @default(now())
 
@@ -252,9 +247,15 @@ model UsageAnalytics {
   websiteUrl      String?
 
   fieldsFilled    Int
+  totalFields     Int      @default(0)
   timeSavedSec    Int
 
-  creditsUsed     Int      @default(1)
+  tokensUsed      Int      @default(0)
+  promptTokens    Int      @default(0)
+  completionTokens Int     @default(0)
+
+  fieldsAnswered  Json?
+  fieldsUnanswered Json?
 
   aiEdits         Int      @default(0)
   acceptedDirect  Boolean  @default(true)
@@ -267,110 +268,7 @@ model UsageAnalytics {
   @@index([platform])
 }
 
-///////////////////////////////////////////////////////
-// CREDIT TRANSACTIONS (LEDGER)
-///////////////////////////////////////////////////////
 
-model CreditTransaction {
-  id          String             @id @default(uuid())
-  userId      String
-
-  type        TransactionType
-  amount      Int
-
-  reason      TransactionReason
-  metadata    Json?
-
-  createdAt   DateTime           @default(now())
-
-  user        User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-  @@index([reason])
-}
-
-///////////////////////////////////////////////////////
-// PURCHASES / TOPUPS
-///////////////////////////////////////////////////////
-
-model Purchase {
-  id              String          @id @default(uuid())
-  userId          String
-
-  creditsBought   Int
-  amountPaid      Int
-
-  currency        String          @default("INR")
-
-  paymentProvider String?
-  paymentRef      String?
-
-  status          PurchaseStatus
-
-  discountCode    String?
-
-  createdAt       DateTime        @default(now())
-
-  user            User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-}
-
-///////////////////////////////////////////////////////
-// REFERRALS
-///////////////////////////////////////////////////////
-
-model Referral {
-  id               String   @id @default(uuid())
-
-  referrerId       String
-  referredUserId   String?
-  referralCode     String
-  referredByCode   String
-  rewardCreditsToReferrer Int @default(150)
-  rewardCreditsToReferred Int @default(100)
-
-  referredEmail    String
-
-  rewardCredits    Int      @default(10)
-
-  createdAt        DateTime @default(now())
-
-  referrer         User @relation("Referrer", fields: [referrerId], references: [id], onDelete: Cascade)
-  referredUser     User? @relation("ReferredUser", fields: [referredUserId], references: [id])
-
-  @@index([referrerId])
-  @@unique([referredUserId])
-  @@unique([referredEmail])
-  @@index([referralCode])
-}
-
-model UserOtp {
-  id         String     @id @default(uuid())
-  email      String
-  otp        String
-  purpose    OtpPurpose
-  expiresAt  DateTime
-  usedAt     DateTime?
-  createdAt  DateTime   @default(now())
-
-  @@index([email, purpose])
-  @@index([expiresAt])
-}
-
-model RefreshToken {
-  id           String   @id @default(uuid())
-  userId       String
-  tokenHash    String
-  expiresAt    DateTime
-  revokedAt    DateTime?
-  createdAt    DateTime @default(now())
-
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-  @@index([expiresAt])
-}
 
 model GitHubConnection {
   id           String   @id @default(uuid())
@@ -398,59 +296,7 @@ enum LogLevel {
   DEBUG
 }
 
-enum AdminRole {
-  SUPER_ADMIN
-  SUPPORT_ADMIN
-  FINANCE_ADMIN
-  ANALYTICS_VIEWER
-}
 
-///////////////////////////////////////////////////////
-// ADMIN
-///////////////////////////////////////////////////////
-
-model Admin {
-  id           String    @id @default(uuid())
-  email        String    @unique
-  name         String
-  role         AdminRole @default(SUPPORT_ADMIN)
-  isActive     Boolean   @default(true)
-
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-  createdById  String?   // which admin created this one
-
-  otps         AdminOtp[]
-  sessions     AdminSession[]
-}
-
-model AdminOtp {
-  id        String   @id @default(uuid())
-  adminId   String
-  otp       String
-  expiresAt DateTime
-  usedAt    DateTime?
-  createdAt DateTime @default(now())
-
-  admin     Admin @relation(fields: [adminId], references: [id], onDelete: Cascade)
-
-  @@index([adminId])
-  @@index([expiresAt])
-}
-
-model AdminSession {
-  id           String   @id @default(uuid())
-  adminId      String
-  tokenHash    String   @unique
-  expiresAt    DateTime
-  revokedAt    DateTime?
-  createdAt    DateTime @default(now())
-
-  admin        Admin @relation(fields: [adminId], references: [id], onDelete: Cascade)
-
-  @@index([adminId])
-  @@index([tokenHash])
-}
 
 model RequestLog {
   id          String    @id @default(uuid())
@@ -502,5 +348,57 @@ model AppLog {
   @@index([level])
   @@index([context])
   @@index([userId])
+  @@index([createdAt])
+}
+
+///////////////////////////////////////////////////////
+// FORM SESSION
+///////////////////////////////////////////////////////
+
+model FormSession {
+  id        String   @id @default(uuid())
+  userId    String
+  sessionId String   @unique
+  url       String?
+  fields    Json
+  rawHtml   String?  @db.Text
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([sessionId])
+}
+
+///////////////////////////////////////////////////////
+// CHAT EPISODES & EPISODIC HISTORY
+///////////////////////////////////////////////////////
+
+model ChatEpisode {
+  id          String        @id @default(uuid())
+  userId      String
+  title       String        @default("New Conversation")
+  summary     String?       @db.Text
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages    ChatMessage[]
+
+  @@index([userId])
+  @@index([updatedAt])
+}
+
+model ChatMessage {
+  id          String        @id @default(uuid())
+  episodeId   String
+  role        String        // "user" | "ai"
+  content     String        @db.Text
+  sources     Json?         // RAG source labels utilized during generation
+  createdAt   DateTime      @default(now())
+
+  episode     ChatEpisode   @relation(fields: [episodeId], references: [id], onDelete: Cascade)
+
+  @@index([episodeId])
   @@index([createdAt])
 }

@@ -5,6 +5,7 @@ export const getUserById = async (id: string) =>
     where: { id },
     include: {
       links: true,
+      addresses: true,
       educations: true,
       works: true,
       answers: true,
@@ -16,6 +17,7 @@ export const getUserById = async (id: string) =>
 export const updateUserById = async (
   id: string,
   data: {
+    email?: string;
     firstName?: string;
     middleName?: string;
     lastName?: string;
@@ -26,6 +28,16 @@ export const updateUserById = async (
     links?: Array<{
       platform: string;
       url: string;
+    }>;
+    addresses?: Array<{
+      type: "PERMANENT" | "CURRENT" | "OTHER";
+      label?: string;
+      line1: string;
+      line2?: string;
+      city: string;
+      state: string;
+      postalCode: string;
+      country: string;
     }>;
     educations?: Array<{
       instituteName: string;
@@ -52,6 +64,7 @@ export const updateUserById = async (
   prisma.user.update({
     where: { id },
     data: {
+      email: data.email,
       firstName: data.firstName,
       middleName: data.middleName,
       lastName: data.lastName,
@@ -65,6 +78,21 @@ export const updateUserById = async (
             create: data.links.map((link) => ({
               platform: link.platform,
               url: link.url,
+            })),
+          }
+        : undefined,
+      addresses: data.addresses
+        ? {
+            deleteMany: {},
+            create: data.addresses.map((address) => ({
+              type: address.type,
+              label: address.label,
+              line1: address.line1,
+              line2: address.line2,
+              city: address.city,
+              state: address.state,
+              postalCode: address.postalCode,
+              country: address.country,
             })),
           }
         : undefined,
@@ -106,6 +134,7 @@ export const updateUserById = async (
     },
     include: {
       links: true,
+      addresses: true,
       educations: true,
       works: true,
       answers: true,

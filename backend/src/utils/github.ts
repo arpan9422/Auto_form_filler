@@ -31,7 +31,19 @@ async function ghFetch<T>(path: string, token?: string): Promise<T> {
   };
   if (effectiveToken) headers.Authorization = `Bearer ${effectiveToken}`;
 
-  const res = await fetch(`${GITHUB_API}${path}`, { headers });
+  let res = await fetch(`${GITHUB_API}${path}`, { headers });
+
+  // If the user's token is invalid/expired (401), fallback to server token or no token
+  if (res.status === 401 && token && token !== SERVER_GITHUB_TOKEN) {
+    logger.warn("github", "User token returned 401, falling back to server token", { path });
+    const fallbackHeaders = { ...headers };
+    if (SERVER_GITHUB_TOKEN) {
+      fallbackHeaders.Authorization = `Bearer ${SERVER_GITHUB_TOKEN}`;
+    } else {
+      delete fallbackHeaders.Authorization;
+    }
+    res = await fetch(`${GITHUB_API}${path}`, { headers: fallbackHeaders });
+  }
 
   if (res.status === 404) throw new AppError(`GitHub: not found — ${path}`, 404);
   if (res.status === 403) throw new AppError("GitHub rate limit exceeded. Set GITHUB_TOKEN in .env.", 429);

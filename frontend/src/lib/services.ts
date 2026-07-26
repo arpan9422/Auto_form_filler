@@ -8,6 +8,7 @@ export type Project = {
   description: string;
   projectLinks: string[];
   techStacks: string[];
+  priority: number;
   createdAt: string;
 };
 
@@ -38,17 +39,9 @@ export type Memory = {
 };
 
 export type DashboardOverview = {
-  wallet: {
-    credits: number;
-    weeklyFreeCredits: number;
-    freeLeftThisWeek: number;
-    paidCredits: number;
-  };
   stats: {
-    creditsUsedThisWeek: number;
-    freeLeftThisWeek: number;
     timeSavedMinutesThisWeek: number;
-    paidCredits: number;
+    formsFilled: number;
   };
   recentSites: { name: string; timeLabel: string }[];
   aiEdits: { thisWeek: number; quotaPercent: number };
@@ -60,65 +53,31 @@ export type DashboardAnalytics = {
     acceptedWithoutEdits: number;
     timeSavedSec: number;
     mostUsedSite: string;
+    totalTokens: number;
   };
   topSites: { name: string; count: number; pct: number }[];
   weekData: { day: string; forms: number }[];
   insights: string[];
-};
-
-export type WalletSummary = {
-  credits: number;
-  weeklyFreeCredits: number;
-  lastCreditResetAt: string;
-};
-
-export type WalletAnalytics = {
-  today: number;
-  thisWeek: number;
-  lifetime: number;
-  avgPerDay: number;
-};
-
-export type WalletBreakdown = {
-  formFill: number;
-  chatRefine: number;
-  regenerate: number;
-  resumeParse: number;
-};
-
-export type Transaction = {
-  id: string;
-  type: "CREDIT" | "DEBIT";
-  amount: number;
-  reason: string;
-  metadata?: Record<string, unknown> | null;
-  createdAt: string;
-};
-
-export type Purchase = {
-  id: string;
-  creditsBought: number;
-  amountPaid: number;
-  currency: string;
-  status: string;
-  createdAt: string;
-};
-
-export type ReferralStats = {
-  referralCode: string;
-  totalReferrals: number;
-  pendingReferrals: number;
-  completedReferrals: number;
-  totalCreditsEarned: number;
+  recentFills?: {
+    id: string;
+    platform: string;
+    websiteUrl: string | null;
+    date: string;
+    fieldsFilled: number;
+    totalFields: number;
+    tokensUsed: number;
+    fieldsAnswered: { key: string; label: string }[];
+    fieldsUnanswered: { key: string; label: string; reason: string }[];
+  }[];
 };
 
 // ── Projects ───────────────────────────────────────────────────────────
 
 export const projectsApi = {
   list: () => api.get<Project[]>("/projects"),
-  create: (data: { name: string; description: string; projectLinks?: string[]; techStacks?: string[] }) =>
+  create: (data: { name: string; description: string; projectLinks?: string[]; techStacks?: string[]; priority?: number }) =>
     api.post<Project>("/projects", data),
-  update: (id: string, data: { name: string; description: string; projectLinks?: string[]; techStacks?: string[] }) =>
+  update: (id: string, data: { name: string; description: string; projectLinks?: string[]; techStacks?: string[]; priority?: number }) =>
     api.put<Project>(`/projects/${id}`, data),
   remove: (id: string) => api.delete<{ message: string }>(`/projects/${id}`),
   voiceDescribe: (audio: string, projectName?: string) =>
@@ -149,8 +108,11 @@ export const answersApi = {
 
 export const resumesApi = {
   list: () => api.get<Resume[]>("/resume"),
-  getUploadUrl: (filename: string, contentType?: string) =>
-    api.post<{ uploadUrl: string; fileUrl: string; key: string }>("/resume/upload-url", { filename, contentType }),
+  uploadPdf: (file: File) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    return api.post<{ fileUrl: string; key: string }>("/resume/upload", formData);
+  },
   create: (data: { label: string; target?: string; description?: string; pdfUrl: string; isDefault?: boolean }) =>
     api.post<Resume>("/resume", data),
   update: (id: string, data: { label: string; target?: string; description?: string; pdfUrl: string; isDefault?: boolean }) =>
@@ -177,17 +139,6 @@ export const dashboardApi = {
   analytics: () => api.get<DashboardAnalytics>("/dashboard/analytics"),
 };
 
-// ── Wallet ─────────────────────────────────────────────────────────────
-
-export const walletApi = {
-  summary: () => api.get<WalletSummary>("/wallet/summary"),
-  analytics: () => api.get<WalletAnalytics>("/wallet/analytics"),
-  breakdown: () => api.get<WalletBreakdown>("/wallet/breakdown"),
-  transactions: () => api.get<{ transactions: Transaction[]; purchases: Purchase[] }>("/wallet/transactions"),
-  topup: (data: { creditsBought: number; amountPaid: number; currency: string; paymentProvider?: string; paymentRef?: string }) =>
-    api.post<{ message: string; purchase: Purchase }>("/wallet/topup", data),
-};
-
 // ── GitHub OAuth ───────────────────────────────────────────────────────
 
 export const githubApi = {
@@ -196,8 +147,33 @@ export const githubApi = {
   disconnect: () => api.delete<{ message: string }>("/github/disconnect"),
 };
 
-// ── Referrals ──────────────────────────────────────────────────────────
+// ── AI Chat Agent (LangGraph & Episodic Memory) ─────────────────────────
 
-export const referralApi = {
-  me: () => api.get<ReferralStats>("/refferals/me"),
+export interface ChatEpisodeSummary {
+  id: string;
+  title: string;
+  summary?: string;
+  updatedAt: string;
+  createdAt: string;
+}
+
+export interface ChatEpisodeDetail extends ChatEpisodeSummary {
+  messages: Array<{
+    id: string;
+    role: "user" | "ai";
+    content: string;
+    sources?: string[];
+    createdAt: string;
+  }>;
+}
+
+export const aiChatApi = {
+  chat: (data: { message: string; history?: Array<{ role: string; content: string }>; episodeId?: string }) =>
+    api.post<{ episodeId: string; response: string; sources: string[] }>("/ai/agent/chat", data),
+  listEpisodes: () =>
+    api.get<{ episodes: ChatEpisodeSummary[] }>("/ai/agent/episodes"),
+  getEpisode: (id: string) =>
+    api.get<{ episode: ChatEpisodeDetail }>(`/ai/agent/episodes/${id}`),
+  deleteEpisode: (id: string) =>
+    api.delete<{ success: boolean }>(`/ai/agent/episodes/${id}`),
 };

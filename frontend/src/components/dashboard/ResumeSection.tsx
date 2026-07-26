@@ -109,7 +109,6 @@ export function ResumeSection() {
   const upsertResumeFromFile = async (file?: File) => {
     if (!file) return;
     const size = `${(file.size / 1024 / 1024).toFixed(1)} MB`;
-    const contentType = file.type || 'application/pdf';
     setUploadError(null);
     setUploading(true);
 
@@ -117,9 +116,7 @@ export function ResumeSection() {
       if (replaceResumeId) {
         const existing = resumes.find(r => r.id === replaceResumeId);
         if (existing) {
-          const { data: { uploadUrl, fileUrl } } = await resumesApi.getUploadUrl(file.name, contentType);
-          const s3Res = await fetch(uploadUrl, { method: 'PUT', body: file, headers: { 'Content-Type': contentType } });
-          if (!s3Res.ok) throw new Error(`S3 upload failed: ${s3Res.status}`);
+          const { data: { fileUrl } } = await resumesApi.uploadPdf(file);
           await resumesApi.update(replaceResumeId, {
             label: existing.title,
             target: existing.targetJob,
@@ -136,9 +133,7 @@ export function ResumeSection() {
       const target = pendingTargetJob.trim() || 'General applications';
       const description = pendingDescription.trim() || 'Resume version tailored for a specific application track.';
 
-      const { data: { uploadUrl, fileUrl } } = await resumesApi.getUploadUrl(file.name, contentType);
-      const s3Res = await fetch(uploadUrl, { method: 'PUT', body: file, headers: { 'Content-Type': contentType } });
-      if (!s3Res.ok) throw new Error(`S3 upload failed: ${s3Res.status}`);
+      const { data: { fileUrl } } = await resumesApi.uploadPdf(file);
 
       // Use functional updater to get accurate current count — avoids stale closure
       let isFirst = false;

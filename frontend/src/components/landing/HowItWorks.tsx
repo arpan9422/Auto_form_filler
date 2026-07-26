@@ -362,9 +362,9 @@ const steps = [
   },
   {
     number: "03",
-    title: "Refine via Chat",
+    title: "Review & Submit",
     description:
-      'Say "make it shorter", "add my project Wisdomly", or "rewrite for a startup role" — fields update live in real time.',
+      "Inspect the generated fields, verify answers tailored from your knowledge base, and submit with complete confidence.",
     mockup: <StepThreeMockup />,
   },
 ];
@@ -663,13 +663,12 @@ export default function HowItWorks() {
           padding: "20px 0",
         }}>
           {[
-            { value: "< 10s", label: "Avg. fill time" },
             { value: "100%", label: "Field coverage" },
-            { value: "Live", label: "Chat refinement" },
+            { value: "Instant", label: "RAG matching" },
           ].map((s, i) => (
             <div key={i} style={{
               textAlign: "center", padding: "0 40px",
-              borderRight: i < 2 ? "1px solid rgba(255,255,255,0.07)" : "none",
+              borderRight: i < 1 ? "1px solid rgba(255,255,255,0.07)" : "none",
             }}>
               <div style={{
                 fontSize: "22px", fontWeight: 700, color: "#f0ece4",

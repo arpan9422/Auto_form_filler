@@ -131,9 +131,6 @@ exports.Prisma.UserScalarFieldEnum = {
   bio: 'bio',
   skills: 'skills',
   onboardingDone: 'onboardingDone',
-  credits: 'credits',
-  weeklyFreeCredits: 'weeklyFreeCredits',
-  lastCreditResetAt: 'lastCreditResetAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -143,6 +140,19 @@ exports.Prisma.LinkScalarFieldEnum = {
   userId: 'userId',
   platform: 'platform',
   url: 'url'
+};
+
+exports.Prisma.AddressScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  type: 'type',
+  label: 'label',
+  line1: 'line1',
+  line2: 'line2',
+  city: 'city',
+  state: 'state',
+  postalCode: 'postalCode',
+  country: 'country'
 };
 
 exports.Prisma.EducationScalarFieldEnum = {
@@ -174,6 +184,7 @@ exports.Prisma.ProjectScalarFieldEnum = {
   depolyed_url: 'depolyed_url',
   projectLinks: 'projectLinks',
   techStacks: 'techStacks',
+  priority: 'priority',
   createdAt: 'createdAt'
 };
 
@@ -212,65 +223,15 @@ exports.Prisma.UsageAnalyticsScalarFieldEnum = {
   platform: 'platform',
   websiteUrl: 'websiteUrl',
   fieldsFilled: 'fieldsFilled',
+  totalFields: 'totalFields',
   timeSavedSec: 'timeSavedSec',
-  creditsUsed: 'creditsUsed',
+  tokensUsed: 'tokensUsed',
+  promptTokens: 'promptTokens',
+  completionTokens: 'completionTokens',
+  fieldsAnswered: 'fieldsAnswered',
+  fieldsUnanswered: 'fieldsUnanswered',
   aiEdits: 'aiEdits',
   acceptedDirect: 'acceptedDirect',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.CreditTransactionScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  type: 'type',
-  amount: 'amount',
-  reason: 'reason',
-  metadata: 'metadata',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.PurchaseScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  creditsBought: 'creditsBought',
-  amountPaid: 'amountPaid',
-  currency: 'currency',
-  paymentProvider: 'paymentProvider',
-  paymentRef: 'paymentRef',
-  status: 'status',
-  discountCode: 'discountCode',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.ReferralScalarFieldEnum = {
-  id: 'id',
-  referrerId: 'referrerId',
-  referredUserId: 'referredUserId',
-  referralCode: 'referralCode',
-  referredByCode: 'referredByCode',
-  rewardCreditsToReferrer: 'rewardCreditsToReferrer',
-  rewardCreditsToReferred: 'rewardCreditsToReferred',
-  referredEmail: 'referredEmail',
-  rewardCredits: 'rewardCredits',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.UserOtpScalarFieldEnum = {
-  id: 'id',
-  email: 'email',
-  otp: 'otp',
-  purpose: 'purpose',
-  expiresAt: 'expiresAt',
-  usedAt: 'usedAt',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.RefreshTokenScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  tokenHash: 'tokenHash',
-  expiresAt: 'expiresAt',
-  revokedAt: 'revokedAt',
   createdAt: 'createdAt'
 };
 
@@ -283,35 +244,6 @@ exports.Prisma.GitHubConnectionScalarFieldEnum = {
   scope: 'scope',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
-};
-
-exports.Prisma.AdminScalarFieldEnum = {
-  id: 'id',
-  email: 'email',
-  name: 'name',
-  role: 'role',
-  isActive: 'isActive',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  createdById: 'createdById'
-};
-
-exports.Prisma.AdminOtpScalarFieldEnum = {
-  id: 'id',
-  adminId: 'adminId',
-  otp: 'otp',
-  expiresAt: 'expiresAt',
-  usedAt: 'usedAt',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.AdminSessionScalarFieldEnum = {
-  id: 'id',
-  adminId: 'adminId',
-  tokenHash: 'tokenHash',
-  expiresAt: 'expiresAt',
-  revokedAt: 'revokedAt',
-  createdAt: 'createdAt'
 };
 
 exports.Prisma.RequestLogScalarFieldEnum = {
@@ -341,6 +273,34 @@ exports.Prisma.AppLogScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.FormSessionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  sessionId: 'sessionId',
+  url: 'url',
+  fields: 'fields',
+  rawHtml: 'rawHtml',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ChatEpisodeScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  summary: 'summary',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ChatMessageScalarFieldEnum = {
+  id: 'id',
+  episodeId: 'episodeId',
+  role: 'role',
+  content: 'content',
+  sources: 'sources',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -348,6 +308,10 @@ exports.Prisma.SortOrder = {
 
 exports.Prisma.NullableJsonNullValueInput = {
   DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
+exports.Prisma.JsonNullValueInput = {
   JsonNull: Prisma.JsonNull
 };
 
@@ -366,6 +330,12 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.AddressType = exports.$Enums.AddressType = {
+  PERMANENT: 'PERMANENT',
+  CURRENT: 'CURRENT',
+  OTHER: 'OTHER'
+};
+
 exports.WorkType = exports.$Enums.WorkType = {
   INTERNSHIP: 'INTERNSHIP',
   FULL_TIME: 'FULL_TIME',
@@ -379,42 +349,8 @@ exports.MemoryType = exports.$Enums.MemoryType = {
   ANSWER: 'ANSWER',
   RESUME: 'RESUME',
   PREFERENCE: 'PREFERENCE',
-  CUSTOM: 'CUSTOM'
-};
-
-exports.TransactionType = exports.$Enums.TransactionType = {
-  CREDIT: 'CREDIT',
-  DEBIT: 'DEBIT'
-};
-
-exports.TransactionReason = exports.$Enums.TransactionReason = {
-  FORM_FILL: 'FORM_FILL',
-  CHAT_REFINE: 'CHAT_REFINE',
-  REGENERATE: 'REGENERATE',
-  RESUME_PARSE: 'RESUME_PARSE',
-  TOPUP: 'TOPUP',
-  REFERRAL_BONUS: 'REFERRAL_BONUS',
-  SIGNUP_BONUS: 'SIGNUP_BONUS',
-  ADMIN_ADJUSTMENT: 'ADMIN_ADJUSTMENT'
-};
-
-exports.PurchaseStatus = exports.$Enums.PurchaseStatus = {
-  PENDING: 'PENDING',
-  SUCCESS: 'SUCCESS',
-  FAILED: 'FAILED',
-  REFUNDED: 'REFUNDED'
-};
-
-exports.OtpPurpose = exports.$Enums.OtpPurpose = {
-  SIGNUP: 'SIGNUP',
-  LOGIN: 'LOGIN'
-};
-
-exports.AdminRole = exports.$Enums.AdminRole = {
-  SUPER_ADMIN: 'SUPER_ADMIN',
-  SUPPORT_ADMIN: 'SUPPORT_ADMIN',
-  FINANCE_ADMIN: 'FINANCE_ADMIN',
-  ANALYTICS_VIEWER: 'ANALYTICS_VIEWER'
+  CUSTOM: 'CUSTOM',
+  EPISODIC: 'EPISODIC'
 };
 
 exports.LogLevel = exports.$Enums.LogLevel = {
@@ -427,6 +363,7 @@ exports.LogLevel = exports.$Enums.LogLevel = {
 exports.Prisma.ModelName = {
   User: 'User',
   Link: 'Link',
+  Address: 'Address',
   Education: 'Education',
   Work: 'Work',
   Project: 'Project',
@@ -434,17 +371,12 @@ exports.Prisma.ModelName = {
   Resume: 'Resume',
   Memory: 'Memory',
   UsageAnalytics: 'UsageAnalytics',
-  CreditTransaction: 'CreditTransaction',
-  Purchase: 'Purchase',
-  Referral: 'Referral',
-  UserOtp: 'UserOtp',
-  RefreshToken: 'RefreshToken',
   GitHubConnection: 'GitHubConnection',
-  Admin: 'Admin',
-  AdminOtp: 'AdminOtp',
-  AdminSession: 'AdminSession',
   RequestLog: 'RequestLog',
-  AppLog: 'AppLog'
+  AppLog: 'AppLog',
+  FormSession: 'FormSession',
+  ChatEpisode: 'ChatEpisode',
+  ChatMessage: 'ChatMessage'
 };
 
 /**

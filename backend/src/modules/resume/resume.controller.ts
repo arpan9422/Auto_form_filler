@@ -3,7 +3,7 @@ import { AuthRequest } from "../../middleware/auth";
 import {
   createResumeService,
   deleteResumeService,
-  getPresignedUploadUrlService,
+
   getResumesService,
   setDefaultResumeService,
   updateResumeService,
@@ -14,12 +14,16 @@ export const getResumes = async (req: AuthRequest, res: Response) => {
   res.status(200).json(resumes);
 };
 
-export const getUploadUrl = async (req: AuthRequest, res: Response) => {
-  const { filename, contentType } = req.body as { filename: string; contentType?: string };
-  const result = await getPresignedUploadUrlService(req.userId!, filename, contentType);
-  console.log(result);
+export const uploadResume = async (req: AuthRequest, res: Response) => {
+  if (!req.file) {
+    res.status(400).json({ error: "No file uploaded" });
+    return;
+  }
   
-  res.status(200).json(result);
+  const fileUrl = `${process.env.BACKEND_URL || 'http://localhost:5000'}/uploads/resumes/${req.file.filename}`;
+  const key = `resumes/${req.file.filename}`;
+  
+  res.status(200).json({ fileUrl, key });
 };
 
 export const createResume = async (req: AuthRequest, res: Response) => {

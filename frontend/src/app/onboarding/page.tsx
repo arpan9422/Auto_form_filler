@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Briefcase, GraduationCap, Link2, Plus, Sparkles, Trash2 } from "lucide-react";
+import { Briefcase, GraduationCap, Link2, Plus, Sparkles, Trash2, User } from "lucide-react";
 import { ApiError } from "@/lib/api";
 import {
   getCurrentUser,
@@ -100,6 +100,9 @@ export default function OnboardingPage() {
   const [saving, setSaving] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [bio, setBio] = useState("");
   const [skillsInput, setSkillsInput] = useState("");
@@ -129,6 +132,9 @@ export default function OnboardingPage() {
         }
 
         setUser(currentUser);
+        setFirstName(currentUser.firstName ?? "");
+        setLastName(currentUser.lastName ?? "");
+        setEmail(currentUser.email ?? "");
         setPhone(currentUser.phone ?? "");
         setBio(currentUser.bio ?? "");
         setSkillsInput((currentUser.skills ?? []).join(", "));
@@ -167,7 +173,7 @@ export default function OnboardingPage() {
         );
       } catch {
         removeToken();
-        router.replace("/auth");
+        router.replace("/");
         return;
       }
 
@@ -219,6 +225,9 @@ export default function OnboardingPage() {
 
     try {
       await updateCurrentUser({
+        firstName: firstName.trim() || undefined,
+        lastName: lastName.trim() || undefined,
+        email: email.trim() || undefined,
         phone: phone.trim() || undefined,
         bio: bio.trim() || undefined,
         skills: parsedSkills,
@@ -392,6 +401,27 @@ export default function OnboardingPage() {
                 {errorMessage || successMessage}
               </div>
             )}
+
+            <section style={{ marginBottom: "24px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+                <User size={16} style={{ color: "#f59e0b" }} />
+                <h2 style={{ margin: 0, fontSize: "18px", fontFamily: "'Playfair Display', Georgia, serif" }}>Personal Details</h2>
+              </div>
+              <div style={{ display: "grid", gap: "14px", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
+                <div>
+                  <label className="onboard-label">First Name</label>
+                  <input className="onboard-input" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="John" />
+                </div>
+                <div>
+                  <label className="onboard-label">Last Name</label>
+                  <input className="onboard-input" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Doe" />
+                </div>
+                <div>
+                  <label className="onboard-label">Email</label>
+                  <input className="onboard-input" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="john@example.com" />
+                </div>
+              </div>
+            </section>
 
             <section style={{ marginBottom: "24px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>

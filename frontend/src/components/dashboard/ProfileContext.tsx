@@ -140,6 +140,7 @@ export function ProfileContext() {
 
     try {
       await updateCurrentUser({
+        email: profile.email || undefined,
         firstName: nameParts[0] ?? '',
         lastName: nameParts.length > 1 ? nameParts[nameParts.length - 1] : nameParts[0] ?? '',
         phone: profile.phone || undefined,

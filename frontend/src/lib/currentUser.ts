@@ -49,6 +49,7 @@ export type CurrentUser = {
 };
 
 export type UpdateCurrentUserPayload = {
+  email?: string;
   firstName?: string;
   middleName?: string;
   lastName?: string;
