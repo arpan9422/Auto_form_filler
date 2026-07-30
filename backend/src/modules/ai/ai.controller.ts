@@ -53,6 +53,7 @@ export const submitFeedback = async (req: AuthRequest, res: Response) => {
 
 // POST /ai/agent/fill – LangGraph-powered autofill (agentic path)
 export const agentFill = async (req: AuthRequest, res: Response) => {
+  console.log("[FormPilot] Received agentFill request with body:", { fieldsCount: req.body?.fields?.length, url: req.body?.url });
   if (!req.userId) throw new AppError("Unauthorized", 401);
 
   const fields = Array.isArray(req.body?.fields) ? req.body.fields : null;

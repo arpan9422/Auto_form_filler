@@ -70,8 +70,10 @@ chrome.runtime.onMessage.addListener((message: RuntimeMessage, sender, sendRespo
 // ─── Handler: form fields detected passively ──────────────────────────────────
 
 async function handleFormFieldsDetected(tabId: number | undefined, fields: FormField[], rawHtml?: string, url?: string) {
-  if (!tabId || !fields?.length) {
-    console.warn("[FormPilot] No tab or fields, skipping");
+  if (!tabId) return;
+  if (!fields || !fields.length) {
+    console.warn("[FormPilot] No fields found on page, notifying UI");
+    notifyContent(tabId, "AUTOFILL_STATUS", { status: "no_fields", step: "No fillable form inputs detected on this page." });
     return;
   }
 
@@ -244,6 +246,7 @@ async function generateAnswers(tabId: number, fields: FormField[], rawHtml?: str
   tabAbortControllers.set(tabId, abortController);
 
   let agentResponse: AgentFillResponse | null = null;
+  console.log(`[FormPilot] Calling agentFill for tab ${tabId} with ${payloadFields.length} fields...`);
   try {
     agentResponse = await agentFill({
       fields: payloadFields,
@@ -253,6 +256,7 @@ async function generateAnswers(tabId: number, fields: FormField[], rawHtml?: str
       rawHtml,
       url,
     }, abortController.signal);
+    console.log("[FormPilot] agentFill returned:", agentResponse);
   } catch (err: any) {
     if (err.name === 'AbortError') {
       console.log(`[FormPilot] Agent fill was aborted for tab ${tabId}`);
@@ -279,7 +283,7 @@ async function generateAnswers(tabId: number, fields: FormField[], rawHtml?: str
     // Record Analytics
     const answeredKeys = Object.keys(answers);
     const totalFields = fields.length;
-    
+
     recordAnalytics({
       platform: domain,
       websiteUrl: url ?? "unknown",
@@ -315,6 +319,7 @@ async function generateAnswers(tabId: number, fields: FormField[], rawHtml?: str
 
     return answers;
   }
+  console.log("i am here");
 
   // ── Fallback: legacy deterministic /generate ────────────────────────────────
   console.warn("[FormPilot] Agent fill returned null — falling back to /generate");
@@ -365,7 +370,7 @@ function notifyContent(tabId: number, type: string, payload: Record<string, unkn
     // Content script might not be ready — swallow silently
   });
   // Broadcast to extension pages like popup
-  chrome.runtime.sendMessage({ type, ...payload }).catch(() => {});
+  chrome.runtime.sendMessage({ type, ...payload }).catch(() => { });
 }
 
 // ─── Local fallback (offline / unauthenticated) ───────────────────────────────

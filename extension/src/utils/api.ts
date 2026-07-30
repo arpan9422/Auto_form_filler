@@ -1,5 +1,5 @@
 // API utility for extension
-const API_URL = "http://localhost:5000/api";
+const API_URL = "http://127.0.0.1:5000/api";
 const TOKEN_COOKIE_NAME = "token";
 const FRONTEND_ORIGINS = ["http://localhost:3000", "http://127.0.0.1:3000"];
 
@@ -7,8 +7,12 @@ const FRONTEND_ORIGINS = ["http://localhost:3000", "http://127.0.0.1:3000"];
 
 export async function getToken(): Promise<string | null> {
   for (const url of FRONTEND_ORIGINS) {
-    const cookie = await chrome.cookies.get({ url, name: TOKEN_COOKIE_NAME });
-    if (cookie?.value) return cookie.value;
+    try {
+      const cookie = await chrome.cookies.get({ url, name: TOKEN_COOKIE_NAME });
+      if (cookie?.value) return cookie.value;
+    } catch (err) {
+      console.warn(`[FormPilot] Could not get cookie for ${url}:`, err);
+    }
   }
   const { token } = await chrome.storage.local.get("token");
   return token || null;
@@ -40,7 +44,8 @@ export async function apiRequest(
     body: body ? JSON.stringify(body) : undefined,
     signal
   });
-
+  
+  console.log(`[FormPilot] API Request to ${endpoint} returned status ${response.status}`);
   return response.json();
 }
 
@@ -69,6 +74,7 @@ export interface AgentFillResponse {
 
 export async function recordAnalytics(payload: any): Promise<void> {
   try {
+    console.log("[FormPilot] Recording analytics...");
     await apiRequest("/dashboard/analytics", "POST", payload);
   } catch (err) {
     console.warn("[FormPilot] Failed to record analytics", err);
@@ -81,15 +87,20 @@ export async function recordAnalytics(payload: any): Promise<void> {
  */
 export async function agentFill(payload: AgentFillPayload, signal?: AbortSignal): Promise<AgentFillResponse | null> {
   try {
+    console.log("[FormPilot] Calling agentFill API...");
     const data = await apiRequest("/ai/agent/fill", "POST", payload, signal);
     if (data && typeof data.answers === "object" && !data.error) {
+      console.log("[FormPilot] agentFill success");
       return data as AgentFillResponse;
     }
+    console.log("[FormPilot] agentFill returned invalid data");
     return null;
   } catch (err: any) {
     if (err.name === 'AbortError') {
+      console.log("[FormPilot] agentFill aborted");
       throw err;
     }
+    console.warn("[FormPilot] agentFill error", err);
     return null;
   }
 }

@@ -24,7 +24,6 @@ export function scanFormsOnDemand() {
 
     if (!formFields.length) {
       console.warn("[FormPilot] No fields found on this page");
-      return [];
     }
 
     // Gather raw HTML for refine context

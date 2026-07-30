@@ -339,33 +339,41 @@ Auto_form_filler/
 
 The main form-filling agent is a **5-node LangGraph StateGraph**:
 
-```
-START
-  |
-  v
-[intake]            Normalize raw form fields, identify domain/platform,
-  |                 resolve deterministic fields (name, email, phone)
-  |                 without LLM calls
-  v
-[planner]           Plan which fields need LLM generation, group by
-  |                 semantic category, classify field intent
-  |
-  v
-[context_retrieval] Query ChromaDB with RAG for the most relevant
-  |                 user profile chunks based on field types
-  |
-  v
-[composer]          LLM generates all pending field answers using
-  |                 the retrieved context, system prompt, and field metadata.
-  |                 Output is a strict JSON map {fieldKey: value}
-  |
-  v
-[validator]         Parse and validate the JSON. If fields are missing
-  |                 or malformed, routes back to composer for repair
-  |                 (up to 2 repair attempts)
-  |
-  v
-END
+```mermaid
+flowchart TD
+    START((START)) --> ingest_request[ingest_request]
+    
+    ingest_request --> classify_fields[classify_fields]
+    
+    classify_fields --> resolve_easy_fields[resolve_easy_fields]
+    
+    resolve_easy_fields --> choice1{Pending Fields?}
+    choice1 -- Yes --> plan_fill_actions[plan_fill_actions]
+    choice1 -- No --> finalize_fill_plan[finalize_fill_plan]
+    
+    plan_fill_actions --> retrieve_context[retrieve_context]
+    
+    retrieve_context --> compose_answers[compose_answers]
+    
+    compose_answers --> validate_answers[validate_answers]
+    
+    validate_answers --> choice2{Need Repair &<br/>Under Token Budget?}
+    choice2 -- Yes --> repair_answers[repair_answers]
+    choice2 -- No --> finalize_fill_plan
+    
+    repair_answers --> validate_answers
+    
+    finalize_fill_plan --> log_run[log_run]
+    
+    log_run --> END((END))
+
+    classDef node fill:#1e293b,stroke:#3b82f6,stroke-width:2px,color:#fff
+    classDef startend fill:#0f172a,stroke:#10b981,stroke-width:2px,color:#fff
+    classDef condition fill:#334155,stroke:#f59e0b,stroke-width:2px,color:#fff
+
+    class ingest_request,classify_fields,resolve_easy_fields,plan_fill_actions,retrieve_context,compose_answers,validate_answers,repair_answers,finalize_fill_plan,log_run node
+    class START,END startend
+    class choice1,choice2 condition
 ```
 
 **Key design decisions:**
@@ -381,6 +389,21 @@ A conversational AI agent with **episodic memory persistence**:
 - Embeds new exchanges into ChromaDB as `EPISODIC` chunks
 - Retrieves relevant past episodes via semantic search to maintain long-term context
 - Uses a custom humanized prompt — no formatting, no asterisks, short and natural by default
+
+```mermaid
+flowchart TD
+    START((START)) --> gather_user_intelligence[gather_user_intelligence]
+    
+    gather_user_intelligence --> generate_agent_response[generate_agent_response]
+    
+    generate_agent_response --> END((END))
+
+    classDef node fill:#1e293b,stroke:#3b82f6,stroke-width:2px,color:#fff
+    classDef startend fill:#0f172a,stroke:#10b981,stroke-width:2px,color:#fff
+
+    class gather_user_intelligence,generate_agent_response node
+    class START,END startend
+```
 
 ### Refine Agent (refine.graph.ts)
 
