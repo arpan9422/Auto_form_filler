@@ -1,8 +1,8 @@
 <div align="center">
   <br />
-  <h1 align="center" style="font-size: 3.5rem; font-weight: 800;">
-    <img src="./frontend/public/logo-inverted.png" alt="FormPilot Logo" width="72" style="vertical-align: middle; margin-right: 14px;" />
-    <span style="vertical-align: middle;">FormPilot AI</span>
+  <img src="./frontend/public/logo-inverted.png" alt="FormPilot Logo" width="100" />
+  <h1 align="center" style="font-size: 3.5rem; font-weight: 800; margin-top: 10px;">
+    FormPilot AI
   </h1>
   <h2 align="center" style="font-size: 1.8rem; font-weight: 600; margin-top: 0;">
     The AI web form & browser agent
@@ -22,11 +22,12 @@
     <a href="#architecture"><b>ARCHITECTURE</b></a> &nbsp;&bull;&nbsp;
     <a href="#project-structure"><b>WEB IDENTITY</b></a> &nbsp;&bull;&nbsp;
     <a href="#getting-started"><b>QUICK START</b></a>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="https://github.com/arpan9422/Auto_form_filler/stargazers"><img src="https://img.shields.io/github/stars/arpan9422/Auto_form_filler?style=flat&logo=github&color=f59e0b" alt="GitHub Stars" style="vertical-align: middle;" /></a>
-    <a href="https://github.com/arpan9422/Auto_form_filler/issues"><img src="https://img.shields.io/github/issues/arpan9422/Auto_form_filler?style=flat&logo=github&color=3b82f6" alt="GitHub Issues" style="vertical-align: middle;" /></a>
-    <a href="https://github.com/arpan9422/Auto_form_filler/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-10b981?style=flat" alt="MIT License" style="vertical-align: middle;" /></a>
-    <a href="#universal-llm-gateway--multi-provider-engine"><img src="https://img.shields.io/badge/GATEWAY-6%20LLM%20Engines-ea580c?style=for-the-badge&logo=openai" alt="LLM Gateway" style="vertical-align: middle;" /></a>
+  </p>
+  <p>
+    <a href="https://github.com/arpan9422/Auto_form_filler/stargazers"><img src="https://img.shields.io/github/stars/arpan9422/Auto_form_filler?style=flat&logo=github&color=f59e0b" alt="GitHub Stars" /></a>
+    <a href="https://github.com/arpan9422/Auto_form_filler/issues"><img src="https://img.shields.io/github/issues/arpan9422/Auto_form_filler?style=flat&logo=github&color=3b82f6" alt="GitHub Issues" /></a>
+    <a href="https://github.com/arpan9422/Auto_form_filler/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-10b981?style=flat" alt="MIT License" /></a>
+    <a href="#universal-llm-gateway--multi-provider-engine"><img src="https://img.shields.io/badge/GATEWAY-6%20LLM%20Engines-ea580c?style=flat&logo=openai" alt="LLM Gateway" /></a>
   </p>
 </div>
 
