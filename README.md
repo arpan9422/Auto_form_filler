@@ -409,6 +409,30 @@ flowchart TD
 
 Handles post-fill refinement requests — updates specific fields based on natural language instructions without re-running the full pipeline.
 
+### Outreach Agent (outreach.graph.ts)
+
+An autonomous cold outreach agent for bulk email campaigns:
+- Loads contacts from the database
+- Scrapes the target company's website using Firecrawl to gather live context
+- Generates highly personalized emails fusing the candidate's RAG profile with the company's context
+
+```mermaid
+flowchart TD
+    START((START)) --> load[loadContacts]
+    
+    load --> scrape[scrapeCompanyContext]
+    
+    scrape --> draft[draftEmails]
+    
+    draft --> END((END))
+
+    classDef node fill:#1e293b,stroke:#3b82f6,stroke-width:2px,color:#fff
+    classDef startend fill:#0f172a,stroke:#10b981,stroke-width:2px,color:#fff
+
+    class load,scrape,draft node
+    class START,END startend
+```
+
 ---
 
 ## RAG System
