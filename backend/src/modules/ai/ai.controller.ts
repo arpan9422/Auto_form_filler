@@ -96,6 +96,7 @@ export const agentRefine = async (req: AuthRequest, res: Response) => {
 
 // POST /ai/agent/chat – LangGraph conversational Chat Agent
 export const agentChat = async (req: AuthRequest, res: Response) => {
+  console.log(`[FormPilot] Received agentChat request: ${req.body?.message}`);
   if (!req.userId) throw new AppError("Unauthorized", 401);
 
   const message = typeof req.body?.message === "string" ? req.body.message : "";

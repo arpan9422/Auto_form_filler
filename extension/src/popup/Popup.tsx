@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 
 async function sendMessageToActiveTab(message: Record<string, unknown>) {
@@ -83,6 +83,17 @@ function Popup() {
         }}
       >
         {buttonText}
+      </button>
+
+      <button
+        className="popup-btn secondary"
+        onClick={async () => {
+          await sendMessageToActiveTab({ type: "OPEN_CHAT" });
+          window.close();
+        }}
+        style={{ marginBottom: "8px" }}
+      >
+        💬 Open Career Copilot
       </button>
 
       <button

@@ -98,6 +98,31 @@ export type ChatMessage = $Result.DefaultSelection<Prisma.$ChatMessagePayload>
  * 
  */
 export type LLMGatewayConfig = $Result.DefaultSelection<Prisma.$LLMGatewayConfigPayload>
+/**
+ * Model CompanyContextCache
+ * 
+ */
+export type CompanyContextCache = $Result.DefaultSelection<Prisma.$CompanyContextCachePayload>
+/**
+ * Model LatexTemplate
+ * 
+ */
+export type LatexTemplate = $Result.DefaultSelection<Prisma.$LatexTemplatePayload>
+/**
+ * Model TailoredResume
+ * 
+ */
+export type TailoredResume = $Result.DefaultSelection<Prisma.$TailoredResumePayload>
+/**
+ * Model Campaign
+ * 
+ */
+export type Campaign = $Result.DefaultSelection<Prisma.$CampaignPayload>
+/**
+ * Model CampaignContact
+ * 
+ */
+export type CampaignContact = $Result.DefaultSelection<Prisma.$CampaignContactPayload>
 
 /**
  * Enums
@@ -452,6 +477,56 @@ export class PrismaClient<
     * ```
     */
   get lLMGatewayConfig(): Prisma.LLMGatewayConfigDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.companyContextCache`: Exposes CRUD operations for the **CompanyContextCache** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CompanyContextCaches
+    * const companyContextCaches = await prisma.companyContextCache.findMany()
+    * ```
+    */
+  get companyContextCache(): Prisma.CompanyContextCacheDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.latexTemplate`: Exposes CRUD operations for the **LatexTemplate** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LatexTemplates
+    * const latexTemplates = await prisma.latexTemplate.findMany()
+    * ```
+    */
+  get latexTemplate(): Prisma.LatexTemplateDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.tailoredResume`: Exposes CRUD operations for the **TailoredResume** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TailoredResumes
+    * const tailoredResumes = await prisma.tailoredResume.findMany()
+    * ```
+    */
+  get tailoredResume(): Prisma.TailoredResumeDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.campaign`: Exposes CRUD operations for the **Campaign** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Campaigns
+    * const campaigns = await prisma.campaign.findMany()
+    * ```
+    */
+  get campaign(): Prisma.CampaignDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.campaignContact`: Exposes CRUD operations for the **CampaignContact** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CampaignContacts
+    * const campaignContacts = await prisma.campaignContact.findMany()
+    * ```
+    */
+  get campaignContact(): Prisma.CampaignContactDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -902,7 +977,12 @@ export namespace Prisma {
     FormSession: 'FormSession',
     ChatEpisode: 'ChatEpisode',
     ChatMessage: 'ChatMessage',
-    LLMGatewayConfig: 'LLMGatewayConfig'
+    LLMGatewayConfig: 'LLMGatewayConfig',
+    CompanyContextCache: 'CompanyContextCache',
+    LatexTemplate: 'LatexTemplate',
+    TailoredResume: 'TailoredResume',
+    Campaign: 'Campaign',
+    CampaignContact: 'CampaignContact'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -918,7 +998,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "link" | "address" | "education" | "work" | "project" | "answerLibrary" | "resume" | "memory" | "usageAnalytics" | "gitHubConnection" | "requestLog" | "appLog" | "formSession" | "chatEpisode" | "chatMessage" | "lLMGatewayConfig"
+      modelProps: "user" | "link" | "address" | "education" | "work" | "project" | "answerLibrary" | "resume" | "memory" | "usageAnalytics" | "gitHubConnection" | "requestLog" | "appLog" | "formSession" | "chatEpisode" | "chatMessage" | "lLMGatewayConfig" | "companyContextCache" | "latexTemplate" | "tailoredResume" | "campaign" | "campaignContact"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2180,6 +2260,376 @@ export namespace Prisma {
           }
         }
       }
+      CompanyContextCache: {
+        payload: Prisma.$CompanyContextCachePayload<ExtArgs>
+        fields: Prisma.CompanyContextCacheFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CompanyContextCacheFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyContextCachePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CompanyContextCacheFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyContextCachePayload>
+          }
+          findFirst: {
+            args: Prisma.CompanyContextCacheFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyContextCachePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CompanyContextCacheFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyContextCachePayload>
+          }
+          findMany: {
+            args: Prisma.CompanyContextCacheFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyContextCachePayload>[]
+          }
+          create: {
+            args: Prisma.CompanyContextCacheCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyContextCachePayload>
+          }
+          createMany: {
+            args: Prisma.CompanyContextCacheCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CompanyContextCacheCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyContextCachePayload>[]
+          }
+          delete: {
+            args: Prisma.CompanyContextCacheDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyContextCachePayload>
+          }
+          update: {
+            args: Prisma.CompanyContextCacheUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyContextCachePayload>
+          }
+          deleteMany: {
+            args: Prisma.CompanyContextCacheDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CompanyContextCacheUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CompanyContextCacheUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyContextCachePayload>[]
+          }
+          upsert: {
+            args: Prisma.CompanyContextCacheUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyContextCachePayload>
+          }
+          aggregate: {
+            args: Prisma.CompanyContextCacheAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCompanyContextCache>
+          }
+          groupBy: {
+            args: Prisma.CompanyContextCacheGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CompanyContextCacheGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CompanyContextCacheCountArgs<ExtArgs>
+            result: $Utils.Optional<CompanyContextCacheCountAggregateOutputType> | number
+          }
+        }
+      }
+      LatexTemplate: {
+        payload: Prisma.$LatexTemplatePayload<ExtArgs>
+        fields: Prisma.LatexTemplateFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LatexTemplateFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LatexTemplatePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LatexTemplateFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LatexTemplatePayload>
+          }
+          findFirst: {
+            args: Prisma.LatexTemplateFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LatexTemplatePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LatexTemplateFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LatexTemplatePayload>
+          }
+          findMany: {
+            args: Prisma.LatexTemplateFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LatexTemplatePayload>[]
+          }
+          create: {
+            args: Prisma.LatexTemplateCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LatexTemplatePayload>
+          }
+          createMany: {
+            args: Prisma.LatexTemplateCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LatexTemplateCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LatexTemplatePayload>[]
+          }
+          delete: {
+            args: Prisma.LatexTemplateDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LatexTemplatePayload>
+          }
+          update: {
+            args: Prisma.LatexTemplateUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LatexTemplatePayload>
+          }
+          deleteMany: {
+            args: Prisma.LatexTemplateDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LatexTemplateUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LatexTemplateUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LatexTemplatePayload>[]
+          }
+          upsert: {
+            args: Prisma.LatexTemplateUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LatexTemplatePayload>
+          }
+          aggregate: {
+            args: Prisma.LatexTemplateAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLatexTemplate>
+          }
+          groupBy: {
+            args: Prisma.LatexTemplateGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LatexTemplateGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LatexTemplateCountArgs<ExtArgs>
+            result: $Utils.Optional<LatexTemplateCountAggregateOutputType> | number
+          }
+        }
+      }
+      TailoredResume: {
+        payload: Prisma.$TailoredResumePayload<ExtArgs>
+        fields: Prisma.TailoredResumeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TailoredResumeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TailoredResumePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TailoredResumeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TailoredResumePayload>
+          }
+          findFirst: {
+            args: Prisma.TailoredResumeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TailoredResumePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TailoredResumeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TailoredResumePayload>
+          }
+          findMany: {
+            args: Prisma.TailoredResumeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TailoredResumePayload>[]
+          }
+          create: {
+            args: Prisma.TailoredResumeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TailoredResumePayload>
+          }
+          createMany: {
+            args: Prisma.TailoredResumeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TailoredResumeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TailoredResumePayload>[]
+          }
+          delete: {
+            args: Prisma.TailoredResumeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TailoredResumePayload>
+          }
+          update: {
+            args: Prisma.TailoredResumeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TailoredResumePayload>
+          }
+          deleteMany: {
+            args: Prisma.TailoredResumeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TailoredResumeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TailoredResumeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TailoredResumePayload>[]
+          }
+          upsert: {
+            args: Prisma.TailoredResumeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TailoredResumePayload>
+          }
+          aggregate: {
+            args: Prisma.TailoredResumeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTailoredResume>
+          }
+          groupBy: {
+            args: Prisma.TailoredResumeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TailoredResumeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TailoredResumeCountArgs<ExtArgs>
+            result: $Utils.Optional<TailoredResumeCountAggregateOutputType> | number
+          }
+        }
+      }
+      Campaign: {
+        payload: Prisma.$CampaignPayload<ExtArgs>
+        fields: Prisma.CampaignFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CampaignFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampaignPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CampaignFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampaignPayload>
+          }
+          findFirst: {
+            args: Prisma.CampaignFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampaignPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CampaignFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampaignPayload>
+          }
+          findMany: {
+            args: Prisma.CampaignFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampaignPayload>[]
+          }
+          create: {
+            args: Prisma.CampaignCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampaignPayload>
+          }
+          createMany: {
+            args: Prisma.CampaignCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CampaignCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampaignPayload>[]
+          }
+          delete: {
+            args: Prisma.CampaignDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampaignPayload>
+          }
+          update: {
+            args: Prisma.CampaignUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampaignPayload>
+          }
+          deleteMany: {
+            args: Prisma.CampaignDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CampaignUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CampaignUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampaignPayload>[]
+          }
+          upsert: {
+            args: Prisma.CampaignUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampaignPayload>
+          }
+          aggregate: {
+            args: Prisma.CampaignAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCampaign>
+          }
+          groupBy: {
+            args: Prisma.CampaignGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CampaignGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CampaignCountArgs<ExtArgs>
+            result: $Utils.Optional<CampaignCountAggregateOutputType> | number
+          }
+        }
+      }
+      CampaignContact: {
+        payload: Prisma.$CampaignContactPayload<ExtArgs>
+        fields: Prisma.CampaignContactFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CampaignContactFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampaignContactPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CampaignContactFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampaignContactPayload>
+          }
+          findFirst: {
+            args: Prisma.CampaignContactFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampaignContactPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CampaignContactFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampaignContactPayload>
+          }
+          findMany: {
+            args: Prisma.CampaignContactFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampaignContactPayload>[]
+          }
+          create: {
+            args: Prisma.CampaignContactCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampaignContactPayload>
+          }
+          createMany: {
+            args: Prisma.CampaignContactCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CampaignContactCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampaignContactPayload>[]
+          }
+          delete: {
+            args: Prisma.CampaignContactDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampaignContactPayload>
+          }
+          update: {
+            args: Prisma.CampaignContactUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampaignContactPayload>
+          }
+          deleteMany: {
+            args: Prisma.CampaignContactDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CampaignContactUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CampaignContactUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampaignContactPayload>[]
+          }
+          upsert: {
+            args: Prisma.CampaignContactUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CampaignContactPayload>
+          }
+          aggregate: {
+            args: Prisma.CampaignContactAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCampaignContact>
+          }
+          groupBy: {
+            args: Prisma.CampaignContactGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CampaignContactGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CampaignContactCountArgs<ExtArgs>
+            result: $Utils.Optional<CampaignContactCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2305,6 +2755,11 @@ export namespace Prisma {
     chatEpisode?: ChatEpisodeOmit
     chatMessage?: ChatMessageOmit
     lLMGatewayConfig?: LLMGatewayConfigOmit
+    companyContextCache?: CompanyContextCacheOmit
+    latexTemplate?: LatexTemplateOmit
+    tailoredResume?: TailoredResumeOmit
+    campaign?: CampaignOmit
+    campaignContact?: CampaignContactOmit
   }
 
   /* Types for Logging */
@@ -2385,33 +2840,37 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    links: number
     addresses: number
-    educations: number
-    works: number
-    projects: number
     answers: number
-    resumes: number
-    memories: number
-    analytics: number
-    formSessions: number
     chatEpisodes: number
-    GitHubConnections: number
+    educations: number
+    formSessions: number
+    LatexTemplate: number
+    links: number
+    memories: number
+    projects: number
+    resumes: number
+    TailoredResume: number
+    analytics: number
+    works: number
+    campaigns: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    links?: boolean | UserCountOutputTypeCountLinksArgs
     addresses?: boolean | UserCountOutputTypeCountAddressesArgs
-    educations?: boolean | UserCountOutputTypeCountEducationsArgs
-    works?: boolean | UserCountOutputTypeCountWorksArgs
-    projects?: boolean | UserCountOutputTypeCountProjectsArgs
     answers?: boolean | UserCountOutputTypeCountAnswersArgs
-    resumes?: boolean | UserCountOutputTypeCountResumesArgs
-    memories?: boolean | UserCountOutputTypeCountMemoriesArgs
-    analytics?: boolean | UserCountOutputTypeCountAnalyticsArgs
-    formSessions?: boolean | UserCountOutputTypeCountFormSessionsArgs
     chatEpisodes?: boolean | UserCountOutputTypeCountChatEpisodesArgs
-    GitHubConnections?: boolean | UserCountOutputTypeCountGitHubConnectionsArgs
+    educations?: boolean | UserCountOutputTypeCountEducationsArgs
+    formSessions?: boolean | UserCountOutputTypeCountFormSessionsArgs
+    LatexTemplate?: boolean | UserCountOutputTypeCountLatexTemplateArgs
+    links?: boolean | UserCountOutputTypeCountLinksArgs
+    memories?: boolean | UserCountOutputTypeCountMemoriesArgs
+    projects?: boolean | UserCountOutputTypeCountProjectsArgs
+    resumes?: boolean | UserCountOutputTypeCountResumesArgs
+    TailoredResume?: boolean | UserCountOutputTypeCountTailoredResumeArgs
+    analytics?: boolean | UserCountOutputTypeCountAnalyticsArgs
+    works?: boolean | UserCountOutputTypeCountWorksArgs
+    campaigns?: boolean | UserCountOutputTypeCountCampaignsArgs
   }
 
   // Custom InputTypes
@@ -2428,36 +2887,8 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LinkWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
   export type UserCountOutputTypeCountAddressesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AddressWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountEducationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: EducationWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountWorksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: WorkWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountProjectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProjectWhereInput
   }
 
   /**
@@ -2470,22 +2901,15 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountResumesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ResumeWhereInput
+  export type UserCountOutputTypeCountChatEpisodesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChatEpisodeWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountMemoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: MemoryWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountAnalyticsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UsageAnalyticsWhereInput
+  export type UserCountOutputTypeCountEducationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EducationWhereInput
   }
 
   /**
@@ -2498,15 +2922,64 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountChatEpisodesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ChatEpisodeWhereInput
+  export type UserCountOutputTypeCountLatexTemplateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LatexTemplateWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountGitHubConnectionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: GitHubConnectionWhereInput
+  export type UserCountOutputTypeCountLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LinkWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountMemoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MemoryWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountProjectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountResumesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ResumeWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountTailoredResumeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TailoredResumeWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountAnalyticsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UsageAnalyticsWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountWorksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WorkWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCampaignsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CampaignWhereInput
   }
 
 
@@ -2538,6 +3011,37 @@ export namespace Prisma {
    */
   export type ChatEpisodeCountOutputTypeCountMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ChatMessageWhereInput
+  }
+
+
+  /**
+   * Count Type CampaignCountOutputType
+   */
+
+  export type CampaignCountOutputType = {
+    contacts: number
+  }
+
+  export type CampaignCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    contacts?: boolean | CampaignCountOutputTypeCountContactsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CampaignCountOutputType without action
+   */
+  export type CampaignCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampaignCountOutputType
+     */
+    select?: CampaignCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CampaignCountOutputType without action
+   */
+  export type CampaignCountOutputTypeCountContactsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CampaignContactWhereInput
   }
 
 
@@ -2761,19 +3265,22 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    links?: boolean | User$linksArgs<ExtArgs>
     addresses?: boolean | User$addressesArgs<ExtArgs>
-    educations?: boolean | User$educationsArgs<ExtArgs>
-    works?: boolean | User$worksArgs<ExtArgs>
-    projects?: boolean | User$projectsArgs<ExtArgs>
     answers?: boolean | User$answersArgs<ExtArgs>
-    resumes?: boolean | User$resumesArgs<ExtArgs>
-    memories?: boolean | User$memoriesArgs<ExtArgs>
-    analytics?: boolean | User$analyticsArgs<ExtArgs>
-    formSessions?: boolean | User$formSessionsArgs<ExtArgs>
     chatEpisodes?: boolean | User$chatEpisodesArgs<ExtArgs>
-    llmConfig?: boolean | User$llmConfigArgs<ExtArgs>
+    educations?: boolean | User$educationsArgs<ExtArgs>
+    formSessions?: boolean | User$formSessionsArgs<ExtArgs>
     GitHubConnections?: boolean | User$GitHubConnectionsArgs<ExtArgs>
+    llmConfig?: boolean | User$llmConfigArgs<ExtArgs>
+    LatexTemplate?: boolean | User$LatexTemplateArgs<ExtArgs>
+    links?: boolean | User$linksArgs<ExtArgs>
+    memories?: boolean | User$memoriesArgs<ExtArgs>
+    projects?: boolean | User$projectsArgs<ExtArgs>
+    resumes?: boolean | User$resumesArgs<ExtArgs>
+    TailoredResume?: boolean | User$TailoredResumeArgs<ExtArgs>
+    analytics?: boolean | User$analyticsArgs<ExtArgs>
+    works?: boolean | User$worksArgs<ExtArgs>
+    campaigns?: boolean | User$campaignsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2824,19 +3331,22 @@ export namespace Prisma {
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "referralCode" | "firstName" | "middleName" | "lastName" | "phone" | "bio" | "skills" | "onboardingDone" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    links?: boolean | User$linksArgs<ExtArgs>
     addresses?: boolean | User$addressesArgs<ExtArgs>
-    educations?: boolean | User$educationsArgs<ExtArgs>
-    works?: boolean | User$worksArgs<ExtArgs>
-    projects?: boolean | User$projectsArgs<ExtArgs>
     answers?: boolean | User$answersArgs<ExtArgs>
-    resumes?: boolean | User$resumesArgs<ExtArgs>
-    memories?: boolean | User$memoriesArgs<ExtArgs>
-    analytics?: boolean | User$analyticsArgs<ExtArgs>
-    formSessions?: boolean | User$formSessionsArgs<ExtArgs>
     chatEpisodes?: boolean | User$chatEpisodesArgs<ExtArgs>
-    llmConfig?: boolean | User$llmConfigArgs<ExtArgs>
+    educations?: boolean | User$educationsArgs<ExtArgs>
+    formSessions?: boolean | User$formSessionsArgs<ExtArgs>
     GitHubConnections?: boolean | User$GitHubConnectionsArgs<ExtArgs>
+    llmConfig?: boolean | User$llmConfigArgs<ExtArgs>
+    LatexTemplate?: boolean | User$LatexTemplateArgs<ExtArgs>
+    links?: boolean | User$linksArgs<ExtArgs>
+    memories?: boolean | User$memoriesArgs<ExtArgs>
+    projects?: boolean | User$projectsArgs<ExtArgs>
+    resumes?: boolean | User$resumesArgs<ExtArgs>
+    TailoredResume?: boolean | User$TailoredResumeArgs<ExtArgs>
+    analytics?: boolean | User$analyticsArgs<ExtArgs>
+    works?: boolean | User$worksArgs<ExtArgs>
+    campaigns?: boolean | User$campaignsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2845,19 +3355,22 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      links: Prisma.$LinkPayload<ExtArgs>[]
       addresses: Prisma.$AddressPayload<ExtArgs>[]
-      educations: Prisma.$EducationPayload<ExtArgs>[]
-      works: Prisma.$WorkPayload<ExtArgs>[]
-      projects: Prisma.$ProjectPayload<ExtArgs>[]
       answers: Prisma.$AnswerLibraryPayload<ExtArgs>[]
-      resumes: Prisma.$ResumePayload<ExtArgs>[]
-      memories: Prisma.$MemoryPayload<ExtArgs>[]
-      analytics: Prisma.$UsageAnalyticsPayload<ExtArgs>[]
-      formSessions: Prisma.$FormSessionPayload<ExtArgs>[]
       chatEpisodes: Prisma.$ChatEpisodePayload<ExtArgs>[]
+      educations: Prisma.$EducationPayload<ExtArgs>[]
+      formSessions: Prisma.$FormSessionPayload<ExtArgs>[]
+      GitHubConnections: Prisma.$GitHubConnectionPayload<ExtArgs> | null
       llmConfig: Prisma.$LLMGatewayConfigPayload<ExtArgs> | null
-      GitHubConnections: Prisma.$GitHubConnectionPayload<ExtArgs>[]
+      LatexTemplate: Prisma.$LatexTemplatePayload<ExtArgs>[]
+      links: Prisma.$LinkPayload<ExtArgs>[]
+      memories: Prisma.$MemoryPayload<ExtArgs>[]
+      projects: Prisma.$ProjectPayload<ExtArgs>[]
+      resumes: Prisma.$ResumePayload<ExtArgs>[]
+      TailoredResume: Prisma.$TailoredResumePayload<ExtArgs>[]
+      analytics: Prisma.$UsageAnalyticsPayload<ExtArgs>[]
+      works: Prisma.$WorkPayload<ExtArgs>[]
+      campaigns: Prisma.$CampaignPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3266,19 +3779,22 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    links<T extends User$linksArgs<ExtArgs> = {}>(args?: Subset<T, User$linksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     addresses<T extends User$addressesArgs<ExtArgs> = {}>(args?: Subset<T, User$addressesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    educations<T extends User$educationsArgs<ExtArgs> = {}>(args?: Subset<T, User$educationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EducationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    works<T extends User$worksArgs<ExtArgs> = {}>(args?: Subset<T, User$worksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WorkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    projects<T extends User$projectsArgs<ExtArgs> = {}>(args?: Subset<T, User$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     answers<T extends User$answersArgs<ExtArgs> = {}>(args?: Subset<T, User$answersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnswerLibraryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    resumes<T extends User$resumesArgs<ExtArgs> = {}>(args?: Subset<T, User$resumesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResumePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    memories<T extends User$memoriesArgs<ExtArgs> = {}>(args?: Subset<T, User$memoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    analytics<T extends User$analyticsArgs<ExtArgs> = {}>(args?: Subset<T, User$analyticsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsageAnalyticsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    formSessions<T extends User$formSessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$formSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FormSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     chatEpisodes<T extends User$chatEpisodesArgs<ExtArgs> = {}>(args?: Subset<T, User$chatEpisodesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChatEpisodePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    educations<T extends User$educationsArgs<ExtArgs> = {}>(args?: Subset<T, User$educationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EducationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    formSessions<T extends User$formSessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$formSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FormSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    GitHubConnections<T extends User$GitHubConnectionsArgs<ExtArgs> = {}>(args?: Subset<T, User$GitHubConnectionsArgs<ExtArgs>>): Prisma__GitHubConnectionClient<$Result.GetResult<Prisma.$GitHubConnectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     llmConfig<T extends User$llmConfigArgs<ExtArgs> = {}>(args?: Subset<T, User$llmConfigArgs<ExtArgs>>): Prisma__LLMGatewayConfigClient<$Result.GetResult<Prisma.$LLMGatewayConfigPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    GitHubConnections<T extends User$GitHubConnectionsArgs<ExtArgs> = {}>(args?: Subset<T, User$GitHubConnectionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GitHubConnectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    LatexTemplate<T extends User$LatexTemplateArgs<ExtArgs> = {}>(args?: Subset<T, User$LatexTemplateArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LatexTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    links<T extends User$linksArgs<ExtArgs> = {}>(args?: Subset<T, User$linksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    memories<T extends User$memoriesArgs<ExtArgs> = {}>(args?: Subset<T, User$memoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MemoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    projects<T extends User$projectsArgs<ExtArgs> = {}>(args?: Subset<T, User$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    resumes<T extends User$resumesArgs<ExtArgs> = {}>(args?: Subset<T, User$resumesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResumePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    TailoredResume<T extends User$TailoredResumeArgs<ExtArgs> = {}>(args?: Subset<T, User$TailoredResumeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TailoredResumePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    analytics<T extends User$analyticsArgs<ExtArgs> = {}>(args?: Subset<T, User$analyticsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsageAnalyticsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    works<T extends User$worksArgs<ExtArgs> = {}>(args?: Subset<T, User$worksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WorkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    campaigns<T extends User$campaignsArgs<ExtArgs> = {}>(args?: Subset<T, User$campaignsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3713,30 +4229,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.links
-   */
-  export type User$linksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Link
-     */
-    select?: LinkSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Link
-     */
-    omit?: LinkOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LinkInclude<ExtArgs> | null
-    where?: LinkWhereInput
-    orderBy?: LinkOrderByWithRelationInput | LinkOrderByWithRelationInput[]
-    cursor?: LinkWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: LinkScalarFieldEnum | LinkScalarFieldEnum[]
-  }
-
-  /**
    * User.addresses
    */
   export type User$addressesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3758,78 +4250,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AddressScalarFieldEnum | AddressScalarFieldEnum[]
-  }
-
-  /**
-   * User.educations
-   */
-  export type User$educationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Education
-     */
-    select?: EducationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Education
-     */
-    omit?: EducationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: EducationInclude<ExtArgs> | null
-    where?: EducationWhereInput
-    orderBy?: EducationOrderByWithRelationInput | EducationOrderByWithRelationInput[]
-    cursor?: EducationWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: EducationScalarFieldEnum | EducationScalarFieldEnum[]
-  }
-
-  /**
-   * User.works
-   */
-  export type User$worksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Work
-     */
-    select?: WorkSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Work
-     */
-    omit?: WorkOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: WorkInclude<ExtArgs> | null
-    where?: WorkWhereInput
-    orderBy?: WorkOrderByWithRelationInput | WorkOrderByWithRelationInput[]
-    cursor?: WorkWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: WorkScalarFieldEnum | WorkScalarFieldEnum[]
-  }
-
-  /**
-   * User.projects
-   */
-  export type User$projectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Project
-     */
-    select?: ProjectSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Project
-     */
-    omit?: ProjectOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProjectInclude<ExtArgs> | null
-    where?: ProjectWhereInput
-    orderBy?: ProjectOrderByWithRelationInput | ProjectOrderByWithRelationInput[]
-    cursor?: ProjectWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ProjectScalarFieldEnum | ProjectScalarFieldEnum[]
   }
 
   /**
@@ -3857,75 +4277,51 @@ export namespace Prisma {
   }
 
   /**
-   * User.resumes
+   * User.chatEpisodes
    */
-  export type User$resumesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$chatEpisodesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Resume
+     * Select specific fields to fetch from the ChatEpisode
      */
-    select?: ResumeSelect<ExtArgs> | null
+    select?: ChatEpisodeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Resume
+     * Omit specific fields from the ChatEpisode
      */
-    omit?: ResumeOmit<ExtArgs> | null
+    omit?: ChatEpisodeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ResumeInclude<ExtArgs> | null
-    where?: ResumeWhereInput
-    orderBy?: ResumeOrderByWithRelationInput | ResumeOrderByWithRelationInput[]
-    cursor?: ResumeWhereUniqueInput
+    include?: ChatEpisodeInclude<ExtArgs> | null
+    where?: ChatEpisodeWhereInput
+    orderBy?: ChatEpisodeOrderByWithRelationInput | ChatEpisodeOrderByWithRelationInput[]
+    cursor?: ChatEpisodeWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: ResumeScalarFieldEnum | ResumeScalarFieldEnum[]
+    distinct?: ChatEpisodeScalarFieldEnum | ChatEpisodeScalarFieldEnum[]
   }
 
   /**
-   * User.memories
+   * User.educations
    */
-  export type User$memoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$educationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Memory
+     * Select specific fields to fetch from the Education
      */
-    select?: MemorySelect<ExtArgs> | null
+    select?: EducationSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Memory
+     * Omit specific fields from the Education
      */
-    omit?: MemoryOmit<ExtArgs> | null
+    omit?: EducationOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MemoryInclude<ExtArgs> | null
-    where?: MemoryWhereInput
-    orderBy?: MemoryOrderByWithRelationInput | MemoryOrderByWithRelationInput[]
-    cursor?: MemoryWhereUniqueInput
+    include?: EducationInclude<ExtArgs> | null
+    where?: EducationWhereInput
+    orderBy?: EducationOrderByWithRelationInput | EducationOrderByWithRelationInput[]
+    cursor?: EducationWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: MemoryScalarFieldEnum | MemoryScalarFieldEnum[]
-  }
-
-  /**
-   * User.analytics
-   */
-  export type User$analyticsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UsageAnalytics
-     */
-    select?: UsageAnalyticsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UsageAnalytics
-     */
-    omit?: UsageAnalyticsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UsageAnalyticsInclude<ExtArgs> | null
-    where?: UsageAnalyticsWhereInput
-    orderBy?: UsageAnalyticsOrderByWithRelationInput | UsageAnalyticsOrderByWithRelationInput[]
-    cursor?: UsageAnalyticsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: UsageAnalyticsScalarFieldEnum | UsageAnalyticsScalarFieldEnum[]
+    distinct?: EducationScalarFieldEnum | EducationScalarFieldEnum[]
   }
 
   /**
@@ -3953,27 +4349,22 @@ export namespace Prisma {
   }
 
   /**
-   * User.chatEpisodes
+   * User.GitHubConnections
    */
-  export type User$chatEpisodesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$GitHubConnectionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ChatEpisode
+     * Select specific fields to fetch from the GitHubConnection
      */
-    select?: ChatEpisodeSelect<ExtArgs> | null
+    select?: GitHubConnectionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the ChatEpisode
+     * Omit specific fields from the GitHubConnection
      */
-    omit?: ChatEpisodeOmit<ExtArgs> | null
+    omit?: GitHubConnectionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ChatEpisodeInclude<ExtArgs> | null
-    where?: ChatEpisodeWhereInput
-    orderBy?: ChatEpisodeOrderByWithRelationInput | ChatEpisodeOrderByWithRelationInput[]
-    cursor?: ChatEpisodeWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ChatEpisodeScalarFieldEnum | ChatEpisodeScalarFieldEnum[]
+    include?: GitHubConnectionInclude<ExtArgs> | null
+    where?: GitHubConnectionWhereInput
   }
 
   /**
@@ -3996,27 +4387,219 @@ export namespace Prisma {
   }
 
   /**
-   * User.GitHubConnections
+   * User.LatexTemplate
    */
-  export type User$GitHubConnectionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$LatexTemplateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the GitHubConnection
+     * Select specific fields to fetch from the LatexTemplate
      */
-    select?: GitHubConnectionSelect<ExtArgs> | null
+    select?: LatexTemplateSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the GitHubConnection
+     * Omit specific fields from the LatexTemplate
      */
-    omit?: GitHubConnectionOmit<ExtArgs> | null
+    omit?: LatexTemplateOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: GitHubConnectionInclude<ExtArgs> | null
-    where?: GitHubConnectionWhereInput
-    orderBy?: GitHubConnectionOrderByWithRelationInput | GitHubConnectionOrderByWithRelationInput[]
-    cursor?: GitHubConnectionWhereUniqueInput
+    include?: LatexTemplateInclude<ExtArgs> | null
+    where?: LatexTemplateWhereInput
+    orderBy?: LatexTemplateOrderByWithRelationInput | LatexTemplateOrderByWithRelationInput[]
+    cursor?: LatexTemplateWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: GitHubConnectionScalarFieldEnum | GitHubConnectionScalarFieldEnum[]
+    distinct?: LatexTemplateScalarFieldEnum | LatexTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * User.links
+   */
+  export type User$linksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Link
+     */
+    select?: LinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Link
+     */
+    omit?: LinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LinkInclude<ExtArgs> | null
+    where?: LinkWhereInput
+    orderBy?: LinkOrderByWithRelationInput | LinkOrderByWithRelationInput[]
+    cursor?: LinkWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LinkScalarFieldEnum | LinkScalarFieldEnum[]
+  }
+
+  /**
+   * User.memories
+   */
+  export type User$memoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Memory
+     */
+    select?: MemorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Memory
+     */
+    omit?: MemoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MemoryInclude<ExtArgs> | null
+    where?: MemoryWhereInput
+    orderBy?: MemoryOrderByWithRelationInput | MemoryOrderByWithRelationInput[]
+    cursor?: MemoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MemoryScalarFieldEnum | MemoryScalarFieldEnum[]
+  }
+
+  /**
+   * User.projects
+   */
+  export type User$projectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    where?: ProjectWhereInput
+    orderBy?: ProjectOrderByWithRelationInput | ProjectOrderByWithRelationInput[]
+    cursor?: ProjectWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectScalarFieldEnum | ProjectScalarFieldEnum[]
+  }
+
+  /**
+   * User.resumes
+   */
+  export type User$resumesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Resume
+     */
+    select?: ResumeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Resume
+     */
+    omit?: ResumeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResumeInclude<ExtArgs> | null
+    where?: ResumeWhereInput
+    orderBy?: ResumeOrderByWithRelationInput | ResumeOrderByWithRelationInput[]
+    cursor?: ResumeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ResumeScalarFieldEnum | ResumeScalarFieldEnum[]
+  }
+
+  /**
+   * User.TailoredResume
+   */
+  export type User$TailoredResumeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TailoredResume
+     */
+    select?: TailoredResumeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TailoredResume
+     */
+    omit?: TailoredResumeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TailoredResumeInclude<ExtArgs> | null
+    where?: TailoredResumeWhereInput
+    orderBy?: TailoredResumeOrderByWithRelationInput | TailoredResumeOrderByWithRelationInput[]
+    cursor?: TailoredResumeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TailoredResumeScalarFieldEnum | TailoredResumeScalarFieldEnum[]
+  }
+
+  /**
+   * User.analytics
+   */
+  export type User$analyticsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsageAnalytics
+     */
+    select?: UsageAnalyticsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UsageAnalytics
+     */
+    omit?: UsageAnalyticsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsageAnalyticsInclude<ExtArgs> | null
+    where?: UsageAnalyticsWhereInput
+    orderBy?: UsageAnalyticsOrderByWithRelationInput | UsageAnalyticsOrderByWithRelationInput[]
+    cursor?: UsageAnalyticsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UsageAnalyticsScalarFieldEnum | UsageAnalyticsScalarFieldEnum[]
+  }
+
+  /**
+   * User.works
+   */
+  export type User$worksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Work
+     */
+    select?: WorkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Work
+     */
+    omit?: WorkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WorkInclude<ExtArgs> | null
+    where?: WorkWhereInput
+    orderBy?: WorkOrderByWithRelationInput | WorkOrderByWithRelationInput[]
+    cursor?: WorkWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: WorkScalarFieldEnum | WorkScalarFieldEnum[]
+  }
+
+  /**
+   * User.campaigns
+   */
+  export type User$campaignsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Campaign
+     */
+    select?: CampaignSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Campaign
+     */
+    omit?: CampaignOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignInclude<ExtArgs> | null
+    where?: CampaignWhereInput
+    orderBy?: CampaignOrderByWithRelationInput | CampaignOrderByWithRelationInput[]
+    cursor?: CampaignWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CampaignScalarFieldEnum | CampaignScalarFieldEnum[]
   }
 
   /**
@@ -8455,8 +9038,8 @@ export namespace Prisma {
     description: string | null
     repo_url: string | null
     depolyed_url: string | null
-    priority: number | null
     createdAt: Date | null
+    priority: number | null
   }
 
   export type ProjectMaxAggregateOutputType = {
@@ -8466,8 +9049,8 @@ export namespace Prisma {
     description: string | null
     repo_url: string | null
     depolyed_url: string | null
-    priority: number | null
     createdAt: Date | null
+    priority: number | null
   }
 
   export type ProjectCountAggregateOutputType = {
@@ -8479,8 +9062,8 @@ export namespace Prisma {
     depolyed_url: number
     projectLinks: number
     techStacks: number
-    priority: number
     createdAt: number
+    priority: number
     _all: number
   }
 
@@ -8500,8 +9083,8 @@ export namespace Prisma {
     description?: true
     repo_url?: true
     depolyed_url?: true
-    priority?: true
     createdAt?: true
+    priority?: true
   }
 
   export type ProjectMaxAggregateInputType = {
@@ -8511,8 +9094,8 @@ export namespace Prisma {
     description?: true
     repo_url?: true
     depolyed_url?: true
-    priority?: true
     createdAt?: true
+    priority?: true
   }
 
   export type ProjectCountAggregateInputType = {
@@ -8524,8 +9107,8 @@ export namespace Prisma {
     depolyed_url?: true
     projectLinks?: true
     techStacks?: true
-    priority?: true
     createdAt?: true
+    priority?: true
     _all?: true
   }
 
@@ -8624,8 +9207,8 @@ export namespace Prisma {
     depolyed_url: string | null
     projectLinks: string[]
     techStacks: string[]
-    priority: number
     createdAt: Date
+    priority: number
     _count: ProjectCountAggregateOutputType | null
     _avg: ProjectAvgAggregateOutputType | null
     _sum: ProjectSumAggregateOutputType | null
@@ -8656,8 +9239,8 @@ export namespace Prisma {
     depolyed_url?: boolean
     projectLinks?: boolean
     techStacks?: boolean
-    priority?: boolean
     createdAt?: boolean
+    priority?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
@@ -8670,8 +9253,8 @@ export namespace Prisma {
     depolyed_url?: boolean
     projectLinks?: boolean
     techStacks?: boolean
-    priority?: boolean
     createdAt?: boolean
+    priority?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
@@ -8684,8 +9267,8 @@ export namespace Prisma {
     depolyed_url?: boolean
     projectLinks?: boolean
     techStacks?: boolean
-    priority?: boolean
     createdAt?: boolean
+    priority?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
@@ -8698,11 +9281,11 @@ export namespace Prisma {
     depolyed_url?: boolean
     projectLinks?: boolean
     techStacks?: boolean
-    priority?: boolean
     createdAt?: boolean
+    priority?: boolean
   }
 
-  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "description" | "repo_url" | "depolyed_url" | "projectLinks" | "techStacks" | "priority" | "createdAt", ExtArgs["result"]["project"]>
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "description" | "repo_url" | "depolyed_url" | "projectLinks" | "techStacks" | "createdAt" | "priority", ExtArgs["result"]["project"]>
   export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -8727,8 +9310,8 @@ export namespace Prisma {
       depolyed_url: string | null
       projectLinks: string[]
       techStacks: string[]
-      priority: number
       createdAt: Date
+      priority: number
     }, ExtArgs["result"]["project"]>
     composites: {}
   }
@@ -9161,8 +9744,8 @@ export namespace Prisma {
     readonly depolyed_url: FieldRef<"Project", 'String'>
     readonly projectLinks: FieldRef<"Project", 'String[]'>
     readonly techStacks: FieldRef<"Project", 'String[]'>
-    readonly priority: FieldRef<"Project", 'Int'>
     readonly createdAt: FieldRef<"Project", 'DateTime'>
+    readonly priority: FieldRef<"Project", 'Int'>
   }
     
 
@@ -12850,22 +13433,22 @@ export namespace Prisma {
 
   export type UsageAnalyticsAvgAggregateOutputType = {
     fieldsFilled: number | null
-    totalFields: number | null
     timeSavedSec: number | null
-    tokensUsed: number | null
-    promptTokens: number | null
-    completionTokens: number | null
     aiEdits: number | null
+    completionTokens: number | null
+    promptTokens: number | null
+    tokensUsed: number | null
+    totalFields: number | null
   }
 
   export type UsageAnalyticsSumAggregateOutputType = {
     fieldsFilled: number | null
-    totalFields: number | null
     timeSavedSec: number | null
-    tokensUsed: number | null
-    promptTokens: number | null
-    completionTokens: number | null
     aiEdits: number | null
+    completionTokens: number | null
+    promptTokens: number | null
+    tokensUsed: number | null
+    totalFields: number | null
   }
 
   export type UsageAnalyticsMinAggregateOutputType = {
@@ -12874,14 +13457,14 @@ export namespace Prisma {
     platform: string | null
     websiteUrl: string | null
     fieldsFilled: number | null
-    totalFields: number | null
     timeSavedSec: number | null
-    tokensUsed: number | null
-    promptTokens: number | null
-    completionTokens: number | null
     aiEdits: number | null
     acceptedDirect: boolean | null
     createdAt: Date | null
+    completionTokens: number | null
+    promptTokens: number | null
+    tokensUsed: number | null
+    totalFields: number | null
   }
 
   export type UsageAnalyticsMaxAggregateOutputType = {
@@ -12890,14 +13473,14 @@ export namespace Prisma {
     platform: string | null
     websiteUrl: string | null
     fieldsFilled: number | null
-    totalFields: number | null
     timeSavedSec: number | null
-    tokensUsed: number | null
-    promptTokens: number | null
-    completionTokens: number | null
     aiEdits: number | null
     acceptedDirect: boolean | null
     createdAt: Date | null
+    completionTokens: number | null
+    promptTokens: number | null
+    tokensUsed: number | null
+    totalFields: number | null
   }
 
   export type UsageAnalyticsCountAggregateOutputType = {
@@ -12906,38 +13489,38 @@ export namespace Prisma {
     platform: number
     websiteUrl: number
     fieldsFilled: number
-    totalFields: number
     timeSavedSec: number
-    tokensUsed: number
-    promptTokens: number
-    completionTokens: number
-    fieldsAnswered: number
-    fieldsUnanswered: number
     aiEdits: number
     acceptedDirect: number
     createdAt: number
+    completionTokens: number
+    fieldsAnswered: number
+    fieldsUnanswered: number
+    promptTokens: number
+    tokensUsed: number
+    totalFields: number
     _all: number
   }
 
 
   export type UsageAnalyticsAvgAggregateInputType = {
     fieldsFilled?: true
-    totalFields?: true
     timeSavedSec?: true
-    tokensUsed?: true
-    promptTokens?: true
-    completionTokens?: true
     aiEdits?: true
+    completionTokens?: true
+    promptTokens?: true
+    tokensUsed?: true
+    totalFields?: true
   }
 
   export type UsageAnalyticsSumAggregateInputType = {
     fieldsFilled?: true
-    totalFields?: true
     timeSavedSec?: true
-    tokensUsed?: true
-    promptTokens?: true
-    completionTokens?: true
     aiEdits?: true
+    completionTokens?: true
+    promptTokens?: true
+    tokensUsed?: true
+    totalFields?: true
   }
 
   export type UsageAnalyticsMinAggregateInputType = {
@@ -12946,14 +13529,14 @@ export namespace Prisma {
     platform?: true
     websiteUrl?: true
     fieldsFilled?: true
-    totalFields?: true
     timeSavedSec?: true
-    tokensUsed?: true
-    promptTokens?: true
-    completionTokens?: true
     aiEdits?: true
     acceptedDirect?: true
     createdAt?: true
+    completionTokens?: true
+    promptTokens?: true
+    tokensUsed?: true
+    totalFields?: true
   }
 
   export type UsageAnalyticsMaxAggregateInputType = {
@@ -12962,14 +13545,14 @@ export namespace Prisma {
     platform?: true
     websiteUrl?: true
     fieldsFilled?: true
-    totalFields?: true
     timeSavedSec?: true
-    tokensUsed?: true
-    promptTokens?: true
-    completionTokens?: true
     aiEdits?: true
     acceptedDirect?: true
     createdAt?: true
+    completionTokens?: true
+    promptTokens?: true
+    tokensUsed?: true
+    totalFields?: true
   }
 
   export type UsageAnalyticsCountAggregateInputType = {
@@ -12978,16 +13561,16 @@ export namespace Prisma {
     platform?: true
     websiteUrl?: true
     fieldsFilled?: true
-    totalFields?: true
     timeSavedSec?: true
-    tokensUsed?: true
-    promptTokens?: true
-    completionTokens?: true
-    fieldsAnswered?: true
-    fieldsUnanswered?: true
     aiEdits?: true
     acceptedDirect?: true
     createdAt?: true
+    completionTokens?: true
+    fieldsAnswered?: true
+    fieldsUnanswered?: true
+    promptTokens?: true
+    tokensUsed?: true
+    totalFields?: true
     _all?: true
   }
 
@@ -13083,16 +13666,16 @@ export namespace Prisma {
     platform: string
     websiteUrl: string | null
     fieldsFilled: number
-    totalFields: number
     timeSavedSec: number
-    tokensUsed: number
-    promptTokens: number
-    completionTokens: number
-    fieldsAnswered: JsonValue | null
-    fieldsUnanswered: JsonValue | null
     aiEdits: number
     acceptedDirect: boolean
     createdAt: Date
+    completionTokens: number
+    fieldsAnswered: JsonValue | null
+    fieldsUnanswered: JsonValue | null
+    promptTokens: number
+    tokensUsed: number
+    totalFields: number
     _count: UsageAnalyticsCountAggregateOutputType | null
     _avg: UsageAnalyticsAvgAggregateOutputType | null
     _sum: UsageAnalyticsSumAggregateOutputType | null
@@ -13120,16 +13703,16 @@ export namespace Prisma {
     platform?: boolean
     websiteUrl?: boolean
     fieldsFilled?: boolean
-    totalFields?: boolean
     timeSavedSec?: boolean
-    tokensUsed?: boolean
-    promptTokens?: boolean
-    completionTokens?: boolean
-    fieldsAnswered?: boolean
-    fieldsUnanswered?: boolean
     aiEdits?: boolean
     acceptedDirect?: boolean
     createdAt?: boolean
+    completionTokens?: boolean
+    fieldsAnswered?: boolean
+    fieldsUnanswered?: boolean
+    promptTokens?: boolean
+    tokensUsed?: boolean
+    totalFields?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["usageAnalytics"]>
 
@@ -13139,16 +13722,16 @@ export namespace Prisma {
     platform?: boolean
     websiteUrl?: boolean
     fieldsFilled?: boolean
-    totalFields?: boolean
     timeSavedSec?: boolean
-    tokensUsed?: boolean
-    promptTokens?: boolean
-    completionTokens?: boolean
-    fieldsAnswered?: boolean
-    fieldsUnanswered?: boolean
     aiEdits?: boolean
     acceptedDirect?: boolean
     createdAt?: boolean
+    completionTokens?: boolean
+    fieldsAnswered?: boolean
+    fieldsUnanswered?: boolean
+    promptTokens?: boolean
+    tokensUsed?: boolean
+    totalFields?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["usageAnalytics"]>
 
@@ -13158,16 +13741,16 @@ export namespace Prisma {
     platform?: boolean
     websiteUrl?: boolean
     fieldsFilled?: boolean
-    totalFields?: boolean
     timeSavedSec?: boolean
-    tokensUsed?: boolean
-    promptTokens?: boolean
-    completionTokens?: boolean
-    fieldsAnswered?: boolean
-    fieldsUnanswered?: boolean
     aiEdits?: boolean
     acceptedDirect?: boolean
     createdAt?: boolean
+    completionTokens?: boolean
+    fieldsAnswered?: boolean
+    fieldsUnanswered?: boolean
+    promptTokens?: boolean
+    tokensUsed?: boolean
+    totalFields?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["usageAnalytics"]>
 
@@ -13177,19 +13760,19 @@ export namespace Prisma {
     platform?: boolean
     websiteUrl?: boolean
     fieldsFilled?: boolean
-    totalFields?: boolean
     timeSavedSec?: boolean
-    tokensUsed?: boolean
-    promptTokens?: boolean
-    completionTokens?: boolean
-    fieldsAnswered?: boolean
-    fieldsUnanswered?: boolean
     aiEdits?: boolean
     acceptedDirect?: boolean
     createdAt?: boolean
+    completionTokens?: boolean
+    fieldsAnswered?: boolean
+    fieldsUnanswered?: boolean
+    promptTokens?: boolean
+    tokensUsed?: boolean
+    totalFields?: boolean
   }
 
-  export type UsageAnalyticsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "platform" | "websiteUrl" | "fieldsFilled" | "totalFields" | "timeSavedSec" | "tokensUsed" | "promptTokens" | "completionTokens" | "fieldsAnswered" | "fieldsUnanswered" | "aiEdits" | "acceptedDirect" | "createdAt", ExtArgs["result"]["usageAnalytics"]>
+  export type UsageAnalyticsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "platform" | "websiteUrl" | "fieldsFilled" | "timeSavedSec" | "aiEdits" | "acceptedDirect" | "createdAt" | "completionTokens" | "fieldsAnswered" | "fieldsUnanswered" | "promptTokens" | "tokensUsed" | "totalFields", ExtArgs["result"]["usageAnalytics"]>
   export type UsageAnalyticsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -13211,16 +13794,16 @@ export namespace Prisma {
       platform: string
       websiteUrl: string | null
       fieldsFilled: number
-      totalFields: number
       timeSavedSec: number
-      tokensUsed: number
-      promptTokens: number
-      completionTokens: number
-      fieldsAnswered: Prisma.JsonValue | null
-      fieldsUnanswered: Prisma.JsonValue | null
       aiEdits: number
       acceptedDirect: boolean
       createdAt: Date
+      completionTokens: number
+      fieldsAnswered: Prisma.JsonValue | null
+      fieldsUnanswered: Prisma.JsonValue | null
+      promptTokens: number
+      tokensUsed: number
+      totalFields: number
     }, ExtArgs["result"]["usageAnalytics"]>
     composites: {}
   }
@@ -13650,16 +14233,16 @@ export namespace Prisma {
     readonly platform: FieldRef<"UsageAnalytics", 'String'>
     readonly websiteUrl: FieldRef<"UsageAnalytics", 'String'>
     readonly fieldsFilled: FieldRef<"UsageAnalytics", 'Int'>
-    readonly totalFields: FieldRef<"UsageAnalytics", 'Int'>
     readonly timeSavedSec: FieldRef<"UsageAnalytics", 'Int'>
-    readonly tokensUsed: FieldRef<"UsageAnalytics", 'Int'>
-    readonly promptTokens: FieldRef<"UsageAnalytics", 'Int'>
-    readonly completionTokens: FieldRef<"UsageAnalytics", 'Int'>
-    readonly fieldsAnswered: FieldRef<"UsageAnalytics", 'Json'>
-    readonly fieldsUnanswered: FieldRef<"UsageAnalytics", 'Json'>
     readonly aiEdits: FieldRef<"UsageAnalytics", 'Int'>
     readonly acceptedDirect: FieldRef<"UsageAnalytics", 'Boolean'>
     readonly createdAt: FieldRef<"UsageAnalytics", 'DateTime'>
+    readonly completionTokens: FieldRef<"UsageAnalytics", 'Int'>
+    readonly fieldsAnswered: FieldRef<"UsageAnalytics", 'Json'>
+    readonly fieldsUnanswered: FieldRef<"UsageAnalytics", 'Json'>
+    readonly promptTokens: FieldRef<"UsageAnalytics", 'Int'>
+    readonly tokensUsed: FieldRef<"UsageAnalytics", 'Int'>
+    readonly totalFields: FieldRef<"UsageAnalytics", 'Int'>
   }
     
 
@@ -21797,6 +22380,5444 @@ export namespace Prisma {
 
 
   /**
+   * Model CompanyContextCache
+   */
+
+  export type AggregateCompanyContextCache = {
+    _count: CompanyContextCacheCountAggregateOutputType | null
+    _min: CompanyContextCacheMinAggregateOutputType | null
+    _max: CompanyContextCacheMaxAggregateOutputType | null
+  }
+
+  export type CompanyContextCacheMinAggregateOutputType = {
+    id: string | null
+    url: string | null
+    context: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CompanyContextCacheMaxAggregateOutputType = {
+    id: string | null
+    url: string | null
+    context: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CompanyContextCacheCountAggregateOutputType = {
+    id: number
+    url: number
+    context: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CompanyContextCacheMinAggregateInputType = {
+    id?: true
+    url?: true
+    context?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CompanyContextCacheMaxAggregateInputType = {
+    id?: true
+    url?: true
+    context?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CompanyContextCacheCountAggregateInputType = {
+    id?: true
+    url?: true
+    context?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CompanyContextCacheAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CompanyContextCache to aggregate.
+     */
+    where?: CompanyContextCacheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CompanyContextCaches to fetch.
+     */
+    orderBy?: CompanyContextCacheOrderByWithRelationInput | CompanyContextCacheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CompanyContextCacheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CompanyContextCaches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CompanyContextCaches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CompanyContextCaches
+    **/
+    _count?: true | CompanyContextCacheCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CompanyContextCacheMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CompanyContextCacheMaxAggregateInputType
+  }
+
+  export type GetCompanyContextCacheAggregateType<T extends CompanyContextCacheAggregateArgs> = {
+        [P in keyof T & keyof AggregateCompanyContextCache]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCompanyContextCache[P]>
+      : GetScalarType<T[P], AggregateCompanyContextCache[P]>
+  }
+
+
+
+
+  export type CompanyContextCacheGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CompanyContextCacheWhereInput
+    orderBy?: CompanyContextCacheOrderByWithAggregationInput | CompanyContextCacheOrderByWithAggregationInput[]
+    by: CompanyContextCacheScalarFieldEnum[] | CompanyContextCacheScalarFieldEnum
+    having?: CompanyContextCacheScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CompanyContextCacheCountAggregateInputType | true
+    _min?: CompanyContextCacheMinAggregateInputType
+    _max?: CompanyContextCacheMaxAggregateInputType
+  }
+
+  export type CompanyContextCacheGroupByOutputType = {
+    id: string
+    url: string
+    context: string
+    createdAt: Date
+    updatedAt: Date
+    _count: CompanyContextCacheCountAggregateOutputType | null
+    _min: CompanyContextCacheMinAggregateOutputType | null
+    _max: CompanyContextCacheMaxAggregateOutputType | null
+  }
+
+  type GetCompanyContextCacheGroupByPayload<T extends CompanyContextCacheGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CompanyContextCacheGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CompanyContextCacheGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CompanyContextCacheGroupByOutputType[P]>
+            : GetScalarType<T[P], CompanyContextCacheGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CompanyContextCacheSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    url?: boolean
+    context?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["companyContextCache"]>
+
+  export type CompanyContextCacheSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    url?: boolean
+    context?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["companyContextCache"]>
+
+  export type CompanyContextCacheSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    url?: boolean
+    context?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["companyContextCache"]>
+
+  export type CompanyContextCacheSelectScalar = {
+    id?: boolean
+    url?: boolean
+    context?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CompanyContextCacheOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "url" | "context" | "createdAt" | "updatedAt", ExtArgs["result"]["companyContextCache"]>
+
+  export type $CompanyContextCachePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CompanyContextCache"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      url: string
+      context: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["companyContextCache"]>
+    composites: {}
+  }
+
+  type CompanyContextCacheGetPayload<S extends boolean | null | undefined | CompanyContextCacheDefaultArgs> = $Result.GetResult<Prisma.$CompanyContextCachePayload, S>
+
+  type CompanyContextCacheCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CompanyContextCacheFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CompanyContextCacheCountAggregateInputType | true
+    }
+
+  export interface CompanyContextCacheDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CompanyContextCache'], meta: { name: 'CompanyContextCache' } }
+    /**
+     * Find zero or one CompanyContextCache that matches the filter.
+     * @param {CompanyContextCacheFindUniqueArgs} args - Arguments to find a CompanyContextCache
+     * @example
+     * // Get one CompanyContextCache
+     * const companyContextCache = await prisma.companyContextCache.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CompanyContextCacheFindUniqueArgs>(args: SelectSubset<T, CompanyContextCacheFindUniqueArgs<ExtArgs>>): Prisma__CompanyContextCacheClient<$Result.GetResult<Prisma.$CompanyContextCachePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CompanyContextCache that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CompanyContextCacheFindUniqueOrThrowArgs} args - Arguments to find a CompanyContextCache
+     * @example
+     * // Get one CompanyContextCache
+     * const companyContextCache = await prisma.companyContextCache.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CompanyContextCacheFindUniqueOrThrowArgs>(args: SelectSubset<T, CompanyContextCacheFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CompanyContextCacheClient<$Result.GetResult<Prisma.$CompanyContextCachePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CompanyContextCache that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanyContextCacheFindFirstArgs} args - Arguments to find a CompanyContextCache
+     * @example
+     * // Get one CompanyContextCache
+     * const companyContextCache = await prisma.companyContextCache.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CompanyContextCacheFindFirstArgs>(args?: SelectSubset<T, CompanyContextCacheFindFirstArgs<ExtArgs>>): Prisma__CompanyContextCacheClient<$Result.GetResult<Prisma.$CompanyContextCachePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CompanyContextCache that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanyContextCacheFindFirstOrThrowArgs} args - Arguments to find a CompanyContextCache
+     * @example
+     * // Get one CompanyContextCache
+     * const companyContextCache = await prisma.companyContextCache.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CompanyContextCacheFindFirstOrThrowArgs>(args?: SelectSubset<T, CompanyContextCacheFindFirstOrThrowArgs<ExtArgs>>): Prisma__CompanyContextCacheClient<$Result.GetResult<Prisma.$CompanyContextCachePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CompanyContextCaches that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanyContextCacheFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CompanyContextCaches
+     * const companyContextCaches = await prisma.companyContextCache.findMany()
+     * 
+     * // Get first 10 CompanyContextCaches
+     * const companyContextCaches = await prisma.companyContextCache.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const companyContextCacheWithIdOnly = await prisma.companyContextCache.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CompanyContextCacheFindManyArgs>(args?: SelectSubset<T, CompanyContextCacheFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompanyContextCachePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CompanyContextCache.
+     * @param {CompanyContextCacheCreateArgs} args - Arguments to create a CompanyContextCache.
+     * @example
+     * // Create one CompanyContextCache
+     * const CompanyContextCache = await prisma.companyContextCache.create({
+     *   data: {
+     *     // ... data to create a CompanyContextCache
+     *   }
+     * })
+     * 
+     */
+    create<T extends CompanyContextCacheCreateArgs>(args: SelectSubset<T, CompanyContextCacheCreateArgs<ExtArgs>>): Prisma__CompanyContextCacheClient<$Result.GetResult<Prisma.$CompanyContextCachePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CompanyContextCaches.
+     * @param {CompanyContextCacheCreateManyArgs} args - Arguments to create many CompanyContextCaches.
+     * @example
+     * // Create many CompanyContextCaches
+     * const companyContextCache = await prisma.companyContextCache.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CompanyContextCacheCreateManyArgs>(args?: SelectSubset<T, CompanyContextCacheCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CompanyContextCaches and returns the data saved in the database.
+     * @param {CompanyContextCacheCreateManyAndReturnArgs} args - Arguments to create many CompanyContextCaches.
+     * @example
+     * // Create many CompanyContextCaches
+     * const companyContextCache = await prisma.companyContextCache.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CompanyContextCaches and only return the `id`
+     * const companyContextCacheWithIdOnly = await prisma.companyContextCache.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CompanyContextCacheCreateManyAndReturnArgs>(args?: SelectSubset<T, CompanyContextCacheCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompanyContextCachePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CompanyContextCache.
+     * @param {CompanyContextCacheDeleteArgs} args - Arguments to delete one CompanyContextCache.
+     * @example
+     * // Delete one CompanyContextCache
+     * const CompanyContextCache = await prisma.companyContextCache.delete({
+     *   where: {
+     *     // ... filter to delete one CompanyContextCache
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CompanyContextCacheDeleteArgs>(args: SelectSubset<T, CompanyContextCacheDeleteArgs<ExtArgs>>): Prisma__CompanyContextCacheClient<$Result.GetResult<Prisma.$CompanyContextCachePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CompanyContextCache.
+     * @param {CompanyContextCacheUpdateArgs} args - Arguments to update one CompanyContextCache.
+     * @example
+     * // Update one CompanyContextCache
+     * const companyContextCache = await prisma.companyContextCache.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CompanyContextCacheUpdateArgs>(args: SelectSubset<T, CompanyContextCacheUpdateArgs<ExtArgs>>): Prisma__CompanyContextCacheClient<$Result.GetResult<Prisma.$CompanyContextCachePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CompanyContextCaches.
+     * @param {CompanyContextCacheDeleteManyArgs} args - Arguments to filter CompanyContextCaches to delete.
+     * @example
+     * // Delete a few CompanyContextCaches
+     * const { count } = await prisma.companyContextCache.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CompanyContextCacheDeleteManyArgs>(args?: SelectSubset<T, CompanyContextCacheDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CompanyContextCaches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanyContextCacheUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CompanyContextCaches
+     * const companyContextCache = await prisma.companyContextCache.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CompanyContextCacheUpdateManyArgs>(args: SelectSubset<T, CompanyContextCacheUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CompanyContextCaches and returns the data updated in the database.
+     * @param {CompanyContextCacheUpdateManyAndReturnArgs} args - Arguments to update many CompanyContextCaches.
+     * @example
+     * // Update many CompanyContextCaches
+     * const companyContextCache = await prisma.companyContextCache.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CompanyContextCaches and only return the `id`
+     * const companyContextCacheWithIdOnly = await prisma.companyContextCache.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CompanyContextCacheUpdateManyAndReturnArgs>(args: SelectSubset<T, CompanyContextCacheUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompanyContextCachePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CompanyContextCache.
+     * @param {CompanyContextCacheUpsertArgs} args - Arguments to update or create a CompanyContextCache.
+     * @example
+     * // Update or create a CompanyContextCache
+     * const companyContextCache = await prisma.companyContextCache.upsert({
+     *   create: {
+     *     // ... data to create a CompanyContextCache
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CompanyContextCache we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CompanyContextCacheUpsertArgs>(args: SelectSubset<T, CompanyContextCacheUpsertArgs<ExtArgs>>): Prisma__CompanyContextCacheClient<$Result.GetResult<Prisma.$CompanyContextCachePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CompanyContextCaches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanyContextCacheCountArgs} args - Arguments to filter CompanyContextCaches to count.
+     * @example
+     * // Count the number of CompanyContextCaches
+     * const count = await prisma.companyContextCache.count({
+     *   where: {
+     *     // ... the filter for the CompanyContextCaches we want to count
+     *   }
+     * })
+    **/
+    count<T extends CompanyContextCacheCountArgs>(
+      args?: Subset<T, CompanyContextCacheCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CompanyContextCacheCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CompanyContextCache.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanyContextCacheAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CompanyContextCacheAggregateArgs>(args: Subset<T, CompanyContextCacheAggregateArgs>): Prisma.PrismaPromise<GetCompanyContextCacheAggregateType<T>>
+
+    /**
+     * Group by CompanyContextCache.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanyContextCacheGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CompanyContextCacheGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CompanyContextCacheGroupByArgs['orderBy'] }
+        : { orderBy?: CompanyContextCacheGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CompanyContextCacheGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCompanyContextCacheGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CompanyContextCache model
+   */
+  readonly fields: CompanyContextCacheFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CompanyContextCache.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CompanyContextCacheClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CompanyContextCache model
+   */
+  interface CompanyContextCacheFieldRefs {
+    readonly id: FieldRef<"CompanyContextCache", 'String'>
+    readonly url: FieldRef<"CompanyContextCache", 'String'>
+    readonly context: FieldRef<"CompanyContextCache", 'String'>
+    readonly createdAt: FieldRef<"CompanyContextCache", 'DateTime'>
+    readonly updatedAt: FieldRef<"CompanyContextCache", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CompanyContextCache findUnique
+   */
+  export type CompanyContextCacheFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyContextCache
+     */
+    select?: CompanyContextCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyContextCache
+     */
+    omit?: CompanyContextCacheOmit<ExtArgs> | null
+    /**
+     * Filter, which CompanyContextCache to fetch.
+     */
+    where: CompanyContextCacheWhereUniqueInput
+  }
+
+  /**
+   * CompanyContextCache findUniqueOrThrow
+   */
+  export type CompanyContextCacheFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyContextCache
+     */
+    select?: CompanyContextCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyContextCache
+     */
+    omit?: CompanyContextCacheOmit<ExtArgs> | null
+    /**
+     * Filter, which CompanyContextCache to fetch.
+     */
+    where: CompanyContextCacheWhereUniqueInput
+  }
+
+  /**
+   * CompanyContextCache findFirst
+   */
+  export type CompanyContextCacheFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyContextCache
+     */
+    select?: CompanyContextCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyContextCache
+     */
+    omit?: CompanyContextCacheOmit<ExtArgs> | null
+    /**
+     * Filter, which CompanyContextCache to fetch.
+     */
+    where?: CompanyContextCacheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CompanyContextCaches to fetch.
+     */
+    orderBy?: CompanyContextCacheOrderByWithRelationInput | CompanyContextCacheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CompanyContextCaches.
+     */
+    cursor?: CompanyContextCacheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CompanyContextCaches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CompanyContextCaches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CompanyContextCaches.
+     */
+    distinct?: CompanyContextCacheScalarFieldEnum | CompanyContextCacheScalarFieldEnum[]
+  }
+
+  /**
+   * CompanyContextCache findFirstOrThrow
+   */
+  export type CompanyContextCacheFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyContextCache
+     */
+    select?: CompanyContextCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyContextCache
+     */
+    omit?: CompanyContextCacheOmit<ExtArgs> | null
+    /**
+     * Filter, which CompanyContextCache to fetch.
+     */
+    where?: CompanyContextCacheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CompanyContextCaches to fetch.
+     */
+    orderBy?: CompanyContextCacheOrderByWithRelationInput | CompanyContextCacheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CompanyContextCaches.
+     */
+    cursor?: CompanyContextCacheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CompanyContextCaches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CompanyContextCaches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CompanyContextCaches.
+     */
+    distinct?: CompanyContextCacheScalarFieldEnum | CompanyContextCacheScalarFieldEnum[]
+  }
+
+  /**
+   * CompanyContextCache findMany
+   */
+  export type CompanyContextCacheFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyContextCache
+     */
+    select?: CompanyContextCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyContextCache
+     */
+    omit?: CompanyContextCacheOmit<ExtArgs> | null
+    /**
+     * Filter, which CompanyContextCaches to fetch.
+     */
+    where?: CompanyContextCacheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CompanyContextCaches to fetch.
+     */
+    orderBy?: CompanyContextCacheOrderByWithRelationInput | CompanyContextCacheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CompanyContextCaches.
+     */
+    cursor?: CompanyContextCacheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CompanyContextCaches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CompanyContextCaches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CompanyContextCaches.
+     */
+    distinct?: CompanyContextCacheScalarFieldEnum | CompanyContextCacheScalarFieldEnum[]
+  }
+
+  /**
+   * CompanyContextCache create
+   */
+  export type CompanyContextCacheCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyContextCache
+     */
+    select?: CompanyContextCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyContextCache
+     */
+    omit?: CompanyContextCacheOmit<ExtArgs> | null
+    /**
+     * The data needed to create a CompanyContextCache.
+     */
+    data: XOR<CompanyContextCacheCreateInput, CompanyContextCacheUncheckedCreateInput>
+  }
+
+  /**
+   * CompanyContextCache createMany
+   */
+  export type CompanyContextCacheCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CompanyContextCaches.
+     */
+    data: CompanyContextCacheCreateManyInput | CompanyContextCacheCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CompanyContextCache createManyAndReturn
+   */
+  export type CompanyContextCacheCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyContextCache
+     */
+    select?: CompanyContextCacheSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyContextCache
+     */
+    omit?: CompanyContextCacheOmit<ExtArgs> | null
+    /**
+     * The data used to create many CompanyContextCaches.
+     */
+    data: CompanyContextCacheCreateManyInput | CompanyContextCacheCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CompanyContextCache update
+   */
+  export type CompanyContextCacheUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyContextCache
+     */
+    select?: CompanyContextCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyContextCache
+     */
+    omit?: CompanyContextCacheOmit<ExtArgs> | null
+    /**
+     * The data needed to update a CompanyContextCache.
+     */
+    data: XOR<CompanyContextCacheUpdateInput, CompanyContextCacheUncheckedUpdateInput>
+    /**
+     * Choose, which CompanyContextCache to update.
+     */
+    where: CompanyContextCacheWhereUniqueInput
+  }
+
+  /**
+   * CompanyContextCache updateMany
+   */
+  export type CompanyContextCacheUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CompanyContextCaches.
+     */
+    data: XOR<CompanyContextCacheUpdateManyMutationInput, CompanyContextCacheUncheckedUpdateManyInput>
+    /**
+     * Filter which CompanyContextCaches to update
+     */
+    where?: CompanyContextCacheWhereInput
+    /**
+     * Limit how many CompanyContextCaches to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CompanyContextCache updateManyAndReturn
+   */
+  export type CompanyContextCacheUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyContextCache
+     */
+    select?: CompanyContextCacheSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyContextCache
+     */
+    omit?: CompanyContextCacheOmit<ExtArgs> | null
+    /**
+     * The data used to update CompanyContextCaches.
+     */
+    data: XOR<CompanyContextCacheUpdateManyMutationInput, CompanyContextCacheUncheckedUpdateManyInput>
+    /**
+     * Filter which CompanyContextCaches to update
+     */
+    where?: CompanyContextCacheWhereInput
+    /**
+     * Limit how many CompanyContextCaches to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CompanyContextCache upsert
+   */
+  export type CompanyContextCacheUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyContextCache
+     */
+    select?: CompanyContextCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyContextCache
+     */
+    omit?: CompanyContextCacheOmit<ExtArgs> | null
+    /**
+     * The filter to search for the CompanyContextCache to update in case it exists.
+     */
+    where: CompanyContextCacheWhereUniqueInput
+    /**
+     * In case the CompanyContextCache found by the `where` argument doesn't exist, create a new CompanyContextCache with this data.
+     */
+    create: XOR<CompanyContextCacheCreateInput, CompanyContextCacheUncheckedCreateInput>
+    /**
+     * In case the CompanyContextCache was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CompanyContextCacheUpdateInput, CompanyContextCacheUncheckedUpdateInput>
+  }
+
+  /**
+   * CompanyContextCache delete
+   */
+  export type CompanyContextCacheDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyContextCache
+     */
+    select?: CompanyContextCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyContextCache
+     */
+    omit?: CompanyContextCacheOmit<ExtArgs> | null
+    /**
+     * Filter which CompanyContextCache to delete.
+     */
+    where: CompanyContextCacheWhereUniqueInput
+  }
+
+  /**
+   * CompanyContextCache deleteMany
+   */
+  export type CompanyContextCacheDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CompanyContextCaches to delete
+     */
+    where?: CompanyContextCacheWhereInput
+    /**
+     * Limit how many CompanyContextCaches to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CompanyContextCache without action
+   */
+  export type CompanyContextCacheDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyContextCache
+     */
+    select?: CompanyContextCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyContextCache
+     */
+    omit?: CompanyContextCacheOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model LatexTemplate
+   */
+
+  export type AggregateLatexTemplate = {
+    _count: LatexTemplateCountAggregateOutputType | null
+    _min: LatexTemplateMinAggregateOutputType | null
+    _max: LatexTemplateMaxAggregateOutputType | null
+  }
+
+  export type LatexTemplateMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    name: string | null
+    content: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type LatexTemplateMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    name: string | null
+    content: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type LatexTemplateCountAggregateOutputType = {
+    id: number
+    userId: number
+    name: number
+    content: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type LatexTemplateMinAggregateInputType = {
+    id?: true
+    userId?: true
+    name?: true
+    content?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type LatexTemplateMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    name?: true
+    content?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type LatexTemplateCountAggregateInputType = {
+    id?: true
+    userId?: true
+    name?: true
+    content?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type LatexTemplateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LatexTemplate to aggregate.
+     */
+    where?: LatexTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LatexTemplates to fetch.
+     */
+    orderBy?: LatexTemplateOrderByWithRelationInput | LatexTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LatexTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LatexTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LatexTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LatexTemplates
+    **/
+    _count?: true | LatexTemplateCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LatexTemplateMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LatexTemplateMaxAggregateInputType
+  }
+
+  export type GetLatexTemplateAggregateType<T extends LatexTemplateAggregateArgs> = {
+        [P in keyof T & keyof AggregateLatexTemplate]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLatexTemplate[P]>
+      : GetScalarType<T[P], AggregateLatexTemplate[P]>
+  }
+
+
+
+
+  export type LatexTemplateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LatexTemplateWhereInput
+    orderBy?: LatexTemplateOrderByWithAggregationInput | LatexTemplateOrderByWithAggregationInput[]
+    by: LatexTemplateScalarFieldEnum[] | LatexTemplateScalarFieldEnum
+    having?: LatexTemplateScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LatexTemplateCountAggregateInputType | true
+    _min?: LatexTemplateMinAggregateInputType
+    _max?: LatexTemplateMaxAggregateInputType
+  }
+
+  export type LatexTemplateGroupByOutputType = {
+    id: string
+    userId: string
+    name: string
+    content: string
+    createdAt: Date
+    updatedAt: Date
+    _count: LatexTemplateCountAggregateOutputType | null
+    _min: LatexTemplateMinAggregateOutputType | null
+    _max: LatexTemplateMaxAggregateOutputType | null
+  }
+
+  type GetLatexTemplateGroupByPayload<T extends LatexTemplateGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LatexTemplateGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LatexTemplateGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LatexTemplateGroupByOutputType[P]>
+            : GetScalarType<T[P], LatexTemplateGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LatexTemplateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    content?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["latexTemplate"]>
+
+  export type LatexTemplateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    content?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["latexTemplate"]>
+
+  export type LatexTemplateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    content?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["latexTemplate"]>
+
+  export type LatexTemplateSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    content?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type LatexTemplateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "content" | "createdAt" | "updatedAt", ExtArgs["result"]["latexTemplate"]>
+  export type LatexTemplateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type LatexTemplateIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type LatexTemplateIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $LatexTemplatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LatexTemplate"
+    objects: {
+      User: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      name: string
+      content: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["latexTemplate"]>
+    composites: {}
+  }
+
+  type LatexTemplateGetPayload<S extends boolean | null | undefined | LatexTemplateDefaultArgs> = $Result.GetResult<Prisma.$LatexTemplatePayload, S>
+
+  type LatexTemplateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LatexTemplateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LatexTemplateCountAggregateInputType | true
+    }
+
+  export interface LatexTemplateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LatexTemplate'], meta: { name: 'LatexTemplate' } }
+    /**
+     * Find zero or one LatexTemplate that matches the filter.
+     * @param {LatexTemplateFindUniqueArgs} args - Arguments to find a LatexTemplate
+     * @example
+     * // Get one LatexTemplate
+     * const latexTemplate = await prisma.latexTemplate.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LatexTemplateFindUniqueArgs>(args: SelectSubset<T, LatexTemplateFindUniqueArgs<ExtArgs>>): Prisma__LatexTemplateClient<$Result.GetResult<Prisma.$LatexTemplatePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LatexTemplate that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LatexTemplateFindUniqueOrThrowArgs} args - Arguments to find a LatexTemplate
+     * @example
+     * // Get one LatexTemplate
+     * const latexTemplate = await prisma.latexTemplate.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LatexTemplateFindUniqueOrThrowArgs>(args: SelectSubset<T, LatexTemplateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LatexTemplateClient<$Result.GetResult<Prisma.$LatexTemplatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LatexTemplate that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LatexTemplateFindFirstArgs} args - Arguments to find a LatexTemplate
+     * @example
+     * // Get one LatexTemplate
+     * const latexTemplate = await prisma.latexTemplate.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LatexTemplateFindFirstArgs>(args?: SelectSubset<T, LatexTemplateFindFirstArgs<ExtArgs>>): Prisma__LatexTemplateClient<$Result.GetResult<Prisma.$LatexTemplatePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LatexTemplate that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LatexTemplateFindFirstOrThrowArgs} args - Arguments to find a LatexTemplate
+     * @example
+     * // Get one LatexTemplate
+     * const latexTemplate = await prisma.latexTemplate.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LatexTemplateFindFirstOrThrowArgs>(args?: SelectSubset<T, LatexTemplateFindFirstOrThrowArgs<ExtArgs>>): Prisma__LatexTemplateClient<$Result.GetResult<Prisma.$LatexTemplatePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LatexTemplates that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LatexTemplateFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LatexTemplates
+     * const latexTemplates = await prisma.latexTemplate.findMany()
+     * 
+     * // Get first 10 LatexTemplates
+     * const latexTemplates = await prisma.latexTemplate.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const latexTemplateWithIdOnly = await prisma.latexTemplate.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LatexTemplateFindManyArgs>(args?: SelectSubset<T, LatexTemplateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LatexTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LatexTemplate.
+     * @param {LatexTemplateCreateArgs} args - Arguments to create a LatexTemplate.
+     * @example
+     * // Create one LatexTemplate
+     * const LatexTemplate = await prisma.latexTemplate.create({
+     *   data: {
+     *     // ... data to create a LatexTemplate
+     *   }
+     * })
+     * 
+     */
+    create<T extends LatexTemplateCreateArgs>(args: SelectSubset<T, LatexTemplateCreateArgs<ExtArgs>>): Prisma__LatexTemplateClient<$Result.GetResult<Prisma.$LatexTemplatePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LatexTemplates.
+     * @param {LatexTemplateCreateManyArgs} args - Arguments to create many LatexTemplates.
+     * @example
+     * // Create many LatexTemplates
+     * const latexTemplate = await prisma.latexTemplate.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LatexTemplateCreateManyArgs>(args?: SelectSubset<T, LatexTemplateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LatexTemplates and returns the data saved in the database.
+     * @param {LatexTemplateCreateManyAndReturnArgs} args - Arguments to create many LatexTemplates.
+     * @example
+     * // Create many LatexTemplates
+     * const latexTemplate = await prisma.latexTemplate.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LatexTemplates and only return the `id`
+     * const latexTemplateWithIdOnly = await prisma.latexTemplate.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LatexTemplateCreateManyAndReturnArgs>(args?: SelectSubset<T, LatexTemplateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LatexTemplatePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LatexTemplate.
+     * @param {LatexTemplateDeleteArgs} args - Arguments to delete one LatexTemplate.
+     * @example
+     * // Delete one LatexTemplate
+     * const LatexTemplate = await prisma.latexTemplate.delete({
+     *   where: {
+     *     // ... filter to delete one LatexTemplate
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LatexTemplateDeleteArgs>(args: SelectSubset<T, LatexTemplateDeleteArgs<ExtArgs>>): Prisma__LatexTemplateClient<$Result.GetResult<Prisma.$LatexTemplatePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LatexTemplate.
+     * @param {LatexTemplateUpdateArgs} args - Arguments to update one LatexTemplate.
+     * @example
+     * // Update one LatexTemplate
+     * const latexTemplate = await prisma.latexTemplate.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LatexTemplateUpdateArgs>(args: SelectSubset<T, LatexTemplateUpdateArgs<ExtArgs>>): Prisma__LatexTemplateClient<$Result.GetResult<Prisma.$LatexTemplatePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LatexTemplates.
+     * @param {LatexTemplateDeleteManyArgs} args - Arguments to filter LatexTemplates to delete.
+     * @example
+     * // Delete a few LatexTemplates
+     * const { count } = await prisma.latexTemplate.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LatexTemplateDeleteManyArgs>(args?: SelectSubset<T, LatexTemplateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LatexTemplates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LatexTemplateUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LatexTemplates
+     * const latexTemplate = await prisma.latexTemplate.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LatexTemplateUpdateManyArgs>(args: SelectSubset<T, LatexTemplateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LatexTemplates and returns the data updated in the database.
+     * @param {LatexTemplateUpdateManyAndReturnArgs} args - Arguments to update many LatexTemplates.
+     * @example
+     * // Update many LatexTemplates
+     * const latexTemplate = await prisma.latexTemplate.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LatexTemplates and only return the `id`
+     * const latexTemplateWithIdOnly = await prisma.latexTemplate.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LatexTemplateUpdateManyAndReturnArgs>(args: SelectSubset<T, LatexTemplateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LatexTemplatePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LatexTemplate.
+     * @param {LatexTemplateUpsertArgs} args - Arguments to update or create a LatexTemplate.
+     * @example
+     * // Update or create a LatexTemplate
+     * const latexTemplate = await prisma.latexTemplate.upsert({
+     *   create: {
+     *     // ... data to create a LatexTemplate
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LatexTemplate we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LatexTemplateUpsertArgs>(args: SelectSubset<T, LatexTemplateUpsertArgs<ExtArgs>>): Prisma__LatexTemplateClient<$Result.GetResult<Prisma.$LatexTemplatePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LatexTemplates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LatexTemplateCountArgs} args - Arguments to filter LatexTemplates to count.
+     * @example
+     * // Count the number of LatexTemplates
+     * const count = await prisma.latexTemplate.count({
+     *   where: {
+     *     // ... the filter for the LatexTemplates we want to count
+     *   }
+     * })
+    **/
+    count<T extends LatexTemplateCountArgs>(
+      args?: Subset<T, LatexTemplateCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LatexTemplateCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LatexTemplate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LatexTemplateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LatexTemplateAggregateArgs>(args: Subset<T, LatexTemplateAggregateArgs>): Prisma.PrismaPromise<GetLatexTemplateAggregateType<T>>
+
+    /**
+     * Group by LatexTemplate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LatexTemplateGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LatexTemplateGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LatexTemplateGroupByArgs['orderBy'] }
+        : { orderBy?: LatexTemplateGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LatexTemplateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLatexTemplateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LatexTemplate model
+   */
+  readonly fields: LatexTemplateFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LatexTemplate.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LatexTemplateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    User<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LatexTemplate model
+   */
+  interface LatexTemplateFieldRefs {
+    readonly id: FieldRef<"LatexTemplate", 'String'>
+    readonly userId: FieldRef<"LatexTemplate", 'String'>
+    readonly name: FieldRef<"LatexTemplate", 'String'>
+    readonly content: FieldRef<"LatexTemplate", 'String'>
+    readonly createdAt: FieldRef<"LatexTemplate", 'DateTime'>
+    readonly updatedAt: FieldRef<"LatexTemplate", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LatexTemplate findUnique
+   */
+  export type LatexTemplateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LatexTemplate
+     */
+    select?: LatexTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LatexTemplate
+     */
+    omit?: LatexTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LatexTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which LatexTemplate to fetch.
+     */
+    where: LatexTemplateWhereUniqueInput
+  }
+
+  /**
+   * LatexTemplate findUniqueOrThrow
+   */
+  export type LatexTemplateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LatexTemplate
+     */
+    select?: LatexTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LatexTemplate
+     */
+    omit?: LatexTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LatexTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which LatexTemplate to fetch.
+     */
+    where: LatexTemplateWhereUniqueInput
+  }
+
+  /**
+   * LatexTemplate findFirst
+   */
+  export type LatexTemplateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LatexTemplate
+     */
+    select?: LatexTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LatexTemplate
+     */
+    omit?: LatexTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LatexTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which LatexTemplate to fetch.
+     */
+    where?: LatexTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LatexTemplates to fetch.
+     */
+    orderBy?: LatexTemplateOrderByWithRelationInput | LatexTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LatexTemplates.
+     */
+    cursor?: LatexTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LatexTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LatexTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LatexTemplates.
+     */
+    distinct?: LatexTemplateScalarFieldEnum | LatexTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * LatexTemplate findFirstOrThrow
+   */
+  export type LatexTemplateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LatexTemplate
+     */
+    select?: LatexTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LatexTemplate
+     */
+    omit?: LatexTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LatexTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which LatexTemplate to fetch.
+     */
+    where?: LatexTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LatexTemplates to fetch.
+     */
+    orderBy?: LatexTemplateOrderByWithRelationInput | LatexTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LatexTemplates.
+     */
+    cursor?: LatexTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LatexTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LatexTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LatexTemplates.
+     */
+    distinct?: LatexTemplateScalarFieldEnum | LatexTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * LatexTemplate findMany
+   */
+  export type LatexTemplateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LatexTemplate
+     */
+    select?: LatexTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LatexTemplate
+     */
+    omit?: LatexTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LatexTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which LatexTemplates to fetch.
+     */
+    where?: LatexTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LatexTemplates to fetch.
+     */
+    orderBy?: LatexTemplateOrderByWithRelationInput | LatexTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LatexTemplates.
+     */
+    cursor?: LatexTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LatexTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LatexTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LatexTemplates.
+     */
+    distinct?: LatexTemplateScalarFieldEnum | LatexTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * LatexTemplate create
+   */
+  export type LatexTemplateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LatexTemplate
+     */
+    select?: LatexTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LatexTemplate
+     */
+    omit?: LatexTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LatexTemplateInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LatexTemplate.
+     */
+    data: XOR<LatexTemplateCreateInput, LatexTemplateUncheckedCreateInput>
+  }
+
+  /**
+   * LatexTemplate createMany
+   */
+  export type LatexTemplateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LatexTemplates.
+     */
+    data: LatexTemplateCreateManyInput | LatexTemplateCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LatexTemplate createManyAndReturn
+   */
+  export type LatexTemplateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LatexTemplate
+     */
+    select?: LatexTemplateSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LatexTemplate
+     */
+    omit?: LatexTemplateOmit<ExtArgs> | null
+    /**
+     * The data used to create many LatexTemplates.
+     */
+    data: LatexTemplateCreateManyInput | LatexTemplateCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LatexTemplateIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LatexTemplate update
+   */
+  export type LatexTemplateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LatexTemplate
+     */
+    select?: LatexTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LatexTemplate
+     */
+    omit?: LatexTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LatexTemplateInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LatexTemplate.
+     */
+    data: XOR<LatexTemplateUpdateInput, LatexTemplateUncheckedUpdateInput>
+    /**
+     * Choose, which LatexTemplate to update.
+     */
+    where: LatexTemplateWhereUniqueInput
+  }
+
+  /**
+   * LatexTemplate updateMany
+   */
+  export type LatexTemplateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LatexTemplates.
+     */
+    data: XOR<LatexTemplateUpdateManyMutationInput, LatexTemplateUncheckedUpdateManyInput>
+    /**
+     * Filter which LatexTemplates to update
+     */
+    where?: LatexTemplateWhereInput
+    /**
+     * Limit how many LatexTemplates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LatexTemplate updateManyAndReturn
+   */
+  export type LatexTemplateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LatexTemplate
+     */
+    select?: LatexTemplateSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LatexTemplate
+     */
+    omit?: LatexTemplateOmit<ExtArgs> | null
+    /**
+     * The data used to update LatexTemplates.
+     */
+    data: XOR<LatexTemplateUpdateManyMutationInput, LatexTemplateUncheckedUpdateManyInput>
+    /**
+     * Filter which LatexTemplates to update
+     */
+    where?: LatexTemplateWhereInput
+    /**
+     * Limit how many LatexTemplates to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LatexTemplateIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LatexTemplate upsert
+   */
+  export type LatexTemplateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LatexTemplate
+     */
+    select?: LatexTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LatexTemplate
+     */
+    omit?: LatexTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LatexTemplateInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LatexTemplate to update in case it exists.
+     */
+    where: LatexTemplateWhereUniqueInput
+    /**
+     * In case the LatexTemplate found by the `where` argument doesn't exist, create a new LatexTemplate with this data.
+     */
+    create: XOR<LatexTemplateCreateInput, LatexTemplateUncheckedCreateInput>
+    /**
+     * In case the LatexTemplate was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LatexTemplateUpdateInput, LatexTemplateUncheckedUpdateInput>
+  }
+
+  /**
+   * LatexTemplate delete
+   */
+  export type LatexTemplateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LatexTemplate
+     */
+    select?: LatexTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LatexTemplate
+     */
+    omit?: LatexTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LatexTemplateInclude<ExtArgs> | null
+    /**
+     * Filter which LatexTemplate to delete.
+     */
+    where: LatexTemplateWhereUniqueInput
+  }
+
+  /**
+   * LatexTemplate deleteMany
+   */
+  export type LatexTemplateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LatexTemplates to delete
+     */
+    where?: LatexTemplateWhereInput
+    /**
+     * Limit how many LatexTemplates to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LatexTemplate without action
+   */
+  export type LatexTemplateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LatexTemplate
+     */
+    select?: LatexTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LatexTemplate
+     */
+    omit?: LatexTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LatexTemplateInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TailoredResume
+   */
+
+  export type AggregateTailoredResume = {
+    _count: TailoredResumeCountAggregateOutputType | null
+    _min: TailoredResumeMinAggregateOutputType | null
+    _max: TailoredResumeMaxAggregateOutputType | null
+  }
+
+  export type TailoredResumeMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    jobUrl: string | null
+    companyName: string | null
+    pdfUrl: string | null
+    createdAt: Date | null
+  }
+
+  export type TailoredResumeMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    jobUrl: string | null
+    companyName: string | null
+    pdfUrl: string | null
+    createdAt: Date | null
+  }
+
+  export type TailoredResumeCountAggregateOutputType = {
+    id: number
+    userId: number
+    jobUrl: number
+    companyName: number
+    pdfUrl: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type TailoredResumeMinAggregateInputType = {
+    id?: true
+    userId?: true
+    jobUrl?: true
+    companyName?: true
+    pdfUrl?: true
+    createdAt?: true
+  }
+
+  export type TailoredResumeMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    jobUrl?: true
+    companyName?: true
+    pdfUrl?: true
+    createdAt?: true
+  }
+
+  export type TailoredResumeCountAggregateInputType = {
+    id?: true
+    userId?: true
+    jobUrl?: true
+    companyName?: true
+    pdfUrl?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type TailoredResumeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TailoredResume to aggregate.
+     */
+    where?: TailoredResumeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TailoredResumes to fetch.
+     */
+    orderBy?: TailoredResumeOrderByWithRelationInput | TailoredResumeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TailoredResumeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TailoredResumes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TailoredResumes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TailoredResumes
+    **/
+    _count?: true | TailoredResumeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TailoredResumeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TailoredResumeMaxAggregateInputType
+  }
+
+  export type GetTailoredResumeAggregateType<T extends TailoredResumeAggregateArgs> = {
+        [P in keyof T & keyof AggregateTailoredResume]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTailoredResume[P]>
+      : GetScalarType<T[P], AggregateTailoredResume[P]>
+  }
+
+
+
+
+  export type TailoredResumeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TailoredResumeWhereInput
+    orderBy?: TailoredResumeOrderByWithAggregationInput | TailoredResumeOrderByWithAggregationInput[]
+    by: TailoredResumeScalarFieldEnum[] | TailoredResumeScalarFieldEnum
+    having?: TailoredResumeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TailoredResumeCountAggregateInputType | true
+    _min?: TailoredResumeMinAggregateInputType
+    _max?: TailoredResumeMaxAggregateInputType
+  }
+
+  export type TailoredResumeGroupByOutputType = {
+    id: string
+    userId: string
+    jobUrl: string
+    companyName: string | null
+    pdfUrl: string | null
+    createdAt: Date
+    _count: TailoredResumeCountAggregateOutputType | null
+    _min: TailoredResumeMinAggregateOutputType | null
+    _max: TailoredResumeMaxAggregateOutputType | null
+  }
+
+  type GetTailoredResumeGroupByPayload<T extends TailoredResumeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TailoredResumeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TailoredResumeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TailoredResumeGroupByOutputType[P]>
+            : GetScalarType<T[P], TailoredResumeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TailoredResumeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    jobUrl?: boolean
+    companyName?: boolean
+    pdfUrl?: boolean
+    createdAt?: boolean
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tailoredResume"]>
+
+  export type TailoredResumeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    jobUrl?: boolean
+    companyName?: boolean
+    pdfUrl?: boolean
+    createdAt?: boolean
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tailoredResume"]>
+
+  export type TailoredResumeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    jobUrl?: boolean
+    companyName?: boolean
+    pdfUrl?: boolean
+    createdAt?: boolean
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tailoredResume"]>
+
+  export type TailoredResumeSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    jobUrl?: boolean
+    companyName?: boolean
+    pdfUrl?: boolean
+    createdAt?: boolean
+  }
+
+  export type TailoredResumeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "jobUrl" | "companyName" | "pdfUrl" | "createdAt", ExtArgs["result"]["tailoredResume"]>
+  export type TailoredResumeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type TailoredResumeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type TailoredResumeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    User?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $TailoredResumePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TailoredResume"
+    objects: {
+      User: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      jobUrl: string
+      companyName: string | null
+      pdfUrl: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["tailoredResume"]>
+    composites: {}
+  }
+
+  type TailoredResumeGetPayload<S extends boolean | null | undefined | TailoredResumeDefaultArgs> = $Result.GetResult<Prisma.$TailoredResumePayload, S>
+
+  type TailoredResumeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TailoredResumeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TailoredResumeCountAggregateInputType | true
+    }
+
+  export interface TailoredResumeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TailoredResume'], meta: { name: 'TailoredResume' } }
+    /**
+     * Find zero or one TailoredResume that matches the filter.
+     * @param {TailoredResumeFindUniqueArgs} args - Arguments to find a TailoredResume
+     * @example
+     * // Get one TailoredResume
+     * const tailoredResume = await prisma.tailoredResume.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TailoredResumeFindUniqueArgs>(args: SelectSubset<T, TailoredResumeFindUniqueArgs<ExtArgs>>): Prisma__TailoredResumeClient<$Result.GetResult<Prisma.$TailoredResumePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TailoredResume that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TailoredResumeFindUniqueOrThrowArgs} args - Arguments to find a TailoredResume
+     * @example
+     * // Get one TailoredResume
+     * const tailoredResume = await prisma.tailoredResume.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TailoredResumeFindUniqueOrThrowArgs>(args: SelectSubset<T, TailoredResumeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TailoredResumeClient<$Result.GetResult<Prisma.$TailoredResumePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TailoredResume that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TailoredResumeFindFirstArgs} args - Arguments to find a TailoredResume
+     * @example
+     * // Get one TailoredResume
+     * const tailoredResume = await prisma.tailoredResume.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TailoredResumeFindFirstArgs>(args?: SelectSubset<T, TailoredResumeFindFirstArgs<ExtArgs>>): Prisma__TailoredResumeClient<$Result.GetResult<Prisma.$TailoredResumePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TailoredResume that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TailoredResumeFindFirstOrThrowArgs} args - Arguments to find a TailoredResume
+     * @example
+     * // Get one TailoredResume
+     * const tailoredResume = await prisma.tailoredResume.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TailoredResumeFindFirstOrThrowArgs>(args?: SelectSubset<T, TailoredResumeFindFirstOrThrowArgs<ExtArgs>>): Prisma__TailoredResumeClient<$Result.GetResult<Prisma.$TailoredResumePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TailoredResumes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TailoredResumeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TailoredResumes
+     * const tailoredResumes = await prisma.tailoredResume.findMany()
+     * 
+     * // Get first 10 TailoredResumes
+     * const tailoredResumes = await prisma.tailoredResume.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const tailoredResumeWithIdOnly = await prisma.tailoredResume.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TailoredResumeFindManyArgs>(args?: SelectSubset<T, TailoredResumeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TailoredResumePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TailoredResume.
+     * @param {TailoredResumeCreateArgs} args - Arguments to create a TailoredResume.
+     * @example
+     * // Create one TailoredResume
+     * const TailoredResume = await prisma.tailoredResume.create({
+     *   data: {
+     *     // ... data to create a TailoredResume
+     *   }
+     * })
+     * 
+     */
+    create<T extends TailoredResumeCreateArgs>(args: SelectSubset<T, TailoredResumeCreateArgs<ExtArgs>>): Prisma__TailoredResumeClient<$Result.GetResult<Prisma.$TailoredResumePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TailoredResumes.
+     * @param {TailoredResumeCreateManyArgs} args - Arguments to create many TailoredResumes.
+     * @example
+     * // Create many TailoredResumes
+     * const tailoredResume = await prisma.tailoredResume.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TailoredResumeCreateManyArgs>(args?: SelectSubset<T, TailoredResumeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TailoredResumes and returns the data saved in the database.
+     * @param {TailoredResumeCreateManyAndReturnArgs} args - Arguments to create many TailoredResumes.
+     * @example
+     * // Create many TailoredResumes
+     * const tailoredResume = await prisma.tailoredResume.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TailoredResumes and only return the `id`
+     * const tailoredResumeWithIdOnly = await prisma.tailoredResume.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TailoredResumeCreateManyAndReturnArgs>(args?: SelectSubset<T, TailoredResumeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TailoredResumePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TailoredResume.
+     * @param {TailoredResumeDeleteArgs} args - Arguments to delete one TailoredResume.
+     * @example
+     * // Delete one TailoredResume
+     * const TailoredResume = await prisma.tailoredResume.delete({
+     *   where: {
+     *     // ... filter to delete one TailoredResume
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TailoredResumeDeleteArgs>(args: SelectSubset<T, TailoredResumeDeleteArgs<ExtArgs>>): Prisma__TailoredResumeClient<$Result.GetResult<Prisma.$TailoredResumePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TailoredResume.
+     * @param {TailoredResumeUpdateArgs} args - Arguments to update one TailoredResume.
+     * @example
+     * // Update one TailoredResume
+     * const tailoredResume = await prisma.tailoredResume.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TailoredResumeUpdateArgs>(args: SelectSubset<T, TailoredResumeUpdateArgs<ExtArgs>>): Prisma__TailoredResumeClient<$Result.GetResult<Prisma.$TailoredResumePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TailoredResumes.
+     * @param {TailoredResumeDeleteManyArgs} args - Arguments to filter TailoredResumes to delete.
+     * @example
+     * // Delete a few TailoredResumes
+     * const { count } = await prisma.tailoredResume.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TailoredResumeDeleteManyArgs>(args?: SelectSubset<T, TailoredResumeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TailoredResumes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TailoredResumeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TailoredResumes
+     * const tailoredResume = await prisma.tailoredResume.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TailoredResumeUpdateManyArgs>(args: SelectSubset<T, TailoredResumeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TailoredResumes and returns the data updated in the database.
+     * @param {TailoredResumeUpdateManyAndReturnArgs} args - Arguments to update many TailoredResumes.
+     * @example
+     * // Update many TailoredResumes
+     * const tailoredResume = await prisma.tailoredResume.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TailoredResumes and only return the `id`
+     * const tailoredResumeWithIdOnly = await prisma.tailoredResume.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TailoredResumeUpdateManyAndReturnArgs>(args: SelectSubset<T, TailoredResumeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TailoredResumePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TailoredResume.
+     * @param {TailoredResumeUpsertArgs} args - Arguments to update or create a TailoredResume.
+     * @example
+     * // Update or create a TailoredResume
+     * const tailoredResume = await prisma.tailoredResume.upsert({
+     *   create: {
+     *     // ... data to create a TailoredResume
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TailoredResume we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TailoredResumeUpsertArgs>(args: SelectSubset<T, TailoredResumeUpsertArgs<ExtArgs>>): Prisma__TailoredResumeClient<$Result.GetResult<Prisma.$TailoredResumePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TailoredResumes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TailoredResumeCountArgs} args - Arguments to filter TailoredResumes to count.
+     * @example
+     * // Count the number of TailoredResumes
+     * const count = await prisma.tailoredResume.count({
+     *   where: {
+     *     // ... the filter for the TailoredResumes we want to count
+     *   }
+     * })
+    **/
+    count<T extends TailoredResumeCountArgs>(
+      args?: Subset<T, TailoredResumeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TailoredResumeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TailoredResume.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TailoredResumeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TailoredResumeAggregateArgs>(args: Subset<T, TailoredResumeAggregateArgs>): Prisma.PrismaPromise<GetTailoredResumeAggregateType<T>>
+
+    /**
+     * Group by TailoredResume.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TailoredResumeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TailoredResumeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TailoredResumeGroupByArgs['orderBy'] }
+        : { orderBy?: TailoredResumeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TailoredResumeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTailoredResumeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TailoredResume model
+   */
+  readonly fields: TailoredResumeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TailoredResume.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TailoredResumeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    User<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TailoredResume model
+   */
+  interface TailoredResumeFieldRefs {
+    readonly id: FieldRef<"TailoredResume", 'String'>
+    readonly userId: FieldRef<"TailoredResume", 'String'>
+    readonly jobUrl: FieldRef<"TailoredResume", 'String'>
+    readonly companyName: FieldRef<"TailoredResume", 'String'>
+    readonly pdfUrl: FieldRef<"TailoredResume", 'String'>
+    readonly createdAt: FieldRef<"TailoredResume", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TailoredResume findUnique
+   */
+  export type TailoredResumeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TailoredResume
+     */
+    select?: TailoredResumeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TailoredResume
+     */
+    omit?: TailoredResumeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TailoredResumeInclude<ExtArgs> | null
+    /**
+     * Filter, which TailoredResume to fetch.
+     */
+    where: TailoredResumeWhereUniqueInput
+  }
+
+  /**
+   * TailoredResume findUniqueOrThrow
+   */
+  export type TailoredResumeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TailoredResume
+     */
+    select?: TailoredResumeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TailoredResume
+     */
+    omit?: TailoredResumeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TailoredResumeInclude<ExtArgs> | null
+    /**
+     * Filter, which TailoredResume to fetch.
+     */
+    where: TailoredResumeWhereUniqueInput
+  }
+
+  /**
+   * TailoredResume findFirst
+   */
+  export type TailoredResumeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TailoredResume
+     */
+    select?: TailoredResumeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TailoredResume
+     */
+    omit?: TailoredResumeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TailoredResumeInclude<ExtArgs> | null
+    /**
+     * Filter, which TailoredResume to fetch.
+     */
+    where?: TailoredResumeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TailoredResumes to fetch.
+     */
+    orderBy?: TailoredResumeOrderByWithRelationInput | TailoredResumeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TailoredResumes.
+     */
+    cursor?: TailoredResumeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TailoredResumes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TailoredResumes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TailoredResumes.
+     */
+    distinct?: TailoredResumeScalarFieldEnum | TailoredResumeScalarFieldEnum[]
+  }
+
+  /**
+   * TailoredResume findFirstOrThrow
+   */
+  export type TailoredResumeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TailoredResume
+     */
+    select?: TailoredResumeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TailoredResume
+     */
+    omit?: TailoredResumeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TailoredResumeInclude<ExtArgs> | null
+    /**
+     * Filter, which TailoredResume to fetch.
+     */
+    where?: TailoredResumeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TailoredResumes to fetch.
+     */
+    orderBy?: TailoredResumeOrderByWithRelationInput | TailoredResumeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TailoredResumes.
+     */
+    cursor?: TailoredResumeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TailoredResumes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TailoredResumes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TailoredResumes.
+     */
+    distinct?: TailoredResumeScalarFieldEnum | TailoredResumeScalarFieldEnum[]
+  }
+
+  /**
+   * TailoredResume findMany
+   */
+  export type TailoredResumeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TailoredResume
+     */
+    select?: TailoredResumeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TailoredResume
+     */
+    omit?: TailoredResumeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TailoredResumeInclude<ExtArgs> | null
+    /**
+     * Filter, which TailoredResumes to fetch.
+     */
+    where?: TailoredResumeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TailoredResumes to fetch.
+     */
+    orderBy?: TailoredResumeOrderByWithRelationInput | TailoredResumeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TailoredResumes.
+     */
+    cursor?: TailoredResumeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TailoredResumes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TailoredResumes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TailoredResumes.
+     */
+    distinct?: TailoredResumeScalarFieldEnum | TailoredResumeScalarFieldEnum[]
+  }
+
+  /**
+   * TailoredResume create
+   */
+  export type TailoredResumeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TailoredResume
+     */
+    select?: TailoredResumeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TailoredResume
+     */
+    omit?: TailoredResumeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TailoredResumeInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TailoredResume.
+     */
+    data: XOR<TailoredResumeCreateInput, TailoredResumeUncheckedCreateInput>
+  }
+
+  /**
+   * TailoredResume createMany
+   */
+  export type TailoredResumeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TailoredResumes.
+     */
+    data: TailoredResumeCreateManyInput | TailoredResumeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TailoredResume createManyAndReturn
+   */
+  export type TailoredResumeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TailoredResume
+     */
+    select?: TailoredResumeSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TailoredResume
+     */
+    omit?: TailoredResumeOmit<ExtArgs> | null
+    /**
+     * The data used to create many TailoredResumes.
+     */
+    data: TailoredResumeCreateManyInput | TailoredResumeCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TailoredResumeIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TailoredResume update
+   */
+  export type TailoredResumeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TailoredResume
+     */
+    select?: TailoredResumeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TailoredResume
+     */
+    omit?: TailoredResumeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TailoredResumeInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TailoredResume.
+     */
+    data: XOR<TailoredResumeUpdateInput, TailoredResumeUncheckedUpdateInput>
+    /**
+     * Choose, which TailoredResume to update.
+     */
+    where: TailoredResumeWhereUniqueInput
+  }
+
+  /**
+   * TailoredResume updateMany
+   */
+  export type TailoredResumeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TailoredResumes.
+     */
+    data: XOR<TailoredResumeUpdateManyMutationInput, TailoredResumeUncheckedUpdateManyInput>
+    /**
+     * Filter which TailoredResumes to update
+     */
+    where?: TailoredResumeWhereInput
+    /**
+     * Limit how many TailoredResumes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TailoredResume updateManyAndReturn
+   */
+  export type TailoredResumeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TailoredResume
+     */
+    select?: TailoredResumeSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TailoredResume
+     */
+    omit?: TailoredResumeOmit<ExtArgs> | null
+    /**
+     * The data used to update TailoredResumes.
+     */
+    data: XOR<TailoredResumeUpdateManyMutationInput, TailoredResumeUncheckedUpdateManyInput>
+    /**
+     * Filter which TailoredResumes to update
+     */
+    where?: TailoredResumeWhereInput
+    /**
+     * Limit how many TailoredResumes to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TailoredResumeIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TailoredResume upsert
+   */
+  export type TailoredResumeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TailoredResume
+     */
+    select?: TailoredResumeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TailoredResume
+     */
+    omit?: TailoredResumeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TailoredResumeInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TailoredResume to update in case it exists.
+     */
+    where: TailoredResumeWhereUniqueInput
+    /**
+     * In case the TailoredResume found by the `where` argument doesn't exist, create a new TailoredResume with this data.
+     */
+    create: XOR<TailoredResumeCreateInput, TailoredResumeUncheckedCreateInput>
+    /**
+     * In case the TailoredResume was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TailoredResumeUpdateInput, TailoredResumeUncheckedUpdateInput>
+  }
+
+  /**
+   * TailoredResume delete
+   */
+  export type TailoredResumeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TailoredResume
+     */
+    select?: TailoredResumeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TailoredResume
+     */
+    omit?: TailoredResumeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TailoredResumeInclude<ExtArgs> | null
+    /**
+     * Filter which TailoredResume to delete.
+     */
+    where: TailoredResumeWhereUniqueInput
+  }
+
+  /**
+   * TailoredResume deleteMany
+   */
+  export type TailoredResumeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TailoredResumes to delete
+     */
+    where?: TailoredResumeWhereInput
+    /**
+     * Limit how many TailoredResumes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TailoredResume without action
+   */
+  export type TailoredResumeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TailoredResume
+     */
+    select?: TailoredResumeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TailoredResume
+     */
+    omit?: TailoredResumeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TailoredResumeInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Campaign
+   */
+
+  export type AggregateCampaign = {
+    _count: CampaignCountAggregateOutputType | null
+    _min: CampaignMinAggregateOutputType | null
+    _max: CampaignMaxAggregateOutputType | null
+  }
+
+  export type CampaignMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    name: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CampaignMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    name: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CampaignCountAggregateOutputType = {
+    id: number
+    userId: number
+    name: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CampaignMinAggregateInputType = {
+    id?: true
+    userId?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CampaignMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CampaignCountAggregateInputType = {
+    id?: true
+    userId?: true
+    name?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CampaignAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Campaign to aggregate.
+     */
+    where?: CampaignWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Campaigns to fetch.
+     */
+    orderBy?: CampaignOrderByWithRelationInput | CampaignOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CampaignWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Campaigns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Campaigns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Campaigns
+    **/
+    _count?: true | CampaignCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CampaignMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CampaignMaxAggregateInputType
+  }
+
+  export type GetCampaignAggregateType<T extends CampaignAggregateArgs> = {
+        [P in keyof T & keyof AggregateCampaign]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCampaign[P]>
+      : GetScalarType<T[P], AggregateCampaign[P]>
+  }
+
+
+
+
+  export type CampaignGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CampaignWhereInput
+    orderBy?: CampaignOrderByWithAggregationInput | CampaignOrderByWithAggregationInput[]
+    by: CampaignScalarFieldEnum[] | CampaignScalarFieldEnum
+    having?: CampaignScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CampaignCountAggregateInputType | true
+    _min?: CampaignMinAggregateInputType
+    _max?: CampaignMaxAggregateInputType
+  }
+
+  export type CampaignGroupByOutputType = {
+    id: string
+    userId: string
+    name: string
+    createdAt: Date
+    updatedAt: Date
+    _count: CampaignCountAggregateOutputType | null
+    _min: CampaignMinAggregateOutputType | null
+    _max: CampaignMaxAggregateOutputType | null
+  }
+
+  type GetCampaignGroupByPayload<T extends CampaignGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CampaignGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CampaignGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CampaignGroupByOutputType[P]>
+            : GetScalarType<T[P], CampaignGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CampaignSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    contacts?: boolean | Campaign$contactsArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    _count?: boolean | CampaignCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["campaign"]>
+
+  export type CampaignSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["campaign"]>
+
+  export type CampaignSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["campaign"]>
+
+  export type CampaignSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    name?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CampaignOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "createdAt" | "updatedAt", ExtArgs["result"]["campaign"]>
+  export type CampaignInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    contacts?: boolean | Campaign$contactsArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    _count?: boolean | CampaignCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type CampaignIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type CampaignIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $CampaignPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Campaign"
+    objects: {
+      contacts: Prisma.$CampaignContactPayload<ExtArgs>[]
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      name: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["campaign"]>
+    composites: {}
+  }
+
+  type CampaignGetPayload<S extends boolean | null | undefined | CampaignDefaultArgs> = $Result.GetResult<Prisma.$CampaignPayload, S>
+
+  type CampaignCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CampaignFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CampaignCountAggregateInputType | true
+    }
+
+  export interface CampaignDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Campaign'], meta: { name: 'Campaign' } }
+    /**
+     * Find zero or one Campaign that matches the filter.
+     * @param {CampaignFindUniqueArgs} args - Arguments to find a Campaign
+     * @example
+     * // Get one Campaign
+     * const campaign = await prisma.campaign.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CampaignFindUniqueArgs>(args: SelectSubset<T, CampaignFindUniqueArgs<ExtArgs>>): Prisma__CampaignClient<$Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Campaign that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CampaignFindUniqueOrThrowArgs} args - Arguments to find a Campaign
+     * @example
+     * // Get one Campaign
+     * const campaign = await prisma.campaign.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CampaignFindUniqueOrThrowArgs>(args: SelectSubset<T, CampaignFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CampaignClient<$Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Campaign that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampaignFindFirstArgs} args - Arguments to find a Campaign
+     * @example
+     * // Get one Campaign
+     * const campaign = await prisma.campaign.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CampaignFindFirstArgs>(args?: SelectSubset<T, CampaignFindFirstArgs<ExtArgs>>): Prisma__CampaignClient<$Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Campaign that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampaignFindFirstOrThrowArgs} args - Arguments to find a Campaign
+     * @example
+     * // Get one Campaign
+     * const campaign = await prisma.campaign.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CampaignFindFirstOrThrowArgs>(args?: SelectSubset<T, CampaignFindFirstOrThrowArgs<ExtArgs>>): Prisma__CampaignClient<$Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Campaigns that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampaignFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Campaigns
+     * const campaigns = await prisma.campaign.findMany()
+     * 
+     * // Get first 10 Campaigns
+     * const campaigns = await prisma.campaign.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const campaignWithIdOnly = await prisma.campaign.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CampaignFindManyArgs>(args?: SelectSubset<T, CampaignFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Campaign.
+     * @param {CampaignCreateArgs} args - Arguments to create a Campaign.
+     * @example
+     * // Create one Campaign
+     * const Campaign = await prisma.campaign.create({
+     *   data: {
+     *     // ... data to create a Campaign
+     *   }
+     * })
+     * 
+     */
+    create<T extends CampaignCreateArgs>(args: SelectSubset<T, CampaignCreateArgs<ExtArgs>>): Prisma__CampaignClient<$Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Campaigns.
+     * @param {CampaignCreateManyArgs} args - Arguments to create many Campaigns.
+     * @example
+     * // Create many Campaigns
+     * const campaign = await prisma.campaign.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CampaignCreateManyArgs>(args?: SelectSubset<T, CampaignCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Campaigns and returns the data saved in the database.
+     * @param {CampaignCreateManyAndReturnArgs} args - Arguments to create many Campaigns.
+     * @example
+     * // Create many Campaigns
+     * const campaign = await prisma.campaign.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Campaigns and only return the `id`
+     * const campaignWithIdOnly = await prisma.campaign.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CampaignCreateManyAndReturnArgs>(args?: SelectSubset<T, CampaignCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Campaign.
+     * @param {CampaignDeleteArgs} args - Arguments to delete one Campaign.
+     * @example
+     * // Delete one Campaign
+     * const Campaign = await prisma.campaign.delete({
+     *   where: {
+     *     // ... filter to delete one Campaign
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CampaignDeleteArgs>(args: SelectSubset<T, CampaignDeleteArgs<ExtArgs>>): Prisma__CampaignClient<$Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Campaign.
+     * @param {CampaignUpdateArgs} args - Arguments to update one Campaign.
+     * @example
+     * // Update one Campaign
+     * const campaign = await prisma.campaign.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CampaignUpdateArgs>(args: SelectSubset<T, CampaignUpdateArgs<ExtArgs>>): Prisma__CampaignClient<$Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Campaigns.
+     * @param {CampaignDeleteManyArgs} args - Arguments to filter Campaigns to delete.
+     * @example
+     * // Delete a few Campaigns
+     * const { count } = await prisma.campaign.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CampaignDeleteManyArgs>(args?: SelectSubset<T, CampaignDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Campaigns.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampaignUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Campaigns
+     * const campaign = await prisma.campaign.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CampaignUpdateManyArgs>(args: SelectSubset<T, CampaignUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Campaigns and returns the data updated in the database.
+     * @param {CampaignUpdateManyAndReturnArgs} args - Arguments to update many Campaigns.
+     * @example
+     * // Update many Campaigns
+     * const campaign = await prisma.campaign.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Campaigns and only return the `id`
+     * const campaignWithIdOnly = await prisma.campaign.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CampaignUpdateManyAndReturnArgs>(args: SelectSubset<T, CampaignUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Campaign.
+     * @param {CampaignUpsertArgs} args - Arguments to update or create a Campaign.
+     * @example
+     * // Update or create a Campaign
+     * const campaign = await prisma.campaign.upsert({
+     *   create: {
+     *     // ... data to create a Campaign
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Campaign we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CampaignUpsertArgs>(args: SelectSubset<T, CampaignUpsertArgs<ExtArgs>>): Prisma__CampaignClient<$Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Campaigns.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampaignCountArgs} args - Arguments to filter Campaigns to count.
+     * @example
+     * // Count the number of Campaigns
+     * const count = await prisma.campaign.count({
+     *   where: {
+     *     // ... the filter for the Campaigns we want to count
+     *   }
+     * })
+    **/
+    count<T extends CampaignCountArgs>(
+      args?: Subset<T, CampaignCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CampaignCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Campaign.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampaignAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CampaignAggregateArgs>(args: Subset<T, CampaignAggregateArgs>): Prisma.PrismaPromise<GetCampaignAggregateType<T>>
+
+    /**
+     * Group by Campaign.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampaignGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CampaignGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CampaignGroupByArgs['orderBy'] }
+        : { orderBy?: CampaignGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CampaignGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCampaignGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Campaign model
+   */
+  readonly fields: CampaignFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Campaign.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CampaignClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    contacts<T extends Campaign$contactsArgs<ExtArgs> = {}>(args?: Subset<T, Campaign$contactsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampaignContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Campaign model
+   */
+  interface CampaignFieldRefs {
+    readonly id: FieldRef<"Campaign", 'String'>
+    readonly userId: FieldRef<"Campaign", 'String'>
+    readonly name: FieldRef<"Campaign", 'String'>
+    readonly createdAt: FieldRef<"Campaign", 'DateTime'>
+    readonly updatedAt: FieldRef<"Campaign", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Campaign findUnique
+   */
+  export type CampaignFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Campaign
+     */
+    select?: CampaignSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Campaign
+     */
+    omit?: CampaignOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignInclude<ExtArgs> | null
+    /**
+     * Filter, which Campaign to fetch.
+     */
+    where: CampaignWhereUniqueInput
+  }
+
+  /**
+   * Campaign findUniqueOrThrow
+   */
+  export type CampaignFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Campaign
+     */
+    select?: CampaignSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Campaign
+     */
+    omit?: CampaignOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignInclude<ExtArgs> | null
+    /**
+     * Filter, which Campaign to fetch.
+     */
+    where: CampaignWhereUniqueInput
+  }
+
+  /**
+   * Campaign findFirst
+   */
+  export type CampaignFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Campaign
+     */
+    select?: CampaignSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Campaign
+     */
+    omit?: CampaignOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignInclude<ExtArgs> | null
+    /**
+     * Filter, which Campaign to fetch.
+     */
+    where?: CampaignWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Campaigns to fetch.
+     */
+    orderBy?: CampaignOrderByWithRelationInput | CampaignOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Campaigns.
+     */
+    cursor?: CampaignWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Campaigns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Campaigns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Campaigns.
+     */
+    distinct?: CampaignScalarFieldEnum | CampaignScalarFieldEnum[]
+  }
+
+  /**
+   * Campaign findFirstOrThrow
+   */
+  export type CampaignFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Campaign
+     */
+    select?: CampaignSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Campaign
+     */
+    omit?: CampaignOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignInclude<ExtArgs> | null
+    /**
+     * Filter, which Campaign to fetch.
+     */
+    where?: CampaignWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Campaigns to fetch.
+     */
+    orderBy?: CampaignOrderByWithRelationInput | CampaignOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Campaigns.
+     */
+    cursor?: CampaignWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Campaigns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Campaigns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Campaigns.
+     */
+    distinct?: CampaignScalarFieldEnum | CampaignScalarFieldEnum[]
+  }
+
+  /**
+   * Campaign findMany
+   */
+  export type CampaignFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Campaign
+     */
+    select?: CampaignSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Campaign
+     */
+    omit?: CampaignOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignInclude<ExtArgs> | null
+    /**
+     * Filter, which Campaigns to fetch.
+     */
+    where?: CampaignWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Campaigns to fetch.
+     */
+    orderBy?: CampaignOrderByWithRelationInput | CampaignOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Campaigns.
+     */
+    cursor?: CampaignWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Campaigns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Campaigns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Campaigns.
+     */
+    distinct?: CampaignScalarFieldEnum | CampaignScalarFieldEnum[]
+  }
+
+  /**
+   * Campaign create
+   */
+  export type CampaignCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Campaign
+     */
+    select?: CampaignSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Campaign
+     */
+    omit?: CampaignOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Campaign.
+     */
+    data: XOR<CampaignCreateInput, CampaignUncheckedCreateInput>
+  }
+
+  /**
+   * Campaign createMany
+   */
+  export type CampaignCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Campaigns.
+     */
+    data: CampaignCreateManyInput | CampaignCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Campaign createManyAndReturn
+   */
+  export type CampaignCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Campaign
+     */
+    select?: CampaignSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Campaign
+     */
+    omit?: CampaignOmit<ExtArgs> | null
+    /**
+     * The data used to create many Campaigns.
+     */
+    data: CampaignCreateManyInput | CampaignCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Campaign update
+   */
+  export type CampaignUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Campaign
+     */
+    select?: CampaignSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Campaign
+     */
+    omit?: CampaignOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Campaign.
+     */
+    data: XOR<CampaignUpdateInput, CampaignUncheckedUpdateInput>
+    /**
+     * Choose, which Campaign to update.
+     */
+    where: CampaignWhereUniqueInput
+  }
+
+  /**
+   * Campaign updateMany
+   */
+  export type CampaignUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Campaigns.
+     */
+    data: XOR<CampaignUpdateManyMutationInput, CampaignUncheckedUpdateManyInput>
+    /**
+     * Filter which Campaigns to update
+     */
+    where?: CampaignWhereInput
+    /**
+     * Limit how many Campaigns to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Campaign updateManyAndReturn
+   */
+  export type CampaignUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Campaign
+     */
+    select?: CampaignSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Campaign
+     */
+    omit?: CampaignOmit<ExtArgs> | null
+    /**
+     * The data used to update Campaigns.
+     */
+    data: XOR<CampaignUpdateManyMutationInput, CampaignUncheckedUpdateManyInput>
+    /**
+     * Filter which Campaigns to update
+     */
+    where?: CampaignWhereInput
+    /**
+     * Limit how many Campaigns to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Campaign upsert
+   */
+  export type CampaignUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Campaign
+     */
+    select?: CampaignSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Campaign
+     */
+    omit?: CampaignOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Campaign to update in case it exists.
+     */
+    where: CampaignWhereUniqueInput
+    /**
+     * In case the Campaign found by the `where` argument doesn't exist, create a new Campaign with this data.
+     */
+    create: XOR<CampaignCreateInput, CampaignUncheckedCreateInput>
+    /**
+     * In case the Campaign was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CampaignUpdateInput, CampaignUncheckedUpdateInput>
+  }
+
+  /**
+   * Campaign delete
+   */
+  export type CampaignDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Campaign
+     */
+    select?: CampaignSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Campaign
+     */
+    omit?: CampaignOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignInclude<ExtArgs> | null
+    /**
+     * Filter which Campaign to delete.
+     */
+    where: CampaignWhereUniqueInput
+  }
+
+  /**
+   * Campaign deleteMany
+   */
+  export type CampaignDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Campaigns to delete
+     */
+    where?: CampaignWhereInput
+    /**
+     * Limit how many Campaigns to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Campaign.contacts
+   */
+  export type Campaign$contactsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampaignContact
+     */
+    select?: CampaignContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampaignContact
+     */
+    omit?: CampaignContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignContactInclude<ExtArgs> | null
+    where?: CampaignContactWhereInput
+    orderBy?: CampaignContactOrderByWithRelationInput | CampaignContactOrderByWithRelationInput[]
+    cursor?: CampaignContactWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CampaignContactScalarFieldEnum | CampaignContactScalarFieldEnum[]
+  }
+
+  /**
+   * Campaign without action
+   */
+  export type CampaignDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Campaign
+     */
+    select?: CampaignSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Campaign
+     */
+    omit?: CampaignOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CampaignContact
+   */
+
+  export type AggregateCampaignContact = {
+    _count: CampaignContactCountAggregateOutputType | null
+    _min: CampaignContactMinAggregateOutputType | null
+    _max: CampaignContactMaxAggregateOutputType | null
+  }
+
+  export type CampaignContactMinAggregateOutputType = {
+    id: string | null
+    campaignId: string | null
+    name: string | null
+    company: string | null
+    position: string | null
+    email: string | null
+    website: string | null
+    companyContext: string | null
+    draftSubject: string | null
+    draftBody: string | null
+    error: string | null
+    status: string | null
+    lastContactedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CampaignContactMaxAggregateOutputType = {
+    id: string | null
+    campaignId: string | null
+    name: string | null
+    company: string | null
+    position: string | null
+    email: string | null
+    website: string | null
+    companyContext: string | null
+    draftSubject: string | null
+    draftBody: string | null
+    error: string | null
+    status: string | null
+    lastContactedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CampaignContactCountAggregateOutputType = {
+    id: number
+    campaignId: number
+    name: number
+    company: number
+    position: number
+    email: number
+    website: number
+    companyContext: number
+    draftSubject: number
+    draftBody: number
+    error: number
+    status: number
+    lastContactedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CampaignContactMinAggregateInputType = {
+    id?: true
+    campaignId?: true
+    name?: true
+    company?: true
+    position?: true
+    email?: true
+    website?: true
+    companyContext?: true
+    draftSubject?: true
+    draftBody?: true
+    error?: true
+    status?: true
+    lastContactedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CampaignContactMaxAggregateInputType = {
+    id?: true
+    campaignId?: true
+    name?: true
+    company?: true
+    position?: true
+    email?: true
+    website?: true
+    companyContext?: true
+    draftSubject?: true
+    draftBody?: true
+    error?: true
+    status?: true
+    lastContactedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CampaignContactCountAggregateInputType = {
+    id?: true
+    campaignId?: true
+    name?: true
+    company?: true
+    position?: true
+    email?: true
+    website?: true
+    companyContext?: true
+    draftSubject?: true
+    draftBody?: true
+    error?: true
+    status?: true
+    lastContactedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CampaignContactAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CampaignContact to aggregate.
+     */
+    where?: CampaignContactWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CampaignContacts to fetch.
+     */
+    orderBy?: CampaignContactOrderByWithRelationInput | CampaignContactOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CampaignContactWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CampaignContacts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CampaignContacts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CampaignContacts
+    **/
+    _count?: true | CampaignContactCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CampaignContactMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CampaignContactMaxAggregateInputType
+  }
+
+  export type GetCampaignContactAggregateType<T extends CampaignContactAggregateArgs> = {
+        [P in keyof T & keyof AggregateCampaignContact]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCampaignContact[P]>
+      : GetScalarType<T[P], AggregateCampaignContact[P]>
+  }
+
+
+
+
+  export type CampaignContactGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CampaignContactWhereInput
+    orderBy?: CampaignContactOrderByWithAggregationInput | CampaignContactOrderByWithAggregationInput[]
+    by: CampaignContactScalarFieldEnum[] | CampaignContactScalarFieldEnum
+    having?: CampaignContactScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CampaignContactCountAggregateInputType | true
+    _min?: CampaignContactMinAggregateInputType
+    _max?: CampaignContactMaxAggregateInputType
+  }
+
+  export type CampaignContactGroupByOutputType = {
+    id: string
+    campaignId: string
+    name: string
+    company: string
+    position: string
+    email: string
+    website: string
+    companyContext: string | null
+    draftSubject: string | null
+    draftBody: string | null
+    error: string | null
+    status: string
+    lastContactedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: CampaignContactCountAggregateOutputType | null
+    _min: CampaignContactMinAggregateOutputType | null
+    _max: CampaignContactMaxAggregateOutputType | null
+  }
+
+  type GetCampaignContactGroupByPayload<T extends CampaignContactGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CampaignContactGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CampaignContactGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CampaignContactGroupByOutputType[P]>
+            : GetScalarType<T[P], CampaignContactGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CampaignContactSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    campaignId?: boolean
+    name?: boolean
+    company?: boolean
+    position?: boolean
+    email?: boolean
+    website?: boolean
+    companyContext?: boolean
+    draftSubject?: boolean
+    draftBody?: boolean
+    error?: boolean
+    status?: boolean
+    lastContactedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    campaign?: boolean | CampaignDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["campaignContact"]>
+
+  export type CampaignContactSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    campaignId?: boolean
+    name?: boolean
+    company?: boolean
+    position?: boolean
+    email?: boolean
+    website?: boolean
+    companyContext?: boolean
+    draftSubject?: boolean
+    draftBody?: boolean
+    error?: boolean
+    status?: boolean
+    lastContactedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    campaign?: boolean | CampaignDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["campaignContact"]>
+
+  export type CampaignContactSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    campaignId?: boolean
+    name?: boolean
+    company?: boolean
+    position?: boolean
+    email?: boolean
+    website?: boolean
+    companyContext?: boolean
+    draftSubject?: boolean
+    draftBody?: boolean
+    error?: boolean
+    status?: boolean
+    lastContactedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    campaign?: boolean | CampaignDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["campaignContact"]>
+
+  export type CampaignContactSelectScalar = {
+    id?: boolean
+    campaignId?: boolean
+    name?: boolean
+    company?: boolean
+    position?: boolean
+    email?: boolean
+    website?: boolean
+    companyContext?: boolean
+    draftSubject?: boolean
+    draftBody?: boolean
+    error?: boolean
+    status?: boolean
+    lastContactedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CampaignContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "campaignId" | "name" | "company" | "position" | "email" | "website" | "companyContext" | "draftSubject" | "draftBody" | "error" | "status" | "lastContactedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["campaignContact"]>
+  export type CampaignContactInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    campaign?: boolean | CampaignDefaultArgs<ExtArgs>
+  }
+  export type CampaignContactIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    campaign?: boolean | CampaignDefaultArgs<ExtArgs>
+  }
+  export type CampaignContactIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    campaign?: boolean | CampaignDefaultArgs<ExtArgs>
+  }
+
+  export type $CampaignContactPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CampaignContact"
+    objects: {
+      campaign: Prisma.$CampaignPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      campaignId: string
+      name: string
+      company: string
+      position: string
+      email: string
+      website: string
+      companyContext: string | null
+      draftSubject: string | null
+      draftBody: string | null
+      error: string | null
+      status: string
+      lastContactedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["campaignContact"]>
+    composites: {}
+  }
+
+  type CampaignContactGetPayload<S extends boolean | null | undefined | CampaignContactDefaultArgs> = $Result.GetResult<Prisma.$CampaignContactPayload, S>
+
+  type CampaignContactCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CampaignContactFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CampaignContactCountAggregateInputType | true
+    }
+
+  export interface CampaignContactDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CampaignContact'], meta: { name: 'CampaignContact' } }
+    /**
+     * Find zero or one CampaignContact that matches the filter.
+     * @param {CampaignContactFindUniqueArgs} args - Arguments to find a CampaignContact
+     * @example
+     * // Get one CampaignContact
+     * const campaignContact = await prisma.campaignContact.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CampaignContactFindUniqueArgs>(args: SelectSubset<T, CampaignContactFindUniqueArgs<ExtArgs>>): Prisma__CampaignContactClient<$Result.GetResult<Prisma.$CampaignContactPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CampaignContact that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CampaignContactFindUniqueOrThrowArgs} args - Arguments to find a CampaignContact
+     * @example
+     * // Get one CampaignContact
+     * const campaignContact = await prisma.campaignContact.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CampaignContactFindUniqueOrThrowArgs>(args: SelectSubset<T, CampaignContactFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CampaignContactClient<$Result.GetResult<Prisma.$CampaignContactPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CampaignContact that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampaignContactFindFirstArgs} args - Arguments to find a CampaignContact
+     * @example
+     * // Get one CampaignContact
+     * const campaignContact = await prisma.campaignContact.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CampaignContactFindFirstArgs>(args?: SelectSubset<T, CampaignContactFindFirstArgs<ExtArgs>>): Prisma__CampaignContactClient<$Result.GetResult<Prisma.$CampaignContactPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CampaignContact that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampaignContactFindFirstOrThrowArgs} args - Arguments to find a CampaignContact
+     * @example
+     * // Get one CampaignContact
+     * const campaignContact = await prisma.campaignContact.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CampaignContactFindFirstOrThrowArgs>(args?: SelectSubset<T, CampaignContactFindFirstOrThrowArgs<ExtArgs>>): Prisma__CampaignContactClient<$Result.GetResult<Prisma.$CampaignContactPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CampaignContacts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampaignContactFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CampaignContacts
+     * const campaignContacts = await prisma.campaignContact.findMany()
+     * 
+     * // Get first 10 CampaignContacts
+     * const campaignContacts = await prisma.campaignContact.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const campaignContactWithIdOnly = await prisma.campaignContact.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CampaignContactFindManyArgs>(args?: SelectSubset<T, CampaignContactFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampaignContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CampaignContact.
+     * @param {CampaignContactCreateArgs} args - Arguments to create a CampaignContact.
+     * @example
+     * // Create one CampaignContact
+     * const CampaignContact = await prisma.campaignContact.create({
+     *   data: {
+     *     // ... data to create a CampaignContact
+     *   }
+     * })
+     * 
+     */
+    create<T extends CampaignContactCreateArgs>(args: SelectSubset<T, CampaignContactCreateArgs<ExtArgs>>): Prisma__CampaignContactClient<$Result.GetResult<Prisma.$CampaignContactPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CampaignContacts.
+     * @param {CampaignContactCreateManyArgs} args - Arguments to create many CampaignContacts.
+     * @example
+     * // Create many CampaignContacts
+     * const campaignContact = await prisma.campaignContact.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CampaignContactCreateManyArgs>(args?: SelectSubset<T, CampaignContactCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CampaignContacts and returns the data saved in the database.
+     * @param {CampaignContactCreateManyAndReturnArgs} args - Arguments to create many CampaignContacts.
+     * @example
+     * // Create many CampaignContacts
+     * const campaignContact = await prisma.campaignContact.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CampaignContacts and only return the `id`
+     * const campaignContactWithIdOnly = await prisma.campaignContact.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CampaignContactCreateManyAndReturnArgs>(args?: SelectSubset<T, CampaignContactCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampaignContactPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CampaignContact.
+     * @param {CampaignContactDeleteArgs} args - Arguments to delete one CampaignContact.
+     * @example
+     * // Delete one CampaignContact
+     * const CampaignContact = await prisma.campaignContact.delete({
+     *   where: {
+     *     // ... filter to delete one CampaignContact
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CampaignContactDeleteArgs>(args: SelectSubset<T, CampaignContactDeleteArgs<ExtArgs>>): Prisma__CampaignContactClient<$Result.GetResult<Prisma.$CampaignContactPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CampaignContact.
+     * @param {CampaignContactUpdateArgs} args - Arguments to update one CampaignContact.
+     * @example
+     * // Update one CampaignContact
+     * const campaignContact = await prisma.campaignContact.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CampaignContactUpdateArgs>(args: SelectSubset<T, CampaignContactUpdateArgs<ExtArgs>>): Prisma__CampaignContactClient<$Result.GetResult<Prisma.$CampaignContactPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CampaignContacts.
+     * @param {CampaignContactDeleteManyArgs} args - Arguments to filter CampaignContacts to delete.
+     * @example
+     * // Delete a few CampaignContacts
+     * const { count } = await prisma.campaignContact.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CampaignContactDeleteManyArgs>(args?: SelectSubset<T, CampaignContactDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CampaignContacts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampaignContactUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CampaignContacts
+     * const campaignContact = await prisma.campaignContact.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CampaignContactUpdateManyArgs>(args: SelectSubset<T, CampaignContactUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CampaignContacts and returns the data updated in the database.
+     * @param {CampaignContactUpdateManyAndReturnArgs} args - Arguments to update many CampaignContacts.
+     * @example
+     * // Update many CampaignContacts
+     * const campaignContact = await prisma.campaignContact.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CampaignContacts and only return the `id`
+     * const campaignContactWithIdOnly = await prisma.campaignContact.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CampaignContactUpdateManyAndReturnArgs>(args: SelectSubset<T, CampaignContactUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CampaignContactPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CampaignContact.
+     * @param {CampaignContactUpsertArgs} args - Arguments to update or create a CampaignContact.
+     * @example
+     * // Update or create a CampaignContact
+     * const campaignContact = await prisma.campaignContact.upsert({
+     *   create: {
+     *     // ... data to create a CampaignContact
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CampaignContact we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CampaignContactUpsertArgs>(args: SelectSubset<T, CampaignContactUpsertArgs<ExtArgs>>): Prisma__CampaignContactClient<$Result.GetResult<Prisma.$CampaignContactPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CampaignContacts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampaignContactCountArgs} args - Arguments to filter CampaignContacts to count.
+     * @example
+     * // Count the number of CampaignContacts
+     * const count = await prisma.campaignContact.count({
+     *   where: {
+     *     // ... the filter for the CampaignContacts we want to count
+     *   }
+     * })
+    **/
+    count<T extends CampaignContactCountArgs>(
+      args?: Subset<T, CampaignContactCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CampaignContactCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CampaignContact.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampaignContactAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CampaignContactAggregateArgs>(args: Subset<T, CampaignContactAggregateArgs>): Prisma.PrismaPromise<GetCampaignContactAggregateType<T>>
+
+    /**
+     * Group by CampaignContact.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CampaignContactGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CampaignContactGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CampaignContactGroupByArgs['orderBy'] }
+        : { orderBy?: CampaignContactGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CampaignContactGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCampaignContactGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CampaignContact model
+   */
+  readonly fields: CampaignContactFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CampaignContact.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CampaignContactClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    campaign<T extends CampaignDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CampaignDefaultArgs<ExtArgs>>): Prisma__CampaignClient<$Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CampaignContact model
+   */
+  interface CampaignContactFieldRefs {
+    readonly id: FieldRef<"CampaignContact", 'String'>
+    readonly campaignId: FieldRef<"CampaignContact", 'String'>
+    readonly name: FieldRef<"CampaignContact", 'String'>
+    readonly company: FieldRef<"CampaignContact", 'String'>
+    readonly position: FieldRef<"CampaignContact", 'String'>
+    readonly email: FieldRef<"CampaignContact", 'String'>
+    readonly website: FieldRef<"CampaignContact", 'String'>
+    readonly companyContext: FieldRef<"CampaignContact", 'String'>
+    readonly draftSubject: FieldRef<"CampaignContact", 'String'>
+    readonly draftBody: FieldRef<"CampaignContact", 'String'>
+    readonly error: FieldRef<"CampaignContact", 'String'>
+    readonly status: FieldRef<"CampaignContact", 'String'>
+    readonly lastContactedAt: FieldRef<"CampaignContact", 'DateTime'>
+    readonly createdAt: FieldRef<"CampaignContact", 'DateTime'>
+    readonly updatedAt: FieldRef<"CampaignContact", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CampaignContact findUnique
+   */
+  export type CampaignContactFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampaignContact
+     */
+    select?: CampaignContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampaignContact
+     */
+    omit?: CampaignContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignContactInclude<ExtArgs> | null
+    /**
+     * Filter, which CampaignContact to fetch.
+     */
+    where: CampaignContactWhereUniqueInput
+  }
+
+  /**
+   * CampaignContact findUniqueOrThrow
+   */
+  export type CampaignContactFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampaignContact
+     */
+    select?: CampaignContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampaignContact
+     */
+    omit?: CampaignContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignContactInclude<ExtArgs> | null
+    /**
+     * Filter, which CampaignContact to fetch.
+     */
+    where: CampaignContactWhereUniqueInput
+  }
+
+  /**
+   * CampaignContact findFirst
+   */
+  export type CampaignContactFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampaignContact
+     */
+    select?: CampaignContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampaignContact
+     */
+    omit?: CampaignContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignContactInclude<ExtArgs> | null
+    /**
+     * Filter, which CampaignContact to fetch.
+     */
+    where?: CampaignContactWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CampaignContacts to fetch.
+     */
+    orderBy?: CampaignContactOrderByWithRelationInput | CampaignContactOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CampaignContacts.
+     */
+    cursor?: CampaignContactWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CampaignContacts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CampaignContacts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CampaignContacts.
+     */
+    distinct?: CampaignContactScalarFieldEnum | CampaignContactScalarFieldEnum[]
+  }
+
+  /**
+   * CampaignContact findFirstOrThrow
+   */
+  export type CampaignContactFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampaignContact
+     */
+    select?: CampaignContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampaignContact
+     */
+    omit?: CampaignContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignContactInclude<ExtArgs> | null
+    /**
+     * Filter, which CampaignContact to fetch.
+     */
+    where?: CampaignContactWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CampaignContacts to fetch.
+     */
+    orderBy?: CampaignContactOrderByWithRelationInput | CampaignContactOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CampaignContacts.
+     */
+    cursor?: CampaignContactWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CampaignContacts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CampaignContacts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CampaignContacts.
+     */
+    distinct?: CampaignContactScalarFieldEnum | CampaignContactScalarFieldEnum[]
+  }
+
+  /**
+   * CampaignContact findMany
+   */
+  export type CampaignContactFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampaignContact
+     */
+    select?: CampaignContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampaignContact
+     */
+    omit?: CampaignContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignContactInclude<ExtArgs> | null
+    /**
+     * Filter, which CampaignContacts to fetch.
+     */
+    where?: CampaignContactWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CampaignContacts to fetch.
+     */
+    orderBy?: CampaignContactOrderByWithRelationInput | CampaignContactOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CampaignContacts.
+     */
+    cursor?: CampaignContactWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CampaignContacts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CampaignContacts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CampaignContacts.
+     */
+    distinct?: CampaignContactScalarFieldEnum | CampaignContactScalarFieldEnum[]
+  }
+
+  /**
+   * CampaignContact create
+   */
+  export type CampaignContactCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampaignContact
+     */
+    select?: CampaignContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampaignContact
+     */
+    omit?: CampaignContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignContactInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CampaignContact.
+     */
+    data: XOR<CampaignContactCreateInput, CampaignContactUncheckedCreateInput>
+  }
+
+  /**
+   * CampaignContact createMany
+   */
+  export type CampaignContactCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CampaignContacts.
+     */
+    data: CampaignContactCreateManyInput | CampaignContactCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CampaignContact createManyAndReturn
+   */
+  export type CampaignContactCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampaignContact
+     */
+    select?: CampaignContactSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampaignContact
+     */
+    omit?: CampaignContactOmit<ExtArgs> | null
+    /**
+     * The data used to create many CampaignContacts.
+     */
+    data: CampaignContactCreateManyInput | CampaignContactCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignContactIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CampaignContact update
+   */
+  export type CampaignContactUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampaignContact
+     */
+    select?: CampaignContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampaignContact
+     */
+    omit?: CampaignContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignContactInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CampaignContact.
+     */
+    data: XOR<CampaignContactUpdateInput, CampaignContactUncheckedUpdateInput>
+    /**
+     * Choose, which CampaignContact to update.
+     */
+    where: CampaignContactWhereUniqueInput
+  }
+
+  /**
+   * CampaignContact updateMany
+   */
+  export type CampaignContactUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CampaignContacts.
+     */
+    data: XOR<CampaignContactUpdateManyMutationInput, CampaignContactUncheckedUpdateManyInput>
+    /**
+     * Filter which CampaignContacts to update
+     */
+    where?: CampaignContactWhereInput
+    /**
+     * Limit how many CampaignContacts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CampaignContact updateManyAndReturn
+   */
+  export type CampaignContactUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampaignContact
+     */
+    select?: CampaignContactSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampaignContact
+     */
+    omit?: CampaignContactOmit<ExtArgs> | null
+    /**
+     * The data used to update CampaignContacts.
+     */
+    data: XOR<CampaignContactUpdateManyMutationInput, CampaignContactUncheckedUpdateManyInput>
+    /**
+     * Filter which CampaignContacts to update
+     */
+    where?: CampaignContactWhereInput
+    /**
+     * Limit how many CampaignContacts to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignContactIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CampaignContact upsert
+   */
+  export type CampaignContactUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampaignContact
+     */
+    select?: CampaignContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampaignContact
+     */
+    omit?: CampaignContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignContactInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CampaignContact to update in case it exists.
+     */
+    where: CampaignContactWhereUniqueInput
+    /**
+     * In case the CampaignContact found by the `where` argument doesn't exist, create a new CampaignContact with this data.
+     */
+    create: XOR<CampaignContactCreateInput, CampaignContactUncheckedCreateInput>
+    /**
+     * In case the CampaignContact was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CampaignContactUpdateInput, CampaignContactUncheckedUpdateInput>
+  }
+
+  /**
+   * CampaignContact delete
+   */
+  export type CampaignContactDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampaignContact
+     */
+    select?: CampaignContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampaignContact
+     */
+    omit?: CampaignContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignContactInclude<ExtArgs> | null
+    /**
+     * Filter which CampaignContact to delete.
+     */
+    where: CampaignContactWhereUniqueInput
+  }
+
+  /**
+   * CampaignContact deleteMany
+   */
+  export type CampaignContactDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CampaignContacts to delete
+     */
+    where?: CampaignContactWhereInput
+    /**
+     * Limit how many CampaignContacts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CampaignContact without action
+   */
+  export type CampaignContactDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CampaignContact
+     */
+    select?: CampaignContactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CampaignContact
+     */
+    omit?: CampaignContactOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CampaignContactInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -21889,8 +27910,8 @@ export namespace Prisma {
     depolyed_url: 'depolyed_url',
     projectLinks: 'projectLinks',
     techStacks: 'techStacks',
-    priority: 'priority',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    priority: 'priority'
   };
 
   export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
@@ -21940,16 +27961,16 @@ export namespace Prisma {
     platform: 'platform',
     websiteUrl: 'websiteUrl',
     fieldsFilled: 'fieldsFilled',
-    totalFields: 'totalFields',
     timeSavedSec: 'timeSavedSec',
-    tokensUsed: 'tokensUsed',
-    promptTokens: 'promptTokens',
+    aiEdits: 'aiEdits',
+    acceptedDirect: 'acceptedDirect',
+    createdAt: 'createdAt',
     completionTokens: 'completionTokens',
     fieldsAnswered: 'fieldsAnswered',
     fieldsUnanswered: 'fieldsUnanswered',
-    aiEdits: 'aiEdits',
-    acceptedDirect: 'acceptedDirect',
-    createdAt: 'createdAt'
+    promptTokens: 'promptTokens',
+    tokensUsed: 'tokensUsed',
+    totalFields: 'totalFields'
   };
 
   export type UsageAnalyticsScalarFieldEnum = (typeof UsageAnalyticsScalarFieldEnum)[keyof typeof UsageAnalyticsScalarFieldEnum]
@@ -22052,6 +28073,73 @@ export namespace Prisma {
   };
 
   export type LLMGatewayConfigScalarFieldEnum = (typeof LLMGatewayConfigScalarFieldEnum)[keyof typeof LLMGatewayConfigScalarFieldEnum]
+
+
+  export const CompanyContextCacheScalarFieldEnum: {
+    id: 'id',
+    url: 'url',
+    context: 'context',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CompanyContextCacheScalarFieldEnum = (typeof CompanyContextCacheScalarFieldEnum)[keyof typeof CompanyContextCacheScalarFieldEnum]
+
+
+  export const LatexTemplateScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    name: 'name',
+    content: 'content',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type LatexTemplateScalarFieldEnum = (typeof LatexTemplateScalarFieldEnum)[keyof typeof LatexTemplateScalarFieldEnum]
+
+
+  export const TailoredResumeScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    jobUrl: 'jobUrl',
+    companyName: 'companyName',
+    pdfUrl: 'pdfUrl',
+    createdAt: 'createdAt'
+  };
+
+  export type TailoredResumeScalarFieldEnum = (typeof TailoredResumeScalarFieldEnum)[keyof typeof TailoredResumeScalarFieldEnum]
+
+
+  export const CampaignScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    name: 'name',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CampaignScalarFieldEnum = (typeof CampaignScalarFieldEnum)[keyof typeof CampaignScalarFieldEnum]
+
+
+  export const CampaignContactScalarFieldEnum: {
+    id: 'id',
+    campaignId: 'campaignId',
+    name: 'name',
+    company: 'company',
+    position: 'position',
+    email: 'email',
+    website: 'website',
+    companyContext: 'companyContext',
+    draftSubject: 'draftSubject',
+    draftBody: 'draftBody',
+    error: 'error',
+    status: 'status',
+    lastContactedAt: 'lastContactedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CampaignContactScalarFieldEnum = (typeof CampaignContactScalarFieldEnum)[keyof typeof CampaignContactScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -22259,19 +28347,22 @@ export namespace Prisma {
     onboardingDone?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    links?: LinkListRelationFilter
     addresses?: AddressListRelationFilter
-    educations?: EducationListRelationFilter
-    works?: WorkListRelationFilter
-    projects?: ProjectListRelationFilter
     answers?: AnswerLibraryListRelationFilter
-    resumes?: ResumeListRelationFilter
-    memories?: MemoryListRelationFilter
-    analytics?: UsageAnalyticsListRelationFilter
-    formSessions?: FormSessionListRelationFilter
     chatEpisodes?: ChatEpisodeListRelationFilter
+    educations?: EducationListRelationFilter
+    formSessions?: FormSessionListRelationFilter
+    GitHubConnections?: XOR<GitHubConnectionNullableScalarRelationFilter, GitHubConnectionWhereInput> | null
     llmConfig?: XOR<LLMGatewayConfigNullableScalarRelationFilter, LLMGatewayConfigWhereInput> | null
-    GitHubConnections?: GitHubConnectionListRelationFilter
+    LatexTemplate?: LatexTemplateListRelationFilter
+    links?: LinkListRelationFilter
+    memories?: MemoryListRelationFilter
+    projects?: ProjectListRelationFilter
+    resumes?: ResumeListRelationFilter
+    TailoredResume?: TailoredResumeListRelationFilter
+    analytics?: UsageAnalyticsListRelationFilter
+    works?: WorkListRelationFilter
+    campaigns?: CampaignListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -22287,19 +28378,22 @@ export namespace Prisma {
     onboardingDone?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    links?: LinkOrderByRelationAggregateInput
     addresses?: AddressOrderByRelationAggregateInput
-    educations?: EducationOrderByRelationAggregateInput
-    works?: WorkOrderByRelationAggregateInput
-    projects?: ProjectOrderByRelationAggregateInput
     answers?: AnswerLibraryOrderByRelationAggregateInput
-    resumes?: ResumeOrderByRelationAggregateInput
-    memories?: MemoryOrderByRelationAggregateInput
-    analytics?: UsageAnalyticsOrderByRelationAggregateInput
-    formSessions?: FormSessionOrderByRelationAggregateInput
     chatEpisodes?: ChatEpisodeOrderByRelationAggregateInput
+    educations?: EducationOrderByRelationAggregateInput
+    formSessions?: FormSessionOrderByRelationAggregateInput
+    GitHubConnections?: GitHubConnectionOrderByWithRelationInput
     llmConfig?: LLMGatewayConfigOrderByWithRelationInput
-    GitHubConnections?: GitHubConnectionOrderByRelationAggregateInput
+    LatexTemplate?: LatexTemplateOrderByRelationAggregateInput
+    links?: LinkOrderByRelationAggregateInput
+    memories?: MemoryOrderByRelationAggregateInput
+    projects?: ProjectOrderByRelationAggregateInput
+    resumes?: ResumeOrderByRelationAggregateInput
+    TailoredResume?: TailoredResumeOrderByRelationAggregateInput
+    analytics?: UsageAnalyticsOrderByRelationAggregateInput
+    works?: WorkOrderByRelationAggregateInput
+    campaigns?: CampaignOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -22318,19 +28412,22 @@ export namespace Prisma {
     onboardingDone?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    links?: LinkListRelationFilter
     addresses?: AddressListRelationFilter
-    educations?: EducationListRelationFilter
-    works?: WorkListRelationFilter
-    projects?: ProjectListRelationFilter
     answers?: AnswerLibraryListRelationFilter
-    resumes?: ResumeListRelationFilter
-    memories?: MemoryListRelationFilter
-    analytics?: UsageAnalyticsListRelationFilter
-    formSessions?: FormSessionListRelationFilter
     chatEpisodes?: ChatEpisodeListRelationFilter
+    educations?: EducationListRelationFilter
+    formSessions?: FormSessionListRelationFilter
+    GitHubConnections?: XOR<GitHubConnectionNullableScalarRelationFilter, GitHubConnectionWhereInput> | null
     llmConfig?: XOR<LLMGatewayConfigNullableScalarRelationFilter, LLMGatewayConfigWhereInput> | null
-    GitHubConnections?: GitHubConnectionListRelationFilter
+    LatexTemplate?: LatexTemplateListRelationFilter
+    links?: LinkListRelationFilter
+    memories?: MemoryListRelationFilter
+    projects?: ProjectListRelationFilter
+    resumes?: ResumeListRelationFilter
+    TailoredResume?: TailoredResumeListRelationFilter
+    analytics?: UsageAnalyticsListRelationFilter
+    works?: WorkListRelationFilter
+    campaigns?: CampaignListRelationFilter
   }, "id" | "email" | "referralCode">
 
   export type UserOrderByWithAggregationInput = {
@@ -22643,8 +28740,8 @@ export namespace Prisma {
     depolyed_url?: StringNullableFilter<"Project"> | string | null
     projectLinks?: StringNullableListFilter<"Project">
     techStacks?: StringNullableListFilter<"Project">
-    priority?: IntFilter<"Project"> | number
     createdAt?: DateTimeFilter<"Project"> | Date | string
+    priority?: IntFilter<"Project"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -22657,8 +28754,8 @@ export namespace Prisma {
     depolyed_url?: SortOrderInput | SortOrder
     projectLinks?: SortOrder
     techStacks?: SortOrder
-    priority?: SortOrder
     createdAt?: SortOrder
+    priority?: SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -22674,8 +28771,8 @@ export namespace Prisma {
     depolyed_url?: StringNullableFilter<"Project"> | string | null
     projectLinks?: StringNullableListFilter<"Project">
     techStacks?: StringNullableListFilter<"Project">
-    priority?: IntFilter<"Project"> | number
     createdAt?: DateTimeFilter<"Project"> | Date | string
+    priority?: IntFilter<"Project"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
@@ -22688,8 +28785,8 @@ export namespace Prisma {
     depolyed_url?: SortOrderInput | SortOrder
     projectLinks?: SortOrder
     techStacks?: SortOrder
-    priority?: SortOrder
     createdAt?: SortOrder
+    priority?: SortOrder
     _count?: ProjectCountOrderByAggregateInput
     _avg?: ProjectAvgOrderByAggregateInput
     _max?: ProjectMaxOrderByAggregateInput
@@ -22709,8 +28806,8 @@ export namespace Prisma {
     depolyed_url?: StringNullableWithAggregatesFilter<"Project"> | string | null
     projectLinks?: StringNullableListFilter<"Project">
     techStacks?: StringNullableListFilter<"Project">
-    priority?: IntWithAggregatesFilter<"Project"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
+    priority?: IntWithAggregatesFilter<"Project"> | number
   }
 
   export type AnswerLibraryWhereInput = {
@@ -22912,16 +29009,16 @@ export namespace Prisma {
     platform?: StringFilter<"UsageAnalytics"> | string
     websiteUrl?: StringNullableFilter<"UsageAnalytics"> | string | null
     fieldsFilled?: IntFilter<"UsageAnalytics"> | number
-    totalFields?: IntFilter<"UsageAnalytics"> | number
     timeSavedSec?: IntFilter<"UsageAnalytics"> | number
-    tokensUsed?: IntFilter<"UsageAnalytics"> | number
-    promptTokens?: IntFilter<"UsageAnalytics"> | number
-    completionTokens?: IntFilter<"UsageAnalytics"> | number
-    fieldsAnswered?: JsonNullableFilter<"UsageAnalytics">
-    fieldsUnanswered?: JsonNullableFilter<"UsageAnalytics">
     aiEdits?: IntFilter<"UsageAnalytics"> | number
     acceptedDirect?: BoolFilter<"UsageAnalytics"> | boolean
     createdAt?: DateTimeFilter<"UsageAnalytics"> | Date | string
+    completionTokens?: IntFilter<"UsageAnalytics"> | number
+    fieldsAnswered?: JsonNullableFilter<"UsageAnalytics">
+    fieldsUnanswered?: JsonNullableFilter<"UsageAnalytics">
+    promptTokens?: IntFilter<"UsageAnalytics"> | number
+    tokensUsed?: IntFilter<"UsageAnalytics"> | number
+    totalFields?: IntFilter<"UsageAnalytics"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -22931,16 +29028,16 @@ export namespace Prisma {
     platform?: SortOrder
     websiteUrl?: SortOrderInput | SortOrder
     fieldsFilled?: SortOrder
-    totalFields?: SortOrder
     timeSavedSec?: SortOrder
-    tokensUsed?: SortOrder
-    promptTokens?: SortOrder
-    completionTokens?: SortOrder
-    fieldsAnswered?: SortOrderInput | SortOrder
-    fieldsUnanswered?: SortOrderInput | SortOrder
     aiEdits?: SortOrder
     acceptedDirect?: SortOrder
     createdAt?: SortOrder
+    completionTokens?: SortOrder
+    fieldsAnswered?: SortOrderInput | SortOrder
+    fieldsUnanswered?: SortOrderInput | SortOrder
+    promptTokens?: SortOrder
+    tokensUsed?: SortOrder
+    totalFields?: SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -22953,16 +29050,16 @@ export namespace Prisma {
     platform?: StringFilter<"UsageAnalytics"> | string
     websiteUrl?: StringNullableFilter<"UsageAnalytics"> | string | null
     fieldsFilled?: IntFilter<"UsageAnalytics"> | number
-    totalFields?: IntFilter<"UsageAnalytics"> | number
     timeSavedSec?: IntFilter<"UsageAnalytics"> | number
-    tokensUsed?: IntFilter<"UsageAnalytics"> | number
-    promptTokens?: IntFilter<"UsageAnalytics"> | number
-    completionTokens?: IntFilter<"UsageAnalytics"> | number
-    fieldsAnswered?: JsonNullableFilter<"UsageAnalytics">
-    fieldsUnanswered?: JsonNullableFilter<"UsageAnalytics">
     aiEdits?: IntFilter<"UsageAnalytics"> | number
     acceptedDirect?: BoolFilter<"UsageAnalytics"> | boolean
     createdAt?: DateTimeFilter<"UsageAnalytics"> | Date | string
+    completionTokens?: IntFilter<"UsageAnalytics"> | number
+    fieldsAnswered?: JsonNullableFilter<"UsageAnalytics">
+    fieldsUnanswered?: JsonNullableFilter<"UsageAnalytics">
+    promptTokens?: IntFilter<"UsageAnalytics"> | number
+    tokensUsed?: IntFilter<"UsageAnalytics"> | number
+    totalFields?: IntFilter<"UsageAnalytics"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
@@ -22972,16 +29069,16 @@ export namespace Prisma {
     platform?: SortOrder
     websiteUrl?: SortOrderInput | SortOrder
     fieldsFilled?: SortOrder
-    totalFields?: SortOrder
     timeSavedSec?: SortOrder
-    tokensUsed?: SortOrder
-    promptTokens?: SortOrder
-    completionTokens?: SortOrder
-    fieldsAnswered?: SortOrderInput | SortOrder
-    fieldsUnanswered?: SortOrderInput | SortOrder
     aiEdits?: SortOrder
     acceptedDirect?: SortOrder
     createdAt?: SortOrder
+    completionTokens?: SortOrder
+    fieldsAnswered?: SortOrderInput | SortOrder
+    fieldsUnanswered?: SortOrderInput | SortOrder
+    promptTokens?: SortOrder
+    tokensUsed?: SortOrder
+    totalFields?: SortOrder
     _count?: UsageAnalyticsCountOrderByAggregateInput
     _avg?: UsageAnalyticsAvgOrderByAggregateInput
     _max?: UsageAnalyticsMaxOrderByAggregateInput
@@ -22998,16 +29095,16 @@ export namespace Prisma {
     platform?: StringWithAggregatesFilter<"UsageAnalytics"> | string
     websiteUrl?: StringNullableWithAggregatesFilter<"UsageAnalytics"> | string | null
     fieldsFilled?: IntWithAggregatesFilter<"UsageAnalytics"> | number
-    totalFields?: IntWithAggregatesFilter<"UsageAnalytics"> | number
     timeSavedSec?: IntWithAggregatesFilter<"UsageAnalytics"> | number
-    tokensUsed?: IntWithAggregatesFilter<"UsageAnalytics"> | number
-    promptTokens?: IntWithAggregatesFilter<"UsageAnalytics"> | number
-    completionTokens?: IntWithAggregatesFilter<"UsageAnalytics"> | number
-    fieldsAnswered?: JsonNullableWithAggregatesFilter<"UsageAnalytics">
-    fieldsUnanswered?: JsonNullableWithAggregatesFilter<"UsageAnalytics">
     aiEdits?: IntWithAggregatesFilter<"UsageAnalytics"> | number
     acceptedDirect?: BoolWithAggregatesFilter<"UsageAnalytics"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"UsageAnalytics"> | Date | string
+    completionTokens?: IntWithAggregatesFilter<"UsageAnalytics"> | number
+    fieldsAnswered?: JsonNullableWithAggregatesFilter<"UsageAnalytics">
+    fieldsUnanswered?: JsonNullableWithAggregatesFilter<"UsageAnalytics">
+    promptTokens?: IntWithAggregatesFilter<"UsageAnalytics"> | number
+    tokensUsed?: IntWithAggregatesFilter<"UsageAnalytics"> | number
+    totalFields?: IntWithAggregatesFilter<"UsageAnalytics"> | number
   }
 
   export type GitHubConnectionWhereInput = {
@@ -23508,6 +29605,341 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"LLMGatewayConfig"> | Date | string
   }
 
+  export type CompanyContextCacheWhereInput = {
+    AND?: CompanyContextCacheWhereInput | CompanyContextCacheWhereInput[]
+    OR?: CompanyContextCacheWhereInput[]
+    NOT?: CompanyContextCacheWhereInput | CompanyContextCacheWhereInput[]
+    id?: StringFilter<"CompanyContextCache"> | string
+    url?: StringFilter<"CompanyContextCache"> | string
+    context?: StringFilter<"CompanyContextCache"> | string
+    createdAt?: DateTimeFilter<"CompanyContextCache"> | Date | string
+    updatedAt?: DateTimeFilter<"CompanyContextCache"> | Date | string
+  }
+
+  export type CompanyContextCacheOrderByWithRelationInput = {
+    id?: SortOrder
+    url?: SortOrder
+    context?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CompanyContextCacheWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    url?: string
+    AND?: CompanyContextCacheWhereInput | CompanyContextCacheWhereInput[]
+    OR?: CompanyContextCacheWhereInput[]
+    NOT?: CompanyContextCacheWhereInput | CompanyContextCacheWhereInput[]
+    context?: StringFilter<"CompanyContextCache"> | string
+    createdAt?: DateTimeFilter<"CompanyContextCache"> | Date | string
+    updatedAt?: DateTimeFilter<"CompanyContextCache"> | Date | string
+  }, "id" | "url">
+
+  export type CompanyContextCacheOrderByWithAggregationInput = {
+    id?: SortOrder
+    url?: SortOrder
+    context?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CompanyContextCacheCountOrderByAggregateInput
+    _max?: CompanyContextCacheMaxOrderByAggregateInput
+    _min?: CompanyContextCacheMinOrderByAggregateInput
+  }
+
+  export type CompanyContextCacheScalarWhereWithAggregatesInput = {
+    AND?: CompanyContextCacheScalarWhereWithAggregatesInput | CompanyContextCacheScalarWhereWithAggregatesInput[]
+    OR?: CompanyContextCacheScalarWhereWithAggregatesInput[]
+    NOT?: CompanyContextCacheScalarWhereWithAggregatesInput | CompanyContextCacheScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CompanyContextCache"> | string
+    url?: StringWithAggregatesFilter<"CompanyContextCache"> | string
+    context?: StringWithAggregatesFilter<"CompanyContextCache"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"CompanyContextCache"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"CompanyContextCache"> | Date | string
+  }
+
+  export type LatexTemplateWhereInput = {
+    AND?: LatexTemplateWhereInput | LatexTemplateWhereInput[]
+    OR?: LatexTemplateWhereInput[]
+    NOT?: LatexTemplateWhereInput | LatexTemplateWhereInput[]
+    id?: StringFilter<"LatexTemplate"> | string
+    userId?: StringFilter<"LatexTemplate"> | string
+    name?: StringFilter<"LatexTemplate"> | string
+    content?: StringFilter<"LatexTemplate"> | string
+    createdAt?: DateTimeFilter<"LatexTemplate"> | Date | string
+    updatedAt?: DateTimeFilter<"LatexTemplate"> | Date | string
+    User?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type LatexTemplateOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    User?: UserOrderByWithRelationInput
+  }
+
+  export type LatexTemplateWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: LatexTemplateWhereInput | LatexTemplateWhereInput[]
+    OR?: LatexTemplateWhereInput[]
+    NOT?: LatexTemplateWhereInput | LatexTemplateWhereInput[]
+    userId?: StringFilter<"LatexTemplate"> | string
+    name?: StringFilter<"LatexTemplate"> | string
+    content?: StringFilter<"LatexTemplate"> | string
+    createdAt?: DateTimeFilter<"LatexTemplate"> | Date | string
+    updatedAt?: DateTimeFilter<"LatexTemplate"> | Date | string
+    User?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type LatexTemplateOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: LatexTemplateCountOrderByAggregateInput
+    _max?: LatexTemplateMaxOrderByAggregateInput
+    _min?: LatexTemplateMinOrderByAggregateInput
+  }
+
+  export type LatexTemplateScalarWhereWithAggregatesInput = {
+    AND?: LatexTemplateScalarWhereWithAggregatesInput | LatexTemplateScalarWhereWithAggregatesInput[]
+    OR?: LatexTemplateScalarWhereWithAggregatesInput[]
+    NOT?: LatexTemplateScalarWhereWithAggregatesInput | LatexTemplateScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"LatexTemplate"> | string
+    userId?: StringWithAggregatesFilter<"LatexTemplate"> | string
+    name?: StringWithAggregatesFilter<"LatexTemplate"> | string
+    content?: StringWithAggregatesFilter<"LatexTemplate"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"LatexTemplate"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"LatexTemplate"> | Date | string
+  }
+
+  export type TailoredResumeWhereInput = {
+    AND?: TailoredResumeWhereInput | TailoredResumeWhereInput[]
+    OR?: TailoredResumeWhereInput[]
+    NOT?: TailoredResumeWhereInput | TailoredResumeWhereInput[]
+    id?: StringFilter<"TailoredResume"> | string
+    userId?: StringFilter<"TailoredResume"> | string
+    jobUrl?: StringFilter<"TailoredResume"> | string
+    companyName?: StringNullableFilter<"TailoredResume"> | string | null
+    pdfUrl?: StringNullableFilter<"TailoredResume"> | string | null
+    createdAt?: DateTimeFilter<"TailoredResume"> | Date | string
+    User?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type TailoredResumeOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    jobUrl?: SortOrder
+    companyName?: SortOrderInput | SortOrder
+    pdfUrl?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    User?: UserOrderByWithRelationInput
+  }
+
+  export type TailoredResumeWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TailoredResumeWhereInput | TailoredResumeWhereInput[]
+    OR?: TailoredResumeWhereInput[]
+    NOT?: TailoredResumeWhereInput | TailoredResumeWhereInput[]
+    userId?: StringFilter<"TailoredResume"> | string
+    jobUrl?: StringFilter<"TailoredResume"> | string
+    companyName?: StringNullableFilter<"TailoredResume"> | string | null
+    pdfUrl?: StringNullableFilter<"TailoredResume"> | string | null
+    createdAt?: DateTimeFilter<"TailoredResume"> | Date | string
+    User?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type TailoredResumeOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    jobUrl?: SortOrder
+    companyName?: SortOrderInput | SortOrder
+    pdfUrl?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: TailoredResumeCountOrderByAggregateInput
+    _max?: TailoredResumeMaxOrderByAggregateInput
+    _min?: TailoredResumeMinOrderByAggregateInput
+  }
+
+  export type TailoredResumeScalarWhereWithAggregatesInput = {
+    AND?: TailoredResumeScalarWhereWithAggregatesInput | TailoredResumeScalarWhereWithAggregatesInput[]
+    OR?: TailoredResumeScalarWhereWithAggregatesInput[]
+    NOT?: TailoredResumeScalarWhereWithAggregatesInput | TailoredResumeScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TailoredResume"> | string
+    userId?: StringWithAggregatesFilter<"TailoredResume"> | string
+    jobUrl?: StringWithAggregatesFilter<"TailoredResume"> | string
+    companyName?: StringNullableWithAggregatesFilter<"TailoredResume"> | string | null
+    pdfUrl?: StringNullableWithAggregatesFilter<"TailoredResume"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"TailoredResume"> | Date | string
+  }
+
+  export type CampaignWhereInput = {
+    AND?: CampaignWhereInput | CampaignWhereInput[]
+    OR?: CampaignWhereInput[]
+    NOT?: CampaignWhereInput | CampaignWhereInput[]
+    id?: StringFilter<"Campaign"> | string
+    userId?: StringFilter<"Campaign"> | string
+    name?: StringFilter<"Campaign"> | string
+    createdAt?: DateTimeFilter<"Campaign"> | Date | string
+    updatedAt?: DateTimeFilter<"Campaign"> | Date | string
+    contacts?: CampaignContactListRelationFilter
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type CampaignOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    contacts?: CampaignContactOrderByRelationAggregateInput
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type CampaignWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CampaignWhereInput | CampaignWhereInput[]
+    OR?: CampaignWhereInput[]
+    NOT?: CampaignWhereInput | CampaignWhereInput[]
+    userId?: StringFilter<"Campaign"> | string
+    name?: StringFilter<"Campaign"> | string
+    createdAt?: DateTimeFilter<"Campaign"> | Date | string
+    updatedAt?: DateTimeFilter<"Campaign"> | Date | string
+    contacts?: CampaignContactListRelationFilter
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type CampaignOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CampaignCountOrderByAggregateInput
+    _max?: CampaignMaxOrderByAggregateInput
+    _min?: CampaignMinOrderByAggregateInput
+  }
+
+  export type CampaignScalarWhereWithAggregatesInput = {
+    AND?: CampaignScalarWhereWithAggregatesInput | CampaignScalarWhereWithAggregatesInput[]
+    OR?: CampaignScalarWhereWithAggregatesInput[]
+    NOT?: CampaignScalarWhereWithAggregatesInput | CampaignScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Campaign"> | string
+    userId?: StringWithAggregatesFilter<"Campaign"> | string
+    name?: StringWithAggregatesFilter<"Campaign"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Campaign"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Campaign"> | Date | string
+  }
+
+  export type CampaignContactWhereInput = {
+    AND?: CampaignContactWhereInput | CampaignContactWhereInput[]
+    OR?: CampaignContactWhereInput[]
+    NOT?: CampaignContactWhereInput | CampaignContactWhereInput[]
+    id?: StringFilter<"CampaignContact"> | string
+    campaignId?: StringFilter<"CampaignContact"> | string
+    name?: StringFilter<"CampaignContact"> | string
+    company?: StringFilter<"CampaignContact"> | string
+    position?: StringFilter<"CampaignContact"> | string
+    email?: StringFilter<"CampaignContact"> | string
+    website?: StringFilter<"CampaignContact"> | string
+    companyContext?: StringNullableFilter<"CampaignContact"> | string | null
+    draftSubject?: StringNullableFilter<"CampaignContact"> | string | null
+    draftBody?: StringNullableFilter<"CampaignContact"> | string | null
+    error?: StringNullableFilter<"CampaignContact"> | string | null
+    status?: StringFilter<"CampaignContact"> | string
+    lastContactedAt?: DateTimeNullableFilter<"CampaignContact"> | Date | string | null
+    createdAt?: DateTimeFilter<"CampaignContact"> | Date | string
+    updatedAt?: DateTimeFilter<"CampaignContact"> | Date | string
+    campaign?: XOR<CampaignScalarRelationFilter, CampaignWhereInput>
+  }
+
+  export type CampaignContactOrderByWithRelationInput = {
+    id?: SortOrder
+    campaignId?: SortOrder
+    name?: SortOrder
+    company?: SortOrder
+    position?: SortOrder
+    email?: SortOrder
+    website?: SortOrder
+    companyContext?: SortOrderInput | SortOrder
+    draftSubject?: SortOrderInput | SortOrder
+    draftBody?: SortOrderInput | SortOrder
+    error?: SortOrderInput | SortOrder
+    status?: SortOrder
+    lastContactedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    campaign?: CampaignOrderByWithRelationInput
+  }
+
+  export type CampaignContactWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CampaignContactWhereInput | CampaignContactWhereInput[]
+    OR?: CampaignContactWhereInput[]
+    NOT?: CampaignContactWhereInput | CampaignContactWhereInput[]
+    campaignId?: StringFilter<"CampaignContact"> | string
+    name?: StringFilter<"CampaignContact"> | string
+    company?: StringFilter<"CampaignContact"> | string
+    position?: StringFilter<"CampaignContact"> | string
+    email?: StringFilter<"CampaignContact"> | string
+    website?: StringFilter<"CampaignContact"> | string
+    companyContext?: StringNullableFilter<"CampaignContact"> | string | null
+    draftSubject?: StringNullableFilter<"CampaignContact"> | string | null
+    draftBody?: StringNullableFilter<"CampaignContact"> | string | null
+    error?: StringNullableFilter<"CampaignContact"> | string | null
+    status?: StringFilter<"CampaignContact"> | string
+    lastContactedAt?: DateTimeNullableFilter<"CampaignContact"> | Date | string | null
+    createdAt?: DateTimeFilter<"CampaignContact"> | Date | string
+    updatedAt?: DateTimeFilter<"CampaignContact"> | Date | string
+    campaign?: XOR<CampaignScalarRelationFilter, CampaignWhereInput>
+  }, "id">
+
+  export type CampaignContactOrderByWithAggregationInput = {
+    id?: SortOrder
+    campaignId?: SortOrder
+    name?: SortOrder
+    company?: SortOrder
+    position?: SortOrder
+    email?: SortOrder
+    website?: SortOrder
+    companyContext?: SortOrderInput | SortOrder
+    draftSubject?: SortOrderInput | SortOrder
+    draftBody?: SortOrderInput | SortOrder
+    error?: SortOrderInput | SortOrder
+    status?: SortOrder
+    lastContactedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CampaignContactCountOrderByAggregateInput
+    _max?: CampaignContactMaxOrderByAggregateInput
+    _min?: CampaignContactMinOrderByAggregateInput
+  }
+
+  export type CampaignContactScalarWhereWithAggregatesInput = {
+    AND?: CampaignContactScalarWhereWithAggregatesInput | CampaignContactScalarWhereWithAggregatesInput[]
+    OR?: CampaignContactScalarWhereWithAggregatesInput[]
+    NOT?: CampaignContactScalarWhereWithAggregatesInput | CampaignContactScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CampaignContact"> | string
+    campaignId?: StringWithAggregatesFilter<"CampaignContact"> | string
+    name?: StringWithAggregatesFilter<"CampaignContact"> | string
+    company?: StringWithAggregatesFilter<"CampaignContact"> | string
+    position?: StringWithAggregatesFilter<"CampaignContact"> | string
+    email?: StringWithAggregatesFilter<"CampaignContact"> | string
+    website?: StringWithAggregatesFilter<"CampaignContact"> | string
+    companyContext?: StringNullableWithAggregatesFilter<"CampaignContact"> | string | null
+    draftSubject?: StringNullableWithAggregatesFilter<"CampaignContact"> | string | null
+    draftBody?: StringNullableWithAggregatesFilter<"CampaignContact"> | string | null
+    error?: StringNullableWithAggregatesFilter<"CampaignContact"> | string | null
+    status?: StringWithAggregatesFilter<"CampaignContact"> | string
+    lastContactedAt?: DateTimeNullableWithAggregatesFilter<"CampaignContact"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"CampaignContact"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"CampaignContact"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -23521,19 +29953,22 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkCreateNestedManyWithoutUserInput
     addresses?: AddressCreateNestedManyWithoutUserInput
-    educations?: EducationCreateNestedManyWithoutUserInput
-    works?: WorkCreateNestedManyWithoutUserInput
-    projects?: ProjectCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryCreateNestedManyWithoutUserInput
-    resumes?: ResumeCreateNestedManyWithoutUserInput
-    memories?: MemoryCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    educations?: EducationCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedOneWithoutUserInput
     llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
+    LatexTemplate?: LatexTemplateCreateNestedManyWithoutUserInput
+    links?: LinkCreateNestedManyWithoutUserInput
+    memories?: MemoryCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+    resumes?: ResumeCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
+    works?: WorkCreateNestedManyWithoutUserInput
+    campaigns?: CampaignCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -23549,19 +29984,22 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkUncheckedCreateNestedManyWithoutUserInput
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
-    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
-    works?: WorkUncheckedCreateNestedManyWithoutUserInput
-    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryUncheckedCreateNestedManyWithoutUserInput
-    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
-    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedOneWithoutUserInput
     llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
+    LatexTemplate?: LatexTemplateUncheckedCreateNestedManyWithoutUserInput
+    links?: LinkUncheckedCreateNestedManyWithoutUserInput
+    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeUncheckedCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
+    works?: WorkUncheckedCreateNestedManyWithoutUserInput
+    campaigns?: CampaignUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -23577,19 +30015,22 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUpdateManyWithoutUserNestedInput
     addresses?: AddressUpdateManyWithoutUserNestedInput
-    educations?: EducationUpdateManyWithoutUserNestedInput
-    works?: WorkUpdateManyWithoutUserNestedInput
-    projects?: ProjectUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUpdateManyWithoutUserNestedInput
-    memories?: MemoryUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    educations?: EducationUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateOneWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUpdateManyWithoutUserNestedInput
+    links?: LinkUpdateManyWithoutUserNestedInput
+    memories?: MemoryUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
+    works?: WorkUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -23605,19 +30046,22 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
-    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
-    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
-    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUncheckedUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
-    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateOneWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUncheckedUpdateManyWithoutUserNestedInput
+    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
+    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUncheckedUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
+    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -23949,8 +30393,8 @@ export namespace Prisma {
     depolyed_url?: string | null
     projectLinks?: ProjectCreateprojectLinksInput | string[]
     techStacks?: ProjectCreatetechStacksInput | string[]
-    priority?: number
     createdAt?: Date | string
+    priority?: number
     user: UserCreateNestedOneWithoutProjectsInput
   }
 
@@ -23963,8 +30407,8 @@ export namespace Prisma {
     depolyed_url?: string | null
     projectLinks?: ProjectCreateprojectLinksInput | string[]
     techStacks?: ProjectCreatetechStacksInput | string[]
-    priority?: number
     createdAt?: Date | string
+    priority?: number
   }
 
   export type ProjectUpdateInput = {
@@ -23975,8 +30419,8 @@ export namespace Prisma {
     depolyed_url?: NullableStringFieldUpdateOperationsInput | string | null
     projectLinks?: ProjectUpdateprojectLinksInput | string[]
     techStacks?: ProjectUpdatetechStacksInput | string[]
-    priority?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    priority?: IntFieldUpdateOperationsInput | number
     user?: UserUpdateOneRequiredWithoutProjectsNestedInput
   }
 
@@ -23989,8 +30433,8 @@ export namespace Prisma {
     depolyed_url?: NullableStringFieldUpdateOperationsInput | string | null
     projectLinks?: ProjectUpdateprojectLinksInput | string[]
     techStacks?: ProjectUpdatetechStacksInput | string[]
-    priority?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    priority?: IntFieldUpdateOperationsInput | number
   }
 
   export type ProjectCreateManyInput = {
@@ -24002,8 +30446,8 @@ export namespace Prisma {
     depolyed_url?: string | null
     projectLinks?: ProjectCreateprojectLinksInput | string[]
     techStacks?: ProjectCreatetechStacksInput | string[]
-    priority?: number
     createdAt?: Date | string
+    priority?: number
   }
 
   export type ProjectUpdateManyMutationInput = {
@@ -24014,8 +30458,8 @@ export namespace Prisma {
     depolyed_url?: NullableStringFieldUpdateOperationsInput | string | null
     projectLinks?: ProjectUpdateprojectLinksInput | string[]
     techStacks?: ProjectUpdatetechStacksInput | string[]
-    priority?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    priority?: IntFieldUpdateOperationsInput | number
   }
 
   export type ProjectUncheckedUpdateManyInput = {
@@ -24027,8 +30471,8 @@ export namespace Prisma {
     depolyed_url?: NullableStringFieldUpdateOperationsInput | string | null
     projectLinks?: ProjectUpdateprojectLinksInput | string[]
     techStacks?: ProjectUpdatetechStacksInput | string[]
-    priority?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    priority?: IntFieldUpdateOperationsInput | number
   }
 
   export type AnswerLibraryCreateInput = {
@@ -24236,16 +30680,16 @@ export namespace Prisma {
     platform: string
     websiteUrl?: string | null
     fieldsFilled: number
-    totalFields?: number
     timeSavedSec: number
-    tokensUsed?: number
-    promptTokens?: number
-    completionTokens?: number
-    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
-    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
     aiEdits?: number
     acceptedDirect?: boolean
     createdAt?: Date | string
+    completionTokens?: number
+    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
+    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
+    promptTokens?: number
+    tokensUsed?: number
+    totalFields?: number
     user: UserCreateNestedOneWithoutAnalyticsInput
   }
 
@@ -24255,16 +30699,16 @@ export namespace Prisma {
     platform: string
     websiteUrl?: string | null
     fieldsFilled: number
-    totalFields?: number
     timeSavedSec: number
-    tokensUsed?: number
-    promptTokens?: number
-    completionTokens?: number
-    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
-    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
     aiEdits?: number
     acceptedDirect?: boolean
     createdAt?: Date | string
+    completionTokens?: number
+    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
+    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
+    promptTokens?: number
+    tokensUsed?: number
+    totalFields?: number
   }
 
   export type UsageAnalyticsUpdateInput = {
@@ -24272,16 +30716,16 @@ export namespace Prisma {
     platform?: StringFieldUpdateOperationsInput | string
     websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fieldsFilled?: IntFieldUpdateOperationsInput | number
-    totalFields?: IntFieldUpdateOperationsInput | number
     timeSavedSec?: IntFieldUpdateOperationsInput | number
-    tokensUsed?: IntFieldUpdateOperationsInput | number
-    promptTokens?: IntFieldUpdateOperationsInput | number
-    completionTokens?: IntFieldUpdateOperationsInput | number
-    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
-    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
     aiEdits?: IntFieldUpdateOperationsInput | number
     acceptedDirect?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completionTokens?: IntFieldUpdateOperationsInput | number
+    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
+    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
+    promptTokens?: IntFieldUpdateOperationsInput | number
+    tokensUsed?: IntFieldUpdateOperationsInput | number
+    totalFields?: IntFieldUpdateOperationsInput | number
     user?: UserUpdateOneRequiredWithoutAnalyticsNestedInput
   }
 
@@ -24291,16 +30735,16 @@ export namespace Prisma {
     platform?: StringFieldUpdateOperationsInput | string
     websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fieldsFilled?: IntFieldUpdateOperationsInput | number
-    totalFields?: IntFieldUpdateOperationsInput | number
     timeSavedSec?: IntFieldUpdateOperationsInput | number
-    tokensUsed?: IntFieldUpdateOperationsInput | number
-    promptTokens?: IntFieldUpdateOperationsInput | number
-    completionTokens?: IntFieldUpdateOperationsInput | number
-    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
-    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
     aiEdits?: IntFieldUpdateOperationsInput | number
     acceptedDirect?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completionTokens?: IntFieldUpdateOperationsInput | number
+    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
+    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
+    promptTokens?: IntFieldUpdateOperationsInput | number
+    tokensUsed?: IntFieldUpdateOperationsInput | number
+    totalFields?: IntFieldUpdateOperationsInput | number
   }
 
   export type UsageAnalyticsCreateManyInput = {
@@ -24309,16 +30753,16 @@ export namespace Prisma {
     platform: string
     websiteUrl?: string | null
     fieldsFilled: number
-    totalFields?: number
     timeSavedSec: number
-    tokensUsed?: number
-    promptTokens?: number
-    completionTokens?: number
-    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
-    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
     aiEdits?: number
     acceptedDirect?: boolean
     createdAt?: Date | string
+    completionTokens?: number
+    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
+    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
+    promptTokens?: number
+    tokensUsed?: number
+    totalFields?: number
   }
 
   export type UsageAnalyticsUpdateManyMutationInput = {
@@ -24326,16 +30770,16 @@ export namespace Prisma {
     platform?: StringFieldUpdateOperationsInput | string
     websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fieldsFilled?: IntFieldUpdateOperationsInput | number
-    totalFields?: IntFieldUpdateOperationsInput | number
     timeSavedSec?: IntFieldUpdateOperationsInput | number
-    tokensUsed?: IntFieldUpdateOperationsInput | number
-    promptTokens?: IntFieldUpdateOperationsInput | number
-    completionTokens?: IntFieldUpdateOperationsInput | number
-    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
-    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
     aiEdits?: IntFieldUpdateOperationsInput | number
     acceptedDirect?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completionTokens?: IntFieldUpdateOperationsInput | number
+    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
+    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
+    promptTokens?: IntFieldUpdateOperationsInput | number
+    tokensUsed?: IntFieldUpdateOperationsInput | number
+    totalFields?: IntFieldUpdateOperationsInput | number
   }
 
   export type UsageAnalyticsUncheckedUpdateManyInput = {
@@ -24344,16 +30788,16 @@ export namespace Prisma {
     platform?: StringFieldUpdateOperationsInput | string
     websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fieldsFilled?: IntFieldUpdateOperationsInput | number
-    totalFields?: IntFieldUpdateOperationsInput | number
     timeSavedSec?: IntFieldUpdateOperationsInput | number
-    tokensUsed?: IntFieldUpdateOperationsInput | number
-    promptTokens?: IntFieldUpdateOperationsInput | number
-    completionTokens?: IntFieldUpdateOperationsInput | number
-    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
-    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
     aiEdits?: IntFieldUpdateOperationsInput | number
     acceptedDirect?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completionTokens?: IntFieldUpdateOperationsInput | number
+    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
+    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
+    promptTokens?: IntFieldUpdateOperationsInput | number
+    tokensUsed?: IntFieldUpdateOperationsInput | number
+    totalFields?: IntFieldUpdateOperationsInput | number
   }
 
   export type GitHubConnectionCreateInput = {
@@ -24901,6 +31345,370 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CompanyContextCacheCreateInput = {
+    id?: string
+    url: string
+    context: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CompanyContextCacheUncheckedCreateInput = {
+    id?: string
+    url: string
+    context: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CompanyContextCacheUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    context?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CompanyContextCacheUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    context?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CompanyContextCacheCreateManyInput = {
+    id?: string
+    url: string
+    context: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CompanyContextCacheUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    context?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CompanyContextCacheUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    context?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LatexTemplateCreateInput = {
+    id?: string
+    name: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    User: UserCreateNestedOneWithoutLatexTemplateInput
+  }
+
+  export type LatexTemplateUncheckedCreateInput = {
+    id?: string
+    userId: string
+    name: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LatexTemplateUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    User?: UserUpdateOneRequiredWithoutLatexTemplateNestedInput
+  }
+
+  export type LatexTemplateUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LatexTemplateCreateManyInput = {
+    id?: string
+    userId: string
+    name: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LatexTemplateUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LatexTemplateUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TailoredResumeCreateInput = {
+    id?: string
+    jobUrl: string
+    companyName?: string | null
+    pdfUrl?: string | null
+    createdAt?: Date | string
+    User: UserCreateNestedOneWithoutTailoredResumeInput
+  }
+
+  export type TailoredResumeUncheckedCreateInput = {
+    id?: string
+    userId: string
+    jobUrl: string
+    companyName?: string | null
+    pdfUrl?: string | null
+    createdAt?: Date | string
+  }
+
+  export type TailoredResumeUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    jobUrl?: StringFieldUpdateOperationsInput | string
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    User?: UserUpdateOneRequiredWithoutTailoredResumeNestedInput
+  }
+
+  export type TailoredResumeUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    jobUrl?: StringFieldUpdateOperationsInput | string
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TailoredResumeCreateManyInput = {
+    id?: string
+    userId: string
+    jobUrl: string
+    companyName?: string | null
+    pdfUrl?: string | null
+    createdAt?: Date | string
+  }
+
+  export type TailoredResumeUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    jobUrl?: StringFieldUpdateOperationsInput | string
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TailoredResumeUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    jobUrl?: StringFieldUpdateOperationsInput | string
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CampaignCreateInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    contacts?: CampaignContactCreateNestedManyWithoutCampaignInput
+    user: UserCreateNestedOneWithoutCampaignsInput
+  }
+
+  export type CampaignUncheckedCreateInput = {
+    id?: string
+    userId: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    contacts?: CampaignContactUncheckedCreateNestedManyWithoutCampaignInput
+  }
+
+  export type CampaignUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    contacts?: CampaignContactUpdateManyWithoutCampaignNestedInput
+    user?: UserUpdateOneRequiredWithoutCampaignsNestedInput
+  }
+
+  export type CampaignUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    contacts?: CampaignContactUncheckedUpdateManyWithoutCampaignNestedInput
+  }
+
+  export type CampaignCreateManyInput = {
+    id?: string
+    userId: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CampaignUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CampaignUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CampaignContactCreateInput = {
+    id?: string
+    name: string
+    company: string
+    position: string
+    email: string
+    website: string
+    companyContext?: string | null
+    draftSubject?: string | null
+    draftBody?: string | null
+    error?: string | null
+    status?: string
+    lastContactedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    campaign: CampaignCreateNestedOneWithoutContactsInput
+  }
+
+  export type CampaignContactUncheckedCreateInput = {
+    id?: string
+    campaignId: string
+    name: string
+    company: string
+    position: string
+    email: string
+    website: string
+    companyContext?: string | null
+    draftSubject?: string | null
+    draftBody?: string | null
+    error?: string | null
+    status?: string
+    lastContactedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CampaignContactUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    website?: StringFieldUpdateOperationsInput | string
+    companyContext?: NullableStringFieldUpdateOperationsInput | string | null
+    draftSubject?: NullableStringFieldUpdateOperationsInput | string | null
+    draftBody?: NullableStringFieldUpdateOperationsInput | string | null
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    lastContactedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    campaign?: CampaignUpdateOneRequiredWithoutContactsNestedInput
+  }
+
+  export type CampaignContactUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    campaignId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    website?: StringFieldUpdateOperationsInput | string
+    companyContext?: NullableStringFieldUpdateOperationsInput | string | null
+    draftSubject?: NullableStringFieldUpdateOperationsInput | string | null
+    draftBody?: NullableStringFieldUpdateOperationsInput | string | null
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    lastContactedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CampaignContactCreateManyInput = {
+    id?: string
+    campaignId: string
+    name: string
+    company: string
+    position: string
+    email: string
+    website: string
+    companyContext?: string | null
+    draftSubject?: string | null
+    draftBody?: string | null
+    error?: string | null
+    status?: string
+    lastContactedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CampaignContactUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    website?: StringFieldUpdateOperationsInput | string
+    companyContext?: NullableStringFieldUpdateOperationsInput | string | null
+    draftSubject?: NullableStringFieldUpdateOperationsInput | string | null
+    draftBody?: NullableStringFieldUpdateOperationsInput | string | null
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    lastContactedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CampaignContactUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    campaignId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    website?: StringFieldUpdateOperationsInput | string
+    companyContext?: NullableStringFieldUpdateOperationsInput | string | null
+    draftSubject?: NullableStringFieldUpdateOperationsInput | string | null
+    draftBody?: NullableStringFieldUpdateOperationsInput | string | null
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    lastContactedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -24970,34 +31778,10 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type LinkListRelationFilter = {
-    every?: LinkWhereInput
-    some?: LinkWhereInput
-    none?: LinkWhereInput
-  }
-
   export type AddressListRelationFilter = {
     every?: AddressWhereInput
     some?: AddressWhereInput
     none?: AddressWhereInput
-  }
-
-  export type EducationListRelationFilter = {
-    every?: EducationWhereInput
-    some?: EducationWhereInput
-    none?: EducationWhereInput
-  }
-
-  export type WorkListRelationFilter = {
-    every?: WorkWhereInput
-    some?: WorkWhereInput
-    none?: WorkWhereInput
-  }
-
-  export type ProjectListRelationFilter = {
-    every?: ProjectWhereInput
-    some?: ProjectWhereInput
-    none?: ProjectWhereInput
   }
 
   export type AnswerLibraryListRelationFilter = {
@@ -25006,22 +31790,16 @@ export namespace Prisma {
     none?: AnswerLibraryWhereInput
   }
 
-  export type ResumeListRelationFilter = {
-    every?: ResumeWhereInput
-    some?: ResumeWhereInput
-    none?: ResumeWhereInput
+  export type ChatEpisodeListRelationFilter = {
+    every?: ChatEpisodeWhereInput
+    some?: ChatEpisodeWhereInput
+    none?: ChatEpisodeWhereInput
   }
 
-  export type MemoryListRelationFilter = {
-    every?: MemoryWhereInput
-    some?: MemoryWhereInput
-    none?: MemoryWhereInput
-  }
-
-  export type UsageAnalyticsListRelationFilter = {
-    every?: UsageAnalyticsWhereInput
-    some?: UsageAnalyticsWhereInput
-    none?: UsageAnalyticsWhereInput
+  export type EducationListRelationFilter = {
+    every?: EducationWhereInput
+    some?: EducationWhereInput
+    none?: EducationWhereInput
   }
 
   export type FormSessionListRelationFilter = {
@@ -25030,10 +31808,9 @@ export namespace Prisma {
     none?: FormSessionWhereInput
   }
 
-  export type ChatEpisodeListRelationFilter = {
-    every?: ChatEpisodeWhereInput
-    some?: ChatEpisodeWhereInput
-    none?: ChatEpisodeWhereInput
+  export type GitHubConnectionNullableScalarRelationFilter = {
+    is?: GitHubConnectionWhereInput | null
+    isNot?: GitHubConnectionWhereInput | null
   }
 
   export type LLMGatewayConfigNullableScalarRelationFilter = {
@@ -25041,10 +31818,58 @@ export namespace Prisma {
     isNot?: LLMGatewayConfigWhereInput | null
   }
 
-  export type GitHubConnectionListRelationFilter = {
-    every?: GitHubConnectionWhereInput
-    some?: GitHubConnectionWhereInput
-    none?: GitHubConnectionWhereInput
+  export type LatexTemplateListRelationFilter = {
+    every?: LatexTemplateWhereInput
+    some?: LatexTemplateWhereInput
+    none?: LatexTemplateWhereInput
+  }
+
+  export type LinkListRelationFilter = {
+    every?: LinkWhereInput
+    some?: LinkWhereInput
+    none?: LinkWhereInput
+  }
+
+  export type MemoryListRelationFilter = {
+    every?: MemoryWhereInput
+    some?: MemoryWhereInput
+    none?: MemoryWhereInput
+  }
+
+  export type ProjectListRelationFilter = {
+    every?: ProjectWhereInput
+    some?: ProjectWhereInput
+    none?: ProjectWhereInput
+  }
+
+  export type ResumeListRelationFilter = {
+    every?: ResumeWhereInput
+    some?: ResumeWhereInput
+    none?: ResumeWhereInput
+  }
+
+  export type TailoredResumeListRelationFilter = {
+    every?: TailoredResumeWhereInput
+    some?: TailoredResumeWhereInput
+    none?: TailoredResumeWhereInput
+  }
+
+  export type UsageAnalyticsListRelationFilter = {
+    every?: UsageAnalyticsWhereInput
+    some?: UsageAnalyticsWhereInput
+    none?: UsageAnalyticsWhereInput
+  }
+
+  export type WorkListRelationFilter = {
+    every?: WorkWhereInput
+    some?: WorkWhereInput
+    none?: WorkWhereInput
+  }
+
+  export type CampaignListRelationFilter = {
+    every?: CampaignWhereInput
+    some?: CampaignWhereInput
+    none?: CampaignWhereInput
   }
 
   export type SortOrderInput = {
@@ -25052,23 +31877,7 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type LinkOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type AddressOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type EducationOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type WorkOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type ProjectOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -25076,15 +31885,11 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type ResumeOrderByRelationAggregateInput = {
+  export type ChatEpisodeOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type MemoryOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type UsageAnalyticsOrderByRelationAggregateInput = {
+  export type EducationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -25092,11 +31897,39 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type ChatEpisodeOrderByRelationAggregateInput = {
+  export type LatexTemplateOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type GitHubConnectionOrderByRelationAggregateInput = {
+  export type LinkOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MemoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProjectOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ResumeOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TailoredResumeOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UsageAnalyticsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type WorkOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CampaignOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -25474,8 +32307,8 @@ export namespace Prisma {
     depolyed_url?: SortOrder
     projectLinks?: SortOrder
     techStacks?: SortOrder
-    priority?: SortOrder
     createdAt?: SortOrder
+    priority?: SortOrder
   }
 
   export type ProjectAvgOrderByAggregateInput = {
@@ -25489,8 +32322,8 @@ export namespace Prisma {
     description?: SortOrder
     repo_url?: SortOrder
     depolyed_url?: SortOrder
-    priority?: SortOrder
     createdAt?: SortOrder
+    priority?: SortOrder
   }
 
   export type ProjectMinOrderByAggregateInput = {
@@ -25500,8 +32333,8 @@ export namespace Prisma {
     description?: SortOrder
     repo_url?: SortOrder
     depolyed_url?: SortOrder
-    priority?: SortOrder
     createdAt?: SortOrder
+    priority?: SortOrder
   }
 
   export type ProjectSumOrderByAggregateInput = {
@@ -25634,26 +32467,26 @@ export namespace Prisma {
     platform?: SortOrder
     websiteUrl?: SortOrder
     fieldsFilled?: SortOrder
-    totalFields?: SortOrder
     timeSavedSec?: SortOrder
-    tokensUsed?: SortOrder
-    promptTokens?: SortOrder
-    completionTokens?: SortOrder
-    fieldsAnswered?: SortOrder
-    fieldsUnanswered?: SortOrder
     aiEdits?: SortOrder
     acceptedDirect?: SortOrder
     createdAt?: SortOrder
+    completionTokens?: SortOrder
+    fieldsAnswered?: SortOrder
+    fieldsUnanswered?: SortOrder
+    promptTokens?: SortOrder
+    tokensUsed?: SortOrder
+    totalFields?: SortOrder
   }
 
   export type UsageAnalyticsAvgOrderByAggregateInput = {
     fieldsFilled?: SortOrder
-    totalFields?: SortOrder
     timeSavedSec?: SortOrder
-    tokensUsed?: SortOrder
-    promptTokens?: SortOrder
-    completionTokens?: SortOrder
     aiEdits?: SortOrder
+    completionTokens?: SortOrder
+    promptTokens?: SortOrder
+    tokensUsed?: SortOrder
+    totalFields?: SortOrder
   }
 
   export type UsageAnalyticsMaxOrderByAggregateInput = {
@@ -25662,14 +32495,14 @@ export namespace Prisma {
     platform?: SortOrder
     websiteUrl?: SortOrder
     fieldsFilled?: SortOrder
-    totalFields?: SortOrder
     timeSavedSec?: SortOrder
-    tokensUsed?: SortOrder
-    promptTokens?: SortOrder
-    completionTokens?: SortOrder
     aiEdits?: SortOrder
     acceptedDirect?: SortOrder
     createdAt?: SortOrder
+    completionTokens?: SortOrder
+    promptTokens?: SortOrder
+    tokensUsed?: SortOrder
+    totalFields?: SortOrder
   }
 
   export type UsageAnalyticsMinOrderByAggregateInput = {
@@ -25678,24 +32511,24 @@ export namespace Prisma {
     platform?: SortOrder
     websiteUrl?: SortOrder
     fieldsFilled?: SortOrder
-    totalFields?: SortOrder
     timeSavedSec?: SortOrder
-    tokensUsed?: SortOrder
-    promptTokens?: SortOrder
-    completionTokens?: SortOrder
     aiEdits?: SortOrder
     acceptedDirect?: SortOrder
     createdAt?: SortOrder
+    completionTokens?: SortOrder
+    promptTokens?: SortOrder
+    tokensUsed?: SortOrder
+    totalFields?: SortOrder
   }
 
   export type UsageAnalyticsSumOrderByAggregateInput = {
     fieldsFilled?: SortOrder
-    totalFields?: SortOrder
     timeSavedSec?: SortOrder
-    tokensUsed?: SortOrder
-    promptTokens?: SortOrder
-    completionTokens?: SortOrder
     aiEdits?: SortOrder
+    completionTokens?: SortOrder
+    promptTokens?: SortOrder
+    tokensUsed?: SortOrder
+    totalFields?: SortOrder
   }
 
   export type GitHubConnectionCountOrderByAggregateInput = {
@@ -26056,11 +32889,175 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type LinkCreateNestedManyWithoutUserInput = {
-    create?: XOR<LinkCreateWithoutUserInput, LinkUncheckedCreateWithoutUserInput> | LinkCreateWithoutUserInput[] | LinkUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: LinkCreateOrConnectWithoutUserInput | LinkCreateOrConnectWithoutUserInput[]
-    createMany?: LinkCreateManyUserInputEnvelope
-    connect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+  export type CompanyContextCacheCountOrderByAggregateInput = {
+    id?: SortOrder
+    url?: SortOrder
+    context?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CompanyContextCacheMaxOrderByAggregateInput = {
+    id?: SortOrder
+    url?: SortOrder
+    context?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CompanyContextCacheMinOrderByAggregateInput = {
+    id?: SortOrder
+    url?: SortOrder
+    context?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LatexTemplateCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LatexTemplateMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LatexTemplateMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TailoredResumeCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    jobUrl?: SortOrder
+    companyName?: SortOrder
+    pdfUrl?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TailoredResumeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    jobUrl?: SortOrder
+    companyName?: SortOrder
+    pdfUrl?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TailoredResumeMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    jobUrl?: SortOrder
+    companyName?: SortOrder
+    pdfUrl?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CampaignContactListRelationFilter = {
+    every?: CampaignContactWhereInput
+    some?: CampaignContactWhereInput
+    none?: CampaignContactWhereInput
+  }
+
+  export type CampaignContactOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CampaignCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CampaignMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CampaignMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CampaignScalarRelationFilter = {
+    is?: CampaignWhereInput
+    isNot?: CampaignWhereInput
+  }
+
+  export type CampaignContactCountOrderByAggregateInput = {
+    id?: SortOrder
+    campaignId?: SortOrder
+    name?: SortOrder
+    company?: SortOrder
+    position?: SortOrder
+    email?: SortOrder
+    website?: SortOrder
+    companyContext?: SortOrder
+    draftSubject?: SortOrder
+    draftBody?: SortOrder
+    error?: SortOrder
+    status?: SortOrder
+    lastContactedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CampaignContactMaxOrderByAggregateInput = {
+    id?: SortOrder
+    campaignId?: SortOrder
+    name?: SortOrder
+    company?: SortOrder
+    position?: SortOrder
+    email?: SortOrder
+    website?: SortOrder
+    companyContext?: SortOrder
+    draftSubject?: SortOrder
+    draftBody?: SortOrder
+    error?: SortOrder
+    status?: SortOrder
+    lastContactedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CampaignContactMinOrderByAggregateInput = {
+    id?: SortOrder
+    campaignId?: SortOrder
+    name?: SortOrder
+    company?: SortOrder
+    position?: SortOrder
+    email?: SortOrder
+    website?: SortOrder
+    companyContext?: SortOrder
+    draftSubject?: SortOrder
+    draftBody?: SortOrder
+    error?: SortOrder
+    status?: SortOrder
+    lastContactedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type AddressCreateNestedManyWithoutUserInput = {
@@ -26070,60 +33067,11 @@ export namespace Prisma {
     connect?: AddressWhereUniqueInput | AddressWhereUniqueInput[]
   }
 
-  export type EducationCreateNestedManyWithoutUserInput = {
-    create?: XOR<EducationCreateWithoutUserInput, EducationUncheckedCreateWithoutUserInput> | EducationCreateWithoutUserInput[] | EducationUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: EducationCreateOrConnectWithoutUserInput | EducationCreateOrConnectWithoutUserInput[]
-    createMany?: EducationCreateManyUserInputEnvelope
-    connect?: EducationWhereUniqueInput | EducationWhereUniqueInput[]
-  }
-
-  export type WorkCreateNestedManyWithoutUserInput = {
-    create?: XOR<WorkCreateWithoutUserInput, WorkUncheckedCreateWithoutUserInput> | WorkCreateWithoutUserInput[] | WorkUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: WorkCreateOrConnectWithoutUserInput | WorkCreateOrConnectWithoutUserInput[]
-    createMany?: WorkCreateManyUserInputEnvelope
-    connect?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
-  }
-
-  export type ProjectCreateNestedManyWithoutUserInput = {
-    create?: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput> | ProjectCreateWithoutUserInput[] | ProjectUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ProjectCreateOrConnectWithoutUserInput | ProjectCreateOrConnectWithoutUserInput[]
-    createMany?: ProjectCreateManyUserInputEnvelope
-    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
-  }
-
   export type AnswerLibraryCreateNestedManyWithoutUserInput = {
     create?: XOR<AnswerLibraryCreateWithoutUserInput, AnswerLibraryUncheckedCreateWithoutUserInput> | AnswerLibraryCreateWithoutUserInput[] | AnswerLibraryUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AnswerLibraryCreateOrConnectWithoutUserInput | AnswerLibraryCreateOrConnectWithoutUserInput[]
     createMany?: AnswerLibraryCreateManyUserInputEnvelope
     connect?: AnswerLibraryWhereUniqueInput | AnswerLibraryWhereUniqueInput[]
-  }
-
-  export type ResumeCreateNestedManyWithoutUserInput = {
-    create?: XOR<ResumeCreateWithoutUserInput, ResumeUncheckedCreateWithoutUserInput> | ResumeCreateWithoutUserInput[] | ResumeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ResumeCreateOrConnectWithoutUserInput | ResumeCreateOrConnectWithoutUserInput[]
-    createMany?: ResumeCreateManyUserInputEnvelope
-    connect?: ResumeWhereUniqueInput | ResumeWhereUniqueInput[]
-  }
-
-  export type MemoryCreateNestedManyWithoutUserInput = {
-    create?: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput> | MemoryCreateWithoutUserInput[] | MemoryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: MemoryCreateOrConnectWithoutUserInput | MemoryCreateOrConnectWithoutUserInput[]
-    createMany?: MemoryCreateManyUserInputEnvelope
-    connect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
-  }
-
-  export type UsageAnalyticsCreateNestedManyWithoutUserInput = {
-    create?: XOR<UsageAnalyticsCreateWithoutUserInput, UsageAnalyticsUncheckedCreateWithoutUserInput> | UsageAnalyticsCreateWithoutUserInput[] | UsageAnalyticsUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UsageAnalyticsCreateOrConnectWithoutUserInput | UsageAnalyticsCreateOrConnectWithoutUserInput[]
-    createMany?: UsageAnalyticsCreateManyUserInputEnvelope
-    connect?: UsageAnalyticsWhereUniqueInput | UsageAnalyticsWhereUniqueInput[]
-  }
-
-  export type FormSessionCreateNestedManyWithoutUserInput = {
-    create?: XOR<FormSessionCreateWithoutUserInput, FormSessionUncheckedCreateWithoutUserInput> | FormSessionCreateWithoutUserInput[] | FormSessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: FormSessionCreateOrConnectWithoutUserInput | FormSessionCreateOrConnectWithoutUserInput[]
-    createMany?: FormSessionCreateManyUserInputEnvelope
-    connect?: FormSessionWhereUniqueInput | FormSessionWhereUniqueInput[]
   }
 
   export type ChatEpisodeCreateNestedManyWithoutUserInput = {
@@ -26133,24 +33081,93 @@ export namespace Prisma {
     connect?: ChatEpisodeWhereUniqueInput | ChatEpisodeWhereUniqueInput[]
   }
 
+  export type EducationCreateNestedManyWithoutUserInput = {
+    create?: XOR<EducationCreateWithoutUserInput, EducationUncheckedCreateWithoutUserInput> | EducationCreateWithoutUserInput[] | EducationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EducationCreateOrConnectWithoutUserInput | EducationCreateOrConnectWithoutUserInput[]
+    createMany?: EducationCreateManyUserInputEnvelope
+    connect?: EducationWhereUniqueInput | EducationWhereUniqueInput[]
+  }
+
+  export type FormSessionCreateNestedManyWithoutUserInput = {
+    create?: XOR<FormSessionCreateWithoutUserInput, FormSessionUncheckedCreateWithoutUserInput> | FormSessionCreateWithoutUserInput[] | FormSessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FormSessionCreateOrConnectWithoutUserInput | FormSessionCreateOrConnectWithoutUserInput[]
+    createMany?: FormSessionCreateManyUserInputEnvelope
+    connect?: FormSessionWhereUniqueInput | FormSessionWhereUniqueInput[]
+  }
+
+  export type GitHubConnectionCreateNestedOneWithoutUserInput = {
+    create?: XOR<GitHubConnectionCreateWithoutUserInput, GitHubConnectionUncheckedCreateWithoutUserInput>
+    connectOrCreate?: GitHubConnectionCreateOrConnectWithoutUserInput
+    connect?: GitHubConnectionWhereUniqueInput
+  }
+
   export type LLMGatewayConfigCreateNestedOneWithoutUserInput = {
     create?: XOR<LLMGatewayConfigCreateWithoutUserInput, LLMGatewayConfigUncheckedCreateWithoutUserInput>
     connectOrCreate?: LLMGatewayConfigCreateOrConnectWithoutUserInput
     connect?: LLMGatewayConfigWhereUniqueInput
   }
 
-  export type GitHubConnectionCreateNestedManyWithoutUserInput = {
-    create?: XOR<GitHubConnectionCreateWithoutUserInput, GitHubConnectionUncheckedCreateWithoutUserInput> | GitHubConnectionCreateWithoutUserInput[] | GitHubConnectionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: GitHubConnectionCreateOrConnectWithoutUserInput | GitHubConnectionCreateOrConnectWithoutUserInput[]
-    createMany?: GitHubConnectionCreateManyUserInputEnvelope
-    connect?: GitHubConnectionWhereUniqueInput | GitHubConnectionWhereUniqueInput[]
+  export type LatexTemplateCreateNestedManyWithoutUserInput = {
+    create?: XOR<LatexTemplateCreateWithoutUserInput, LatexTemplateUncheckedCreateWithoutUserInput> | LatexTemplateCreateWithoutUserInput[] | LatexTemplateUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LatexTemplateCreateOrConnectWithoutUserInput | LatexTemplateCreateOrConnectWithoutUserInput[]
+    createMany?: LatexTemplateCreateManyUserInputEnvelope
+    connect?: LatexTemplateWhereUniqueInput | LatexTemplateWhereUniqueInput[]
   }
 
-  export type LinkUncheckedCreateNestedManyWithoutUserInput = {
+  export type LinkCreateNestedManyWithoutUserInput = {
     create?: XOR<LinkCreateWithoutUserInput, LinkUncheckedCreateWithoutUserInput> | LinkCreateWithoutUserInput[] | LinkUncheckedCreateWithoutUserInput[]
     connectOrCreate?: LinkCreateOrConnectWithoutUserInput | LinkCreateOrConnectWithoutUserInput[]
     createMany?: LinkCreateManyUserInputEnvelope
     connect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+  }
+
+  export type MemoryCreateNestedManyWithoutUserInput = {
+    create?: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput> | MemoryCreateWithoutUserInput[] | MemoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MemoryCreateOrConnectWithoutUserInput | MemoryCreateOrConnectWithoutUserInput[]
+    createMany?: MemoryCreateManyUserInputEnvelope
+    connect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
+  }
+
+  export type ProjectCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput> | ProjectCreateWithoutUserInput[] | ProjectUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutUserInput | ProjectCreateOrConnectWithoutUserInput[]
+    createMany?: ProjectCreateManyUserInputEnvelope
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+  }
+
+  export type ResumeCreateNestedManyWithoutUserInput = {
+    create?: XOR<ResumeCreateWithoutUserInput, ResumeUncheckedCreateWithoutUserInput> | ResumeCreateWithoutUserInput[] | ResumeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ResumeCreateOrConnectWithoutUserInput | ResumeCreateOrConnectWithoutUserInput[]
+    createMany?: ResumeCreateManyUserInputEnvelope
+    connect?: ResumeWhereUniqueInput | ResumeWhereUniqueInput[]
+  }
+
+  export type TailoredResumeCreateNestedManyWithoutUserInput = {
+    create?: XOR<TailoredResumeCreateWithoutUserInput, TailoredResumeUncheckedCreateWithoutUserInput> | TailoredResumeCreateWithoutUserInput[] | TailoredResumeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TailoredResumeCreateOrConnectWithoutUserInput | TailoredResumeCreateOrConnectWithoutUserInput[]
+    createMany?: TailoredResumeCreateManyUserInputEnvelope
+    connect?: TailoredResumeWhereUniqueInput | TailoredResumeWhereUniqueInput[]
+  }
+
+  export type UsageAnalyticsCreateNestedManyWithoutUserInput = {
+    create?: XOR<UsageAnalyticsCreateWithoutUserInput, UsageAnalyticsUncheckedCreateWithoutUserInput> | UsageAnalyticsCreateWithoutUserInput[] | UsageAnalyticsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UsageAnalyticsCreateOrConnectWithoutUserInput | UsageAnalyticsCreateOrConnectWithoutUserInput[]
+    createMany?: UsageAnalyticsCreateManyUserInputEnvelope
+    connect?: UsageAnalyticsWhereUniqueInput | UsageAnalyticsWhereUniqueInput[]
+  }
+
+  export type WorkCreateNestedManyWithoutUserInput = {
+    create?: XOR<WorkCreateWithoutUserInput, WorkUncheckedCreateWithoutUserInput> | WorkCreateWithoutUserInput[] | WorkUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: WorkCreateOrConnectWithoutUserInput | WorkCreateOrConnectWithoutUserInput[]
+    createMany?: WorkCreateManyUserInputEnvelope
+    connect?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
+  }
+
+  export type CampaignCreateNestedManyWithoutUserInput = {
+    create?: XOR<CampaignCreateWithoutUserInput, CampaignUncheckedCreateWithoutUserInput> | CampaignCreateWithoutUserInput[] | CampaignUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CampaignCreateOrConnectWithoutUserInput | CampaignCreateOrConnectWithoutUserInput[]
+    createMany?: CampaignCreateManyUserInputEnvelope
+    connect?: CampaignWhereUniqueInput | CampaignWhereUniqueInput[]
   }
 
   export type AddressUncheckedCreateNestedManyWithoutUserInput = {
@@ -26160,60 +33177,11 @@ export namespace Prisma {
     connect?: AddressWhereUniqueInput | AddressWhereUniqueInput[]
   }
 
-  export type EducationUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<EducationCreateWithoutUserInput, EducationUncheckedCreateWithoutUserInput> | EducationCreateWithoutUserInput[] | EducationUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: EducationCreateOrConnectWithoutUserInput | EducationCreateOrConnectWithoutUserInput[]
-    createMany?: EducationCreateManyUserInputEnvelope
-    connect?: EducationWhereUniqueInput | EducationWhereUniqueInput[]
-  }
-
-  export type WorkUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<WorkCreateWithoutUserInput, WorkUncheckedCreateWithoutUserInput> | WorkCreateWithoutUserInput[] | WorkUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: WorkCreateOrConnectWithoutUserInput | WorkCreateOrConnectWithoutUserInput[]
-    createMany?: WorkCreateManyUserInputEnvelope
-    connect?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
-  }
-
-  export type ProjectUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput> | ProjectCreateWithoutUserInput[] | ProjectUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ProjectCreateOrConnectWithoutUserInput | ProjectCreateOrConnectWithoutUserInput[]
-    createMany?: ProjectCreateManyUserInputEnvelope
-    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
-  }
-
   export type AnswerLibraryUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AnswerLibraryCreateWithoutUserInput, AnswerLibraryUncheckedCreateWithoutUserInput> | AnswerLibraryCreateWithoutUserInput[] | AnswerLibraryUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AnswerLibraryCreateOrConnectWithoutUserInput | AnswerLibraryCreateOrConnectWithoutUserInput[]
     createMany?: AnswerLibraryCreateManyUserInputEnvelope
     connect?: AnswerLibraryWhereUniqueInput | AnswerLibraryWhereUniqueInput[]
-  }
-
-  export type ResumeUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<ResumeCreateWithoutUserInput, ResumeUncheckedCreateWithoutUserInput> | ResumeCreateWithoutUserInput[] | ResumeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ResumeCreateOrConnectWithoutUserInput | ResumeCreateOrConnectWithoutUserInput[]
-    createMany?: ResumeCreateManyUserInputEnvelope
-    connect?: ResumeWhereUniqueInput | ResumeWhereUniqueInput[]
-  }
-
-  export type MemoryUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput> | MemoryCreateWithoutUserInput[] | MemoryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: MemoryCreateOrConnectWithoutUserInput | MemoryCreateOrConnectWithoutUserInput[]
-    createMany?: MemoryCreateManyUserInputEnvelope
-    connect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
-  }
-
-  export type UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<UsageAnalyticsCreateWithoutUserInput, UsageAnalyticsUncheckedCreateWithoutUserInput> | UsageAnalyticsCreateWithoutUserInput[] | UsageAnalyticsUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UsageAnalyticsCreateOrConnectWithoutUserInput | UsageAnalyticsCreateOrConnectWithoutUserInput[]
-    createMany?: UsageAnalyticsCreateManyUserInputEnvelope
-    connect?: UsageAnalyticsWhereUniqueInput | UsageAnalyticsWhereUniqueInput[]
-  }
-
-  export type FormSessionUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<FormSessionCreateWithoutUserInput, FormSessionUncheckedCreateWithoutUserInput> | FormSessionCreateWithoutUserInput[] | FormSessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: FormSessionCreateOrConnectWithoutUserInput | FormSessionCreateOrConnectWithoutUserInput[]
-    createMany?: FormSessionCreateManyUserInputEnvelope
-    connect?: FormSessionWhereUniqueInput | FormSessionWhereUniqueInput[]
   }
 
   export type ChatEpisodeUncheckedCreateNestedManyWithoutUserInput = {
@@ -26223,17 +33191,93 @@ export namespace Prisma {
     connect?: ChatEpisodeWhereUniqueInput | ChatEpisodeWhereUniqueInput[]
   }
 
+  export type EducationUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<EducationCreateWithoutUserInput, EducationUncheckedCreateWithoutUserInput> | EducationCreateWithoutUserInput[] | EducationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EducationCreateOrConnectWithoutUserInput | EducationCreateOrConnectWithoutUserInput[]
+    createMany?: EducationCreateManyUserInputEnvelope
+    connect?: EducationWhereUniqueInput | EducationWhereUniqueInput[]
+  }
+
+  export type FormSessionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<FormSessionCreateWithoutUserInput, FormSessionUncheckedCreateWithoutUserInput> | FormSessionCreateWithoutUserInput[] | FormSessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FormSessionCreateOrConnectWithoutUserInput | FormSessionCreateOrConnectWithoutUserInput[]
+    createMany?: FormSessionCreateManyUserInputEnvelope
+    connect?: FormSessionWhereUniqueInput | FormSessionWhereUniqueInput[]
+  }
+
+  export type GitHubConnectionUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<GitHubConnectionCreateWithoutUserInput, GitHubConnectionUncheckedCreateWithoutUserInput>
+    connectOrCreate?: GitHubConnectionCreateOrConnectWithoutUserInput
+    connect?: GitHubConnectionWhereUniqueInput
+  }
+
   export type LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput = {
     create?: XOR<LLMGatewayConfigCreateWithoutUserInput, LLMGatewayConfigUncheckedCreateWithoutUserInput>
     connectOrCreate?: LLMGatewayConfigCreateOrConnectWithoutUserInput
     connect?: LLMGatewayConfigWhereUniqueInput
   }
 
-  export type GitHubConnectionUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<GitHubConnectionCreateWithoutUserInput, GitHubConnectionUncheckedCreateWithoutUserInput> | GitHubConnectionCreateWithoutUserInput[] | GitHubConnectionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: GitHubConnectionCreateOrConnectWithoutUserInput | GitHubConnectionCreateOrConnectWithoutUserInput[]
-    createMany?: GitHubConnectionCreateManyUserInputEnvelope
-    connect?: GitHubConnectionWhereUniqueInput | GitHubConnectionWhereUniqueInput[]
+  export type LatexTemplateUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<LatexTemplateCreateWithoutUserInput, LatexTemplateUncheckedCreateWithoutUserInput> | LatexTemplateCreateWithoutUserInput[] | LatexTemplateUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LatexTemplateCreateOrConnectWithoutUserInput | LatexTemplateCreateOrConnectWithoutUserInput[]
+    createMany?: LatexTemplateCreateManyUserInputEnvelope
+    connect?: LatexTemplateWhereUniqueInput | LatexTemplateWhereUniqueInput[]
+  }
+
+  export type LinkUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<LinkCreateWithoutUserInput, LinkUncheckedCreateWithoutUserInput> | LinkCreateWithoutUserInput[] | LinkUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LinkCreateOrConnectWithoutUserInput | LinkCreateOrConnectWithoutUserInput[]
+    createMany?: LinkCreateManyUserInputEnvelope
+    connect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+  }
+
+  export type MemoryUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput> | MemoryCreateWithoutUserInput[] | MemoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MemoryCreateOrConnectWithoutUserInput | MemoryCreateOrConnectWithoutUserInput[]
+    createMany?: MemoryCreateManyUserInputEnvelope
+    connect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
+  }
+
+  export type ProjectUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput> | ProjectCreateWithoutUserInput[] | ProjectUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutUserInput | ProjectCreateOrConnectWithoutUserInput[]
+    createMany?: ProjectCreateManyUserInputEnvelope
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+  }
+
+  export type ResumeUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ResumeCreateWithoutUserInput, ResumeUncheckedCreateWithoutUserInput> | ResumeCreateWithoutUserInput[] | ResumeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ResumeCreateOrConnectWithoutUserInput | ResumeCreateOrConnectWithoutUserInput[]
+    createMany?: ResumeCreateManyUserInputEnvelope
+    connect?: ResumeWhereUniqueInput | ResumeWhereUniqueInput[]
+  }
+
+  export type TailoredResumeUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<TailoredResumeCreateWithoutUserInput, TailoredResumeUncheckedCreateWithoutUserInput> | TailoredResumeCreateWithoutUserInput[] | TailoredResumeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TailoredResumeCreateOrConnectWithoutUserInput | TailoredResumeCreateOrConnectWithoutUserInput[]
+    createMany?: TailoredResumeCreateManyUserInputEnvelope
+    connect?: TailoredResumeWhereUniqueInput | TailoredResumeWhereUniqueInput[]
+  }
+
+  export type UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<UsageAnalyticsCreateWithoutUserInput, UsageAnalyticsUncheckedCreateWithoutUserInput> | UsageAnalyticsCreateWithoutUserInput[] | UsageAnalyticsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UsageAnalyticsCreateOrConnectWithoutUserInput | UsageAnalyticsCreateOrConnectWithoutUserInput[]
+    createMany?: UsageAnalyticsCreateManyUserInputEnvelope
+    connect?: UsageAnalyticsWhereUniqueInput | UsageAnalyticsWhereUniqueInput[]
+  }
+
+  export type WorkUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<WorkCreateWithoutUserInput, WorkUncheckedCreateWithoutUserInput> | WorkCreateWithoutUserInput[] | WorkUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: WorkCreateOrConnectWithoutUserInput | WorkCreateOrConnectWithoutUserInput[]
+    createMany?: WorkCreateManyUserInputEnvelope
+    connect?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
+  }
+
+  export type CampaignUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<CampaignCreateWithoutUserInput, CampaignUncheckedCreateWithoutUserInput> | CampaignCreateWithoutUserInput[] | CampaignUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CampaignCreateOrConnectWithoutUserInput | CampaignCreateOrConnectWithoutUserInput[]
+    createMany?: CampaignCreateManyUserInputEnvelope
+    connect?: CampaignWhereUniqueInput | CampaignWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -26252,20 +33296,6 @@ export namespace Prisma {
     set?: Date | string
   }
 
-  export type LinkUpdateManyWithoutUserNestedInput = {
-    create?: XOR<LinkCreateWithoutUserInput, LinkUncheckedCreateWithoutUserInput> | LinkCreateWithoutUserInput[] | LinkUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: LinkCreateOrConnectWithoutUserInput | LinkCreateOrConnectWithoutUserInput[]
-    upsert?: LinkUpsertWithWhereUniqueWithoutUserInput | LinkUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: LinkCreateManyUserInputEnvelope
-    set?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
-    disconnect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
-    delete?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
-    connect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
-    update?: LinkUpdateWithWhereUniqueWithoutUserInput | LinkUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: LinkUpdateManyWithWhereWithoutUserInput | LinkUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: LinkScalarWhereInput | LinkScalarWhereInput[]
-  }
-
   export type AddressUpdateManyWithoutUserNestedInput = {
     create?: XOR<AddressCreateWithoutUserInput, AddressUncheckedCreateWithoutUserInput> | AddressCreateWithoutUserInput[] | AddressUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AddressCreateOrConnectWithoutUserInput | AddressCreateOrConnectWithoutUserInput[]
@@ -26278,48 +33308,6 @@ export namespace Prisma {
     update?: AddressUpdateWithWhereUniqueWithoutUserInput | AddressUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: AddressUpdateManyWithWhereWithoutUserInput | AddressUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: AddressScalarWhereInput | AddressScalarWhereInput[]
-  }
-
-  export type EducationUpdateManyWithoutUserNestedInput = {
-    create?: XOR<EducationCreateWithoutUserInput, EducationUncheckedCreateWithoutUserInput> | EducationCreateWithoutUserInput[] | EducationUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: EducationCreateOrConnectWithoutUserInput | EducationCreateOrConnectWithoutUserInput[]
-    upsert?: EducationUpsertWithWhereUniqueWithoutUserInput | EducationUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: EducationCreateManyUserInputEnvelope
-    set?: EducationWhereUniqueInput | EducationWhereUniqueInput[]
-    disconnect?: EducationWhereUniqueInput | EducationWhereUniqueInput[]
-    delete?: EducationWhereUniqueInput | EducationWhereUniqueInput[]
-    connect?: EducationWhereUniqueInput | EducationWhereUniqueInput[]
-    update?: EducationUpdateWithWhereUniqueWithoutUserInput | EducationUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: EducationUpdateManyWithWhereWithoutUserInput | EducationUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: EducationScalarWhereInput | EducationScalarWhereInput[]
-  }
-
-  export type WorkUpdateManyWithoutUserNestedInput = {
-    create?: XOR<WorkCreateWithoutUserInput, WorkUncheckedCreateWithoutUserInput> | WorkCreateWithoutUserInput[] | WorkUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: WorkCreateOrConnectWithoutUserInput | WorkCreateOrConnectWithoutUserInput[]
-    upsert?: WorkUpsertWithWhereUniqueWithoutUserInput | WorkUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: WorkCreateManyUserInputEnvelope
-    set?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
-    disconnect?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
-    delete?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
-    connect?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
-    update?: WorkUpdateWithWhereUniqueWithoutUserInput | WorkUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: WorkUpdateManyWithWhereWithoutUserInput | WorkUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: WorkScalarWhereInput | WorkScalarWhereInput[]
-  }
-
-  export type ProjectUpdateManyWithoutUserNestedInput = {
-    create?: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput> | ProjectCreateWithoutUserInput[] | ProjectUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ProjectCreateOrConnectWithoutUserInput | ProjectCreateOrConnectWithoutUserInput[]
-    upsert?: ProjectUpsertWithWhereUniqueWithoutUserInput | ProjectUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: ProjectCreateManyUserInputEnvelope
-    set?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
-    disconnect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
-    delete?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
-    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
-    update?: ProjectUpdateWithWhereUniqueWithoutUserInput | ProjectUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: ProjectUpdateManyWithWhereWithoutUserInput | ProjectUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
   }
 
   export type AnswerLibraryUpdateManyWithoutUserNestedInput = {
@@ -26336,46 +33324,32 @@ export namespace Prisma {
     deleteMany?: AnswerLibraryScalarWhereInput | AnswerLibraryScalarWhereInput[]
   }
 
-  export type ResumeUpdateManyWithoutUserNestedInput = {
-    create?: XOR<ResumeCreateWithoutUserInput, ResumeUncheckedCreateWithoutUserInput> | ResumeCreateWithoutUserInput[] | ResumeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ResumeCreateOrConnectWithoutUserInput | ResumeCreateOrConnectWithoutUserInput[]
-    upsert?: ResumeUpsertWithWhereUniqueWithoutUserInput | ResumeUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: ResumeCreateManyUserInputEnvelope
-    set?: ResumeWhereUniqueInput | ResumeWhereUniqueInput[]
-    disconnect?: ResumeWhereUniqueInput | ResumeWhereUniqueInput[]
-    delete?: ResumeWhereUniqueInput | ResumeWhereUniqueInput[]
-    connect?: ResumeWhereUniqueInput | ResumeWhereUniqueInput[]
-    update?: ResumeUpdateWithWhereUniqueWithoutUserInput | ResumeUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: ResumeUpdateManyWithWhereWithoutUserInput | ResumeUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: ResumeScalarWhereInput | ResumeScalarWhereInput[]
+  export type ChatEpisodeUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ChatEpisodeCreateWithoutUserInput, ChatEpisodeUncheckedCreateWithoutUserInput> | ChatEpisodeCreateWithoutUserInput[] | ChatEpisodeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ChatEpisodeCreateOrConnectWithoutUserInput | ChatEpisodeCreateOrConnectWithoutUserInput[]
+    upsert?: ChatEpisodeUpsertWithWhereUniqueWithoutUserInput | ChatEpisodeUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ChatEpisodeCreateManyUserInputEnvelope
+    set?: ChatEpisodeWhereUniqueInput | ChatEpisodeWhereUniqueInput[]
+    disconnect?: ChatEpisodeWhereUniqueInput | ChatEpisodeWhereUniqueInput[]
+    delete?: ChatEpisodeWhereUniqueInput | ChatEpisodeWhereUniqueInput[]
+    connect?: ChatEpisodeWhereUniqueInput | ChatEpisodeWhereUniqueInput[]
+    update?: ChatEpisodeUpdateWithWhereUniqueWithoutUserInput | ChatEpisodeUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ChatEpisodeUpdateManyWithWhereWithoutUserInput | ChatEpisodeUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ChatEpisodeScalarWhereInput | ChatEpisodeScalarWhereInput[]
   }
 
-  export type MemoryUpdateManyWithoutUserNestedInput = {
-    create?: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput> | MemoryCreateWithoutUserInput[] | MemoryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: MemoryCreateOrConnectWithoutUserInput | MemoryCreateOrConnectWithoutUserInput[]
-    upsert?: MemoryUpsertWithWhereUniqueWithoutUserInput | MemoryUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: MemoryCreateManyUserInputEnvelope
-    set?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
-    disconnect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
-    delete?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
-    connect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
-    update?: MemoryUpdateWithWhereUniqueWithoutUserInput | MemoryUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: MemoryUpdateManyWithWhereWithoutUserInput | MemoryUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: MemoryScalarWhereInput | MemoryScalarWhereInput[]
-  }
-
-  export type UsageAnalyticsUpdateManyWithoutUserNestedInput = {
-    create?: XOR<UsageAnalyticsCreateWithoutUserInput, UsageAnalyticsUncheckedCreateWithoutUserInput> | UsageAnalyticsCreateWithoutUserInput[] | UsageAnalyticsUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UsageAnalyticsCreateOrConnectWithoutUserInput | UsageAnalyticsCreateOrConnectWithoutUserInput[]
-    upsert?: UsageAnalyticsUpsertWithWhereUniqueWithoutUserInput | UsageAnalyticsUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: UsageAnalyticsCreateManyUserInputEnvelope
-    set?: UsageAnalyticsWhereUniqueInput | UsageAnalyticsWhereUniqueInput[]
-    disconnect?: UsageAnalyticsWhereUniqueInput | UsageAnalyticsWhereUniqueInput[]
-    delete?: UsageAnalyticsWhereUniqueInput | UsageAnalyticsWhereUniqueInput[]
-    connect?: UsageAnalyticsWhereUniqueInput | UsageAnalyticsWhereUniqueInput[]
-    update?: UsageAnalyticsUpdateWithWhereUniqueWithoutUserInput | UsageAnalyticsUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: UsageAnalyticsUpdateManyWithWhereWithoutUserInput | UsageAnalyticsUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: UsageAnalyticsScalarWhereInput | UsageAnalyticsScalarWhereInput[]
+  export type EducationUpdateManyWithoutUserNestedInput = {
+    create?: XOR<EducationCreateWithoutUserInput, EducationUncheckedCreateWithoutUserInput> | EducationCreateWithoutUserInput[] | EducationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EducationCreateOrConnectWithoutUserInput | EducationCreateOrConnectWithoutUserInput[]
+    upsert?: EducationUpsertWithWhereUniqueWithoutUserInput | EducationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: EducationCreateManyUserInputEnvelope
+    set?: EducationWhereUniqueInput | EducationWhereUniqueInput[]
+    disconnect?: EducationWhereUniqueInput | EducationWhereUniqueInput[]
+    delete?: EducationWhereUniqueInput | EducationWhereUniqueInput[]
+    connect?: EducationWhereUniqueInput | EducationWhereUniqueInput[]
+    update?: EducationUpdateWithWhereUniqueWithoutUserInput | EducationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: EducationUpdateManyWithWhereWithoutUserInput | EducationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: EducationScalarWhereInput | EducationScalarWhereInput[]
   }
 
   export type FormSessionUpdateManyWithoutUserNestedInput = {
@@ -26392,18 +33366,14 @@ export namespace Prisma {
     deleteMany?: FormSessionScalarWhereInput | FormSessionScalarWhereInput[]
   }
 
-  export type ChatEpisodeUpdateManyWithoutUserNestedInput = {
-    create?: XOR<ChatEpisodeCreateWithoutUserInput, ChatEpisodeUncheckedCreateWithoutUserInput> | ChatEpisodeCreateWithoutUserInput[] | ChatEpisodeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ChatEpisodeCreateOrConnectWithoutUserInput | ChatEpisodeCreateOrConnectWithoutUserInput[]
-    upsert?: ChatEpisodeUpsertWithWhereUniqueWithoutUserInput | ChatEpisodeUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: ChatEpisodeCreateManyUserInputEnvelope
-    set?: ChatEpisodeWhereUniqueInput | ChatEpisodeWhereUniqueInput[]
-    disconnect?: ChatEpisodeWhereUniqueInput | ChatEpisodeWhereUniqueInput[]
-    delete?: ChatEpisodeWhereUniqueInput | ChatEpisodeWhereUniqueInput[]
-    connect?: ChatEpisodeWhereUniqueInput | ChatEpisodeWhereUniqueInput[]
-    update?: ChatEpisodeUpdateWithWhereUniqueWithoutUserInput | ChatEpisodeUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: ChatEpisodeUpdateManyWithWhereWithoutUserInput | ChatEpisodeUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: ChatEpisodeScalarWhereInput | ChatEpisodeScalarWhereInput[]
+  export type GitHubConnectionUpdateOneWithoutUserNestedInput = {
+    create?: XOR<GitHubConnectionCreateWithoutUserInput, GitHubConnectionUncheckedCreateWithoutUserInput>
+    connectOrCreate?: GitHubConnectionCreateOrConnectWithoutUserInput
+    upsert?: GitHubConnectionUpsertWithoutUserInput
+    disconnect?: GitHubConnectionWhereInput | boolean
+    delete?: GitHubConnectionWhereInput | boolean
+    connect?: GitHubConnectionWhereUniqueInput
+    update?: XOR<XOR<GitHubConnectionUpdateToOneWithWhereWithoutUserInput, GitHubConnectionUpdateWithoutUserInput>, GitHubConnectionUncheckedUpdateWithoutUserInput>
   }
 
   export type LLMGatewayConfigUpdateOneWithoutUserNestedInput = {
@@ -26416,21 +33386,21 @@ export namespace Prisma {
     update?: XOR<XOR<LLMGatewayConfigUpdateToOneWithWhereWithoutUserInput, LLMGatewayConfigUpdateWithoutUserInput>, LLMGatewayConfigUncheckedUpdateWithoutUserInput>
   }
 
-  export type GitHubConnectionUpdateManyWithoutUserNestedInput = {
-    create?: XOR<GitHubConnectionCreateWithoutUserInput, GitHubConnectionUncheckedCreateWithoutUserInput> | GitHubConnectionCreateWithoutUserInput[] | GitHubConnectionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: GitHubConnectionCreateOrConnectWithoutUserInput | GitHubConnectionCreateOrConnectWithoutUserInput[]
-    upsert?: GitHubConnectionUpsertWithWhereUniqueWithoutUserInput | GitHubConnectionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: GitHubConnectionCreateManyUserInputEnvelope
-    set?: GitHubConnectionWhereUniqueInput | GitHubConnectionWhereUniqueInput[]
-    disconnect?: GitHubConnectionWhereUniqueInput | GitHubConnectionWhereUniqueInput[]
-    delete?: GitHubConnectionWhereUniqueInput | GitHubConnectionWhereUniqueInput[]
-    connect?: GitHubConnectionWhereUniqueInput | GitHubConnectionWhereUniqueInput[]
-    update?: GitHubConnectionUpdateWithWhereUniqueWithoutUserInput | GitHubConnectionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: GitHubConnectionUpdateManyWithWhereWithoutUserInput | GitHubConnectionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: GitHubConnectionScalarWhereInput | GitHubConnectionScalarWhereInput[]
+  export type LatexTemplateUpdateManyWithoutUserNestedInput = {
+    create?: XOR<LatexTemplateCreateWithoutUserInput, LatexTemplateUncheckedCreateWithoutUserInput> | LatexTemplateCreateWithoutUserInput[] | LatexTemplateUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LatexTemplateCreateOrConnectWithoutUserInput | LatexTemplateCreateOrConnectWithoutUserInput[]
+    upsert?: LatexTemplateUpsertWithWhereUniqueWithoutUserInput | LatexTemplateUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: LatexTemplateCreateManyUserInputEnvelope
+    set?: LatexTemplateWhereUniqueInput | LatexTemplateWhereUniqueInput[]
+    disconnect?: LatexTemplateWhereUniqueInput | LatexTemplateWhereUniqueInput[]
+    delete?: LatexTemplateWhereUniqueInput | LatexTemplateWhereUniqueInput[]
+    connect?: LatexTemplateWhereUniqueInput | LatexTemplateWhereUniqueInput[]
+    update?: LatexTemplateUpdateWithWhereUniqueWithoutUserInput | LatexTemplateUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: LatexTemplateUpdateManyWithWhereWithoutUserInput | LatexTemplateUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: LatexTemplateScalarWhereInput | LatexTemplateScalarWhereInput[]
   }
 
-  export type LinkUncheckedUpdateManyWithoutUserNestedInput = {
+  export type LinkUpdateManyWithoutUserNestedInput = {
     create?: XOR<LinkCreateWithoutUserInput, LinkUncheckedCreateWithoutUserInput> | LinkCreateWithoutUserInput[] | LinkUncheckedCreateWithoutUserInput[]
     connectOrCreate?: LinkCreateOrConnectWithoutUserInput | LinkCreateOrConnectWithoutUserInput[]
     upsert?: LinkUpsertWithWhereUniqueWithoutUserInput | LinkUpsertWithWhereUniqueWithoutUserInput[]
@@ -26442,6 +33412,104 @@ export namespace Prisma {
     update?: LinkUpdateWithWhereUniqueWithoutUserInput | LinkUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: LinkUpdateManyWithWhereWithoutUserInput | LinkUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: LinkScalarWhereInput | LinkScalarWhereInput[]
+  }
+
+  export type MemoryUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput> | MemoryCreateWithoutUserInput[] | MemoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MemoryCreateOrConnectWithoutUserInput | MemoryCreateOrConnectWithoutUserInput[]
+    upsert?: MemoryUpsertWithWhereUniqueWithoutUserInput | MemoryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MemoryCreateManyUserInputEnvelope
+    set?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
+    disconnect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
+    delete?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
+    connect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
+    update?: MemoryUpdateWithWhereUniqueWithoutUserInput | MemoryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MemoryUpdateManyWithWhereWithoutUserInput | MemoryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MemoryScalarWhereInput | MemoryScalarWhereInput[]
+  }
+
+  export type ProjectUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput> | ProjectCreateWithoutUserInput[] | ProjectUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutUserInput | ProjectCreateOrConnectWithoutUserInput[]
+    upsert?: ProjectUpsertWithWhereUniqueWithoutUserInput | ProjectUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProjectCreateManyUserInputEnvelope
+    set?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    disconnect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    delete?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    update?: ProjectUpdateWithWhereUniqueWithoutUserInput | ProjectUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProjectUpdateManyWithWhereWithoutUserInput | ProjectUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
+  }
+
+  export type ResumeUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ResumeCreateWithoutUserInput, ResumeUncheckedCreateWithoutUserInput> | ResumeCreateWithoutUserInput[] | ResumeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ResumeCreateOrConnectWithoutUserInput | ResumeCreateOrConnectWithoutUserInput[]
+    upsert?: ResumeUpsertWithWhereUniqueWithoutUserInput | ResumeUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ResumeCreateManyUserInputEnvelope
+    set?: ResumeWhereUniqueInput | ResumeWhereUniqueInput[]
+    disconnect?: ResumeWhereUniqueInput | ResumeWhereUniqueInput[]
+    delete?: ResumeWhereUniqueInput | ResumeWhereUniqueInput[]
+    connect?: ResumeWhereUniqueInput | ResumeWhereUniqueInput[]
+    update?: ResumeUpdateWithWhereUniqueWithoutUserInput | ResumeUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ResumeUpdateManyWithWhereWithoutUserInput | ResumeUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ResumeScalarWhereInput | ResumeScalarWhereInput[]
+  }
+
+  export type TailoredResumeUpdateManyWithoutUserNestedInput = {
+    create?: XOR<TailoredResumeCreateWithoutUserInput, TailoredResumeUncheckedCreateWithoutUserInput> | TailoredResumeCreateWithoutUserInput[] | TailoredResumeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TailoredResumeCreateOrConnectWithoutUserInput | TailoredResumeCreateOrConnectWithoutUserInput[]
+    upsert?: TailoredResumeUpsertWithWhereUniqueWithoutUserInput | TailoredResumeUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: TailoredResumeCreateManyUserInputEnvelope
+    set?: TailoredResumeWhereUniqueInput | TailoredResumeWhereUniqueInput[]
+    disconnect?: TailoredResumeWhereUniqueInput | TailoredResumeWhereUniqueInput[]
+    delete?: TailoredResumeWhereUniqueInput | TailoredResumeWhereUniqueInput[]
+    connect?: TailoredResumeWhereUniqueInput | TailoredResumeWhereUniqueInput[]
+    update?: TailoredResumeUpdateWithWhereUniqueWithoutUserInput | TailoredResumeUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: TailoredResumeUpdateManyWithWhereWithoutUserInput | TailoredResumeUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: TailoredResumeScalarWhereInput | TailoredResumeScalarWhereInput[]
+  }
+
+  export type UsageAnalyticsUpdateManyWithoutUserNestedInput = {
+    create?: XOR<UsageAnalyticsCreateWithoutUserInput, UsageAnalyticsUncheckedCreateWithoutUserInput> | UsageAnalyticsCreateWithoutUserInput[] | UsageAnalyticsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UsageAnalyticsCreateOrConnectWithoutUserInput | UsageAnalyticsCreateOrConnectWithoutUserInput[]
+    upsert?: UsageAnalyticsUpsertWithWhereUniqueWithoutUserInput | UsageAnalyticsUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: UsageAnalyticsCreateManyUserInputEnvelope
+    set?: UsageAnalyticsWhereUniqueInput | UsageAnalyticsWhereUniqueInput[]
+    disconnect?: UsageAnalyticsWhereUniqueInput | UsageAnalyticsWhereUniqueInput[]
+    delete?: UsageAnalyticsWhereUniqueInput | UsageAnalyticsWhereUniqueInput[]
+    connect?: UsageAnalyticsWhereUniqueInput | UsageAnalyticsWhereUniqueInput[]
+    update?: UsageAnalyticsUpdateWithWhereUniqueWithoutUserInput | UsageAnalyticsUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: UsageAnalyticsUpdateManyWithWhereWithoutUserInput | UsageAnalyticsUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: UsageAnalyticsScalarWhereInput | UsageAnalyticsScalarWhereInput[]
+  }
+
+  export type WorkUpdateManyWithoutUserNestedInput = {
+    create?: XOR<WorkCreateWithoutUserInput, WorkUncheckedCreateWithoutUserInput> | WorkCreateWithoutUserInput[] | WorkUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: WorkCreateOrConnectWithoutUserInput | WorkCreateOrConnectWithoutUserInput[]
+    upsert?: WorkUpsertWithWhereUniqueWithoutUserInput | WorkUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: WorkCreateManyUserInputEnvelope
+    set?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
+    disconnect?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
+    delete?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
+    connect?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
+    update?: WorkUpdateWithWhereUniqueWithoutUserInput | WorkUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: WorkUpdateManyWithWhereWithoutUserInput | WorkUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: WorkScalarWhereInput | WorkScalarWhereInput[]
+  }
+
+  export type CampaignUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CampaignCreateWithoutUserInput, CampaignUncheckedCreateWithoutUserInput> | CampaignCreateWithoutUserInput[] | CampaignUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CampaignCreateOrConnectWithoutUserInput | CampaignCreateOrConnectWithoutUserInput[]
+    upsert?: CampaignUpsertWithWhereUniqueWithoutUserInput | CampaignUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CampaignCreateManyUserInputEnvelope
+    set?: CampaignWhereUniqueInput | CampaignWhereUniqueInput[]
+    disconnect?: CampaignWhereUniqueInput | CampaignWhereUniqueInput[]
+    delete?: CampaignWhereUniqueInput | CampaignWhereUniqueInput[]
+    connect?: CampaignWhereUniqueInput | CampaignWhereUniqueInput[]
+    update?: CampaignUpdateWithWhereUniqueWithoutUserInput | CampaignUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CampaignUpdateManyWithWhereWithoutUserInput | CampaignUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CampaignScalarWhereInput | CampaignScalarWhereInput[]
   }
 
   export type AddressUncheckedUpdateManyWithoutUserNestedInput = {
@@ -26458,48 +33526,6 @@ export namespace Prisma {
     deleteMany?: AddressScalarWhereInput | AddressScalarWhereInput[]
   }
 
-  export type EducationUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<EducationCreateWithoutUserInput, EducationUncheckedCreateWithoutUserInput> | EducationCreateWithoutUserInput[] | EducationUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: EducationCreateOrConnectWithoutUserInput | EducationCreateOrConnectWithoutUserInput[]
-    upsert?: EducationUpsertWithWhereUniqueWithoutUserInput | EducationUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: EducationCreateManyUserInputEnvelope
-    set?: EducationWhereUniqueInput | EducationWhereUniqueInput[]
-    disconnect?: EducationWhereUniqueInput | EducationWhereUniqueInput[]
-    delete?: EducationWhereUniqueInput | EducationWhereUniqueInput[]
-    connect?: EducationWhereUniqueInput | EducationWhereUniqueInput[]
-    update?: EducationUpdateWithWhereUniqueWithoutUserInput | EducationUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: EducationUpdateManyWithWhereWithoutUserInput | EducationUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: EducationScalarWhereInput | EducationScalarWhereInput[]
-  }
-
-  export type WorkUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<WorkCreateWithoutUserInput, WorkUncheckedCreateWithoutUserInput> | WorkCreateWithoutUserInput[] | WorkUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: WorkCreateOrConnectWithoutUserInput | WorkCreateOrConnectWithoutUserInput[]
-    upsert?: WorkUpsertWithWhereUniqueWithoutUserInput | WorkUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: WorkCreateManyUserInputEnvelope
-    set?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
-    disconnect?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
-    delete?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
-    connect?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
-    update?: WorkUpdateWithWhereUniqueWithoutUserInput | WorkUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: WorkUpdateManyWithWhereWithoutUserInput | WorkUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: WorkScalarWhereInput | WorkScalarWhereInput[]
-  }
-
-  export type ProjectUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput> | ProjectCreateWithoutUserInput[] | ProjectUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ProjectCreateOrConnectWithoutUserInput | ProjectCreateOrConnectWithoutUserInput[]
-    upsert?: ProjectUpsertWithWhereUniqueWithoutUserInput | ProjectUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: ProjectCreateManyUserInputEnvelope
-    set?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
-    disconnect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
-    delete?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
-    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
-    update?: ProjectUpdateWithWhereUniqueWithoutUserInput | ProjectUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: ProjectUpdateManyWithWhereWithoutUserInput | ProjectUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
-  }
-
   export type AnswerLibraryUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AnswerLibraryCreateWithoutUserInput, AnswerLibraryUncheckedCreateWithoutUserInput> | AnswerLibraryCreateWithoutUserInput[] | AnswerLibraryUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AnswerLibraryCreateOrConnectWithoutUserInput | AnswerLibraryCreateOrConnectWithoutUserInput[]
@@ -26512,62 +33538,6 @@ export namespace Prisma {
     update?: AnswerLibraryUpdateWithWhereUniqueWithoutUserInput | AnswerLibraryUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: AnswerLibraryUpdateManyWithWhereWithoutUserInput | AnswerLibraryUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: AnswerLibraryScalarWhereInput | AnswerLibraryScalarWhereInput[]
-  }
-
-  export type ResumeUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<ResumeCreateWithoutUserInput, ResumeUncheckedCreateWithoutUserInput> | ResumeCreateWithoutUserInput[] | ResumeUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: ResumeCreateOrConnectWithoutUserInput | ResumeCreateOrConnectWithoutUserInput[]
-    upsert?: ResumeUpsertWithWhereUniqueWithoutUserInput | ResumeUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: ResumeCreateManyUserInputEnvelope
-    set?: ResumeWhereUniqueInput | ResumeWhereUniqueInput[]
-    disconnect?: ResumeWhereUniqueInput | ResumeWhereUniqueInput[]
-    delete?: ResumeWhereUniqueInput | ResumeWhereUniqueInput[]
-    connect?: ResumeWhereUniqueInput | ResumeWhereUniqueInput[]
-    update?: ResumeUpdateWithWhereUniqueWithoutUserInput | ResumeUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: ResumeUpdateManyWithWhereWithoutUserInput | ResumeUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: ResumeScalarWhereInput | ResumeScalarWhereInput[]
-  }
-
-  export type MemoryUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput> | MemoryCreateWithoutUserInput[] | MemoryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: MemoryCreateOrConnectWithoutUserInput | MemoryCreateOrConnectWithoutUserInput[]
-    upsert?: MemoryUpsertWithWhereUniqueWithoutUserInput | MemoryUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: MemoryCreateManyUserInputEnvelope
-    set?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
-    disconnect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
-    delete?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
-    connect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
-    update?: MemoryUpdateWithWhereUniqueWithoutUserInput | MemoryUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: MemoryUpdateManyWithWhereWithoutUserInput | MemoryUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: MemoryScalarWhereInput | MemoryScalarWhereInput[]
-  }
-
-  export type UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<UsageAnalyticsCreateWithoutUserInput, UsageAnalyticsUncheckedCreateWithoutUserInput> | UsageAnalyticsCreateWithoutUserInput[] | UsageAnalyticsUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UsageAnalyticsCreateOrConnectWithoutUserInput | UsageAnalyticsCreateOrConnectWithoutUserInput[]
-    upsert?: UsageAnalyticsUpsertWithWhereUniqueWithoutUserInput | UsageAnalyticsUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: UsageAnalyticsCreateManyUserInputEnvelope
-    set?: UsageAnalyticsWhereUniqueInput | UsageAnalyticsWhereUniqueInput[]
-    disconnect?: UsageAnalyticsWhereUniqueInput | UsageAnalyticsWhereUniqueInput[]
-    delete?: UsageAnalyticsWhereUniqueInput | UsageAnalyticsWhereUniqueInput[]
-    connect?: UsageAnalyticsWhereUniqueInput | UsageAnalyticsWhereUniqueInput[]
-    update?: UsageAnalyticsUpdateWithWhereUniqueWithoutUserInput | UsageAnalyticsUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: UsageAnalyticsUpdateManyWithWhereWithoutUserInput | UsageAnalyticsUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: UsageAnalyticsScalarWhereInput | UsageAnalyticsScalarWhereInput[]
-  }
-
-  export type FormSessionUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<FormSessionCreateWithoutUserInput, FormSessionUncheckedCreateWithoutUserInput> | FormSessionCreateWithoutUserInput[] | FormSessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: FormSessionCreateOrConnectWithoutUserInput | FormSessionCreateOrConnectWithoutUserInput[]
-    upsert?: FormSessionUpsertWithWhereUniqueWithoutUserInput | FormSessionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: FormSessionCreateManyUserInputEnvelope
-    set?: FormSessionWhereUniqueInput | FormSessionWhereUniqueInput[]
-    disconnect?: FormSessionWhereUniqueInput | FormSessionWhereUniqueInput[]
-    delete?: FormSessionWhereUniqueInput | FormSessionWhereUniqueInput[]
-    connect?: FormSessionWhereUniqueInput | FormSessionWhereUniqueInput[]
-    update?: FormSessionUpdateWithWhereUniqueWithoutUserInput | FormSessionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: FormSessionUpdateManyWithWhereWithoutUserInput | FormSessionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: FormSessionScalarWhereInput | FormSessionScalarWhereInput[]
   }
 
   export type ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput = {
@@ -26584,6 +33554,44 @@ export namespace Prisma {
     deleteMany?: ChatEpisodeScalarWhereInput | ChatEpisodeScalarWhereInput[]
   }
 
+  export type EducationUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<EducationCreateWithoutUserInput, EducationUncheckedCreateWithoutUserInput> | EducationCreateWithoutUserInput[] | EducationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: EducationCreateOrConnectWithoutUserInput | EducationCreateOrConnectWithoutUserInput[]
+    upsert?: EducationUpsertWithWhereUniqueWithoutUserInput | EducationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: EducationCreateManyUserInputEnvelope
+    set?: EducationWhereUniqueInput | EducationWhereUniqueInput[]
+    disconnect?: EducationWhereUniqueInput | EducationWhereUniqueInput[]
+    delete?: EducationWhereUniqueInput | EducationWhereUniqueInput[]
+    connect?: EducationWhereUniqueInput | EducationWhereUniqueInput[]
+    update?: EducationUpdateWithWhereUniqueWithoutUserInput | EducationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: EducationUpdateManyWithWhereWithoutUserInput | EducationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: EducationScalarWhereInput | EducationScalarWhereInput[]
+  }
+
+  export type FormSessionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<FormSessionCreateWithoutUserInput, FormSessionUncheckedCreateWithoutUserInput> | FormSessionCreateWithoutUserInput[] | FormSessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FormSessionCreateOrConnectWithoutUserInput | FormSessionCreateOrConnectWithoutUserInput[]
+    upsert?: FormSessionUpsertWithWhereUniqueWithoutUserInput | FormSessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: FormSessionCreateManyUserInputEnvelope
+    set?: FormSessionWhereUniqueInput | FormSessionWhereUniqueInput[]
+    disconnect?: FormSessionWhereUniqueInput | FormSessionWhereUniqueInput[]
+    delete?: FormSessionWhereUniqueInput | FormSessionWhereUniqueInput[]
+    connect?: FormSessionWhereUniqueInput | FormSessionWhereUniqueInput[]
+    update?: FormSessionUpdateWithWhereUniqueWithoutUserInput | FormSessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: FormSessionUpdateManyWithWhereWithoutUserInput | FormSessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: FormSessionScalarWhereInput | FormSessionScalarWhereInput[]
+  }
+
+  export type GitHubConnectionUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<GitHubConnectionCreateWithoutUserInput, GitHubConnectionUncheckedCreateWithoutUserInput>
+    connectOrCreate?: GitHubConnectionCreateOrConnectWithoutUserInput
+    upsert?: GitHubConnectionUpsertWithoutUserInput
+    disconnect?: GitHubConnectionWhereInput | boolean
+    delete?: GitHubConnectionWhereInput | boolean
+    connect?: GitHubConnectionWhereUniqueInput
+    update?: XOR<XOR<GitHubConnectionUpdateToOneWithWhereWithoutUserInput, GitHubConnectionUpdateWithoutUserInput>, GitHubConnectionUncheckedUpdateWithoutUserInput>
+  }
+
   export type LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput = {
     create?: XOR<LLMGatewayConfigCreateWithoutUserInput, LLMGatewayConfigUncheckedCreateWithoutUserInput>
     connectOrCreate?: LLMGatewayConfigCreateOrConnectWithoutUserInput
@@ -26594,18 +33602,130 @@ export namespace Prisma {
     update?: XOR<XOR<LLMGatewayConfigUpdateToOneWithWhereWithoutUserInput, LLMGatewayConfigUpdateWithoutUserInput>, LLMGatewayConfigUncheckedUpdateWithoutUserInput>
   }
 
-  export type GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<GitHubConnectionCreateWithoutUserInput, GitHubConnectionUncheckedCreateWithoutUserInput> | GitHubConnectionCreateWithoutUserInput[] | GitHubConnectionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: GitHubConnectionCreateOrConnectWithoutUserInput | GitHubConnectionCreateOrConnectWithoutUserInput[]
-    upsert?: GitHubConnectionUpsertWithWhereUniqueWithoutUserInput | GitHubConnectionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: GitHubConnectionCreateManyUserInputEnvelope
-    set?: GitHubConnectionWhereUniqueInput | GitHubConnectionWhereUniqueInput[]
-    disconnect?: GitHubConnectionWhereUniqueInput | GitHubConnectionWhereUniqueInput[]
-    delete?: GitHubConnectionWhereUniqueInput | GitHubConnectionWhereUniqueInput[]
-    connect?: GitHubConnectionWhereUniqueInput | GitHubConnectionWhereUniqueInput[]
-    update?: GitHubConnectionUpdateWithWhereUniqueWithoutUserInput | GitHubConnectionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: GitHubConnectionUpdateManyWithWhereWithoutUserInput | GitHubConnectionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: GitHubConnectionScalarWhereInput | GitHubConnectionScalarWhereInput[]
+  export type LatexTemplateUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<LatexTemplateCreateWithoutUserInput, LatexTemplateUncheckedCreateWithoutUserInput> | LatexTemplateCreateWithoutUserInput[] | LatexTemplateUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LatexTemplateCreateOrConnectWithoutUserInput | LatexTemplateCreateOrConnectWithoutUserInput[]
+    upsert?: LatexTemplateUpsertWithWhereUniqueWithoutUserInput | LatexTemplateUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: LatexTemplateCreateManyUserInputEnvelope
+    set?: LatexTemplateWhereUniqueInput | LatexTemplateWhereUniqueInput[]
+    disconnect?: LatexTemplateWhereUniqueInput | LatexTemplateWhereUniqueInput[]
+    delete?: LatexTemplateWhereUniqueInput | LatexTemplateWhereUniqueInput[]
+    connect?: LatexTemplateWhereUniqueInput | LatexTemplateWhereUniqueInput[]
+    update?: LatexTemplateUpdateWithWhereUniqueWithoutUserInput | LatexTemplateUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: LatexTemplateUpdateManyWithWhereWithoutUserInput | LatexTemplateUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: LatexTemplateScalarWhereInput | LatexTemplateScalarWhereInput[]
+  }
+
+  export type LinkUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<LinkCreateWithoutUserInput, LinkUncheckedCreateWithoutUserInput> | LinkCreateWithoutUserInput[] | LinkUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: LinkCreateOrConnectWithoutUserInput | LinkCreateOrConnectWithoutUserInput[]
+    upsert?: LinkUpsertWithWhereUniqueWithoutUserInput | LinkUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: LinkCreateManyUserInputEnvelope
+    set?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+    disconnect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+    delete?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+    connect?: LinkWhereUniqueInput | LinkWhereUniqueInput[]
+    update?: LinkUpdateWithWhereUniqueWithoutUserInput | LinkUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: LinkUpdateManyWithWhereWithoutUserInput | LinkUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: LinkScalarWhereInput | LinkScalarWhereInput[]
+  }
+
+  export type MemoryUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput> | MemoryCreateWithoutUserInput[] | MemoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MemoryCreateOrConnectWithoutUserInput | MemoryCreateOrConnectWithoutUserInput[]
+    upsert?: MemoryUpsertWithWhereUniqueWithoutUserInput | MemoryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MemoryCreateManyUserInputEnvelope
+    set?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
+    disconnect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
+    delete?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
+    connect?: MemoryWhereUniqueInput | MemoryWhereUniqueInput[]
+    update?: MemoryUpdateWithWhereUniqueWithoutUserInput | MemoryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MemoryUpdateManyWithWhereWithoutUserInput | MemoryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MemoryScalarWhereInput | MemoryScalarWhereInput[]
+  }
+
+  export type ProjectUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput> | ProjectCreateWithoutUserInput[] | ProjectUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ProjectCreateOrConnectWithoutUserInput | ProjectCreateOrConnectWithoutUserInput[]
+    upsert?: ProjectUpsertWithWhereUniqueWithoutUserInput | ProjectUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ProjectCreateManyUserInputEnvelope
+    set?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    disconnect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    delete?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    connect?: ProjectWhereUniqueInput | ProjectWhereUniqueInput[]
+    update?: ProjectUpdateWithWhereUniqueWithoutUserInput | ProjectUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ProjectUpdateManyWithWhereWithoutUserInput | ProjectUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
+  }
+
+  export type ResumeUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ResumeCreateWithoutUserInput, ResumeUncheckedCreateWithoutUserInput> | ResumeCreateWithoutUserInput[] | ResumeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ResumeCreateOrConnectWithoutUserInput | ResumeCreateOrConnectWithoutUserInput[]
+    upsert?: ResumeUpsertWithWhereUniqueWithoutUserInput | ResumeUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ResumeCreateManyUserInputEnvelope
+    set?: ResumeWhereUniqueInput | ResumeWhereUniqueInput[]
+    disconnect?: ResumeWhereUniqueInput | ResumeWhereUniqueInput[]
+    delete?: ResumeWhereUniqueInput | ResumeWhereUniqueInput[]
+    connect?: ResumeWhereUniqueInput | ResumeWhereUniqueInput[]
+    update?: ResumeUpdateWithWhereUniqueWithoutUserInput | ResumeUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ResumeUpdateManyWithWhereWithoutUserInput | ResumeUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ResumeScalarWhereInput | ResumeScalarWhereInput[]
+  }
+
+  export type TailoredResumeUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<TailoredResumeCreateWithoutUserInput, TailoredResumeUncheckedCreateWithoutUserInput> | TailoredResumeCreateWithoutUserInput[] | TailoredResumeUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TailoredResumeCreateOrConnectWithoutUserInput | TailoredResumeCreateOrConnectWithoutUserInput[]
+    upsert?: TailoredResumeUpsertWithWhereUniqueWithoutUserInput | TailoredResumeUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: TailoredResumeCreateManyUserInputEnvelope
+    set?: TailoredResumeWhereUniqueInput | TailoredResumeWhereUniqueInput[]
+    disconnect?: TailoredResumeWhereUniqueInput | TailoredResumeWhereUniqueInput[]
+    delete?: TailoredResumeWhereUniqueInput | TailoredResumeWhereUniqueInput[]
+    connect?: TailoredResumeWhereUniqueInput | TailoredResumeWhereUniqueInput[]
+    update?: TailoredResumeUpdateWithWhereUniqueWithoutUserInput | TailoredResumeUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: TailoredResumeUpdateManyWithWhereWithoutUserInput | TailoredResumeUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: TailoredResumeScalarWhereInput | TailoredResumeScalarWhereInput[]
+  }
+
+  export type UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<UsageAnalyticsCreateWithoutUserInput, UsageAnalyticsUncheckedCreateWithoutUserInput> | UsageAnalyticsCreateWithoutUserInput[] | UsageAnalyticsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UsageAnalyticsCreateOrConnectWithoutUserInput | UsageAnalyticsCreateOrConnectWithoutUserInput[]
+    upsert?: UsageAnalyticsUpsertWithWhereUniqueWithoutUserInput | UsageAnalyticsUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: UsageAnalyticsCreateManyUserInputEnvelope
+    set?: UsageAnalyticsWhereUniqueInput | UsageAnalyticsWhereUniqueInput[]
+    disconnect?: UsageAnalyticsWhereUniqueInput | UsageAnalyticsWhereUniqueInput[]
+    delete?: UsageAnalyticsWhereUniqueInput | UsageAnalyticsWhereUniqueInput[]
+    connect?: UsageAnalyticsWhereUniqueInput | UsageAnalyticsWhereUniqueInput[]
+    update?: UsageAnalyticsUpdateWithWhereUniqueWithoutUserInput | UsageAnalyticsUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: UsageAnalyticsUpdateManyWithWhereWithoutUserInput | UsageAnalyticsUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: UsageAnalyticsScalarWhereInput | UsageAnalyticsScalarWhereInput[]
+  }
+
+  export type WorkUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<WorkCreateWithoutUserInput, WorkUncheckedCreateWithoutUserInput> | WorkCreateWithoutUserInput[] | WorkUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: WorkCreateOrConnectWithoutUserInput | WorkCreateOrConnectWithoutUserInput[]
+    upsert?: WorkUpsertWithWhereUniqueWithoutUserInput | WorkUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: WorkCreateManyUserInputEnvelope
+    set?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
+    disconnect?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
+    delete?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
+    connect?: WorkWhereUniqueInput | WorkWhereUniqueInput[]
+    update?: WorkUpdateWithWhereUniqueWithoutUserInput | WorkUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: WorkUpdateManyWithWhereWithoutUserInput | WorkUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: WorkScalarWhereInput | WorkScalarWhereInput[]
+  }
+
+  export type CampaignUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CampaignCreateWithoutUserInput, CampaignUncheckedCreateWithoutUserInput> | CampaignCreateWithoutUserInput[] | CampaignUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CampaignCreateOrConnectWithoutUserInput | CampaignCreateOrConnectWithoutUserInput[]
+    upsert?: CampaignUpsertWithWhereUniqueWithoutUserInput | CampaignUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CampaignCreateManyUserInputEnvelope
+    set?: CampaignWhereUniqueInput | CampaignWhereUniqueInput[]
+    disconnect?: CampaignWhereUniqueInput | CampaignWhereUniqueInput[]
+    delete?: CampaignWhereUniqueInput | CampaignWhereUniqueInput[]
+    connect?: CampaignWhereUniqueInput | CampaignWhereUniqueInput[]
+    update?: CampaignUpdateWithWhereUniqueWithoutUserInput | CampaignUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CampaignUpdateManyWithWhereWithoutUserInput | CampaignUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CampaignScalarWhereInput | CampaignScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutLinksInput = {
@@ -26906,6 +34026,104 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutLlmConfigInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLlmConfigInput, UserUpdateWithoutLlmConfigInput>, UserUncheckedUpdateWithoutLlmConfigInput>
+  }
+
+  export type UserCreateNestedOneWithoutLatexTemplateInput = {
+    create?: XOR<UserCreateWithoutLatexTemplateInput, UserUncheckedCreateWithoutLatexTemplateInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLatexTemplateInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutLatexTemplateNestedInput = {
+    create?: XOR<UserCreateWithoutLatexTemplateInput, UserUncheckedCreateWithoutLatexTemplateInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLatexTemplateInput
+    upsert?: UserUpsertWithoutLatexTemplateInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLatexTemplateInput, UserUpdateWithoutLatexTemplateInput>, UserUncheckedUpdateWithoutLatexTemplateInput>
+  }
+
+  export type UserCreateNestedOneWithoutTailoredResumeInput = {
+    create?: XOR<UserCreateWithoutTailoredResumeInput, UserUncheckedCreateWithoutTailoredResumeInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTailoredResumeInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutTailoredResumeNestedInput = {
+    create?: XOR<UserCreateWithoutTailoredResumeInput, UserUncheckedCreateWithoutTailoredResumeInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTailoredResumeInput
+    upsert?: UserUpsertWithoutTailoredResumeInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTailoredResumeInput, UserUpdateWithoutTailoredResumeInput>, UserUncheckedUpdateWithoutTailoredResumeInput>
+  }
+
+  export type CampaignContactCreateNestedManyWithoutCampaignInput = {
+    create?: XOR<CampaignContactCreateWithoutCampaignInput, CampaignContactUncheckedCreateWithoutCampaignInput> | CampaignContactCreateWithoutCampaignInput[] | CampaignContactUncheckedCreateWithoutCampaignInput[]
+    connectOrCreate?: CampaignContactCreateOrConnectWithoutCampaignInput | CampaignContactCreateOrConnectWithoutCampaignInput[]
+    createMany?: CampaignContactCreateManyCampaignInputEnvelope
+    connect?: CampaignContactWhereUniqueInput | CampaignContactWhereUniqueInput[]
+  }
+
+  export type UserCreateNestedOneWithoutCampaignsInput = {
+    create?: XOR<UserCreateWithoutCampaignsInput, UserUncheckedCreateWithoutCampaignsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCampaignsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type CampaignContactUncheckedCreateNestedManyWithoutCampaignInput = {
+    create?: XOR<CampaignContactCreateWithoutCampaignInput, CampaignContactUncheckedCreateWithoutCampaignInput> | CampaignContactCreateWithoutCampaignInput[] | CampaignContactUncheckedCreateWithoutCampaignInput[]
+    connectOrCreate?: CampaignContactCreateOrConnectWithoutCampaignInput | CampaignContactCreateOrConnectWithoutCampaignInput[]
+    createMany?: CampaignContactCreateManyCampaignInputEnvelope
+    connect?: CampaignContactWhereUniqueInput | CampaignContactWhereUniqueInput[]
+  }
+
+  export type CampaignContactUpdateManyWithoutCampaignNestedInput = {
+    create?: XOR<CampaignContactCreateWithoutCampaignInput, CampaignContactUncheckedCreateWithoutCampaignInput> | CampaignContactCreateWithoutCampaignInput[] | CampaignContactUncheckedCreateWithoutCampaignInput[]
+    connectOrCreate?: CampaignContactCreateOrConnectWithoutCampaignInput | CampaignContactCreateOrConnectWithoutCampaignInput[]
+    upsert?: CampaignContactUpsertWithWhereUniqueWithoutCampaignInput | CampaignContactUpsertWithWhereUniqueWithoutCampaignInput[]
+    createMany?: CampaignContactCreateManyCampaignInputEnvelope
+    set?: CampaignContactWhereUniqueInput | CampaignContactWhereUniqueInput[]
+    disconnect?: CampaignContactWhereUniqueInput | CampaignContactWhereUniqueInput[]
+    delete?: CampaignContactWhereUniqueInput | CampaignContactWhereUniqueInput[]
+    connect?: CampaignContactWhereUniqueInput | CampaignContactWhereUniqueInput[]
+    update?: CampaignContactUpdateWithWhereUniqueWithoutCampaignInput | CampaignContactUpdateWithWhereUniqueWithoutCampaignInput[]
+    updateMany?: CampaignContactUpdateManyWithWhereWithoutCampaignInput | CampaignContactUpdateManyWithWhereWithoutCampaignInput[]
+    deleteMany?: CampaignContactScalarWhereInput | CampaignContactScalarWhereInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutCampaignsNestedInput = {
+    create?: XOR<UserCreateWithoutCampaignsInput, UserUncheckedCreateWithoutCampaignsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCampaignsInput
+    upsert?: UserUpsertWithoutCampaignsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCampaignsInput, UserUpdateWithoutCampaignsInput>, UserUncheckedUpdateWithoutCampaignsInput>
+  }
+
+  export type CampaignContactUncheckedUpdateManyWithoutCampaignNestedInput = {
+    create?: XOR<CampaignContactCreateWithoutCampaignInput, CampaignContactUncheckedCreateWithoutCampaignInput> | CampaignContactCreateWithoutCampaignInput[] | CampaignContactUncheckedCreateWithoutCampaignInput[]
+    connectOrCreate?: CampaignContactCreateOrConnectWithoutCampaignInput | CampaignContactCreateOrConnectWithoutCampaignInput[]
+    upsert?: CampaignContactUpsertWithWhereUniqueWithoutCampaignInput | CampaignContactUpsertWithWhereUniqueWithoutCampaignInput[]
+    createMany?: CampaignContactCreateManyCampaignInputEnvelope
+    set?: CampaignContactWhereUniqueInput | CampaignContactWhereUniqueInput[]
+    disconnect?: CampaignContactWhereUniqueInput | CampaignContactWhereUniqueInput[]
+    delete?: CampaignContactWhereUniqueInput | CampaignContactWhereUniqueInput[]
+    connect?: CampaignContactWhereUniqueInput | CampaignContactWhereUniqueInput[]
+    update?: CampaignContactUpdateWithWhereUniqueWithoutCampaignInput | CampaignContactUpdateWithWhereUniqueWithoutCampaignInput[]
+    updateMany?: CampaignContactUpdateManyWithWhereWithoutCampaignInput | CampaignContactUpdateManyWithWhereWithoutCampaignInput[]
+    deleteMany?: CampaignContactScalarWhereInput | CampaignContactScalarWhereInput[]
+  }
+
+  export type CampaignCreateNestedOneWithoutContactsInput = {
+    create?: XOR<CampaignCreateWithoutContactsInput, CampaignUncheckedCreateWithoutContactsInput>
+    connectOrCreate?: CampaignCreateOrConnectWithoutContactsInput
+    connect?: CampaignWhereUniqueInput
+  }
+
+  export type CampaignUpdateOneRequiredWithoutContactsNestedInput = {
+    create?: XOR<CampaignCreateWithoutContactsInput, CampaignUncheckedCreateWithoutContactsInput>
+    connectOrCreate?: CampaignCreateOrConnectWithoutContactsInput
+    upsert?: CampaignUpsertWithoutContactsInput
+    connect?: CampaignWhereUniqueInput
+    update?: XOR<XOR<CampaignUpdateToOneWithWhereWithoutContactsInput, CampaignUpdateWithoutContactsInput>, CampaignUncheckedUpdateWithoutContactsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -27239,28 +34457,6 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type LinkCreateWithoutUserInput = {
-    id?: string
-    platform: string
-    url: string
-  }
-
-  export type LinkUncheckedCreateWithoutUserInput = {
-    id?: string
-    platform: string
-    url: string
-  }
-
-  export type LinkCreateOrConnectWithoutUserInput = {
-    where: LinkWhereUniqueInput
-    create: XOR<LinkCreateWithoutUserInput, LinkUncheckedCreateWithoutUserInput>
-  }
-
-  export type LinkCreateManyUserInputEnvelope = {
-    data: LinkCreateManyUserInput | LinkCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
   export type AddressCreateWithoutUserInput = {
     id?: string
     type: $Enums.AddressType
@@ -27295,6 +34491,62 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type AnswerLibraryCreateWithoutUserInput = {
+    id?: string
+    title: string
+    category: string
+    answer: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AnswerLibraryUncheckedCreateWithoutUserInput = {
+    id?: string
+    title: string
+    category: string
+    answer: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AnswerLibraryCreateOrConnectWithoutUserInput = {
+    where: AnswerLibraryWhereUniqueInput
+    create: XOR<AnswerLibraryCreateWithoutUserInput, AnswerLibraryUncheckedCreateWithoutUserInput>
+  }
+
+  export type AnswerLibraryCreateManyUserInputEnvelope = {
+    data: AnswerLibraryCreateManyUserInput | AnswerLibraryCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ChatEpisodeCreateWithoutUserInput = {
+    id?: string
+    title?: string
+    summary?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    messages?: ChatMessageCreateNestedManyWithoutEpisodeInput
+  }
+
+  export type ChatEpisodeUncheckedCreateWithoutUserInput = {
+    id?: string
+    title?: string
+    summary?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    messages?: ChatMessageUncheckedCreateNestedManyWithoutEpisodeInput
+  }
+
+  export type ChatEpisodeCreateOrConnectWithoutUserInput = {
+    where: ChatEpisodeWhereUniqueInput
+    create: XOR<ChatEpisodeCreateWithoutUserInput, ChatEpisodeUncheckedCreateWithoutUserInput>
+  }
+
+  export type ChatEpisodeCreateManyUserInputEnvelope = {
+    data: ChatEpisodeCreateManyUserInput | ChatEpisodeCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type EducationCreateWithoutUserInput = {
     id?: string
     instituteName: string
@@ -27323,31 +34575,155 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type WorkCreateWithoutUserInput = {
+  export type FormSessionCreateWithoutUserInput = {
     id?: string
-    companyName: string
-    position: string
-    type: $Enums.WorkType
-    startDate: Date | string
-    endDate?: Date | string | null
+    sessionId: string
+    url?: string | null
+    fields: JsonNullValueInput | InputJsonValue
+    rawHtml?: string | null
+    createdAt?: Date | string
   }
 
-  export type WorkUncheckedCreateWithoutUserInput = {
+  export type FormSessionUncheckedCreateWithoutUserInput = {
     id?: string
-    companyName: string
-    position: string
-    type: $Enums.WorkType
-    startDate: Date | string
-    endDate?: Date | string | null
+    sessionId: string
+    url?: string | null
+    fields: JsonNullValueInput | InputJsonValue
+    rawHtml?: string | null
+    createdAt?: Date | string
   }
 
-  export type WorkCreateOrConnectWithoutUserInput = {
-    where: WorkWhereUniqueInput
-    create: XOR<WorkCreateWithoutUserInput, WorkUncheckedCreateWithoutUserInput>
+  export type FormSessionCreateOrConnectWithoutUserInput = {
+    where: FormSessionWhereUniqueInput
+    create: XOR<FormSessionCreateWithoutUserInput, FormSessionUncheckedCreateWithoutUserInput>
   }
 
-  export type WorkCreateManyUserInputEnvelope = {
-    data: WorkCreateManyUserInput | WorkCreateManyUserInput[]
+  export type FormSessionCreateManyUserInputEnvelope = {
+    data: FormSessionCreateManyUserInput | FormSessionCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type GitHubConnectionCreateWithoutUserInput = {
+    id?: string
+    accessToken: string
+    githubLogin: string
+    githubId: number
+    scope?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GitHubConnectionUncheckedCreateWithoutUserInput = {
+    id?: string
+    accessToken: string
+    githubLogin: string
+    githubId: number
+    scope?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type GitHubConnectionCreateOrConnectWithoutUserInput = {
+    where: GitHubConnectionWhereUniqueInput
+    create: XOR<GitHubConnectionCreateWithoutUserInput, GitHubConnectionUncheckedCreateWithoutUserInput>
+  }
+
+  export type LLMGatewayConfigCreateWithoutUserInput = {
+    id?: string
+    provider?: string
+    model?: string | null
+    apiKey?: string | null
+    baseURL?: string | null
+    temperature?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LLMGatewayConfigUncheckedCreateWithoutUserInput = {
+    id?: string
+    provider?: string
+    model?: string | null
+    apiKey?: string | null
+    baseURL?: string | null
+    temperature?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LLMGatewayConfigCreateOrConnectWithoutUserInput = {
+    where: LLMGatewayConfigWhereUniqueInput
+    create: XOR<LLMGatewayConfigCreateWithoutUserInput, LLMGatewayConfigUncheckedCreateWithoutUserInput>
+  }
+
+  export type LatexTemplateCreateWithoutUserInput = {
+    id?: string
+    name: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LatexTemplateUncheckedCreateWithoutUserInput = {
+    id?: string
+    name: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LatexTemplateCreateOrConnectWithoutUserInput = {
+    where: LatexTemplateWhereUniqueInput
+    create: XOR<LatexTemplateCreateWithoutUserInput, LatexTemplateUncheckedCreateWithoutUserInput>
+  }
+
+  export type LatexTemplateCreateManyUserInputEnvelope = {
+    data: LatexTemplateCreateManyUserInput | LatexTemplateCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LinkCreateWithoutUserInput = {
+    id?: string
+    platform: string
+    url: string
+  }
+
+  export type LinkUncheckedCreateWithoutUserInput = {
+    id?: string
+    platform: string
+    url: string
+  }
+
+  export type LinkCreateOrConnectWithoutUserInput = {
+    where: LinkWhereUniqueInput
+    create: XOR<LinkCreateWithoutUserInput, LinkUncheckedCreateWithoutUserInput>
+  }
+
+  export type LinkCreateManyUserInputEnvelope = {
+    data: LinkCreateManyUserInput | LinkCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MemoryCreateWithoutUserInput = {
+    id?: string
+    type: $Enums.MemoryType
+    value: string
+    createdAt?: Date | string
+  }
+
+  export type MemoryUncheckedCreateWithoutUserInput = {
+    id?: string
+    type: $Enums.MemoryType
+    value: string
+    createdAt?: Date | string
+  }
+
+  export type MemoryCreateOrConnectWithoutUserInput = {
+    where: MemoryWhereUniqueInput
+    create: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput>
+  }
+
+  export type MemoryCreateManyUserInputEnvelope = {
+    data: MemoryCreateManyUserInput | MemoryCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -27359,8 +34735,8 @@ export namespace Prisma {
     depolyed_url?: string | null
     projectLinks?: ProjectCreateprojectLinksInput | string[]
     techStacks?: ProjectCreatetechStacksInput | string[]
-    priority?: number
     createdAt?: Date | string
+    priority?: number
   }
 
   export type ProjectUncheckedCreateWithoutUserInput = {
@@ -27371,8 +34747,8 @@ export namespace Prisma {
     depolyed_url?: string | null
     projectLinks?: ProjectCreateprojectLinksInput | string[]
     techStacks?: ProjectCreatetechStacksInput | string[]
-    priority?: number
     createdAt?: Date | string
+    priority?: number
   }
 
   export type ProjectCreateOrConnectWithoutUserInput = {
@@ -27382,34 +34758,6 @@ export namespace Prisma {
 
   export type ProjectCreateManyUserInputEnvelope = {
     data: ProjectCreateManyUserInput | ProjectCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type AnswerLibraryCreateWithoutUserInput = {
-    id?: string
-    title: string
-    category: string
-    answer: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type AnswerLibraryUncheckedCreateWithoutUserInput = {
-    id?: string
-    title: string
-    category: string
-    answer: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type AnswerLibraryCreateOrConnectWithoutUserInput = {
-    where: AnswerLibraryWhereUniqueInput
-    create: XOR<AnswerLibraryCreateWithoutUserInput, AnswerLibraryUncheckedCreateWithoutUserInput>
-  }
-
-  export type AnswerLibraryCreateManyUserInputEnvelope = {
-    data: AnswerLibraryCreateManyUserInput | AnswerLibraryCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -27443,27 +34791,29 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type MemoryCreateWithoutUserInput = {
+  export type TailoredResumeCreateWithoutUserInput = {
     id?: string
-    type: $Enums.MemoryType
-    value: string
+    jobUrl: string
+    companyName?: string | null
+    pdfUrl?: string | null
     createdAt?: Date | string
   }
 
-  export type MemoryUncheckedCreateWithoutUserInput = {
+  export type TailoredResumeUncheckedCreateWithoutUserInput = {
     id?: string
-    type: $Enums.MemoryType
-    value: string
+    jobUrl: string
+    companyName?: string | null
+    pdfUrl?: string | null
     createdAt?: Date | string
   }
 
-  export type MemoryCreateOrConnectWithoutUserInput = {
-    where: MemoryWhereUniqueInput
-    create: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput>
+  export type TailoredResumeCreateOrConnectWithoutUserInput = {
+    where: TailoredResumeWhereUniqueInput
+    create: XOR<TailoredResumeCreateWithoutUserInput, TailoredResumeUncheckedCreateWithoutUserInput>
   }
 
-  export type MemoryCreateManyUserInputEnvelope = {
-    data: MemoryCreateManyUserInput | MemoryCreateManyUserInput[]
+  export type TailoredResumeCreateManyUserInputEnvelope = {
+    data: TailoredResumeCreateManyUserInput | TailoredResumeCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -27472,16 +34822,16 @@ export namespace Prisma {
     platform: string
     websiteUrl?: string | null
     fieldsFilled: number
-    totalFields?: number
     timeSavedSec: number
-    tokensUsed?: number
-    promptTokens?: number
-    completionTokens?: number
-    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
-    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
     aiEdits?: number
     acceptedDirect?: boolean
     createdAt?: Date | string
+    completionTokens?: number
+    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
+    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
+    promptTokens?: number
+    tokensUsed?: number
+    totalFields?: number
   }
 
   export type UsageAnalyticsUncheckedCreateWithoutUserInput = {
@@ -27489,16 +34839,16 @@ export namespace Prisma {
     platform: string
     websiteUrl?: string | null
     fieldsFilled: number
-    totalFields?: number
     timeSavedSec: number
-    tokensUsed?: number
-    promptTokens?: number
-    completionTokens?: number
-    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
-    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
     aiEdits?: number
     acceptedDirect?: boolean
     createdAt?: Date | string
+    completionTokens?: number
+    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
+    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
+    promptTokens?: number
+    tokensUsed?: number
+    totalFields?: number
   }
 
   export type UsageAnalyticsCreateOrConnectWithoutUserInput = {
@@ -27511,143 +34861,58 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type FormSessionCreateWithoutUserInput = {
+  export type WorkCreateWithoutUserInput = {
     id?: string
-    sessionId: string
-    url?: string | null
-    fields: JsonNullValueInput | InputJsonValue
-    rawHtml?: string | null
-    createdAt?: Date | string
+    companyName: string
+    position: string
+    type: $Enums.WorkType
+    startDate: Date | string
+    endDate?: Date | string | null
   }
 
-  export type FormSessionUncheckedCreateWithoutUserInput = {
+  export type WorkUncheckedCreateWithoutUserInput = {
     id?: string
-    sessionId: string
-    url?: string | null
-    fields: JsonNullValueInput | InputJsonValue
-    rawHtml?: string | null
-    createdAt?: Date | string
+    companyName: string
+    position: string
+    type: $Enums.WorkType
+    startDate: Date | string
+    endDate?: Date | string | null
   }
 
-  export type FormSessionCreateOrConnectWithoutUserInput = {
-    where: FormSessionWhereUniqueInput
-    create: XOR<FormSessionCreateWithoutUserInput, FormSessionUncheckedCreateWithoutUserInput>
+  export type WorkCreateOrConnectWithoutUserInput = {
+    where: WorkWhereUniqueInput
+    create: XOR<WorkCreateWithoutUserInput, WorkUncheckedCreateWithoutUserInput>
   }
 
-  export type FormSessionCreateManyUserInputEnvelope = {
-    data: FormSessionCreateManyUserInput | FormSessionCreateManyUserInput[]
+  export type WorkCreateManyUserInputEnvelope = {
+    data: WorkCreateManyUserInput | WorkCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
-  export type ChatEpisodeCreateWithoutUserInput = {
+  export type CampaignCreateWithoutUserInput = {
     id?: string
-    title?: string
-    summary?: string | null
+    name: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    messages?: ChatMessageCreateNestedManyWithoutEpisodeInput
+    contacts?: CampaignContactCreateNestedManyWithoutCampaignInput
   }
 
-  export type ChatEpisodeUncheckedCreateWithoutUserInput = {
+  export type CampaignUncheckedCreateWithoutUserInput = {
     id?: string
-    title?: string
-    summary?: string | null
+    name: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    messages?: ChatMessageUncheckedCreateNestedManyWithoutEpisodeInput
+    contacts?: CampaignContactUncheckedCreateNestedManyWithoutCampaignInput
   }
 
-  export type ChatEpisodeCreateOrConnectWithoutUserInput = {
-    where: ChatEpisodeWhereUniqueInput
-    create: XOR<ChatEpisodeCreateWithoutUserInput, ChatEpisodeUncheckedCreateWithoutUserInput>
+  export type CampaignCreateOrConnectWithoutUserInput = {
+    where: CampaignWhereUniqueInput
+    create: XOR<CampaignCreateWithoutUserInput, CampaignUncheckedCreateWithoutUserInput>
   }
 
-  export type ChatEpisodeCreateManyUserInputEnvelope = {
-    data: ChatEpisodeCreateManyUserInput | ChatEpisodeCreateManyUserInput[]
+  export type CampaignCreateManyUserInputEnvelope = {
+    data: CampaignCreateManyUserInput | CampaignCreateManyUserInput[]
     skipDuplicates?: boolean
-  }
-
-  export type LLMGatewayConfigCreateWithoutUserInput = {
-    id?: string
-    provider?: string
-    model?: string | null
-    apiKey?: string | null
-    baseURL?: string | null
-    temperature?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type LLMGatewayConfigUncheckedCreateWithoutUserInput = {
-    id?: string
-    provider?: string
-    model?: string | null
-    apiKey?: string | null
-    baseURL?: string | null
-    temperature?: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type LLMGatewayConfigCreateOrConnectWithoutUserInput = {
-    where: LLMGatewayConfigWhereUniqueInput
-    create: XOR<LLMGatewayConfigCreateWithoutUserInput, LLMGatewayConfigUncheckedCreateWithoutUserInput>
-  }
-
-  export type GitHubConnectionCreateWithoutUserInput = {
-    id?: string
-    accessToken: string
-    githubLogin: string
-    githubId: number
-    scope?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type GitHubConnectionUncheckedCreateWithoutUserInput = {
-    id?: string
-    accessToken: string
-    githubLogin: string
-    githubId: number
-    scope?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type GitHubConnectionCreateOrConnectWithoutUserInput = {
-    where: GitHubConnectionWhereUniqueInput
-    create: XOR<GitHubConnectionCreateWithoutUserInput, GitHubConnectionUncheckedCreateWithoutUserInput>
-  }
-
-  export type GitHubConnectionCreateManyUserInputEnvelope = {
-    data: GitHubConnectionCreateManyUserInput | GitHubConnectionCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type LinkUpsertWithWhereUniqueWithoutUserInput = {
-    where: LinkWhereUniqueInput
-    update: XOR<LinkUpdateWithoutUserInput, LinkUncheckedUpdateWithoutUserInput>
-    create: XOR<LinkCreateWithoutUserInput, LinkUncheckedCreateWithoutUserInput>
-  }
-
-  export type LinkUpdateWithWhereUniqueWithoutUserInput = {
-    where: LinkWhereUniqueInput
-    data: XOR<LinkUpdateWithoutUserInput, LinkUncheckedUpdateWithoutUserInput>
-  }
-
-  export type LinkUpdateManyWithWhereWithoutUserInput = {
-    where: LinkScalarWhereInput
-    data: XOR<LinkUpdateManyMutationInput, LinkUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type LinkScalarWhereInput = {
-    AND?: LinkScalarWhereInput | LinkScalarWhereInput[]
-    OR?: LinkScalarWhereInput[]
-    NOT?: LinkScalarWhereInput | LinkScalarWhereInput[]
-    id?: StringFilter<"Link"> | string
-    userId?: StringFilter<"Link"> | string
-    platform?: StringFilter<"Link"> | string
-    url?: StringFilter<"Link"> | string
   }
 
   export type AddressUpsertWithWhereUniqueWithoutUserInput = {
@@ -27682,96 +34947,6 @@ export namespace Prisma {
     country?: StringFilter<"Address"> | string
   }
 
-  export type EducationUpsertWithWhereUniqueWithoutUserInput = {
-    where: EducationWhereUniqueInput
-    update: XOR<EducationUpdateWithoutUserInput, EducationUncheckedUpdateWithoutUserInput>
-    create: XOR<EducationCreateWithoutUserInput, EducationUncheckedCreateWithoutUserInput>
-  }
-
-  export type EducationUpdateWithWhereUniqueWithoutUserInput = {
-    where: EducationWhereUniqueInput
-    data: XOR<EducationUpdateWithoutUserInput, EducationUncheckedUpdateWithoutUserInput>
-  }
-
-  export type EducationUpdateManyWithWhereWithoutUserInput = {
-    where: EducationScalarWhereInput
-    data: XOR<EducationUpdateManyMutationInput, EducationUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type EducationScalarWhereInput = {
-    AND?: EducationScalarWhereInput | EducationScalarWhereInput[]
-    OR?: EducationScalarWhereInput[]
-    NOT?: EducationScalarWhereInput | EducationScalarWhereInput[]
-    id?: StringFilter<"Education"> | string
-    userId?: StringFilter<"Education"> | string
-    instituteName?: StringFilter<"Education"> | string
-    degree?: StringFilter<"Education"> | string
-    startDate?: DateTimeFilter<"Education"> | Date | string
-    endDate?: DateTimeNullableFilter<"Education"> | Date | string | null
-    gpa?: FloatNullableFilter<"Education"> | number | null
-  }
-
-  export type WorkUpsertWithWhereUniqueWithoutUserInput = {
-    where: WorkWhereUniqueInput
-    update: XOR<WorkUpdateWithoutUserInput, WorkUncheckedUpdateWithoutUserInput>
-    create: XOR<WorkCreateWithoutUserInput, WorkUncheckedCreateWithoutUserInput>
-  }
-
-  export type WorkUpdateWithWhereUniqueWithoutUserInput = {
-    where: WorkWhereUniqueInput
-    data: XOR<WorkUpdateWithoutUserInput, WorkUncheckedUpdateWithoutUserInput>
-  }
-
-  export type WorkUpdateManyWithWhereWithoutUserInput = {
-    where: WorkScalarWhereInput
-    data: XOR<WorkUpdateManyMutationInput, WorkUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type WorkScalarWhereInput = {
-    AND?: WorkScalarWhereInput | WorkScalarWhereInput[]
-    OR?: WorkScalarWhereInput[]
-    NOT?: WorkScalarWhereInput | WorkScalarWhereInput[]
-    id?: StringFilter<"Work"> | string
-    userId?: StringFilter<"Work"> | string
-    companyName?: StringFilter<"Work"> | string
-    position?: StringFilter<"Work"> | string
-    type?: EnumWorkTypeFilter<"Work"> | $Enums.WorkType
-    startDate?: DateTimeFilter<"Work"> | Date | string
-    endDate?: DateTimeNullableFilter<"Work"> | Date | string | null
-  }
-
-  export type ProjectUpsertWithWhereUniqueWithoutUserInput = {
-    where: ProjectWhereUniqueInput
-    update: XOR<ProjectUpdateWithoutUserInput, ProjectUncheckedUpdateWithoutUserInput>
-    create: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput>
-  }
-
-  export type ProjectUpdateWithWhereUniqueWithoutUserInput = {
-    where: ProjectWhereUniqueInput
-    data: XOR<ProjectUpdateWithoutUserInput, ProjectUncheckedUpdateWithoutUserInput>
-  }
-
-  export type ProjectUpdateManyWithWhereWithoutUserInput = {
-    where: ProjectScalarWhereInput
-    data: XOR<ProjectUpdateManyMutationInput, ProjectUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type ProjectScalarWhereInput = {
-    AND?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
-    OR?: ProjectScalarWhereInput[]
-    NOT?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
-    id?: StringFilter<"Project"> | string
-    userId?: StringFilter<"Project"> | string
-    name?: StringFilter<"Project"> | string
-    description?: StringFilter<"Project"> | string
-    repo_url?: StringNullableFilter<"Project"> | string | null
-    depolyed_url?: StringNullableFilter<"Project"> | string | null
-    projectLinks?: StringNullableListFilter<"Project">
-    techStacks?: StringNullableListFilter<"Project">
-    priority?: IntFilter<"Project"> | number
-    createdAt?: DateTimeFilter<"Project"> | Date | string
-  }
-
   export type AnswerLibraryUpsertWithWhereUniqueWithoutUserInput = {
     where: AnswerLibraryWhereUniqueInput
     update: XOR<AnswerLibraryUpdateWithoutUserInput, AnswerLibraryUncheckedUpdateWithoutUserInput>
@@ -27801,98 +34976,61 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"AnswerLibrary"> | Date | string
   }
 
-  export type ResumeUpsertWithWhereUniqueWithoutUserInput = {
-    where: ResumeWhereUniqueInput
-    update: XOR<ResumeUpdateWithoutUserInput, ResumeUncheckedUpdateWithoutUserInput>
-    create: XOR<ResumeCreateWithoutUserInput, ResumeUncheckedCreateWithoutUserInput>
+  export type ChatEpisodeUpsertWithWhereUniqueWithoutUserInput = {
+    where: ChatEpisodeWhereUniqueInput
+    update: XOR<ChatEpisodeUpdateWithoutUserInput, ChatEpisodeUncheckedUpdateWithoutUserInput>
+    create: XOR<ChatEpisodeCreateWithoutUserInput, ChatEpisodeUncheckedCreateWithoutUserInput>
   }
 
-  export type ResumeUpdateWithWhereUniqueWithoutUserInput = {
-    where: ResumeWhereUniqueInput
-    data: XOR<ResumeUpdateWithoutUserInput, ResumeUncheckedUpdateWithoutUserInput>
+  export type ChatEpisodeUpdateWithWhereUniqueWithoutUserInput = {
+    where: ChatEpisodeWhereUniqueInput
+    data: XOR<ChatEpisodeUpdateWithoutUserInput, ChatEpisodeUncheckedUpdateWithoutUserInput>
   }
 
-  export type ResumeUpdateManyWithWhereWithoutUserInput = {
-    where: ResumeScalarWhereInput
-    data: XOR<ResumeUpdateManyMutationInput, ResumeUncheckedUpdateManyWithoutUserInput>
+  export type ChatEpisodeUpdateManyWithWhereWithoutUserInput = {
+    where: ChatEpisodeScalarWhereInput
+    data: XOR<ChatEpisodeUpdateManyMutationInput, ChatEpisodeUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type ResumeScalarWhereInput = {
-    AND?: ResumeScalarWhereInput | ResumeScalarWhereInput[]
-    OR?: ResumeScalarWhereInput[]
-    NOT?: ResumeScalarWhereInput | ResumeScalarWhereInput[]
-    id?: StringFilter<"Resume"> | string
-    userId?: StringFilter<"Resume"> | string
-    label?: StringFilter<"Resume"> | string
-    target?: StringNullableFilter<"Resume"> | string | null
-    description?: StringNullableFilter<"Resume"> | string | null
-    pdfUrl?: StringFilter<"Resume"> | string
-    isDefault?: BoolFilter<"Resume"> | boolean
-    createdAt?: DateTimeFilter<"Resume"> | Date | string
+  export type ChatEpisodeScalarWhereInput = {
+    AND?: ChatEpisodeScalarWhereInput | ChatEpisodeScalarWhereInput[]
+    OR?: ChatEpisodeScalarWhereInput[]
+    NOT?: ChatEpisodeScalarWhereInput | ChatEpisodeScalarWhereInput[]
+    id?: StringFilter<"ChatEpisode"> | string
+    userId?: StringFilter<"ChatEpisode"> | string
+    title?: StringFilter<"ChatEpisode"> | string
+    summary?: StringNullableFilter<"ChatEpisode"> | string | null
+    createdAt?: DateTimeFilter<"ChatEpisode"> | Date | string
+    updatedAt?: DateTimeFilter<"ChatEpisode"> | Date | string
   }
 
-  export type MemoryUpsertWithWhereUniqueWithoutUserInput = {
-    where: MemoryWhereUniqueInput
-    update: XOR<MemoryUpdateWithoutUserInput, MemoryUncheckedUpdateWithoutUserInput>
-    create: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput>
+  export type EducationUpsertWithWhereUniqueWithoutUserInput = {
+    where: EducationWhereUniqueInput
+    update: XOR<EducationUpdateWithoutUserInput, EducationUncheckedUpdateWithoutUserInput>
+    create: XOR<EducationCreateWithoutUserInput, EducationUncheckedCreateWithoutUserInput>
   }
 
-  export type MemoryUpdateWithWhereUniqueWithoutUserInput = {
-    where: MemoryWhereUniqueInput
-    data: XOR<MemoryUpdateWithoutUserInput, MemoryUncheckedUpdateWithoutUserInput>
+  export type EducationUpdateWithWhereUniqueWithoutUserInput = {
+    where: EducationWhereUniqueInput
+    data: XOR<EducationUpdateWithoutUserInput, EducationUncheckedUpdateWithoutUserInput>
   }
 
-  export type MemoryUpdateManyWithWhereWithoutUserInput = {
-    where: MemoryScalarWhereInput
-    data: XOR<MemoryUpdateManyMutationInput, MemoryUncheckedUpdateManyWithoutUserInput>
+  export type EducationUpdateManyWithWhereWithoutUserInput = {
+    where: EducationScalarWhereInput
+    data: XOR<EducationUpdateManyMutationInput, EducationUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type MemoryScalarWhereInput = {
-    AND?: MemoryScalarWhereInput | MemoryScalarWhereInput[]
-    OR?: MemoryScalarWhereInput[]
-    NOT?: MemoryScalarWhereInput | MemoryScalarWhereInput[]
-    id?: StringFilter<"Memory"> | string
-    userId?: StringFilter<"Memory"> | string
-    type?: EnumMemoryTypeFilter<"Memory"> | $Enums.MemoryType
-    value?: StringFilter<"Memory"> | string
-    createdAt?: DateTimeFilter<"Memory"> | Date | string
-  }
-
-  export type UsageAnalyticsUpsertWithWhereUniqueWithoutUserInput = {
-    where: UsageAnalyticsWhereUniqueInput
-    update: XOR<UsageAnalyticsUpdateWithoutUserInput, UsageAnalyticsUncheckedUpdateWithoutUserInput>
-    create: XOR<UsageAnalyticsCreateWithoutUserInput, UsageAnalyticsUncheckedCreateWithoutUserInput>
-  }
-
-  export type UsageAnalyticsUpdateWithWhereUniqueWithoutUserInput = {
-    where: UsageAnalyticsWhereUniqueInput
-    data: XOR<UsageAnalyticsUpdateWithoutUserInput, UsageAnalyticsUncheckedUpdateWithoutUserInput>
-  }
-
-  export type UsageAnalyticsUpdateManyWithWhereWithoutUserInput = {
-    where: UsageAnalyticsScalarWhereInput
-    data: XOR<UsageAnalyticsUpdateManyMutationInput, UsageAnalyticsUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type UsageAnalyticsScalarWhereInput = {
-    AND?: UsageAnalyticsScalarWhereInput | UsageAnalyticsScalarWhereInput[]
-    OR?: UsageAnalyticsScalarWhereInput[]
-    NOT?: UsageAnalyticsScalarWhereInput | UsageAnalyticsScalarWhereInput[]
-    id?: StringFilter<"UsageAnalytics"> | string
-    userId?: StringFilter<"UsageAnalytics"> | string
-    platform?: StringFilter<"UsageAnalytics"> | string
-    websiteUrl?: StringNullableFilter<"UsageAnalytics"> | string | null
-    fieldsFilled?: IntFilter<"UsageAnalytics"> | number
-    totalFields?: IntFilter<"UsageAnalytics"> | number
-    timeSavedSec?: IntFilter<"UsageAnalytics"> | number
-    tokensUsed?: IntFilter<"UsageAnalytics"> | number
-    promptTokens?: IntFilter<"UsageAnalytics"> | number
-    completionTokens?: IntFilter<"UsageAnalytics"> | number
-    fieldsAnswered?: JsonNullableFilter<"UsageAnalytics">
-    fieldsUnanswered?: JsonNullableFilter<"UsageAnalytics">
-    aiEdits?: IntFilter<"UsageAnalytics"> | number
-    acceptedDirect?: BoolFilter<"UsageAnalytics"> | boolean
-    createdAt?: DateTimeFilter<"UsageAnalytics"> | Date | string
+  export type EducationScalarWhereInput = {
+    AND?: EducationScalarWhereInput | EducationScalarWhereInput[]
+    OR?: EducationScalarWhereInput[]
+    NOT?: EducationScalarWhereInput | EducationScalarWhereInput[]
+    id?: StringFilter<"Education"> | string
+    userId?: StringFilter<"Education"> | string
+    instituteName?: StringFilter<"Education"> | string
+    degree?: StringFilter<"Education"> | string
+    startDate?: DateTimeFilter<"Education"> | Date | string
+    endDate?: DateTimeNullableFilter<"Education"> | Date | string | null
+    gpa?: FloatNullableFilter<"Education"> | number | null
   }
 
   export type FormSessionUpsertWithWhereUniqueWithoutUserInput = {
@@ -27924,32 +35062,35 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"FormSession"> | Date | string
   }
 
-  export type ChatEpisodeUpsertWithWhereUniqueWithoutUserInput = {
-    where: ChatEpisodeWhereUniqueInput
-    update: XOR<ChatEpisodeUpdateWithoutUserInput, ChatEpisodeUncheckedUpdateWithoutUserInput>
-    create: XOR<ChatEpisodeCreateWithoutUserInput, ChatEpisodeUncheckedCreateWithoutUserInput>
+  export type GitHubConnectionUpsertWithoutUserInput = {
+    update: XOR<GitHubConnectionUpdateWithoutUserInput, GitHubConnectionUncheckedUpdateWithoutUserInput>
+    create: XOR<GitHubConnectionCreateWithoutUserInput, GitHubConnectionUncheckedCreateWithoutUserInput>
+    where?: GitHubConnectionWhereInput
   }
 
-  export type ChatEpisodeUpdateWithWhereUniqueWithoutUserInput = {
-    where: ChatEpisodeWhereUniqueInput
-    data: XOR<ChatEpisodeUpdateWithoutUserInput, ChatEpisodeUncheckedUpdateWithoutUserInput>
+  export type GitHubConnectionUpdateToOneWithWhereWithoutUserInput = {
+    where?: GitHubConnectionWhereInput
+    data: XOR<GitHubConnectionUpdateWithoutUserInput, GitHubConnectionUncheckedUpdateWithoutUserInput>
   }
 
-  export type ChatEpisodeUpdateManyWithWhereWithoutUserInput = {
-    where: ChatEpisodeScalarWhereInput
-    data: XOR<ChatEpisodeUpdateManyMutationInput, ChatEpisodeUncheckedUpdateManyWithoutUserInput>
+  export type GitHubConnectionUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accessToken?: StringFieldUpdateOperationsInput | string
+    githubLogin?: StringFieldUpdateOperationsInput | string
+    githubId?: IntFieldUpdateOperationsInput | number
+    scope?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ChatEpisodeScalarWhereInput = {
-    AND?: ChatEpisodeScalarWhereInput | ChatEpisodeScalarWhereInput[]
-    OR?: ChatEpisodeScalarWhereInput[]
-    NOT?: ChatEpisodeScalarWhereInput | ChatEpisodeScalarWhereInput[]
-    id?: StringFilter<"ChatEpisode"> | string
-    userId?: StringFilter<"ChatEpisode"> | string
-    title?: StringFilter<"ChatEpisode"> | string
-    summary?: StringNullableFilter<"ChatEpisode"> | string | null
-    createdAt?: DateTimeFilter<"ChatEpisode"> | Date | string
-    updatedAt?: DateTimeFilter<"ChatEpisode"> | Date | string
+  export type GitHubConnectionUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    accessToken?: StringFieldUpdateOperationsInput | string
+    githubLogin?: StringFieldUpdateOperationsInput | string
+    githubId?: IntFieldUpdateOperationsInput | number
+    scope?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type LLMGatewayConfigUpsertWithoutUserInput = {
@@ -27985,34 +35126,268 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type GitHubConnectionUpsertWithWhereUniqueWithoutUserInput = {
-    where: GitHubConnectionWhereUniqueInput
-    update: XOR<GitHubConnectionUpdateWithoutUserInput, GitHubConnectionUncheckedUpdateWithoutUserInput>
-    create: XOR<GitHubConnectionCreateWithoutUserInput, GitHubConnectionUncheckedCreateWithoutUserInput>
+  export type LatexTemplateUpsertWithWhereUniqueWithoutUserInput = {
+    where: LatexTemplateWhereUniqueInput
+    update: XOR<LatexTemplateUpdateWithoutUserInput, LatexTemplateUncheckedUpdateWithoutUserInput>
+    create: XOR<LatexTemplateCreateWithoutUserInput, LatexTemplateUncheckedCreateWithoutUserInput>
   }
 
-  export type GitHubConnectionUpdateWithWhereUniqueWithoutUserInput = {
-    where: GitHubConnectionWhereUniqueInput
-    data: XOR<GitHubConnectionUpdateWithoutUserInput, GitHubConnectionUncheckedUpdateWithoutUserInput>
+  export type LatexTemplateUpdateWithWhereUniqueWithoutUserInput = {
+    where: LatexTemplateWhereUniqueInput
+    data: XOR<LatexTemplateUpdateWithoutUserInput, LatexTemplateUncheckedUpdateWithoutUserInput>
   }
 
-  export type GitHubConnectionUpdateManyWithWhereWithoutUserInput = {
-    where: GitHubConnectionScalarWhereInput
-    data: XOR<GitHubConnectionUpdateManyMutationInput, GitHubConnectionUncheckedUpdateManyWithoutUserInput>
+  export type LatexTemplateUpdateManyWithWhereWithoutUserInput = {
+    where: LatexTemplateScalarWhereInput
+    data: XOR<LatexTemplateUpdateManyMutationInput, LatexTemplateUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type GitHubConnectionScalarWhereInput = {
-    AND?: GitHubConnectionScalarWhereInput | GitHubConnectionScalarWhereInput[]
-    OR?: GitHubConnectionScalarWhereInput[]
-    NOT?: GitHubConnectionScalarWhereInput | GitHubConnectionScalarWhereInput[]
-    id?: StringFilter<"GitHubConnection"> | string
-    userId?: StringFilter<"GitHubConnection"> | string
-    accessToken?: StringFilter<"GitHubConnection"> | string
-    githubLogin?: StringFilter<"GitHubConnection"> | string
-    githubId?: IntFilter<"GitHubConnection"> | number
-    scope?: StringFilter<"GitHubConnection"> | string
-    createdAt?: DateTimeFilter<"GitHubConnection"> | Date | string
-    updatedAt?: DateTimeFilter<"GitHubConnection"> | Date | string
+  export type LatexTemplateScalarWhereInput = {
+    AND?: LatexTemplateScalarWhereInput | LatexTemplateScalarWhereInput[]
+    OR?: LatexTemplateScalarWhereInput[]
+    NOT?: LatexTemplateScalarWhereInput | LatexTemplateScalarWhereInput[]
+    id?: StringFilter<"LatexTemplate"> | string
+    userId?: StringFilter<"LatexTemplate"> | string
+    name?: StringFilter<"LatexTemplate"> | string
+    content?: StringFilter<"LatexTemplate"> | string
+    createdAt?: DateTimeFilter<"LatexTemplate"> | Date | string
+    updatedAt?: DateTimeFilter<"LatexTemplate"> | Date | string
+  }
+
+  export type LinkUpsertWithWhereUniqueWithoutUserInput = {
+    where: LinkWhereUniqueInput
+    update: XOR<LinkUpdateWithoutUserInput, LinkUncheckedUpdateWithoutUserInput>
+    create: XOR<LinkCreateWithoutUserInput, LinkUncheckedCreateWithoutUserInput>
+  }
+
+  export type LinkUpdateWithWhereUniqueWithoutUserInput = {
+    where: LinkWhereUniqueInput
+    data: XOR<LinkUpdateWithoutUserInput, LinkUncheckedUpdateWithoutUserInput>
+  }
+
+  export type LinkUpdateManyWithWhereWithoutUserInput = {
+    where: LinkScalarWhereInput
+    data: XOR<LinkUpdateManyMutationInput, LinkUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type LinkScalarWhereInput = {
+    AND?: LinkScalarWhereInput | LinkScalarWhereInput[]
+    OR?: LinkScalarWhereInput[]
+    NOT?: LinkScalarWhereInput | LinkScalarWhereInput[]
+    id?: StringFilter<"Link"> | string
+    userId?: StringFilter<"Link"> | string
+    platform?: StringFilter<"Link"> | string
+    url?: StringFilter<"Link"> | string
+  }
+
+  export type MemoryUpsertWithWhereUniqueWithoutUserInput = {
+    where: MemoryWhereUniqueInput
+    update: XOR<MemoryUpdateWithoutUserInput, MemoryUncheckedUpdateWithoutUserInput>
+    create: XOR<MemoryCreateWithoutUserInput, MemoryUncheckedCreateWithoutUserInput>
+  }
+
+  export type MemoryUpdateWithWhereUniqueWithoutUserInput = {
+    where: MemoryWhereUniqueInput
+    data: XOR<MemoryUpdateWithoutUserInput, MemoryUncheckedUpdateWithoutUserInput>
+  }
+
+  export type MemoryUpdateManyWithWhereWithoutUserInput = {
+    where: MemoryScalarWhereInput
+    data: XOR<MemoryUpdateManyMutationInput, MemoryUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type MemoryScalarWhereInput = {
+    AND?: MemoryScalarWhereInput | MemoryScalarWhereInput[]
+    OR?: MemoryScalarWhereInput[]
+    NOT?: MemoryScalarWhereInput | MemoryScalarWhereInput[]
+    id?: StringFilter<"Memory"> | string
+    userId?: StringFilter<"Memory"> | string
+    type?: EnumMemoryTypeFilter<"Memory"> | $Enums.MemoryType
+    value?: StringFilter<"Memory"> | string
+    createdAt?: DateTimeFilter<"Memory"> | Date | string
+  }
+
+  export type ProjectUpsertWithWhereUniqueWithoutUserInput = {
+    where: ProjectWhereUniqueInput
+    update: XOR<ProjectUpdateWithoutUserInput, ProjectUncheckedUpdateWithoutUserInput>
+    create: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput>
+  }
+
+  export type ProjectUpdateWithWhereUniqueWithoutUserInput = {
+    where: ProjectWhereUniqueInput
+    data: XOR<ProjectUpdateWithoutUserInput, ProjectUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ProjectUpdateManyWithWhereWithoutUserInput = {
+    where: ProjectScalarWhereInput
+    data: XOR<ProjectUpdateManyMutationInput, ProjectUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ProjectScalarWhereInput = {
+    AND?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
+    OR?: ProjectScalarWhereInput[]
+    NOT?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
+    id?: StringFilter<"Project"> | string
+    userId?: StringFilter<"Project"> | string
+    name?: StringFilter<"Project"> | string
+    description?: StringFilter<"Project"> | string
+    repo_url?: StringNullableFilter<"Project"> | string | null
+    depolyed_url?: StringNullableFilter<"Project"> | string | null
+    projectLinks?: StringNullableListFilter<"Project">
+    techStacks?: StringNullableListFilter<"Project">
+    createdAt?: DateTimeFilter<"Project"> | Date | string
+    priority?: IntFilter<"Project"> | number
+  }
+
+  export type ResumeUpsertWithWhereUniqueWithoutUserInput = {
+    where: ResumeWhereUniqueInput
+    update: XOR<ResumeUpdateWithoutUserInput, ResumeUncheckedUpdateWithoutUserInput>
+    create: XOR<ResumeCreateWithoutUserInput, ResumeUncheckedCreateWithoutUserInput>
+  }
+
+  export type ResumeUpdateWithWhereUniqueWithoutUserInput = {
+    where: ResumeWhereUniqueInput
+    data: XOR<ResumeUpdateWithoutUserInput, ResumeUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ResumeUpdateManyWithWhereWithoutUserInput = {
+    where: ResumeScalarWhereInput
+    data: XOR<ResumeUpdateManyMutationInput, ResumeUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ResumeScalarWhereInput = {
+    AND?: ResumeScalarWhereInput | ResumeScalarWhereInput[]
+    OR?: ResumeScalarWhereInput[]
+    NOT?: ResumeScalarWhereInput | ResumeScalarWhereInput[]
+    id?: StringFilter<"Resume"> | string
+    userId?: StringFilter<"Resume"> | string
+    label?: StringFilter<"Resume"> | string
+    target?: StringNullableFilter<"Resume"> | string | null
+    description?: StringNullableFilter<"Resume"> | string | null
+    pdfUrl?: StringFilter<"Resume"> | string
+    isDefault?: BoolFilter<"Resume"> | boolean
+    createdAt?: DateTimeFilter<"Resume"> | Date | string
+  }
+
+  export type TailoredResumeUpsertWithWhereUniqueWithoutUserInput = {
+    where: TailoredResumeWhereUniqueInput
+    update: XOR<TailoredResumeUpdateWithoutUserInput, TailoredResumeUncheckedUpdateWithoutUserInput>
+    create: XOR<TailoredResumeCreateWithoutUserInput, TailoredResumeUncheckedCreateWithoutUserInput>
+  }
+
+  export type TailoredResumeUpdateWithWhereUniqueWithoutUserInput = {
+    where: TailoredResumeWhereUniqueInput
+    data: XOR<TailoredResumeUpdateWithoutUserInput, TailoredResumeUncheckedUpdateWithoutUserInput>
+  }
+
+  export type TailoredResumeUpdateManyWithWhereWithoutUserInput = {
+    where: TailoredResumeScalarWhereInput
+    data: XOR<TailoredResumeUpdateManyMutationInput, TailoredResumeUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type TailoredResumeScalarWhereInput = {
+    AND?: TailoredResumeScalarWhereInput | TailoredResumeScalarWhereInput[]
+    OR?: TailoredResumeScalarWhereInput[]
+    NOT?: TailoredResumeScalarWhereInput | TailoredResumeScalarWhereInput[]
+    id?: StringFilter<"TailoredResume"> | string
+    userId?: StringFilter<"TailoredResume"> | string
+    jobUrl?: StringFilter<"TailoredResume"> | string
+    companyName?: StringNullableFilter<"TailoredResume"> | string | null
+    pdfUrl?: StringNullableFilter<"TailoredResume"> | string | null
+    createdAt?: DateTimeFilter<"TailoredResume"> | Date | string
+  }
+
+  export type UsageAnalyticsUpsertWithWhereUniqueWithoutUserInput = {
+    where: UsageAnalyticsWhereUniqueInput
+    update: XOR<UsageAnalyticsUpdateWithoutUserInput, UsageAnalyticsUncheckedUpdateWithoutUserInput>
+    create: XOR<UsageAnalyticsCreateWithoutUserInput, UsageAnalyticsUncheckedCreateWithoutUserInput>
+  }
+
+  export type UsageAnalyticsUpdateWithWhereUniqueWithoutUserInput = {
+    where: UsageAnalyticsWhereUniqueInput
+    data: XOR<UsageAnalyticsUpdateWithoutUserInput, UsageAnalyticsUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UsageAnalyticsUpdateManyWithWhereWithoutUserInput = {
+    where: UsageAnalyticsScalarWhereInput
+    data: XOR<UsageAnalyticsUpdateManyMutationInput, UsageAnalyticsUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type UsageAnalyticsScalarWhereInput = {
+    AND?: UsageAnalyticsScalarWhereInput | UsageAnalyticsScalarWhereInput[]
+    OR?: UsageAnalyticsScalarWhereInput[]
+    NOT?: UsageAnalyticsScalarWhereInput | UsageAnalyticsScalarWhereInput[]
+    id?: StringFilter<"UsageAnalytics"> | string
+    userId?: StringFilter<"UsageAnalytics"> | string
+    platform?: StringFilter<"UsageAnalytics"> | string
+    websiteUrl?: StringNullableFilter<"UsageAnalytics"> | string | null
+    fieldsFilled?: IntFilter<"UsageAnalytics"> | number
+    timeSavedSec?: IntFilter<"UsageAnalytics"> | number
+    aiEdits?: IntFilter<"UsageAnalytics"> | number
+    acceptedDirect?: BoolFilter<"UsageAnalytics"> | boolean
+    createdAt?: DateTimeFilter<"UsageAnalytics"> | Date | string
+    completionTokens?: IntFilter<"UsageAnalytics"> | number
+    fieldsAnswered?: JsonNullableFilter<"UsageAnalytics">
+    fieldsUnanswered?: JsonNullableFilter<"UsageAnalytics">
+    promptTokens?: IntFilter<"UsageAnalytics"> | number
+    tokensUsed?: IntFilter<"UsageAnalytics"> | number
+    totalFields?: IntFilter<"UsageAnalytics"> | number
+  }
+
+  export type WorkUpsertWithWhereUniqueWithoutUserInput = {
+    where: WorkWhereUniqueInput
+    update: XOR<WorkUpdateWithoutUserInput, WorkUncheckedUpdateWithoutUserInput>
+    create: XOR<WorkCreateWithoutUserInput, WorkUncheckedCreateWithoutUserInput>
+  }
+
+  export type WorkUpdateWithWhereUniqueWithoutUserInput = {
+    where: WorkWhereUniqueInput
+    data: XOR<WorkUpdateWithoutUserInput, WorkUncheckedUpdateWithoutUserInput>
+  }
+
+  export type WorkUpdateManyWithWhereWithoutUserInput = {
+    where: WorkScalarWhereInput
+    data: XOR<WorkUpdateManyMutationInput, WorkUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type WorkScalarWhereInput = {
+    AND?: WorkScalarWhereInput | WorkScalarWhereInput[]
+    OR?: WorkScalarWhereInput[]
+    NOT?: WorkScalarWhereInput | WorkScalarWhereInput[]
+    id?: StringFilter<"Work"> | string
+    userId?: StringFilter<"Work"> | string
+    companyName?: StringFilter<"Work"> | string
+    position?: StringFilter<"Work"> | string
+    type?: EnumWorkTypeFilter<"Work"> | $Enums.WorkType
+    startDate?: DateTimeFilter<"Work"> | Date | string
+    endDate?: DateTimeNullableFilter<"Work"> | Date | string | null
+  }
+
+  export type CampaignUpsertWithWhereUniqueWithoutUserInput = {
+    where: CampaignWhereUniqueInput
+    update: XOR<CampaignUpdateWithoutUserInput, CampaignUncheckedUpdateWithoutUserInput>
+    create: XOR<CampaignCreateWithoutUserInput, CampaignUncheckedCreateWithoutUserInput>
+  }
+
+  export type CampaignUpdateWithWhereUniqueWithoutUserInput = {
+    where: CampaignWhereUniqueInput
+    data: XOR<CampaignUpdateWithoutUserInput, CampaignUncheckedUpdateWithoutUserInput>
+  }
+
+  export type CampaignUpdateManyWithWhereWithoutUserInput = {
+    where: CampaignScalarWhereInput
+    data: XOR<CampaignUpdateManyMutationInput, CampaignUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type CampaignScalarWhereInput = {
+    AND?: CampaignScalarWhereInput | CampaignScalarWhereInput[]
+    OR?: CampaignScalarWhereInput[]
+    NOT?: CampaignScalarWhereInput | CampaignScalarWhereInput[]
+    id?: StringFilter<"Campaign"> | string
+    userId?: StringFilter<"Campaign"> | string
+    name?: StringFilter<"Campaign"> | string
+    createdAt?: DateTimeFilter<"Campaign"> | Date | string
+    updatedAt?: DateTimeFilter<"Campaign"> | Date | string
   }
 
   export type UserCreateWithoutLinksInput = {
@@ -28029,17 +35404,20 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     addresses?: AddressCreateNestedManyWithoutUserInput
-    educations?: EducationCreateNestedManyWithoutUserInput
-    works?: WorkCreateNestedManyWithoutUserInput
-    projects?: ProjectCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryCreateNestedManyWithoutUserInput
-    resumes?: ResumeCreateNestedManyWithoutUserInput
-    memories?: MemoryCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    educations?: EducationCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedOneWithoutUserInput
     llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
+    LatexTemplate?: LatexTemplateCreateNestedManyWithoutUserInput
+    memories?: MemoryCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+    resumes?: ResumeCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
+    works?: WorkCreateNestedManyWithoutUserInput
+    campaigns?: CampaignCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutLinksInput = {
@@ -28056,17 +35434,20 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
-    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
-    works?: WorkUncheckedCreateNestedManyWithoutUserInput
-    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryUncheckedCreateNestedManyWithoutUserInput
-    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
-    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedOneWithoutUserInput
     llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
+    LatexTemplate?: LatexTemplateUncheckedCreateNestedManyWithoutUserInput
+    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeUncheckedCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
+    works?: WorkUncheckedCreateNestedManyWithoutUserInput
+    campaigns?: CampaignUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutLinksInput = {
@@ -28099,17 +35480,20 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addresses?: AddressUpdateManyWithoutUserNestedInput
-    educations?: EducationUpdateManyWithoutUserNestedInput
-    works?: WorkUpdateManyWithoutUserNestedInput
-    projects?: ProjectUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUpdateManyWithoutUserNestedInput
-    memories?: MemoryUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    educations?: EducationUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateOneWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUpdateManyWithoutUserNestedInput
+    memories?: MemoryUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
+    works?: WorkUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLinksInput = {
@@ -28126,17 +35510,20 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
-    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
-    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
-    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUncheckedUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
-    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateOneWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUncheckedUpdateManyWithoutUserNestedInput
+    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUncheckedUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
+    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAddressesInput = {
@@ -28152,18 +35539,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkCreateNestedManyWithoutUserInput
-    educations?: EducationCreateNestedManyWithoutUserInput
-    works?: WorkCreateNestedManyWithoutUserInput
-    projects?: ProjectCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryCreateNestedManyWithoutUserInput
-    resumes?: ResumeCreateNestedManyWithoutUserInput
-    memories?: MemoryCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    educations?: EducationCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedOneWithoutUserInput
     llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
+    LatexTemplate?: LatexTemplateCreateNestedManyWithoutUserInput
+    links?: LinkCreateNestedManyWithoutUserInput
+    memories?: MemoryCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+    resumes?: ResumeCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
+    works?: WorkCreateNestedManyWithoutUserInput
+    campaigns?: CampaignCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAddressesInput = {
@@ -28179,18 +35569,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkUncheckedCreateNestedManyWithoutUserInput
-    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
-    works?: WorkUncheckedCreateNestedManyWithoutUserInput
-    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryUncheckedCreateNestedManyWithoutUserInput
-    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
-    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedOneWithoutUserInput
     llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
+    LatexTemplate?: LatexTemplateUncheckedCreateNestedManyWithoutUserInput
+    links?: LinkUncheckedCreateNestedManyWithoutUserInput
+    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeUncheckedCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
+    works?: WorkUncheckedCreateNestedManyWithoutUserInput
+    campaigns?: CampaignUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAddressesInput = {
@@ -28222,18 +35615,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUpdateManyWithoutUserNestedInput
-    educations?: EducationUpdateManyWithoutUserNestedInput
-    works?: WorkUpdateManyWithoutUserNestedInput
-    projects?: ProjectUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUpdateManyWithoutUserNestedInput
-    memories?: MemoryUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    educations?: EducationUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateOneWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUpdateManyWithoutUserNestedInput
+    links?: LinkUpdateManyWithoutUserNestedInput
+    memories?: MemoryUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
+    works?: WorkUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAddressesInput = {
@@ -28249,18 +35645,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
-    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
-    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
-    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUncheckedUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
-    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateOneWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUncheckedUpdateManyWithoutUserNestedInput
+    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
+    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUncheckedUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
+    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutEducationsInput = {
@@ -28276,18 +35675,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkCreateNestedManyWithoutUserInput
     addresses?: AddressCreateNestedManyWithoutUserInput
-    works?: WorkCreateNestedManyWithoutUserInput
-    projects?: ProjectCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryCreateNestedManyWithoutUserInput
-    resumes?: ResumeCreateNestedManyWithoutUserInput
-    memories?: MemoryCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedOneWithoutUserInput
     llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
+    LatexTemplate?: LatexTemplateCreateNestedManyWithoutUserInput
+    links?: LinkCreateNestedManyWithoutUserInput
+    memories?: MemoryCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+    resumes?: ResumeCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
+    works?: WorkCreateNestedManyWithoutUserInput
+    campaigns?: CampaignCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutEducationsInput = {
@@ -28303,18 +35705,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkUncheckedCreateNestedManyWithoutUserInput
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
-    works?: WorkUncheckedCreateNestedManyWithoutUserInput
-    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryUncheckedCreateNestedManyWithoutUserInput
-    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
-    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedOneWithoutUserInput
     llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
+    LatexTemplate?: LatexTemplateUncheckedCreateNestedManyWithoutUserInput
+    links?: LinkUncheckedCreateNestedManyWithoutUserInput
+    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeUncheckedCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
+    works?: WorkUncheckedCreateNestedManyWithoutUserInput
+    campaigns?: CampaignUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutEducationsInput = {
@@ -28346,18 +35751,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUpdateManyWithoutUserNestedInput
     addresses?: AddressUpdateManyWithoutUserNestedInput
-    works?: WorkUpdateManyWithoutUserNestedInput
-    projects?: ProjectUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUpdateManyWithoutUserNestedInput
-    memories?: MemoryUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateOneWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUpdateManyWithoutUserNestedInput
+    links?: LinkUpdateManyWithoutUserNestedInput
+    memories?: MemoryUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
+    works?: WorkUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEducationsInput = {
@@ -28373,18 +35781,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
-    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
-    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUncheckedUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
-    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateOneWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUncheckedUpdateManyWithoutUserNestedInput
+    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
+    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUncheckedUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
+    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutWorksInput = {
@@ -28400,18 +35811,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkCreateNestedManyWithoutUserInput
     addresses?: AddressCreateNestedManyWithoutUserInput
-    educations?: EducationCreateNestedManyWithoutUserInput
-    projects?: ProjectCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryCreateNestedManyWithoutUserInput
-    resumes?: ResumeCreateNestedManyWithoutUserInput
-    memories?: MemoryCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    educations?: EducationCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedOneWithoutUserInput
     llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
+    LatexTemplate?: LatexTemplateCreateNestedManyWithoutUserInput
+    links?: LinkCreateNestedManyWithoutUserInput
+    memories?: MemoryCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+    resumes?: ResumeCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
+    campaigns?: CampaignCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutWorksInput = {
@@ -28427,18 +35841,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkUncheckedCreateNestedManyWithoutUserInput
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
-    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
-    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryUncheckedCreateNestedManyWithoutUserInput
-    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
-    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedOneWithoutUserInput
     llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
+    LatexTemplate?: LatexTemplateUncheckedCreateNestedManyWithoutUserInput
+    links?: LinkUncheckedCreateNestedManyWithoutUserInput
+    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeUncheckedCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
+    campaigns?: CampaignUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutWorksInput = {
@@ -28470,18 +35887,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUpdateManyWithoutUserNestedInput
     addresses?: AddressUpdateManyWithoutUserNestedInput
-    educations?: EducationUpdateManyWithoutUserNestedInput
-    projects?: ProjectUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUpdateManyWithoutUserNestedInput
-    memories?: MemoryUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    educations?: EducationUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateOneWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUpdateManyWithoutUserNestedInput
+    links?: LinkUpdateManyWithoutUserNestedInput
+    memories?: MemoryUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutWorksInput = {
@@ -28497,18 +35917,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
-    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
-    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUncheckedUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
-    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateOneWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUncheckedUpdateManyWithoutUserNestedInput
+    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
+    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUncheckedUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutProjectsInput = {
@@ -28524,18 +35947,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkCreateNestedManyWithoutUserInput
     addresses?: AddressCreateNestedManyWithoutUserInput
-    educations?: EducationCreateNestedManyWithoutUserInput
-    works?: WorkCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryCreateNestedManyWithoutUserInput
-    resumes?: ResumeCreateNestedManyWithoutUserInput
-    memories?: MemoryCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    educations?: EducationCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedOneWithoutUserInput
     llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
+    LatexTemplate?: LatexTemplateCreateNestedManyWithoutUserInput
+    links?: LinkCreateNestedManyWithoutUserInput
+    memories?: MemoryCreateNestedManyWithoutUserInput
+    resumes?: ResumeCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
+    works?: WorkCreateNestedManyWithoutUserInput
+    campaigns?: CampaignCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProjectsInput = {
@@ -28551,18 +35977,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkUncheckedCreateNestedManyWithoutUserInput
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
-    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
-    works?: WorkUncheckedCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryUncheckedCreateNestedManyWithoutUserInput
-    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
-    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedOneWithoutUserInput
     llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
+    LatexTemplate?: LatexTemplateUncheckedCreateNestedManyWithoutUserInput
+    links?: LinkUncheckedCreateNestedManyWithoutUserInput
+    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeUncheckedCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
+    works?: WorkUncheckedCreateNestedManyWithoutUserInput
+    campaigns?: CampaignUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProjectsInput = {
@@ -28594,18 +36023,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUpdateManyWithoutUserNestedInput
     addresses?: AddressUpdateManyWithoutUserNestedInput
-    educations?: EducationUpdateManyWithoutUserNestedInput
-    works?: WorkUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUpdateManyWithoutUserNestedInput
-    memories?: MemoryUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    educations?: EducationUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateOneWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUpdateManyWithoutUserNestedInput
+    links?: LinkUpdateManyWithoutUserNestedInput
+    memories?: MemoryUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
+    works?: WorkUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProjectsInput = {
@@ -28621,18 +36053,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
-    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
-    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUncheckedUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
-    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateOneWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUncheckedUpdateManyWithoutUserNestedInput
+    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
+    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUncheckedUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
+    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAnswersInput = {
@@ -28648,18 +36083,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkCreateNestedManyWithoutUserInput
     addresses?: AddressCreateNestedManyWithoutUserInput
+    chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
     educations?: EducationCreateNestedManyWithoutUserInput
-    works?: WorkCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedOneWithoutUserInput
+    llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
+    LatexTemplate?: LatexTemplateCreateNestedManyWithoutUserInput
+    links?: LinkCreateNestedManyWithoutUserInput
+    memories?: MemoryCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     resumes?: ResumeCreateNestedManyWithoutUserInput
-    memories?: MemoryCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeCreateNestedManyWithoutUserInput
     analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionCreateNestedManyWithoutUserInput
-    chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
-    llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
+    works?: WorkCreateNestedManyWithoutUserInput
+    campaigns?: CampaignCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAnswersInput = {
@@ -28675,18 +36113,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkUncheckedCreateNestedManyWithoutUserInput
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
+    chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
     educations?: EducationUncheckedCreateNestedManyWithoutUserInput
-    works?: WorkUncheckedCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedOneWithoutUserInput
+    llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
+    LatexTemplate?: LatexTemplateUncheckedCreateNestedManyWithoutUserInput
+    links?: LinkUncheckedCreateNestedManyWithoutUserInput
+    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
-    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeUncheckedCreateNestedManyWithoutUserInput
     analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
-    chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
-    llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
+    works?: WorkUncheckedCreateNestedManyWithoutUserInput
+    campaigns?: CampaignUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAnswersInput = {
@@ -28718,18 +36159,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUpdateManyWithoutUserNestedInput
     addresses?: AddressUpdateManyWithoutUserNestedInput
+    chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
     educations?: EducationUpdateManyWithoutUserNestedInput
-    works?: WorkUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateOneWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUpdateManyWithoutUserNestedInput
+    links?: LinkUpdateManyWithoutUserNestedInput
+    memories?: MemoryUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     resumes?: ResumeUpdateManyWithoutUserNestedInput
-    memories?: MemoryUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUpdateManyWithoutUserNestedInput
     analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
-    chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
-    llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
+    works?: WorkUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAnswersInput = {
@@ -28745,18 +36189,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
+    chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
     educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
-    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateOneWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUncheckedUpdateManyWithoutUserNestedInput
+    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
+    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
-    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUncheckedUpdateManyWithoutUserNestedInput
     analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
-    chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
-    llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
+    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutResumesInput = {
@@ -28772,18 +36219,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkCreateNestedManyWithoutUserInput
     addresses?: AddressCreateNestedManyWithoutUserInput
-    educations?: EducationCreateNestedManyWithoutUserInput
-    works?: WorkCreateNestedManyWithoutUserInput
-    projects?: ProjectCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryCreateNestedManyWithoutUserInput
-    memories?: MemoryCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    educations?: EducationCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedOneWithoutUserInput
     llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
+    LatexTemplate?: LatexTemplateCreateNestedManyWithoutUserInput
+    links?: LinkCreateNestedManyWithoutUserInput
+    memories?: MemoryCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
+    works?: WorkCreateNestedManyWithoutUserInput
+    campaigns?: CampaignCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutResumesInput = {
@@ -28799,18 +36249,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkUncheckedCreateNestedManyWithoutUserInput
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
-    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
-    works?: WorkUncheckedCreateNestedManyWithoutUserInput
-    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryUncheckedCreateNestedManyWithoutUserInput
-    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedOneWithoutUserInput
     llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
+    LatexTemplate?: LatexTemplateUncheckedCreateNestedManyWithoutUserInput
+    links?: LinkUncheckedCreateNestedManyWithoutUserInput
+    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeUncheckedCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
+    works?: WorkUncheckedCreateNestedManyWithoutUserInput
+    campaigns?: CampaignUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutResumesInput = {
@@ -28842,18 +36295,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUpdateManyWithoutUserNestedInput
     addresses?: AddressUpdateManyWithoutUserNestedInput
-    educations?: EducationUpdateManyWithoutUserNestedInput
-    works?: WorkUpdateManyWithoutUserNestedInput
-    projects?: ProjectUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUpdateManyWithoutUserNestedInput
-    memories?: MemoryUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    educations?: EducationUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateOneWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUpdateManyWithoutUserNestedInput
+    links?: LinkUpdateManyWithoutUserNestedInput
+    memories?: MemoryUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
+    works?: WorkUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutResumesInput = {
@@ -28869,18 +36325,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
-    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
-    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
-    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUncheckedUpdateManyWithoutUserNestedInput
-    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateOneWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUncheckedUpdateManyWithoutUserNestedInput
+    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
+    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUncheckedUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
+    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutMemoriesInput = {
@@ -28896,18 +36355,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkCreateNestedManyWithoutUserInput
     addresses?: AddressCreateNestedManyWithoutUserInput
-    educations?: EducationCreateNestedManyWithoutUserInput
-    works?: WorkCreateNestedManyWithoutUserInput
-    projects?: ProjectCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryCreateNestedManyWithoutUserInput
-    resumes?: ResumeCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    educations?: EducationCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedOneWithoutUserInput
     llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
+    LatexTemplate?: LatexTemplateCreateNestedManyWithoutUserInput
+    links?: LinkCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+    resumes?: ResumeCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
+    works?: WorkCreateNestedManyWithoutUserInput
+    campaigns?: CampaignCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMemoriesInput = {
@@ -28923,18 +36385,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkUncheckedCreateNestedManyWithoutUserInput
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
-    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
-    works?: WorkUncheckedCreateNestedManyWithoutUserInput
-    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryUncheckedCreateNestedManyWithoutUserInput
-    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedOneWithoutUserInput
     llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
+    LatexTemplate?: LatexTemplateUncheckedCreateNestedManyWithoutUserInput
+    links?: LinkUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeUncheckedCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
+    works?: WorkUncheckedCreateNestedManyWithoutUserInput
+    campaigns?: CampaignUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMemoriesInput = {
@@ -28966,18 +36431,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUpdateManyWithoutUserNestedInput
     addresses?: AddressUpdateManyWithoutUserNestedInput
-    educations?: EducationUpdateManyWithoutUserNestedInput
-    works?: WorkUpdateManyWithoutUserNestedInput
-    projects?: ProjectUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    educations?: EducationUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateOneWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUpdateManyWithoutUserNestedInput
+    links?: LinkUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
+    works?: WorkUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMemoriesInput = {
@@ -28993,18 +36461,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
-    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
-    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
-    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUncheckedUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateOneWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUncheckedUpdateManyWithoutUserNestedInput
+    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUncheckedUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
+    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAnalyticsInput = {
@@ -29020,18 +36491,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkCreateNestedManyWithoutUserInput
     addresses?: AddressCreateNestedManyWithoutUserInput
-    educations?: EducationCreateNestedManyWithoutUserInput
-    works?: WorkCreateNestedManyWithoutUserInput
-    projects?: ProjectCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryCreateNestedManyWithoutUserInput
-    resumes?: ResumeCreateNestedManyWithoutUserInput
-    memories?: MemoryCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    educations?: EducationCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedOneWithoutUserInput
     llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
+    LatexTemplate?: LatexTemplateCreateNestedManyWithoutUserInput
+    links?: LinkCreateNestedManyWithoutUserInput
+    memories?: MemoryCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+    resumes?: ResumeCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeCreateNestedManyWithoutUserInput
+    works?: WorkCreateNestedManyWithoutUserInput
+    campaigns?: CampaignCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAnalyticsInput = {
@@ -29047,18 +36521,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkUncheckedCreateNestedManyWithoutUserInput
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
-    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
-    works?: WorkUncheckedCreateNestedManyWithoutUserInput
-    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryUncheckedCreateNestedManyWithoutUserInput
-    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
-    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedOneWithoutUserInput
     llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
+    LatexTemplate?: LatexTemplateUncheckedCreateNestedManyWithoutUserInput
+    links?: LinkUncheckedCreateNestedManyWithoutUserInput
+    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeUncheckedCreateNestedManyWithoutUserInput
+    works?: WorkUncheckedCreateNestedManyWithoutUserInput
+    campaigns?: CampaignUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAnalyticsInput = {
@@ -29090,18 +36567,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUpdateManyWithoutUserNestedInput
     addresses?: AddressUpdateManyWithoutUserNestedInput
-    educations?: EducationUpdateManyWithoutUserNestedInput
-    works?: WorkUpdateManyWithoutUserNestedInput
-    projects?: ProjectUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUpdateManyWithoutUserNestedInput
-    memories?: MemoryUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    educations?: EducationUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateOneWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUpdateManyWithoutUserNestedInput
+    links?: LinkUpdateManyWithoutUserNestedInput
+    memories?: MemoryUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUpdateManyWithoutUserNestedInput
+    works?: WorkUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAnalyticsInput = {
@@ -29117,18 +36597,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
-    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
-    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
-    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUncheckedUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
-    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateOneWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUncheckedUpdateManyWithoutUserNestedInput
+    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
+    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUncheckedUpdateManyWithoutUserNestedInput
+    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutGitHubConnectionsInput = {
@@ -29144,18 +36627,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkCreateNestedManyWithoutUserInput
     addresses?: AddressCreateNestedManyWithoutUserInput
-    educations?: EducationCreateNestedManyWithoutUserInput
-    works?: WorkCreateNestedManyWithoutUserInput
-    projects?: ProjectCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryCreateNestedManyWithoutUserInput
-    resumes?: ResumeCreateNestedManyWithoutUserInput
-    memories?: MemoryCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    educations?: EducationCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionCreateNestedManyWithoutUserInput
     llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
+    LatexTemplate?: LatexTemplateCreateNestedManyWithoutUserInput
+    links?: LinkCreateNestedManyWithoutUserInput
+    memories?: MemoryCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+    resumes?: ResumeCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
+    works?: WorkCreateNestedManyWithoutUserInput
+    campaigns?: CampaignCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutGitHubConnectionsInput = {
@@ -29171,18 +36657,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkUncheckedCreateNestedManyWithoutUserInput
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
-    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
-    works?: WorkUncheckedCreateNestedManyWithoutUserInput
-    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryUncheckedCreateNestedManyWithoutUserInput
-    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
-    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
+    LatexTemplate?: LatexTemplateUncheckedCreateNestedManyWithoutUserInput
+    links?: LinkUncheckedCreateNestedManyWithoutUserInput
+    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeUncheckedCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
+    works?: WorkUncheckedCreateNestedManyWithoutUserInput
+    campaigns?: CampaignUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutGitHubConnectionsInput = {
@@ -29214,18 +36703,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUpdateManyWithoutUserNestedInput
     addresses?: AddressUpdateManyWithoutUserNestedInput
-    educations?: EducationUpdateManyWithoutUserNestedInput
-    works?: WorkUpdateManyWithoutUserNestedInput
-    projects?: ProjectUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUpdateManyWithoutUserNestedInput
-    memories?: MemoryUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    educations?: EducationUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUpdateManyWithoutUserNestedInput
+    links?: LinkUpdateManyWithoutUserNestedInput
+    memories?: MemoryUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
+    works?: WorkUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutGitHubConnectionsInput = {
@@ -29241,18 +36733,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
-    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
-    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
-    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUncheckedUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
-    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUncheckedUpdateManyWithoutUserNestedInput
+    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
+    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUncheckedUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
+    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutFormSessionsInput = {
@@ -29268,18 +36763,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkCreateNestedManyWithoutUserInput
     addresses?: AddressCreateNestedManyWithoutUserInput
-    educations?: EducationCreateNestedManyWithoutUserInput
-    works?: WorkCreateNestedManyWithoutUserInput
-    projects?: ProjectCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryCreateNestedManyWithoutUserInput
-    resumes?: ResumeCreateNestedManyWithoutUserInput
-    memories?: MemoryCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    educations?: EducationCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedOneWithoutUserInput
     llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
+    LatexTemplate?: LatexTemplateCreateNestedManyWithoutUserInput
+    links?: LinkCreateNestedManyWithoutUserInput
+    memories?: MemoryCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+    resumes?: ResumeCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
+    works?: WorkCreateNestedManyWithoutUserInput
+    campaigns?: CampaignCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFormSessionsInput = {
@@ -29295,18 +36793,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkUncheckedCreateNestedManyWithoutUserInput
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
-    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
-    works?: WorkUncheckedCreateNestedManyWithoutUserInput
-    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryUncheckedCreateNestedManyWithoutUserInput
-    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
-    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedOneWithoutUserInput
     llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
+    LatexTemplate?: LatexTemplateUncheckedCreateNestedManyWithoutUserInput
+    links?: LinkUncheckedCreateNestedManyWithoutUserInput
+    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeUncheckedCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
+    works?: WorkUncheckedCreateNestedManyWithoutUserInput
+    campaigns?: CampaignUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFormSessionsInput = {
@@ -29338,18 +36839,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUpdateManyWithoutUserNestedInput
     addresses?: AddressUpdateManyWithoutUserNestedInput
-    educations?: EducationUpdateManyWithoutUserNestedInput
-    works?: WorkUpdateManyWithoutUserNestedInput
-    projects?: ProjectUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUpdateManyWithoutUserNestedInput
-    memories?: MemoryUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    educations?: EducationUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateOneWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUpdateManyWithoutUserNestedInput
+    links?: LinkUpdateManyWithoutUserNestedInput
+    memories?: MemoryUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
+    works?: WorkUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFormSessionsInput = {
@@ -29365,18 +36869,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
-    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
-    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
-    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUncheckedUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
-    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateOneWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUncheckedUpdateManyWithoutUserNestedInput
+    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
+    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUncheckedUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
+    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutChatEpisodesInput = {
@@ -29392,18 +36899,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkCreateNestedManyWithoutUserInput
     addresses?: AddressCreateNestedManyWithoutUserInput
-    educations?: EducationCreateNestedManyWithoutUserInput
-    works?: WorkCreateNestedManyWithoutUserInput
-    projects?: ProjectCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryCreateNestedManyWithoutUserInput
-    resumes?: ResumeCreateNestedManyWithoutUserInput
-    memories?: MemoryCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
+    educations?: EducationCreateNestedManyWithoutUserInput
     formSessions?: FormSessionCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedOneWithoutUserInput
     llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
+    LatexTemplate?: LatexTemplateCreateNestedManyWithoutUserInput
+    links?: LinkCreateNestedManyWithoutUserInput
+    memories?: MemoryCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+    resumes?: ResumeCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
+    works?: WorkCreateNestedManyWithoutUserInput
+    campaigns?: CampaignCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutChatEpisodesInput = {
@@ -29419,18 +36929,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkUncheckedCreateNestedManyWithoutUserInput
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
-    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
-    works?: WorkUncheckedCreateNestedManyWithoutUserInput
-    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryUncheckedCreateNestedManyWithoutUserInput
-    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
-    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
+    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
     formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedOneWithoutUserInput
     llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
-    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
+    LatexTemplate?: LatexTemplateUncheckedCreateNestedManyWithoutUserInput
+    links?: LinkUncheckedCreateNestedManyWithoutUserInput
+    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeUncheckedCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
+    works?: WorkUncheckedCreateNestedManyWithoutUserInput
+    campaigns?: CampaignUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutChatEpisodesInput = {
@@ -29488,18 +37001,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUpdateManyWithoutUserNestedInput
     addresses?: AddressUpdateManyWithoutUserNestedInput
-    educations?: EducationUpdateManyWithoutUserNestedInput
-    works?: WorkUpdateManyWithoutUserNestedInput
-    projects?: ProjectUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUpdateManyWithoutUserNestedInput
-    memories?: MemoryUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
+    educations?: EducationUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateOneWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUpdateManyWithoutUserNestedInput
+    links?: LinkUpdateManyWithoutUserNestedInput
+    memories?: MemoryUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
+    works?: WorkUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutChatEpisodesInput = {
@@ -29515,18 +37031,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
-    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
-    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
-    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUncheckedUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
-    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
+    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
     formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateOneWithoutUserNestedInput
     llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUncheckedUpdateManyWithoutUserNestedInput
+    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
+    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUncheckedUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
+    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ChatMessageUpsertWithWhereUniqueWithoutEpisodeInput = {
@@ -29622,18 +37141,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkCreateNestedManyWithoutUserInput
     addresses?: AddressCreateNestedManyWithoutUserInput
-    educations?: EducationCreateNestedManyWithoutUserInput
-    works?: WorkCreateNestedManyWithoutUserInput
-    projects?: ProjectCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryCreateNestedManyWithoutUserInput
-    resumes?: ResumeCreateNestedManyWithoutUserInput
-    memories?: MemoryCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
-    GitHubConnections?: GitHubConnectionCreateNestedManyWithoutUserInput
+    educations?: EducationCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedOneWithoutUserInput
+    LatexTemplate?: LatexTemplateCreateNestedManyWithoutUserInput
+    links?: LinkCreateNestedManyWithoutUserInput
+    memories?: MemoryCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+    resumes?: ResumeCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
+    works?: WorkCreateNestedManyWithoutUserInput
+    campaigns?: CampaignCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutLlmConfigInput = {
@@ -29649,18 +37171,21 @@ export namespace Prisma {
     onboardingDone?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    links?: LinkUncheckedCreateNestedManyWithoutUserInput
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
-    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
-    works?: WorkUncheckedCreateNestedManyWithoutUserInput
-    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     answers?: AnswerLibraryUncheckedCreateNestedManyWithoutUserInput
-    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
-    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
-    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
     chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
-    GitHubConnections?: GitHubConnectionUncheckedCreateNestedManyWithoutUserInput
+    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedOneWithoutUserInput
+    LatexTemplate?: LatexTemplateUncheckedCreateNestedManyWithoutUserInput
+    links?: LinkUncheckedCreateNestedManyWithoutUserInput
+    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeUncheckedCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
+    works?: WorkUncheckedCreateNestedManyWithoutUserInput
+    campaigns?: CampaignUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutLlmConfigInput = {
@@ -29692,18 +37217,21 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUpdateManyWithoutUserNestedInput
     addresses?: AddressUpdateManyWithoutUserNestedInput
-    educations?: EducationUpdateManyWithoutUserNestedInput
-    works?: WorkUpdateManyWithoutUserNestedInput
-    projects?: ProjectUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUpdateManyWithoutUserNestedInput
-    memories?: MemoryUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUpdateManyWithoutUserNestedInput
+    educations?: EducationUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateOneWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUpdateManyWithoutUserNestedInput
+    links?: LinkUpdateManyWithoutUserNestedInput
+    memories?: MemoryUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
+    works?: WorkUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLlmConfigInput = {
@@ -29719,24 +37247,558 @@ export namespace Prisma {
     onboardingDone?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
-    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
-    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
-    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     answers?: AnswerLibraryUncheckedUpdateManyWithoutUserNestedInput
-    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
-    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
-    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
     chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
-    GitHubConnections?: GitHubConnectionUncheckedUpdateManyWithoutUserNestedInput
+    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateOneWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUncheckedUpdateManyWithoutUserNestedInput
+    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
+    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUncheckedUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
+    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type LinkCreateManyUserInput = {
+  export type UserCreateWithoutLatexTemplateInput = {
     id?: string
-    platform: string
-    url: string
+    email: string
+    referralCode: string
+    firstName: string
+    middleName?: string | null
+    lastName: string
+    phone?: string | null
+    bio?: string | null
+    skills?: NullableJsonNullValueInput | InputJsonValue
+    onboardingDone?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    addresses?: AddressCreateNestedManyWithoutUserInput
+    answers?: AnswerLibraryCreateNestedManyWithoutUserInput
+    chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    educations?: EducationCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedOneWithoutUserInput
+    llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
+    links?: LinkCreateNestedManyWithoutUserInput
+    memories?: MemoryCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+    resumes?: ResumeCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
+    works?: WorkCreateNestedManyWithoutUserInput
+    campaigns?: CampaignCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutLatexTemplateInput = {
+    id?: string
+    email: string
+    referralCode: string
+    firstName: string
+    middleName?: string | null
+    lastName: string
+    phone?: string | null
+    bio?: string | null
+    skills?: NullableJsonNullValueInput | InputJsonValue
+    onboardingDone?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
+    answers?: AnswerLibraryUncheckedCreateNestedManyWithoutUserInput
+    chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedOneWithoutUserInput
+    llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
+    links?: LinkUncheckedCreateNestedManyWithoutUserInput
+    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeUncheckedCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
+    works?: WorkUncheckedCreateNestedManyWithoutUserInput
+    campaigns?: CampaignUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutLatexTemplateInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutLatexTemplateInput, UserUncheckedCreateWithoutLatexTemplateInput>
+  }
+
+  export type UserUpsertWithoutLatexTemplateInput = {
+    update: XOR<UserUpdateWithoutLatexTemplateInput, UserUncheckedUpdateWithoutLatexTemplateInput>
+    create: XOR<UserCreateWithoutLatexTemplateInput, UserUncheckedCreateWithoutLatexTemplateInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutLatexTemplateInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutLatexTemplateInput, UserUncheckedUpdateWithoutLatexTemplateInput>
+  }
+
+  export type UserUpdateWithoutLatexTemplateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    referralCode?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    middleName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    skills?: NullableJsonNullValueInput | InputJsonValue
+    onboardingDone?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addresses?: AddressUpdateManyWithoutUserNestedInput
+    answers?: AnswerLibraryUpdateManyWithoutUserNestedInput
+    chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    educations?: EducationUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateOneWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
+    links?: LinkUpdateManyWithoutUserNestedInput
+    memories?: MemoryUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
+    works?: WorkUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutLatexTemplateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    referralCode?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    middleName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    skills?: NullableJsonNullValueInput | InputJsonValue
+    onboardingDone?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
+    answers?: AnswerLibraryUncheckedUpdateManyWithoutUserNestedInput
+    chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateOneWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
+    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
+    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUncheckedUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
+    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutTailoredResumeInput = {
+    id?: string
+    email: string
+    referralCode: string
+    firstName: string
+    middleName?: string | null
+    lastName: string
+    phone?: string | null
+    bio?: string | null
+    skills?: NullableJsonNullValueInput | InputJsonValue
+    onboardingDone?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    addresses?: AddressCreateNestedManyWithoutUserInput
+    answers?: AnswerLibraryCreateNestedManyWithoutUserInput
+    chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    educations?: EducationCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedOneWithoutUserInput
+    llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
+    LatexTemplate?: LatexTemplateCreateNestedManyWithoutUserInput
+    links?: LinkCreateNestedManyWithoutUserInput
+    memories?: MemoryCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+    resumes?: ResumeCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
+    works?: WorkCreateNestedManyWithoutUserInput
+    campaigns?: CampaignCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutTailoredResumeInput = {
+    id?: string
+    email: string
+    referralCode: string
+    firstName: string
+    middleName?: string | null
+    lastName: string
+    phone?: string | null
+    bio?: string | null
+    skills?: NullableJsonNullValueInput | InputJsonValue
+    onboardingDone?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
+    answers?: AnswerLibraryUncheckedCreateNestedManyWithoutUserInput
+    chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedOneWithoutUserInput
+    llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
+    LatexTemplate?: LatexTemplateUncheckedCreateNestedManyWithoutUserInput
+    links?: LinkUncheckedCreateNestedManyWithoutUserInput
+    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
+    works?: WorkUncheckedCreateNestedManyWithoutUserInput
+    campaigns?: CampaignUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutTailoredResumeInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutTailoredResumeInput, UserUncheckedCreateWithoutTailoredResumeInput>
+  }
+
+  export type UserUpsertWithoutTailoredResumeInput = {
+    update: XOR<UserUpdateWithoutTailoredResumeInput, UserUncheckedUpdateWithoutTailoredResumeInput>
+    create: XOR<UserCreateWithoutTailoredResumeInput, UserUncheckedCreateWithoutTailoredResumeInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutTailoredResumeInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutTailoredResumeInput, UserUncheckedUpdateWithoutTailoredResumeInput>
+  }
+
+  export type UserUpdateWithoutTailoredResumeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    referralCode?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    middleName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    skills?: NullableJsonNullValueInput | InputJsonValue
+    onboardingDone?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addresses?: AddressUpdateManyWithoutUserNestedInput
+    answers?: AnswerLibraryUpdateManyWithoutUserNestedInput
+    chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    educations?: EducationUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateOneWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUpdateManyWithoutUserNestedInput
+    links?: LinkUpdateManyWithoutUserNestedInput
+    memories?: MemoryUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
+    works?: WorkUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTailoredResumeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    referralCode?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    middleName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    skills?: NullableJsonNullValueInput | InputJsonValue
+    onboardingDone?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
+    answers?: AnswerLibraryUncheckedUpdateManyWithoutUserNestedInput
+    chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateOneWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUncheckedUpdateManyWithoutUserNestedInput
+    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
+    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
+    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
+    campaigns?: CampaignUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type CampaignContactCreateWithoutCampaignInput = {
+    id?: string
+    name: string
+    company: string
+    position: string
+    email: string
+    website: string
+    companyContext?: string | null
+    draftSubject?: string | null
+    draftBody?: string | null
+    error?: string | null
+    status?: string
+    lastContactedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CampaignContactUncheckedCreateWithoutCampaignInput = {
+    id?: string
+    name: string
+    company: string
+    position: string
+    email: string
+    website: string
+    companyContext?: string | null
+    draftSubject?: string | null
+    draftBody?: string | null
+    error?: string | null
+    status?: string
+    lastContactedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CampaignContactCreateOrConnectWithoutCampaignInput = {
+    where: CampaignContactWhereUniqueInput
+    create: XOR<CampaignContactCreateWithoutCampaignInput, CampaignContactUncheckedCreateWithoutCampaignInput>
+  }
+
+  export type CampaignContactCreateManyCampaignInputEnvelope = {
+    data: CampaignContactCreateManyCampaignInput | CampaignContactCreateManyCampaignInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserCreateWithoutCampaignsInput = {
+    id?: string
+    email: string
+    referralCode: string
+    firstName: string
+    middleName?: string | null
+    lastName: string
+    phone?: string | null
+    bio?: string | null
+    skills?: NullableJsonNullValueInput | InputJsonValue
+    onboardingDone?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    addresses?: AddressCreateNestedManyWithoutUserInput
+    answers?: AnswerLibraryCreateNestedManyWithoutUserInput
+    chatEpisodes?: ChatEpisodeCreateNestedManyWithoutUserInput
+    educations?: EducationCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionCreateNestedOneWithoutUserInput
+    llmConfig?: LLMGatewayConfigCreateNestedOneWithoutUserInput
+    LatexTemplate?: LatexTemplateCreateNestedManyWithoutUserInput
+    links?: LinkCreateNestedManyWithoutUserInput
+    memories?: MemoryCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+    resumes?: ResumeCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsCreateNestedManyWithoutUserInput
+    works?: WorkCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutCampaignsInput = {
+    id?: string
+    email: string
+    referralCode: string
+    firstName: string
+    middleName?: string | null
+    lastName: string
+    phone?: string | null
+    bio?: string | null
+    skills?: NullableJsonNullValueInput | InputJsonValue
+    onboardingDone?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
+    answers?: AnswerLibraryUncheckedCreateNestedManyWithoutUserInput
+    chatEpisodes?: ChatEpisodeUncheckedCreateNestedManyWithoutUserInput
+    educations?: EducationUncheckedCreateNestedManyWithoutUserInput
+    formSessions?: FormSessionUncheckedCreateNestedManyWithoutUserInput
+    GitHubConnections?: GitHubConnectionUncheckedCreateNestedOneWithoutUserInput
+    llmConfig?: LLMGatewayConfigUncheckedCreateNestedOneWithoutUserInput
+    LatexTemplate?: LatexTemplateUncheckedCreateNestedManyWithoutUserInput
+    links?: LinkUncheckedCreateNestedManyWithoutUserInput
+    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    resumes?: ResumeUncheckedCreateNestedManyWithoutUserInput
+    TailoredResume?: TailoredResumeUncheckedCreateNestedManyWithoutUserInput
+    analytics?: UsageAnalyticsUncheckedCreateNestedManyWithoutUserInput
+    works?: WorkUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutCampaignsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCampaignsInput, UserUncheckedCreateWithoutCampaignsInput>
+  }
+
+  export type CampaignContactUpsertWithWhereUniqueWithoutCampaignInput = {
+    where: CampaignContactWhereUniqueInput
+    update: XOR<CampaignContactUpdateWithoutCampaignInput, CampaignContactUncheckedUpdateWithoutCampaignInput>
+    create: XOR<CampaignContactCreateWithoutCampaignInput, CampaignContactUncheckedCreateWithoutCampaignInput>
+  }
+
+  export type CampaignContactUpdateWithWhereUniqueWithoutCampaignInput = {
+    where: CampaignContactWhereUniqueInput
+    data: XOR<CampaignContactUpdateWithoutCampaignInput, CampaignContactUncheckedUpdateWithoutCampaignInput>
+  }
+
+  export type CampaignContactUpdateManyWithWhereWithoutCampaignInput = {
+    where: CampaignContactScalarWhereInput
+    data: XOR<CampaignContactUpdateManyMutationInput, CampaignContactUncheckedUpdateManyWithoutCampaignInput>
+  }
+
+  export type CampaignContactScalarWhereInput = {
+    AND?: CampaignContactScalarWhereInput | CampaignContactScalarWhereInput[]
+    OR?: CampaignContactScalarWhereInput[]
+    NOT?: CampaignContactScalarWhereInput | CampaignContactScalarWhereInput[]
+    id?: StringFilter<"CampaignContact"> | string
+    campaignId?: StringFilter<"CampaignContact"> | string
+    name?: StringFilter<"CampaignContact"> | string
+    company?: StringFilter<"CampaignContact"> | string
+    position?: StringFilter<"CampaignContact"> | string
+    email?: StringFilter<"CampaignContact"> | string
+    website?: StringFilter<"CampaignContact"> | string
+    companyContext?: StringNullableFilter<"CampaignContact"> | string | null
+    draftSubject?: StringNullableFilter<"CampaignContact"> | string | null
+    draftBody?: StringNullableFilter<"CampaignContact"> | string | null
+    error?: StringNullableFilter<"CampaignContact"> | string | null
+    status?: StringFilter<"CampaignContact"> | string
+    lastContactedAt?: DateTimeNullableFilter<"CampaignContact"> | Date | string | null
+    createdAt?: DateTimeFilter<"CampaignContact"> | Date | string
+    updatedAt?: DateTimeFilter<"CampaignContact"> | Date | string
+  }
+
+  export type UserUpsertWithoutCampaignsInput = {
+    update: XOR<UserUpdateWithoutCampaignsInput, UserUncheckedUpdateWithoutCampaignsInput>
+    create: XOR<UserCreateWithoutCampaignsInput, UserUncheckedCreateWithoutCampaignsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCampaignsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCampaignsInput, UserUncheckedUpdateWithoutCampaignsInput>
+  }
+
+  export type UserUpdateWithoutCampaignsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    referralCode?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    middleName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    skills?: NullableJsonNullValueInput | InputJsonValue
+    onboardingDone?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addresses?: AddressUpdateManyWithoutUserNestedInput
+    answers?: AnswerLibraryUpdateManyWithoutUserNestedInput
+    chatEpisodes?: ChatEpisodeUpdateManyWithoutUserNestedInput
+    educations?: EducationUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUpdateOneWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUpdateOneWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUpdateManyWithoutUserNestedInput
+    links?: LinkUpdateManyWithoutUserNestedInput
+    memories?: MemoryUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUpdateManyWithoutUserNestedInput
+    works?: WorkUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCampaignsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    referralCode?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    middleName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    skills?: NullableJsonNullValueInput | InputJsonValue
+    onboardingDone?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
+    answers?: AnswerLibraryUncheckedUpdateManyWithoutUserNestedInput
+    chatEpisodes?: ChatEpisodeUncheckedUpdateManyWithoutUserNestedInput
+    educations?: EducationUncheckedUpdateManyWithoutUserNestedInput
+    formSessions?: FormSessionUncheckedUpdateManyWithoutUserNestedInput
+    GitHubConnections?: GitHubConnectionUncheckedUpdateOneWithoutUserNestedInput
+    llmConfig?: LLMGatewayConfigUncheckedUpdateOneWithoutUserNestedInput
+    LatexTemplate?: LatexTemplateUncheckedUpdateManyWithoutUserNestedInput
+    links?: LinkUncheckedUpdateManyWithoutUserNestedInput
+    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    resumes?: ResumeUncheckedUpdateManyWithoutUserNestedInput
+    TailoredResume?: TailoredResumeUncheckedUpdateManyWithoutUserNestedInput
+    analytics?: UsageAnalyticsUncheckedUpdateManyWithoutUserNestedInput
+    works?: WorkUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type CampaignCreateWithoutContactsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutCampaignsInput
+  }
+
+  export type CampaignUncheckedCreateWithoutContactsInput = {
+    id?: string
+    userId: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CampaignCreateOrConnectWithoutContactsInput = {
+    where: CampaignWhereUniqueInput
+    create: XOR<CampaignCreateWithoutContactsInput, CampaignUncheckedCreateWithoutContactsInput>
+  }
+
+  export type CampaignUpsertWithoutContactsInput = {
+    update: XOR<CampaignUpdateWithoutContactsInput, CampaignUncheckedUpdateWithoutContactsInput>
+    create: XOR<CampaignCreateWithoutContactsInput, CampaignUncheckedCreateWithoutContactsInput>
+    where?: CampaignWhereInput
+  }
+
+  export type CampaignUpdateToOneWithWhereWithoutContactsInput = {
+    where?: CampaignWhereInput
+    data: XOR<CampaignUpdateWithoutContactsInput, CampaignUncheckedUpdateWithoutContactsInput>
+  }
+
+  export type CampaignUpdateWithoutContactsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCampaignsNestedInput
+  }
+
+  export type CampaignUncheckedUpdateWithoutContactsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AddressCreateManyUserInput = {
@@ -29751,6 +37813,23 @@ export namespace Prisma {
     country: string
   }
 
+  export type AnswerLibraryCreateManyUserInput = {
+    id?: string
+    title: string
+    category: string
+    answer: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ChatEpisodeCreateManyUserInput = {
+    id?: string
+    title?: string
+    summary?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type EducationCreateManyUserInput = {
     id?: string
     instituteName: string
@@ -29760,13 +37839,34 @@ export namespace Prisma {
     gpa?: number | null
   }
 
-  export type WorkCreateManyUserInput = {
+  export type FormSessionCreateManyUserInput = {
     id?: string
-    companyName: string
-    position: string
-    type: $Enums.WorkType
-    startDate: Date | string
-    endDate?: Date | string | null
+    sessionId: string
+    url?: string | null
+    fields: JsonNullValueInput | InputJsonValue
+    rawHtml?: string | null
+    createdAt?: Date | string
+  }
+
+  export type LatexTemplateCreateManyUserInput = {
+    id?: string
+    name: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LinkCreateManyUserInput = {
+    id?: string
+    platform: string
+    url: string
+  }
+
+  export type MemoryCreateManyUserInput = {
+    id?: string
+    type: $Enums.MemoryType
+    value: string
+    createdAt?: Date | string
   }
 
   export type ProjectCreateManyUserInput = {
@@ -29777,17 +37877,8 @@ export namespace Prisma {
     depolyed_url?: string | null
     projectLinks?: ProjectCreateprojectLinksInput | string[]
     techStacks?: ProjectCreatetechStacksInput | string[]
+    createdAt?: Date | string
     priority?: number
-    createdAt?: Date | string
-  }
-
-  export type AnswerLibraryCreateManyUserInput = {
-    id?: string
-    title: string
-    category: string
-    answer: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type ResumeCreateManyUserInput = {
@@ -29800,10 +37891,11 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
-  export type MemoryCreateManyUserInput = {
+  export type TailoredResumeCreateManyUserInput = {
     id?: string
-    type: $Enums.MemoryType
-    value: string
+    jobUrl: string
+    companyName?: string | null
+    pdfUrl?: string | null
     createdAt?: Date | string
   }
 
@@ -29812,61 +37904,32 @@ export namespace Prisma {
     platform: string
     websiteUrl?: string | null
     fieldsFilled: number
-    totalFields?: number
     timeSavedSec: number
-    tokensUsed?: number
-    promptTokens?: number
-    completionTokens?: number
-    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
-    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
     aiEdits?: number
     acceptedDirect?: boolean
     createdAt?: Date | string
+    completionTokens?: number
+    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
+    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
+    promptTokens?: number
+    tokensUsed?: number
+    totalFields?: number
   }
 
-  export type FormSessionCreateManyUserInput = {
+  export type WorkCreateManyUserInput = {
     id?: string
-    sessionId: string
-    url?: string | null
-    fields: JsonNullValueInput | InputJsonValue
-    rawHtml?: string | null
-    createdAt?: Date | string
+    companyName: string
+    position: string
+    type: $Enums.WorkType
+    startDate: Date | string
+    endDate?: Date | string | null
   }
 
-  export type ChatEpisodeCreateManyUserInput = {
+  export type CampaignCreateManyUserInput = {
     id?: string
-    title?: string
-    summary?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type GitHubConnectionCreateManyUserInput = {
-    id?: string
-    accessToken: string
-    githubLogin: string
-    githubId: number
-    scope?: string
+    name: string
     createdAt?: Date | string
     updatedAt?: Date | string
-  }
-
-  export type LinkUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    platform?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type LinkUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    platform?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type LinkUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    platform?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
   }
 
   export type AddressUpdateWithoutUserInput = {
@@ -29905,6 +37968,59 @@ export namespace Prisma {
     country?: StringFieldUpdateOperationsInput | string
   }
 
+  export type AnswerLibraryUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    answer?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnswerLibraryUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    answer?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnswerLibraryUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    answer?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChatEpisodeUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    messages?: ChatMessageUpdateManyWithoutEpisodeNestedInput
+  }
+
+  export type ChatEpisodeUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    messages?: ChatMessageUncheckedUpdateManyWithoutEpisodeNestedInput
+  }
+
+  export type ChatEpisodeUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type EducationUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     instituteName?: StringFieldUpdateOperationsInput | string
@@ -29932,31 +38048,94 @@ export namespace Prisma {
     gpa?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
-  export type WorkUpdateWithoutUserInput = {
+  export type FormSessionUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    companyName?: StringFieldUpdateOperationsInput | string
-    position?: StringFieldUpdateOperationsInput | string
-    type?: EnumWorkTypeFieldUpdateOperationsInput | $Enums.WorkType
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sessionId?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    fields?: JsonNullValueInput | InputJsonValue
+    rawHtml?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type WorkUncheckedUpdateWithoutUserInput = {
+  export type FormSessionUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    companyName?: StringFieldUpdateOperationsInput | string
-    position?: StringFieldUpdateOperationsInput | string
-    type?: EnumWorkTypeFieldUpdateOperationsInput | $Enums.WorkType
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sessionId?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    fields?: JsonNullValueInput | InputJsonValue
+    rawHtml?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type WorkUncheckedUpdateManyWithoutUserInput = {
+  export type FormSessionUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    companyName?: StringFieldUpdateOperationsInput | string
-    position?: StringFieldUpdateOperationsInput | string
-    type?: EnumWorkTypeFieldUpdateOperationsInput | $Enums.WorkType
-    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    sessionId?: StringFieldUpdateOperationsInput | string
+    url?: NullableStringFieldUpdateOperationsInput | string | null
+    fields?: JsonNullValueInput | InputJsonValue
+    rawHtml?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LatexTemplateUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LatexTemplateUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LatexTemplateUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LinkUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    platform?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LinkUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    platform?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LinkUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    platform?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MemoryUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumMemoryTypeFieldUpdateOperationsInput | $Enums.MemoryType
+    value?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MemoryUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumMemoryTypeFieldUpdateOperationsInput | $Enums.MemoryType
+    value?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MemoryUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumMemoryTypeFieldUpdateOperationsInput | $Enums.MemoryType
+    value?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProjectUpdateWithoutUserInput = {
@@ -29967,8 +38146,8 @@ export namespace Prisma {
     depolyed_url?: NullableStringFieldUpdateOperationsInput | string | null
     projectLinks?: ProjectUpdateprojectLinksInput | string[]
     techStacks?: ProjectUpdatetechStacksInput | string[]
-    priority?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    priority?: IntFieldUpdateOperationsInput | number
   }
 
   export type ProjectUncheckedUpdateWithoutUserInput = {
@@ -29979,8 +38158,8 @@ export namespace Prisma {
     depolyed_url?: NullableStringFieldUpdateOperationsInput | string | null
     projectLinks?: ProjectUpdateprojectLinksInput | string[]
     techStacks?: ProjectUpdatetechStacksInput | string[]
-    priority?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    priority?: IntFieldUpdateOperationsInput | number
   }
 
   export type ProjectUncheckedUpdateManyWithoutUserInput = {
@@ -29991,35 +38170,8 @@ export namespace Prisma {
     depolyed_url?: NullableStringFieldUpdateOperationsInput | string | null
     projectLinks?: ProjectUpdateprojectLinksInput | string[]
     techStacks?: ProjectUpdatetechStacksInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     priority?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AnswerLibraryUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
-    answer?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AnswerLibraryUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
-    answer?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AnswerLibraryUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
-    answer?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ResumeUpdateWithoutUserInput = {
@@ -30052,24 +38204,27 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type MemoryUpdateWithoutUserInput = {
+  export type TailoredResumeUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    type?: EnumMemoryTypeFieldUpdateOperationsInput | $Enums.MemoryType
-    value?: StringFieldUpdateOperationsInput | string
+    jobUrl?: StringFieldUpdateOperationsInput | string
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type MemoryUncheckedUpdateWithoutUserInput = {
+  export type TailoredResumeUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    type?: EnumMemoryTypeFieldUpdateOperationsInput | $Enums.MemoryType
-    value?: StringFieldUpdateOperationsInput | string
+    jobUrl?: StringFieldUpdateOperationsInput | string
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type MemoryUncheckedUpdateManyWithoutUserInput = {
+  export type TailoredResumeUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    type?: EnumMemoryTypeFieldUpdateOperationsInput | $Enums.MemoryType
-    value?: StringFieldUpdateOperationsInput | string
+    jobUrl?: StringFieldUpdateOperationsInput | string
+    companyName?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -30078,16 +38233,16 @@ export namespace Prisma {
     platform?: StringFieldUpdateOperationsInput | string
     websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fieldsFilled?: IntFieldUpdateOperationsInput | number
-    totalFields?: IntFieldUpdateOperationsInput | number
     timeSavedSec?: IntFieldUpdateOperationsInput | number
-    tokensUsed?: IntFieldUpdateOperationsInput | number
-    promptTokens?: IntFieldUpdateOperationsInput | number
-    completionTokens?: IntFieldUpdateOperationsInput | number
-    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
-    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
     aiEdits?: IntFieldUpdateOperationsInput | number
     acceptedDirect?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completionTokens?: IntFieldUpdateOperationsInput | number
+    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
+    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
+    promptTokens?: IntFieldUpdateOperationsInput | number
+    tokensUsed?: IntFieldUpdateOperationsInput | number
+    totalFields?: IntFieldUpdateOperationsInput | number
   }
 
   export type UsageAnalyticsUncheckedUpdateWithoutUserInput = {
@@ -30095,16 +38250,16 @@ export namespace Prisma {
     platform?: StringFieldUpdateOperationsInput | string
     websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fieldsFilled?: IntFieldUpdateOperationsInput | number
-    totalFields?: IntFieldUpdateOperationsInput | number
     timeSavedSec?: IntFieldUpdateOperationsInput | number
-    tokensUsed?: IntFieldUpdateOperationsInput | number
-    promptTokens?: IntFieldUpdateOperationsInput | number
-    completionTokens?: IntFieldUpdateOperationsInput | number
-    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
-    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
     aiEdits?: IntFieldUpdateOperationsInput | number
     acceptedDirect?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completionTokens?: IntFieldUpdateOperationsInput | number
+    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
+    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
+    promptTokens?: IntFieldUpdateOperationsInput | number
+    tokensUsed?: IntFieldUpdateOperationsInput | number
+    totalFields?: IntFieldUpdateOperationsInput | number
   }
 
   export type UsageAnalyticsUncheckedUpdateManyWithoutUserInput = {
@@ -30112,97 +38267,64 @@ export namespace Prisma {
     platform?: StringFieldUpdateOperationsInput | string
     websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fieldsFilled?: IntFieldUpdateOperationsInput | number
-    totalFields?: IntFieldUpdateOperationsInput | number
     timeSavedSec?: IntFieldUpdateOperationsInput | number
-    tokensUsed?: IntFieldUpdateOperationsInput | number
-    promptTokens?: IntFieldUpdateOperationsInput | number
-    completionTokens?: IntFieldUpdateOperationsInput | number
-    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
-    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
     aiEdits?: IntFieldUpdateOperationsInput | number
     acceptedDirect?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    completionTokens?: IntFieldUpdateOperationsInput | number
+    fieldsAnswered?: NullableJsonNullValueInput | InputJsonValue
+    fieldsUnanswered?: NullableJsonNullValueInput | InputJsonValue
+    promptTokens?: IntFieldUpdateOperationsInput | number
+    tokensUsed?: IntFieldUpdateOperationsInput | number
+    totalFields?: IntFieldUpdateOperationsInput | number
   }
 
-  export type FormSessionUpdateWithoutUserInput = {
+  export type WorkUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    sessionId?: StringFieldUpdateOperationsInput | string
-    url?: NullableStringFieldUpdateOperationsInput | string | null
-    fields?: JsonNullValueInput | InputJsonValue
-    rawHtml?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    companyName?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    type?: EnumWorkTypeFieldUpdateOperationsInput | $Enums.WorkType
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type FormSessionUncheckedUpdateWithoutUserInput = {
+  export type WorkUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    sessionId?: StringFieldUpdateOperationsInput | string
-    url?: NullableStringFieldUpdateOperationsInput | string | null
-    fields?: JsonNullValueInput | InputJsonValue
-    rawHtml?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    companyName?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    type?: EnumWorkTypeFieldUpdateOperationsInput | $Enums.WorkType
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type FormSessionUncheckedUpdateManyWithoutUserInput = {
+  export type WorkUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    sessionId?: StringFieldUpdateOperationsInput | string
-    url?: NullableStringFieldUpdateOperationsInput | string | null
-    fields?: JsonNullValueInput | InputJsonValue
-    rawHtml?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    companyName?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    type?: EnumWorkTypeFieldUpdateOperationsInput | $Enums.WorkType
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type ChatEpisodeUpdateWithoutUserInput = {
+  export type CampaignUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    summary?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    messages?: ChatMessageUpdateManyWithoutEpisodeNestedInput
-  }
-
-  export type ChatEpisodeUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    messages?: ChatMessageUncheckedUpdateManyWithoutEpisodeNestedInput
+    contacts?: CampaignContactUpdateManyWithoutCampaignNestedInput
   }
 
-  export type ChatEpisodeUncheckedUpdateManyWithoutUserInput = {
+  export type CampaignUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    contacts?: CampaignContactUncheckedUpdateManyWithoutCampaignNestedInput
   }
 
-  export type GitHubConnectionUpdateWithoutUserInput = {
+  export type CampaignUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    accessToken?: StringFieldUpdateOperationsInput | string
-    githubLogin?: StringFieldUpdateOperationsInput | string
-    githubId?: IntFieldUpdateOperationsInput | number
-    scope?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type GitHubConnectionUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    accessToken?: StringFieldUpdateOperationsInput | string
-    githubLogin?: StringFieldUpdateOperationsInput | string
-    githubId?: IntFieldUpdateOperationsInput | number
-    scope?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type GitHubConnectionUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    accessToken?: StringFieldUpdateOperationsInput | string
-    githubLogin?: StringFieldUpdateOperationsInput | string
-    githubId?: IntFieldUpdateOperationsInput | number
-    scope?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -30237,6 +38359,74 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     sources?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CampaignContactCreateManyCampaignInput = {
+    id?: string
+    name: string
+    company: string
+    position: string
+    email: string
+    website: string
+    companyContext?: string | null
+    draftSubject?: string | null
+    draftBody?: string | null
+    error?: string | null
+    status?: string
+    lastContactedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CampaignContactUpdateWithoutCampaignInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    website?: StringFieldUpdateOperationsInput | string
+    companyContext?: NullableStringFieldUpdateOperationsInput | string | null
+    draftSubject?: NullableStringFieldUpdateOperationsInput | string | null
+    draftBody?: NullableStringFieldUpdateOperationsInput | string | null
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    lastContactedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CampaignContactUncheckedUpdateWithoutCampaignInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    website?: StringFieldUpdateOperationsInput | string
+    companyContext?: NullableStringFieldUpdateOperationsInput | string | null
+    draftSubject?: NullableStringFieldUpdateOperationsInput | string | null
+    draftBody?: NullableStringFieldUpdateOperationsInput | string | null
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    lastContactedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CampaignContactUncheckedUpdateManyWithoutCampaignInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    position?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    website?: StringFieldUpdateOperationsInput | string
+    companyContext?: NullableStringFieldUpdateOperationsInput | string | null
+    draftSubject?: NullableStringFieldUpdateOperationsInput | string | null
+    draftBody?: NullableStringFieldUpdateOperationsInput | string | null
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    lastContactedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

@@ -11,16 +11,18 @@ import { AIMemory } from '@/components/dashboard/AIMemory';
 import { UsageAnalytics } from '@/components/dashboard/UsageAnalytics';
 import { ChatAgent } from '@/components/dashboard/ChatAgent';
 import { LLMGateway } from '@/components/dashboard/LLMGateway';
-import { Home, User, Briefcase, MessageSquare, FileText, Brain, BarChart3, LogOut, Bot, Cpu } from 'lucide-react';
+import { OutreachCampaign } from '@/components/dashboard/OutreachCampaign';
+import { Home, User, Briefcase, MessageSquare, FileText, Brain, BarChart3, LogOut, Bot, Cpu, Mail } from 'lucide-react';
 import { removeToken } from '@/lib/auth';
 import { getCurrentUser } from '@/lib/currentUser';
 
-type TabId = 'overview' | 'chat' | 'gateway' | 'profile' | 'projects' | 'answers' | 'resume' | 'memory' | 'analytics';
+type TabId = 'overview' | 'chat' | 'gateway' | 'outreach' | 'profile' | 'projects' | 'answers' | 'resume' | 'memory' | 'analytics';
 
 const TABS: { id: TabId; label: string; icon: React.ReactNode }[] = [
   { id: 'overview',  label: 'Overview',  icon: <Home size={14} /> },
   { id: 'chat',      label: 'Chat Agent',icon: <Bot size={14} color="#a855f7" /> },
   { id: 'gateway',   label: 'LLM Gateway', icon: <Cpu size={14} color="#3b82f6" /> },
+  { id: 'outreach',  label: 'Cold Outreach', icon: <Mail size={14} color="#d97706" /> },
   { id: 'profile',   label: 'Profile',   icon: <User size={14} /> },
   { id: 'projects',  label: 'Projects',  icon: <Briefcase size={14} /> },
   { id: 'answers',   label: 'Answers',   icon: <MessageSquare size={14} /> },
@@ -33,6 +35,7 @@ const PANELS: Record<TabId, React.ReactNode> = {
   overview:  <DashboardOverview />,
   chat:      <ChatAgent />,
   gateway:   <LLMGateway />,
+  outreach:  <OutreachCampaign />,
   profile:   <ProfileContext />,
   projects:  <ProjectsSection />,
   answers:   <AnswersLibrary />,

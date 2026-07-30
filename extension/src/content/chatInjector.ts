@@ -17,15 +17,14 @@ export function injectChatUI() {
       </div>
       <div class="ai-form-chat-messages" id="ai-form-chat-messages">
         <div class="ai-form-chat-msg ai">
-          ✅ Form filled! I used your profile and verified every answer.<br>
-          You can refine any field by typing below.
+          👋 Hello! I am your Career & Job Application Copilot.<br>
+          You can ask me to draft a cover letter, answer an interview question, or compose an email using your profile memory.
         </div>
       </div>
       <div class="ai-form-chat-actions">
-        <button class="ai-form-quick-action" data-action="shorter">Make Shorter</button>
-        <button class="ai-form-quick-action" data-action="formal">Make Formal</button>
-        <button class="ai-form-quick-action" data-action="casual">Make Casual</button>
-        <button class="ai-form-quick-action" data-action="regenerate">Regenerate All</button>
+        <button class="ai-form-quick-action" data-action="cover_letter">Draft Cover Letter</button>
+        <button class="ai-form-quick-action" data-action="interview_prep">Answer Interview Q</button>
+        <button class="ai-form-quick-action" data-action="email_recruiter">Email Recruiter</button>
       </div>
       <div class="ai-form-chat-input-container">
         <input type="text" id="ai-form-chat-input" placeholder="e.g. Make motivation more concise..." />
@@ -64,10 +63,9 @@ export function injectChatUI() {
     btn.addEventListener("click", (e) => {
       const action = (e.target as HTMLElement).dataset.action;
       const messages: Record<string, string> = {
-        shorter: "Make all long-form answers more concise",
-        formal:  "Rewrite all answers in a formal and professional tone",
-        casual:  "Rewrite all answers in a friendly, conversational tone",
-        regenerate: "Regenerate all answers from scratch",
+        cover_letter: "Draft a compelling cover letter based on my profile.",
+        interview_prep: "Help me answer a common behavioral interview question.",
+        email_recruiter: "Draft a polite email to follow up with a recruiter.",
       };
       if (action && messages[action]) {
         const input = document.getElementById("ai-form-chat-input") as HTMLInputElement;
@@ -110,6 +108,8 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
       setSendDisabled(false);
       if (message.error) {
         addMessage("ai", `⚠️ ${message.error}`);
+      } else if (message.response) {
+        addMessage("ai", message.response);
       } else {
         const count = message.updatedCount ?? Object.keys(message.updatedFields ?? {}).length;
         addMessage("ai", `✅ Updated ${count} field${count !== 1 ? "s" : ""}.`);
@@ -196,8 +196,77 @@ export function addMessage(role: "user" | "ai", content: string) {
 
   const msgDiv = document.createElement("div");
   msgDiv.className = `ai-form-chat-msg ${role}`;
-  // Render newlines as <br>
-  msgDiv.innerHTML = content.replace(/\n/g, "<br>");
+
+  // Interactive Email Confirmation Card UI
+  if (role === "ai" && (content.includes("[EMAIL_CONFIRMATION_REQUIRED]") || (content.includes("TO:") && content.includes("SUBJECT:")))) {
+    const fromMatch = content.match(/FROM: ([^\n\r]+)/);
+    const toMatch = content.match(/TO: ([^\n\r]+)/);
+    const subjectMatch = content.match(/SUBJECT: ([^\n\r]+)/);
+    const bodyMatch = content.match(/BODY:\n([\s\S]+?)\n\n⚠️/);
+
+    const fromEmail = fromMatch ? fromMatch[1].trim() : "user@formpilot.local";
+    const toEmail = toMatch ? toMatch[1].trim() : "recipient@example.com";
+    const subjectText = subjectMatch ? subjectMatch[1].trim() : "Job Application Inquiry";
+    const bodyText = bodyMatch ? bodyMatch[1].trim() : content.replace(/\[EMAIL_CONFIRMATION_REQUIRED\]/g, "");
+
+    const cardId = `email-card-${Date.now()}`;
+    msgDiv.innerHTML = `
+      <div id="${cardId}" style="background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(99, 102, 241, 0.35); border-radius: 12px; padding: 14px; box-shadow: 0 12px 28px rgba(0,0,0,0.5); backdrop-filter: blur(8px);">
+        <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px; margin-bottom: 10px;">
+          <div style="display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: 13px; color: #818cf8;">
+            <span>📧</span> <span>Email Confirmation Request</span>
+          </div>
+          <span style="font-size: 10px; background: rgba(99,102,241,0.25); color: #a5b4fc; padding: 2px 8px; border-radius: 6px; font-weight: 700; text-transform: uppercase;">Review Draft</span>
+        </div>
+
+        <div style="font-size: 12px; color: #cbd5e1; display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px;">
+          <div><strong style="color: #94a3b8;">From:</strong> <span style="color: #f8fafc;">${fromEmail}</span></div>
+          <div><strong style="color: #94a3b8;">To:</strong> <span style="color: #38bdf8; font-weight: 600;">${toEmail}</span></div>
+          <div><strong style="color: #94a3b8;">Subject:</strong> <span style="color: #f8fafc;">${subjectText}</span></div>
+        </div>
+
+        <div style="font-size: 12px; color: #f1f5f9; background: rgba(0,0,0,0.4); padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.06); max-height: 140px; overflow-y: auto; white-space: pre-wrap; font-family: system-ui, sans-serif; line-height: 1.45; margin-bottom: 12px;">${bodyText}</div>
+
+        <div style="display: flex; gap: 8px;" id="${cardId}-actions">
+          <button id="${cardId}-accept" style="flex: 1; padding: 9px 12px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; border: none; border-radius: 8px; font-weight: 700; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);">
+            🚀 Accept & Send Email
+          </button>
+          <button id="${cardId}-decline" style="padding: 9px 14px; background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 8px; font-weight: 600; font-size: 12px; cursor: pointer;">
+            ✕ Decline
+          </button>
+        </div>
+      </div>
+    `;
+
+    container.appendChild(msgDiv);
+    container.scrollTop = container.scrollHeight;
+
+    setTimeout(() => {
+      document.getElementById(`${cardId}-accept`)?.addEventListener("click", () => {
+        const input = document.getElementById("ai-form-chat-input") as HTMLInputElement;
+        if (input) {
+          input.value = "Yes, send the email";
+          sendChatMessage();
+        }
+        const actionsDiv = document.getElementById(`${cardId}-actions`);
+        if (actionsDiv) {
+          actionsDiv.innerHTML = `<div style="font-size: 12px; color: #34d399; font-weight: 600;">✅ Email confirmed & sending...</div>`;
+        }
+      });
+
+      document.getElementById(`${cardId}-decline`)?.addEventListener("click", () => {
+        const actionsDiv = document.getElementById(`${cardId}-actions`);
+        if (actionsDiv) {
+          actionsDiv.innerHTML = `<div style="font-size: 12px; color: #f87171; font-weight: 600;">✕ Email dispatch cancelled by user.</div>`;
+        }
+      });
+    }, 50);
+
+    return;
+  }
+
+  // Standard message rendering
+  msgDiv.innerHTML = content.replace(/\[EMAIL_CONFIRMATION_REQUIRED\]/g, "").replace(/\n/g, "<br>");
   container.appendChild(msgDiv);
   container.scrollTop = container.scrollHeight;
 }

@@ -27,7 +27,8 @@ export async function removeToken(): Promise<void> {
 export async function apiRequest(
   endpoint: string,
   method: string = "GET",
-  body?: unknown
+  body?: unknown,
+  signal?: AbortSignal
 ) {
   const token = await getToken();
   const headers: Record<string, string> = { "Content-Type": "application/json" };
@@ -37,6 +38,7 @@ export async function apiRequest(
     method,
     headers,
     body: body ? JSON.stringify(body) : undefined,
+    signal
   });
 
   return response.json();
@@ -77,14 +79,17 @@ export async function recordAnalytics(payload: any): Promise<void> {
  * Call the LangGraph autofill agent endpoint.
  * Falls through to the legacy /generate endpoint if this fails.
  */
-export async function agentFill(payload: AgentFillPayload): Promise<AgentFillResponse | null> {
+export async function agentFill(payload: AgentFillPayload, signal?: AbortSignal): Promise<AgentFillResponse | null> {
   try {
-    const data = await apiRequest("/ai/agent/fill", "POST", payload);
+    const data = await apiRequest("/ai/agent/fill", "POST", payload, signal);
     if (data && typeof data.answers === "object" && !data.error) {
       return data as AgentFillResponse;
     }
     return null;
-  } catch {
+  } catch (err: any) {
+    if (err.name === 'AbortError') {
+      throw err;
+    }
     return null;
   }
 }
@@ -121,6 +126,29 @@ export async function agentRefine(
     });
     if (data && typeof data === "object" && !data.error) {
       return data as Record<string, string>;
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Call the LangGraph conversational Chat Agent endpoint.
+ */
+export async function agentChat(
+  message: string,
+  history: Array<{ role: string; content: string }> = [],
+  episodeId?: string
+): Promise<{ response: string; episodeId?: string } | null> {
+  try {
+    const data = await apiRequest("/ai/agent/chat", "POST", {
+      message,
+      history,
+      episodeId,
+    });
+    if (data && typeof data === "object" && !data.error) {
+      return data as { response: string; episodeId?: string };
     }
     return null;
   } catch {

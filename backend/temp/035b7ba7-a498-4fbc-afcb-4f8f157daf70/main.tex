@@ -1,0 +1,161 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome}
+\usepackage{xcolor}
+\usepackage{graphicx} % For photo
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-5pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-3pt}]
+
+\pdfgentounicode=1
+
+\newcommand{\resumeItem}[1]{\item\small{#1}}
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-6pt}
+}
+\newcommand{\resumeProjectHeading}[2]{
+  \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \small#2 \\
+    \end{tabular*}\vspace{-1pt}
+}
+\newcommand{\resumeItemListStart}{\begin{itemize}[itemsep=-2pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-7pt}}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Arpan Agrawal} \\[6pt]
+    \small
+    \faPhone \, \href{tel:9156933376}{\underline{9156933376}} $|$
+    \faEnvelope \, \href{mailto:arpanagrawal552@gmail.com}{\underline{arpanagrawal552@gmail.com}} $|$
+    \faLinkedin \, \href{https://www.linkedin.com/in/arpan-agrawal-2a65a7275}{\underline{LinkedIn}} $|$
+    \faGithub \, \href{https://github.com/arpan9422}{\underline{arpan9422}}
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+\resumeSubHeadingListStart
+    \resumeSubheading
+      {Pune Institute of Computer Technology}{May 2023 -- June 2027}
+      {B.E. in Electronics and Telecommunication}{CGPA: 9.68}
+\resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+\resumeSubHeadingListStart
+  \resumeSubheading
+      {Script Lanes}{June 2025 -- April 2026}
+      {Full Stack Developer Intern}{Hybrid, Pune, India}
+    \resumeItemListStart
+      \resumeItem{Built \textbf{20+ REST APIs} (Node.js, TypeScript, Prisma, PostgreSQL) powering \textbf{OrthoAI} and \textbf{FlourishAI}, two AI-driven healthcare assistants.}
+      \resumeItem{Designed a \textbf{RAG pipeline} using \textbf{LangChain} and a vector database, enabling context-aware responses, reducing hallucinations, and improving retrieval efficiency.}
+      \resumeItem{Collaborated with a cross-functional team to ship features into production on a biweekly release cycle.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+\resumeSubHeadingListStart
+
+\resumeProjectHeading
+{\textbf{\underline{AI Voice Agent for Partner Lead Conversion}}
+\textit{\small{ -- Next.js, Node.js, Ollama, Pinecone, PostgreSQL}}}
+{\href{https://github.com/arpan9422/ai-for-bharat}{\faGithub}}
+\resumeItemListStart
+  \resumeItem{Built an \textbf{end-to-end multilingual voice agent} (Deepgram STT $\rightarrow$ Ollama LLM $\rightarrow$ Sarvam AI TTS) for real-time, low-latency lead conversations.}
+  \resumeItem{Engineered a \textbf{RAG pipeline} with Pinecone for grounded objection handling, plus agentic workflows for lead scoring, conversation memory, and automated RM handoff with AI-generated call summaries.}
+  \resumeItem{Shipped a \textbf{Next.js + PostgreSQL} analytics dashboard for transcript review and lead pipeline tracking.}
+\resumeItemListEnd
+
+\resumeProjectHeading
+{\textbf{\underline{StackWise}} \textit{\small{ -- React, TypeScript, Node.js, Supabase, Pinecone, AWS}}}{\href{https://stackwise.in}{\faGlobe}}
+\resumeItemListStart
+  \resumeItem{Built an AI-powered platform that aggregates and summarizes engineering blogs from companies like Google, Netflix, Meta, AWS, and Stripe into \textbf{1000+} concise, citable summaries.}
+  \resumeItem{Designed a \textbf{RAG ingestion pipeline} (Node.js, Pinecone, Supabase/PostgreSQL) to automatically fetch, embed, and summarize long-form articles at scale.}
+  \resumeItem{Added an \textbf{AI-generated podcast feature} that converts summarized blogs into listenable audio episodes, extending content reach beyond text.}
+\resumeItemListEnd
+
+\resumeProjectHeading
+{\textbf{\underline{Udemy-RAG}} \textit{\small{ -- Python, Node.js, RAG, Web Scraping}}}{\href{https://github.com/arpan9422/udemy-rag}{\faGithub}}
+\resumeItemListStart
+  \resumeItem{Built an AI course assistant that scrapes enrolled Udemy course resources (PDFs, code, slides) into a private vector knowledge base, then answers revision questions via a citation-backed RAG chatbot.}
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Languages}{: JavaScript, TypeScript, Python, C++, HTML} \\
+    \textbf{Frameworks/Databases}{: React, React Native, Node.js, Next.js, Prisma, MySQL, MongoDB, PostgreSQL, Tailwind CSS} \\
+    \textbf{AI/ML}{: LangChain, RAG, Vector Databases (Pinecone), AnythingLLM} \\
+    \textbf{Tools/Platforms}{: Git, GitHub, Postman, Swagger, Figma, AWS, Azure, Google Cloud} \\
+    \textbf{Core Subjects}{: Data Structures \& Algorithms, Object-Oriented Programming}
+  }}
+\end{itemize}
+
+%-----------EXTRA CURRICULAR-----------
+\section{Extracurricular and Achievements}
+\resumeSubHeadingListStart
+    \resumeProjectHeading{}{}
+    \vspace{-22pt}
+    \resumeItemListStart
+        \resumeItem{\textbf{Tech Head}, college flagship hackathon \textbf{Techfiesta '26}}
+        \resumeItem{\textbf{Rank 44/1000+} (by accuracy) -- Bajaj Finserv \textbf{HackRx '25}}
+        \resumeItem{\textbf{Top 100} -- Google \textbf{GenAI Exchange Hackathon '25}}
+        \resumeItem{\textbf{Top 10/500+} teams -- \textbf{i.mobilothon 5.0} by Volkswagen}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+
+\end{document}

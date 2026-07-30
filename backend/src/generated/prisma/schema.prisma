@@ -1,5 +1,3 @@
-// schema.prisma — Prisma v7
-// Connection URL is now configured in prisma.config.ts
 generator client {
   provider = "prisma-client-js"
   output   = "../src/generated/prisma"
@@ -9,9 +7,340 @@ datasource db {
   provider = "postgresql"
 }
 
-///////////////////////////////////////////////////////
-// ENUMS
-///////////////////////////////////////////////////////
+model User {
+  id                String            @id @default(uuid())
+  email             String            @unique
+  referralCode      String            @unique
+  firstName         String
+  middleName        String?
+  lastName          String
+  phone             String?
+  bio               String?
+  skills            Json?
+  onboardingDone    Boolean           @default(false)
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  addresses         Address[]
+  answers           AnswerLibrary[]
+  chatEpisodes      ChatEpisode[]
+  educations        Education[]
+  formSessions      FormSession[]
+  GitHubConnections GitHubConnection?
+  llmConfig         LLMGatewayConfig?
+  LatexTemplate     LatexTemplate[]
+  links             Link[]
+  memories          Memory[]
+  projects          Project[]
+  resumes           Resume[]
+  TailoredResume    TailoredResume[]
+  analytics         UsageAnalytics[]
+  works             Work[]
+  campaigns         Campaign[]
+}
+
+model Link {
+  id       String @id @default(uuid())
+  userId   String
+  platform String
+  url      String
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Address {
+  id         String      @id @default(uuid())
+  userId     String
+  type       AddressType
+  label      String?
+  line1      String
+  line2      String?
+  city       String
+  state      String
+  postalCode String
+  country    String
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([type])
+}
+
+model Education {
+  id            String    @id @default(uuid())
+  userId        String
+  instituteName String
+  degree        String
+  startDate     DateTime
+  endDate       DateTime?
+  gpa           Float?
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Work {
+  id          String    @id @default(uuid())
+  userId      String
+  companyName String
+  position    String
+  type        WorkType
+  startDate   DateTime
+  endDate     DateTime?
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Project {
+  id           String   @id @default(uuid())
+  userId       String
+  name         String
+  description  String
+  repo_url     String?
+  depolyed_url String?
+  projectLinks String[]
+  techStacks   String[]
+  createdAt    DateTime @default(now())
+  priority     Int      @default(0)
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model AnswerLibrary {
+  id        String   @id @default(uuid())
+  userId    String
+  title     String
+  category  String
+  answer    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Resume {
+  id          String   @id @default(uuid())
+  userId      String
+  label       String
+  target      String?
+  description String?
+  pdfUrl      String
+  isDefault   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Memory {
+  id        String     @id @default(uuid())
+  userId    String
+  type      MemoryType
+  value     String
+  createdAt DateTime   @default(now())
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model UsageAnalytics {
+  id               String   @id @default(uuid())
+  userId           String
+  platform         String
+  websiteUrl       String?
+  fieldsFilled     Int
+  timeSavedSec     Int
+  aiEdits          Int      @default(0)
+  acceptedDirect   Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  completionTokens Int      @default(0)
+  fieldsAnswered   Json?
+  fieldsUnanswered Json?
+  promptTokens     Int      @default(0)
+  tokensUsed       Int      @default(0)
+  totalFields      Int      @default(0)
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([platform])
+}
+
+model GitHubConnection {
+  id          String   @id @default(uuid())
+  userId      String   @unique
+  accessToken String
+  githubLogin String
+  githubId    Int
+  scope       String   @default("repo,read:user")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model RequestLog {
+  id         String   @id @default(uuid())
+  method     String
+  path       String
+  statusCode Int
+  durationMs Int
+  userId     String?
+  ip         String?
+  userAgent  String?
+  body       Json?
+  query      Json?
+  errorMsg   String?
+  errorStack String?
+  level      LogLevel @default(INFO)
+  createdAt  DateTime @default(now())
+
+  @@index([userId])
+  @@index([level])
+  @@index([statusCode])
+  @@index([createdAt])
+  @@index([path])
+}
+
+model AppLog {
+  id        String   @id @default(uuid())
+  level     LogLevel
+  context   String
+  message   String
+  meta      Json?
+  userId    String?
+  createdAt DateTime @default(now())
+
+  @@index([level])
+  @@index([context])
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model FormSession {
+  id        String   @id @default(uuid())
+  userId    String
+  sessionId String   @unique
+  url       String?
+  fields    Json
+  rawHtml   String?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([sessionId])
+}
+
+model ChatEpisode {
+  id        String        @id @default(uuid())
+  userId    String
+  title     String        @default("New Conversation")
+  summary   String?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages  ChatMessage[]
+
+  @@index([userId])
+  @@index([updatedAt])
+}
+
+model ChatMessage {
+  id        String      @id @default(uuid())
+  episodeId String
+  role      String
+  content   String
+  sources   Json?
+  createdAt DateTime    @default(now())
+  episode   ChatEpisode @relation(fields: [episodeId], references: [id], onDelete: Cascade)
+
+  @@index([episodeId])
+  @@index([createdAt])
+}
+
+model LLMGatewayConfig {
+  id          String   @id @default(uuid())
+  userId      String   @unique
+  provider    String   @default("ollama")
+  model       String?
+  apiKey      String?
+  baseURL     String?
+  temperature Float    @default(0.2)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model CompanyContextCache {
+  id        String   @id @default(uuid())
+  url       String   @unique
+  context   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([url])
+}
+
+model LatexTemplate {
+  id        String   @id @default(uuid())
+  userId    String
+  name      String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model TailoredResume {
+  id          String   @id @default(uuid())
+  userId      String
+  jobUrl      String
+  companyName String?
+  pdfUrl      String?
+  createdAt   DateTime @default(now())
+  User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Campaign {
+  id        String            @id @default(uuid())
+  userId    String
+  name      String
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+  contacts  CampaignContact[]
+  user      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model CampaignContact {
+  id              String    @id @default(uuid())
+  campaignId      String
+  name            String
+  company         String
+  position        String
+  email           String
+  website         String
+  companyContext  String?
+  draftSubject    String?
+  draftBody       String?
+  error           String?
+  status          String    @default("pending")
+  lastContactedAt DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  campaign        Campaign  @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  @@index([campaignId])
+}
 
 enum WorkType {
   INTERNSHIP
@@ -36,385 +365,9 @@ enum AddressType {
   OTHER
 }
 
-///////////////////////////////////////////////////////
-// USER
-///////////////////////////////////////////////////////
-
-model User {
-  id           String @id @default(uuid())
-  email        String @unique
-  referralCode String @unique
-
-  firstName  String
-  middleName String?
-  lastName   String
-
-  phone          String?
-  bio            String?
-  skills         Json?
-  onboardingDone Boolean @default(false)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  links        Link[]
-  addresses    Address[]
-  educations   Education[]
-  works        Work[]
-  projects     Project[]
-  answers      AnswerLibrary[]
-  resumes      Resume[]
-  memories     Memory[]
-  analytics    UsageAnalytics[]
-  formSessions FormSession[]
-  chatEpisodes ChatEpisode[]
-  llmConfig    LLMGatewayConfig?
-
-  GitHubConnections GitHubConnection[]
-}
-
-///////////////////////////////////////////////////////
-// LINKS
-///////////////////////////////////////////////////////
-
-model Link {
-  id       String @id @default(uuid())
-  userId   String
-  platform String
-  url      String
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-}
-
-///////////////////////////////////////////////////////
-// ADDRESSES
-///////////////////////////////////////////////////////
-
-model Address {
-  id         String      @id @default(uuid())
-  userId     String
-  type       AddressType
-  label      String?
-  line1      String
-  line2      String?
-  city       String
-  state      String
-  postalCode String
-  country    String
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-  @@index([type])
-}
-
-///////////////////////////////////////////////////////
-// EDUCATION
-///////////////////////////////////////////////////////
-
-model Education {
-  id     String @id @default(uuid())
-  userId String
-
-  instituteName String
-  degree        String
-
-  startDate DateTime
-  endDate   DateTime?
-
-  gpa Float?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-}
-
-///////////////////////////////////////////////////////
-// WORK
-///////////////////////////////////////////////////////
-
-model Work {
-  id     String @id @default(uuid())
-  userId String
-
-  companyName String
-  position    String
-  type        WorkType
-
-  startDate DateTime
-  endDate   DateTime?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-}
-
-///////////////////////////////////////////////////////
-// PROJECTS
-///////////////////////////////////////////////////////
-
-model Project {
-  id     String @id @default(uuid())
-  userId String
-
-  name         String
-  description  String
-  repo_url     String?
-  depolyed_url String?
-
-  projectLinks String[]
-  techStacks   String[]
-  priority     Int      @default(0)
-
-  createdAt DateTime @default(now())
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-}
-
-///////////////////////////////////////////////////////
-// ANSWER LIBRARY
-///////////////////////////////////////////////////////
-
-model AnswerLibrary {
-  id     String @id @default(uuid())
-  userId String
-
-  title    String
-  category String
-  answer   String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-}
-
-///////////////////////////////////////////////////////
-// RESUME
-///////////////////////////////////////////////////////
-
-model Resume {
-  id     String @id @default(uuid())
-  userId String
-
-  label       String
-  target      String?
-  description String?
-
-  pdfUrl    String
-  isDefault Boolean @default(false)
-
-  createdAt DateTime @default(now())
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-}
-
-///////////////////////////////////////////////////////
-// MEMORY (RAG METADATA)
-///////////////////////////////////////////////////////
-
-model Memory {
-  id     String @id @default(uuid())
-  userId String
-
-  type  MemoryType
-  value String
-
-  createdAt DateTime @default(now())
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-}
-
-///////////////////////////////////////////////////////
-// USAGE ANALYTICS
-///////////////////////////////////////////////////////
-
-model UsageAnalytics {
-  id     String @id @default(uuid())
-  userId String
-
-  platform   String
-  websiteUrl String?
-
-  fieldsFilled Int
-  totalFields  Int @default(0)
-  timeSavedSec Int
-
-  tokensUsed       Int @default(0)
-  promptTokens     Int @default(0)
-  completionTokens Int @default(0)
-
-  fieldsAnswered   Json?
-  fieldsUnanswered Json?
-
-  aiEdits        Int     @default(0)
-  acceptedDirect Boolean @default(true)
-
-  createdAt DateTime @default(now())
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-  @@index([platform])
-}
-
-model GitHubConnection {
-  id          String   @id @default(uuid())
-  userId      String   @unique
-  accessToken String
-  githubLogin String // GitHub username
-  githubId    Int // GitHub user ID
-  scope       String   @default("repo,read:user")
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-}
-
-///////////////////////////////////////////////////////
-// REQUEST LOGS
-///////////////////////////////////////////////////////
-
 enum LogLevel {
   INFO
   WARN
   ERROR
   DEBUG
-}
-
-model RequestLog {
-  id String @id @default(uuid())
-
-  // HTTP context
-  method     String
-  path       String
-  statusCode Int
-  durationMs Int
-
-  // Auth context (nullable for unauthenticated requests)
-  userId String?
-
-  // Request/response details
-  ip         String?
-  userAgent  String?
-  body       Json? // sanitized — no passwords/tokens
-  query      Json?
-  errorMsg   String?
-  errorStack String?
-
-  level LogLevel @default(INFO)
-
-  createdAt DateTime @default(now())
-
-  @@index([userId])
-  @@index([level])
-  @@index([statusCode])
-  @@index([createdAt])
-  @@index([path])
-}
-
-///////////////////////////////////////////////////////
-// APP LOGS (general purpose)
-///////////////////////////////////////////////////////
-
-model AppLog {
-  id String @id @default(uuid())
-
-  level   LogLevel
-  context String // e.g. "sarvam", "ollama", "rag", "auth"
-  message String
-  meta    Json? // any extra structured data
-
-  userId String?
-
-  createdAt DateTime @default(now())
-
-  @@index([level])
-  @@index([context])
-  @@index([userId])
-  @@index([createdAt])
-}
-
-///////////////////////////////////////////////////////
-// FORM SESSION
-///////////////////////////////////////////////////////
-
-model FormSession {
-  id        String   @id @default(uuid())
-  userId    String
-  sessionId String   @unique
-  url       String?
-  fields    Json
-  rawHtml   String?  @db.Text
-  createdAt DateTime @default(now())
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-  @@index([sessionId])
-}
-
-///////////////////////////////////////////////////////
-// CHAT EPISODES & EPISODIC HISTORY
-///////////////////////////////////////////////////////
-
-model ChatEpisode {
-  id        String   @id @default(uuid())
-  userId    String
-  title     String   @default("New Conversation")
-  summary   String?  @db.Text
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  user     User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  messages ChatMessage[]
-
-  @@index([userId])
-  @@index([updatedAt])
-}
-
-model ChatMessage {
-  id        String   @id @default(uuid())
-  episodeId String
-  role      String // "user" | "ai"
-  content   String   @db.Text
-  sources   Json? // RAG source labels utilized during generation
-  createdAt DateTime @default(now())
-
-  episode ChatEpisode @relation(fields: [episodeId], references: [id], onDelete: Cascade)
-
-  @@index([episodeId])
-  @@index([createdAt])
-}
-
-///////////////////////////////////////////////////////
-// LLM GATEWAY CONFIG
-///////////////////////////////////////////////////////
-
-model LLMGatewayConfig {
-  id          String   @id @default(uuid())
-  userId      String   @unique
-  provider    String   @default("ollama") // "ollama" | "openai" | "gemini" | "groq" | "openrouter" | "custom"
-  model       String?
-  apiKey      String?
-  baseURL     String?
-  temperature Float    @default(0.2)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
 }

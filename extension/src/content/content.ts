@@ -4,11 +4,14 @@
 import { detectFormFields } from "./formDetector";
 import { fillFormFields, highlightField } from "./formFiller";
 import { getFormFields } from "./scraper";
+import { injectFloatingButton } from "./floatingButton";
+import { injectChatUI } from "./chatInjector";
 
 // ─── Init ─────────────────────────────────────────────────────────────────────
 
 async function init() {
   console.log("[FormPilot] Extension initialized");
+  injectFloatingButton();
 }
 
 
@@ -77,6 +80,11 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     // ── Popup / external trigger ──────────────────────────────────────────────
     case "SCAN_AND_FILL":
       scanFormsOnDemand();
+      sendResponse({ success: true });
+      break;
+
+    case "OPEN_CHAT":
+      injectChatUI();
       sendResponse({ success: true });
       break;
 

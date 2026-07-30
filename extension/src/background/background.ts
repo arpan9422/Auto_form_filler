@@ -1,5 +1,5 @@
 import type { FormField } from "../content/scraper";
-import { getToken, agentFill, agentRefine, legacyFill, inferDomain, type AgentFillResponse, recordAnalytics } from "../utils/api";
+import { getToken, agentFill, agentChat, legacyFill, inferDomain, type AgentFillResponse, recordAnalytics } from "../utils/api";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -11,12 +11,17 @@ const tabFormState = new Map<number, Record<string, string>>();
 const tabSessionId = new Map<number, string>();
 /** Pending field list indexed by tab — for fallback and re-fill */
 const tabFields = new Map<number, FormField[]>();
+/** Abort controllers for cancelling agentFill */
+const tabAbortControllers = new Map<number, AbortController>();
+/** The current chat episode ID for the tab */
+const tabChatEpisodeId = new Map<number, string>();
 
 type RuntimeMessage =
   | { type: "FORM_FIELDS_DETECTED"; data: FormField[] }
   | { type: "TRIGGER_AUTOFILL" }
   | { type: "CHAT_REFINE"; data: { message: string } }
-  | { type: "AGENT_STATUS_REQUEST" };
+  | { type: "AGENT_STATUS_REQUEST" }
+  | { type: "STOP_AUTOFILL" };
 
 // ─── Message listener ─────────────────────────────────────────────────────────
 
@@ -47,6 +52,18 @@ chrome.runtime.onMessage.addListener((message: RuntimeMessage, sender, sendRespo
         sessionId: tabId ? tabSessionId.get(tabId) : undefined,
       });
       return true;
+
+    case "STOP_AUTOFILL":
+      if (tabId) {
+        const controller = tabAbortControllers.get(tabId);
+        if (controller) {
+          controller.abort();
+          tabAbortControllers.delete(tabId);
+          console.log(`[FormPilot] Aborted autofill for tab ${tabId}`);
+        }
+      }
+      sendResponse({ success: true });
+      return true;
   }
 });
 
@@ -60,15 +77,30 @@ async function handleFormFieldsDetected(tabId: number | undefined, fields: FormF
 
   tabFields.set(tabId, fields);
   console.log(`[FormPilot] ${fields.length} fields stored for tab ${tabId}`);
+  notifyContent(tabId, "AUTOFILL_STATUS", { status: "progress", step: `🧠 Discovered ${fields.length} inputs. Stage 1: Searching Profile & Projects RAG...` });
 
   const answers = await generateAnswers(tabId, fields, rawHtml, url);
+  if (answers && answers._STOPPED_) {
+    notifyContent(tabId, "AUTOFILL_STATUS", { status: "error", step: "🛑 Autofill was manually stopped." });
+    return;
+  }
   if (!Object.keys(answers).length) {
     console.warn("[FormPilot] No answers generated");
-    notifyContent(tabId, "AUTOFILL_STATUS", { status: "empty" });
+    notifyContent(tabId, "AUTOFILL_STATUS", { status: "empty", step: "Unable to generate verified answers from your available profile context." });
     return;
   }
 
   chrome.tabs.sendMessage(tabId, { type: "FILL_FIELDS", data: answers });
+  notifyContent(tabId, "AUTOFILL_STATUS", {
+    status: "done",
+    step: "✅ Form successfully auto-filled!",
+    stats: {
+      total: fields.length,
+      answered: Object.keys(answers).length,
+      timeSaved: Object.keys(answers).length * 10,
+      unresolvedCount: Math.max(0, fields.length - Object.keys(answers).length),
+    },
+  });
 }
 
 // ─── Handler: explicit trigger from popup or floating button ──────────────────
@@ -77,7 +109,7 @@ async function handleAutoFill(tabId: number | undefined) {
   if (!tabId) return;
 
   console.log(`[FormPilot] Starting AutoFill for tab ${tabId}`);
-  notifyContent(tabId, "AUTOFILL_STATUS", { status: "loading" });
+  notifyContent(tabId, "AUTOFILL_STATUS", { status: "progress", step: "🔍 Scanning page DOM & identifying form input schema..." });
 
   try {
     // Ask content script to detect fields on demand
@@ -86,24 +118,38 @@ async function handleAutoFill(tabId: number | undefined) {
 
     if (!fields.length) {
       console.warn("[FormPilot] No fields detected");
-      notifyContent(tabId, "AUTOFILL_STATUS", { status: "no_fields" });
+      notifyContent(tabId, "AUTOFILL_STATUS", { status: "no_fields", step: "No fillable form inputs detected on this page." });
       return;
     }
 
     tabFields.set(tabId, fields);
+    notifyContent(tabId, "AUTOFILL_STATUS", { status: "progress", step: `🧠 Discovered ${fields.length} inputs. Stage 1: Searching Profile & Projects RAG...` });
 
     const answers = await generateAnswers(tabId, fields);
+    if (answers && answers._STOPPED_) {
+      notifyContent(tabId, "AUTOFILL_STATUS", { status: "error", step: "🛑 Autofill was manually stopped." });
+      return;
+    }
     if (!Object.keys(answers).length) {
       console.warn("[FormPilot] No answers generated");
-      notifyContent(tabId, "AUTOFILL_STATUS", { status: "empty" });
+      notifyContent(tabId, "AUTOFILL_STATUS", { status: "empty", step: "Unable to generate verified answers from your available profile context." });
       return;
     }
 
     chrome.tabs.sendMessage(tabId, { type: "FILL_FIELDS", data: answers });
-    notifyContent(tabId, "AUTOFILL_STATUS", { status: "done" });
+    notifyContent(tabId, "AUTOFILL_STATUS", {
+      status: "done",
+      step: "✅ Form successfully auto-filled!",
+      stats: {
+        total: fields.length,
+        answered: Object.keys(answers).length,
+        timeSaved: Object.keys(answers).length * 10,
+        unresolvedCount: Math.max(0, fields.length - Object.keys(answers).length),
+      },
+    });
   } catch (error) {
     console.error("[FormPilot] AutoFill error:", error);
-    notifyContent(tabId, "AUTOFILL_STATUS", { status: "error" });
+    notifyContent(tabId, "AUTOFILL_STATUS", { status: "error", step: "An unexpected error occurred during autofill execution." });
   }
 }
 
@@ -119,33 +165,25 @@ async function handleChatRefine(tabId: number | undefined, data: { message: stri
     console.warn("[FormPilot] No auth token found - continuing with local backend session");
   }
 
-  // Get the current form state previously stored from the last autofill
-  const currentFormState = tabFormState.get(tabId) ?? {};
-  const sessionId = tabSessionId.get(tabId);
-
   notifyContent(tabId, "CHAT_REFINE_STATUS", { status: "loading" });
 
   try {
-    const updatedFields = await agentRefine(data.message, currentFormState, sessionId);
+    const episodeId = tabChatEpisodeId.get(tabId);
+    const result = await agentChat(data.message, [], episodeId);
 
-    if (!updatedFields || !Object.keys(updatedFields).length) {
+    if (!result) {
       notifyContent(tabId, "CHAT_REFINE_RESULT", {
-        error: "No fields were updated. Try rephrasing your instruction.",
+        error: "Failed to get a response. Please try again.",
       });
       return;
     }
 
-    // Merge updates into stored form state
-    const merged = { ...currentFormState, ...updatedFields };
-    tabFormState.set(tabId, merged);
+    if (result.episodeId) {
+      tabChatEpisodeId.set(tabId, result.episodeId);
+    }
 
-    // Send updates to content script to apply to DOM
-    chrome.tabs.sendMessage(tabId, { type: "UPDATE_FIELDS", data: updatedFields });
-
-    // Notify chat UI with the list of updated fields
     notifyContent(tabId, "CHAT_REFINE_RESULT", {
-      updatedFields,
-      updatedCount: Object.keys(updatedFields).length,
+      response: result.response,
     });
   } catch (error) {
     console.error("[FormPilot] Chat refine error:", error);
@@ -183,7 +221,28 @@ async function generateAnswers(tabId: number, fields: FormField[], rawHtml?: str
   // Retrieve any existing form values already in the DOM to pass as context
   const currentFormState = tabFormState.get(tabId) ?? {};
 
-  // ── Primary: LangGraph agentic fill ────────────────────────────────────────
+  // ── Primary: LangGraph agentic fill with live step broadcasting ───────────
+  const progressSteps = [
+    { delay: 0, step: "🔍 Extracting DOM input schema & context..." },
+    { delay: 1000, step: `🧠 Classifying ${fields.length} input fields by type & intent...` },
+    { delay: 2500, step: "📚 Stage 1: Searching Profile, Education & Projects RAG..." },
+    { delay: 4500, step: "✍️ Composing grounded responses with reasoning model..." },
+    { delay: 7000, step: "🔍 Validating constraints & evaluating fill plan..." },
+    { delay: 9500, step: "⚡ Stage 2: Situational RAG lookup on Answer Library..." },
+    { delay: 11800, step: "✨ Finalizing fill plan & injecting values..." },
+  ];
+
+  const timeouts: Array<ReturnType<typeof setTimeout>> = [];
+  progressSteps.forEach(({ delay, step }) => {
+    const t = setTimeout(() => {
+      notifyContent(tabId, "AUTOFILL_STATUS", { status: "progress", step });
+    }, delay);
+    timeouts.push(t);
+  });
+
+  const abortController = new AbortController();
+  tabAbortControllers.set(tabId, abortController);
+
   let agentResponse: AgentFillResponse | null = null;
   try {
     agentResponse = await agentFill({
@@ -193,9 +252,18 @@ async function generateAnswers(tabId: number, fields: FormField[], rawHtml?: str
       formId: fields[0]?.formId ?? undefined,
       rawHtml,
       url,
-    });
-  } catch (err) {
+    }, abortController.signal);
+  } catch (err: any) {
+    if (err.name === 'AbortError') {
+      console.log(`[FormPilot] Agent fill was aborted for tab ${tabId}`);
+      timeouts.forEach((t) => clearTimeout(t));
+      tabAbortControllers.delete(tabId);
+      return { _STOPPED_: "true" };
+    }
     console.warn("[FormPilot] Agent fill threw, falling back:", err);
+  } finally {
+    timeouts.forEach((t) => clearTimeout(t));
+    tabAbortControllers.delete(tabId);
   }
 
   if (agentResponse) {
@@ -232,6 +300,12 @@ async function generateAnswers(tabId: number, fields: FormField[], rawHtml?: str
         unresolved: agentResponse.unresolved,
         trace: agentResponse.trace,
       });
+    }
+
+    if (agentResponse.unresolved.length > 0) {
+      notifyContent(tabId, "AUTOFILL_STATUS", { status: "progress", step: `⚡ Stage 2 Situational RAG & iterative retries complete...` });
+    } else {
+      notifyContent(tabId, "AUTOFILL_STATUS", { status: "progress", step: `✨ All ${answeredKeys.length} answers verified! Injecting...` });
     }
 
     console.log(

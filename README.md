@@ -44,6 +44,10 @@ FormPilot lets an AI agent use a web browser the exact same way you do — it sc
 **Task: "Run local Ollama for zero-leakage privacy on internal questionnaires, or toggle to Groq LPUs for instant autocompletion at 450 tokens/sec."**
 * Equipped with an encrypted **Zero-XSS Secure Database Vault**, FormPilot stores AI credentials safely in PostgreSQL and scopes them per request via Node.js `AsyncLocalStorage`. Easily switch between **OpenAI**, **Google Gemini**, **Groq LPU**, **Ollama**, and **OpenRouter** straight from your UI without exposing keys in browser `localStorage`.
 
+### 📧 Autonomous AI Outreach & Email Copilot
+**Task: "Draft a personalized cover letter to the hiring manager and send it." or "Run a bulk cold email campaign."**
+* Acts as an executive career copilot. Chat with your AI clone to draft and dispatch emails seamlessly with 1-click confirmation. Or, upload a CSV of target contacts to trigger an automated batch pipeline that scrapes company context (via Firecrawl), matches it against your RAG memory, and drafts hyper-personalized cold outreach emails.
+
 ### 🧠 Retain Continuous Context with Episodic Memory
 **Task: "Remember my preferred communication style and architectural decision framework across future sessions."**
 * Automatically synthesizes chat episodes into vector representations, providing seamless cross-session memory without context bloating.
@@ -196,6 +200,11 @@ FormPilot embeds an industry-leading **Universal LLM Gateway** that empowers use
 - **AI Memory** — view, edit, and delete all RAG chunks that the AI uses about you
 - **Chat Agent** — episodic conversational AI using your full profile for context
 - **Usage Analytics** — forms filled, time saved, tokens used, top platforms, 7-day chart
+
+### AI Outreach
+- **Conversational Copilot** — Chat with your AI to draft cover letters, LinkedIn messages, and dispatch emails directly from your connected inbox.
+- **Bulk Cold Emailing** — Upload a CSV of contacts. FormPilot automatically scrapes target companies via Firecrawl, pulls relevant RAG context, and drafts personalized emails.
+- **Company Context Caching** — Optimizes scraping by caching company websites in the database to prevent duplicate Firecrawl API calls and speed up processing.
 
 ### Extension
 - **Floating button** — injected on every page with forms, shows real-time progress steps during filling

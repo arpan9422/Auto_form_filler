@@ -269,7 +269,9 @@ async function retrieveContext(state: State): Promise<Partial<State>> {
       const query = action.retrievalQuery?.trim();
       if (!query) continue;
 
-      const types = inferRelevantChunkTypes(query);
+      // Stage 1 Situational RAG: Prioritize profile, project, work, education, resume (exclude answer library initially)
+      let types = inferRelevantChunkTypes(query).filter((t) => t !== "ANSWER" && (t as string) !== "EPISODIC");
+      if (types.length === 0) types = ["PERSONAL", "PROJECT", "EXPERIENCE", "EDUCATION", "RESUME"];
       const rawChunks = await queryContext(query, state.userId, { topK: 5, types });
 
       for (const content of rawChunks) {
@@ -289,11 +291,12 @@ async function retrieveContext(state: State): Promise<Partial<State>> {
     }
   }
 
-  // Fallback: if no per-group retrieval produced results, do the aggregated query
+  // Fallback: if no per-group retrieval produced results, do the aggregated query on primary profile & project details
   if (allChunks.length === 0) {
     const fieldLabels = state.pendingFields.map((f) => f.label).join(" ");
     const retrievalQuery = `${fieldLabels} ${state.domain ?? ""}`.trim();
-    const types = inferRelevantChunkTypes(retrievalQuery);
+    let types = inferRelevantChunkTypes(retrievalQuery).filter((t) => t !== "ANSWER" && (t as string) !== "EPISODIC");
+    if (types.length === 0) types = ["PERSONAL", "PROJECT", "EXPERIENCE", "EDUCATION", "RESUME"];
 
     const rawChunks = await queryContext(retrievalQuery, state.userId, { topK: 8, types });
 
@@ -357,7 +360,7 @@ async function planFillActions(state: State): Promise<Partial<State>> {
 // ─── Node 6: compose_answers ──────────────────────────────────────────────────
 
 async function composeAnswers(state: State): Promise<Partial<State>> {
-  console.log("[autofill.graph] Node: compose_answers");
+  console.log("[autofill.graph] Node: compose_answers (Parallel Per-Field LLM Mode)");
   const start = Date.now();
 
   // Cache user profile to avoid repeated DB calls
@@ -370,30 +373,143 @@ async function composeAnswers(state: State): Promise<Partial<State>> {
   const model = getReasoningModel();
   const chain = composerPrompt.pipe(model);
 
-  let generatedAnswers: Record<string, string> = {};
-  let usage = { prompt: 0, completion: 0, total: 0 };
+  const generatedAnswers: Record<string, string> = {};
+  const usage = { prompt: 0, completion: 0, total: 0 };
 
-  try {
-    const result = await chain.invoke({
-      userProfile: userProfileStr,
-      retrievedContext: state.retrievedContext.map((c) => c.content).join("\n\n"),
-      fields: JSON.stringify(state.pendingFields, null, 2),
-      domain: state.domain ?? "generic",
-      domainTone: getDomainToneBlock(state.domain ?? "generic"),
-    });
-    
-    usage = extractTokenUsage(result);
+  if (!state.pendingFields.length) {
+    return {
+      generatedAnswers,
+      userProfileCache: userProfileStr,
+      tokenUsage: usage,
+      toolTrace: addTrace(state.toolTrace, "compose_answers", start),
+    };
+  }
 
-    const parsed = safeParse<Record<string, string | null>>(result.content as string, {});
+  console.log(`[autofill.graph] Executing ${state.pendingFields.length} field LLM calls (Concurrency Limit: 2)...`);
 
-    // Filter out null values — leave field unresolved
-    for (const [key, val] of Object.entries(parsed)) {
-      if (val !== null && val !== undefined && val !== "") {
-        generatedAnswers[key] = String(val);
+  // Helper: Automatic retry with exponential backoff on 429 Rate Limit
+  const invokeWithRetry = async (payload: Record<string, unknown>, maxRetries = 2) => {
+    for (let attempt = 0; attempt <= maxRetries; attempt++) {
+      try {
+        return await chain.invoke(payload);
+      } catch (err: any) {
+        const isRateLimit =
+          err?.status_code === 429 ||
+          err?.error === "too many concurrent requests" ||
+          err?.message?.includes("concurrent") ||
+          err?.message?.includes("429");
+        if (isRateLimit && attempt < maxRetries) {
+          const backoff = (attempt + 1) * 750;
+          console.warn(`[autofill.graph] Rate limit 429 hit. Retrying attempt ${attempt + 1} after ${backoff}ms...`);
+          await new Promise((r) => setTimeout(r, backoff));
+        } else {
+          throw err;
+        }
       }
     }
-  } catch (err) {
-    console.error("[autofill.graph] compose_answers error:", err);
+    throw new Error("Max retries reached");
+  };
+
+  // Parallel worker function for a single field
+  const processSingleField = async (field: NormalizedField) => {
+    let fieldAns: string | null = null;
+    const fieldUsage = { prompt: 0, completion: 0, total: 0 };
+
+    const fieldQuery = `${field.label} ${field.placeholder ?? ""} ${field.name ?? ""}`.trim();
+
+    // 1. Stage 1: Retrieve field-targeted primary profile context
+    let primaryContextStr = "";
+    if (state.contextMode !== "full") {
+      try {
+        let types = inferRelevantChunkTypes(fieldQuery).filter((t) => t !== "ANSWER" && (t as string) !== "EPISODIC");
+        if (types.length === 0) types = ["PERSONAL", "PROJECT", "EXPERIENCE", "EDUCATION", "RESUME"];
+        const fieldChunks = await queryContext(fieldQuery, state.userId, { topK: 4, types });
+        primaryContextStr = fieldChunks.length > 0 ? fieldChunks.join("\n\n") : state.retrievedContext.map((c) => c.content).join("\n\n");
+      } catch (e) {
+        primaryContextStr = state.retrievedContext.map((c) => c.content).join("\n\n");
+      }
+    } else {
+      primaryContextStr = state.retrievedContext.map((c) => c.content).join("\n\n");
+    }
+
+    // 2. Parallel LLM invocation dedicated exclusively to this single field
+    try {
+      const result = await invokeWithRetry({
+        userProfile: userProfileStr,
+        retrievedContext: primaryContextStr,
+        fields: JSON.stringify([field], null, 2),
+        domain: state.domain ?? "generic",
+        domainTone: getDomainToneBlock(state.domain ?? "generic"),
+      });
+
+      const parsedUsage = extractTokenUsage(result);
+      fieldUsage.prompt += parsedUsage.prompt;
+      fieldUsage.completion += parsedUsage.completion;
+      fieldUsage.total += parsedUsage.total;
+
+      const parsed = safeParse<Record<string, string | null>>(result.content as string, {});
+      fieldAns = parsed[field.key] ?? null;
+    } catch (err) {
+      console.error(`[autofill.graph] Error composing field "${field.key}":`, err);
+    }
+
+    // 3. Stage 2 Situational RAG Fallback: Query Answer Library if field remains unanswered
+    if ((!fieldAns || fieldAns.trim() === "") && state.contextMode !== "full") {
+      console.log(`[autofill.graph] Situational RAG: Field "${field.label}" unanswered from Profile. Querying Answer Library...`);
+      try {
+        const answerLibChunks = await queryContext(fieldQuery, state.userId, {
+          topK: 4,
+          types: ["ANSWER", "EPISODIC" as any],
+        });
+
+        if (answerLibChunks.length > 0) {
+          const situationalContext = [
+            primaryContextStr,
+            ...answerLibChunks.map((content) => `[Answer Library / Situational Memory]:\n${content}`),
+          ].join("\n\n");
+
+          const fallbackResult = await invokeWithRetry({
+            userProfile: userProfileStr,
+            retrievedContext: situationalContext,
+            fields: JSON.stringify([field], null, 2),
+            domain: state.domain ?? "generic",
+            domainTone: getDomainToneBlock(state.domain ?? "generic"),
+          });
+
+          const fbUsage = extractTokenUsage(fallbackResult);
+          fieldUsage.prompt += fbUsage.prompt;
+          fieldUsage.completion += fbUsage.completion;
+          fieldUsage.total += fbUsage.total;
+
+          const fallbackParsed = safeParse<Record<string, string | null>>(fallbackResult.content as string, {});
+          fieldAns = fallbackParsed[field.key] ?? null;
+        }
+      } catch (err) {
+        console.error(`[autofill.graph] Answer Library fallback error for field "${field.key}":`, err);
+      }
+    }
+
+    return { key: field.key, answer: fieldAns, usage: fieldUsage };
+  };
+
+  // Run field generations in concurrency-throttled parallel batches (limit 2 to prevent 429 errors)
+  const CONCURRENCY_LIMIT = 2;
+  const results: Array<{ key: string; answer: string | null; usage: { prompt: number; completion: number; total: number } }> = [];
+  
+  for (let i = 0; i < state.pendingFields.length; i += CONCURRENCY_LIMIT) {
+    const chunk = state.pendingFields.slice(i, i + CONCURRENCY_LIMIT);
+    const chunkResults = await Promise.all(chunk.map((field) => processSingleField(field)));
+    results.push(...chunkResults);
+  }
+
+  for (const { key, answer, usage: u } of results) {
+    usage.prompt += u.prompt;
+    usage.completion += u.completion;
+    usage.total += u.total;
+
+    if (answer !== null && answer !== undefined && answer.trim() !== "") {
+      generatedAnswers[key] = String(answer);
+    }
   }
 
   return {
@@ -523,10 +639,32 @@ async function repairAnswers(state: State): Promise<Partial<State>> {
   let usage = { prompt: 0, completion: 0, total: 0 };
 
   try {
+    // Situational RAG for repairs: check Answer Library for failing fields
+    let repairContext = [...state.retrievedContext.map((c) => c.content)];
+    if (state.contextMode !== "full") {
+      try {
+        const repairQuery = fieldsToRepair.map((f) => f.label).join(" ").trim();
+        if (repairQuery) {
+          const answerLibChunks = await queryContext(repairQuery, state.userId, {
+            topK: 4,
+            types: ["ANSWER", "EPISODIC" as any],
+          });
+          if (answerLibChunks.length > 0) {
+            repairContext = [
+              ...repairContext,
+              ...answerLibChunks.map((content) => `[Answer Library / Situational Memory]:\n${content}`),
+            ];
+          }
+        }
+      } catch (err) {
+        console.error("[autofill.graph] repair situational RAG error:", err);
+      }
+    }
+
     const result = await chain.invoke({
       userProfile: userProfileStr,
       retrievedContext: [
-        ...state.retrievedContext.map((c) => c.content),
+        ...repairContext,
         `\n\nValidation feedback:\n${validationFeedback}`,
       ].join("\n\n"),
       fields: JSON.stringify(fieldsToRepair, null, 2),

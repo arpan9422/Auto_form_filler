@@ -31,3 +31,5 @@ backend/prisma/migrations/
 
 # Extension build
 extension/dist/
+
+backend/uploads/resumes

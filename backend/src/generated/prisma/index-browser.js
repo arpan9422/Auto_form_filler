@@ -184,8 +184,8 @@ exports.Prisma.ProjectScalarFieldEnum = {
   depolyed_url: 'depolyed_url',
   projectLinks: 'projectLinks',
   techStacks: 'techStacks',
-  priority: 'priority',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  priority: 'priority'
 };
 
 exports.Prisma.AnswerLibraryScalarFieldEnum = {
@@ -223,16 +223,16 @@ exports.Prisma.UsageAnalyticsScalarFieldEnum = {
   platform: 'platform',
   websiteUrl: 'websiteUrl',
   fieldsFilled: 'fieldsFilled',
-  totalFields: 'totalFields',
   timeSavedSec: 'timeSavedSec',
-  tokensUsed: 'tokensUsed',
-  promptTokens: 'promptTokens',
+  aiEdits: 'aiEdits',
+  acceptedDirect: 'acceptedDirect',
+  createdAt: 'createdAt',
   completionTokens: 'completionTokens',
   fieldsAnswered: 'fieldsAnswered',
   fieldsUnanswered: 'fieldsUnanswered',
-  aiEdits: 'aiEdits',
-  acceptedDirect: 'acceptedDirect',
-  createdAt: 'createdAt'
+  promptTokens: 'promptTokens',
+  tokensUsed: 'tokensUsed',
+  totalFields: 'totalFields'
 };
 
 exports.Prisma.GitHubConnectionScalarFieldEnum = {
@@ -313,6 +313,58 @@ exports.Prisma.LLMGatewayConfigScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.CompanyContextCacheScalarFieldEnum = {
+  id: 'id',
+  url: 'url',
+  context: 'context',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.LatexTemplateScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  content: 'content',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TailoredResumeScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  jobUrl: 'jobUrl',
+  companyName: 'companyName',
+  pdfUrl: 'pdfUrl',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.CampaignScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CampaignContactScalarFieldEnum = {
+  id: 'id',
+  campaignId: 'campaignId',
+  name: 'name',
+  company: 'company',
+  position: 'position',
+  email: 'email',
+  website: 'website',
+  companyContext: 'companyContext',
+  draftSubject: 'draftSubject',
+  draftBody: 'draftBody',
+  error: 'error',
+  status: 'status',
+  lastContactedAt: 'lastContactedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -389,7 +441,12 @@ exports.Prisma.ModelName = {
   FormSession: 'FormSession',
   ChatEpisode: 'ChatEpisode',
   ChatMessage: 'ChatMessage',
-  LLMGatewayConfig: 'LLMGatewayConfig'
+  LLMGatewayConfig: 'LLMGatewayConfig',
+  CompanyContextCache: 'CompanyContextCache',
+  LatexTemplate: 'LatexTemplate',
+  TailoredResume: 'TailoredResume',
+  Campaign: 'Campaign',
+  CampaignContact: 'CampaignContact'
 };
 
 /**

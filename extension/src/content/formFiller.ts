@@ -193,7 +193,7 @@ function setRadioValue(element: HTMLElement, value: string) {
      } else if (!(element instanceof HTMLInputElement) && element.getAttribute("aria-checked") !== "true") {
         element.click();
      }
-     console.log(`  ✅ Selected exactly: ${element.id || element.name || 'radio'}`);
+     console.log(`  ✅ Selected exactly: ${element.id || (element as HTMLInputElement).name || 'radio'}`);
      return;
   }
 

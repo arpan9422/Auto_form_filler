@@ -35,6 +35,8 @@ app.use(requestLogger);
 // Serve static files
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
+import outreachRoutes from "./modules/outreach/outreach.routes";
+
 // Routes
 app.use("/api/user", userRoutes);
 app.use("/api/projects", projectRoutes);
@@ -44,6 +46,7 @@ app.use("/api/memory", memoryRoutes);
 app.use("/api/ai", aiRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/github", githubRoutes);
+app.use("/api/outreach", outreachRoutes);
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Health check

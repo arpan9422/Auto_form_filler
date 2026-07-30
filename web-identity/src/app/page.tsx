@@ -127,6 +127,7 @@ export default function IdentityPage() {
           <a href="#simulator" style={navLinkStyle}>Live Demo</a>
           <a href="#agent" style={navLinkStyle}>Agent Flow</a>
           <a href="#rag" style={navLinkStyle}>RAG System</a>
+          <a href="#outreach" style={navLinkStyle}>AI Outreach</a>
           <a href="#gateway" style={{ ...navLinkStyle, color: "#38bdf8", fontWeight: 700 }}>LLM Gateway</a>
           <a href="#tech" style={navLinkStyle}>Tech Stack</a>
           <a href="#opensource" style={navLinkStyle}>Open Source</a>
@@ -555,6 +556,78 @@ export default function IdentityPage() {
                 {"}"}
               </div>
             )}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── AI OUTREACH CAPABILITIES ─────────────────────────────────────── */}
+      <section
+        id="outreach"
+        style={{
+          padding: "80px 24px",
+          maxWidth: "1100px",
+          margin: "0 auto",
+        }}
+      >
+        <div style={{ textAlign: "center", marginBottom: "48px" }}>
+          <div style={{ fontSize: "11px", color: "#f59e0b", fontFamily: "'DM Mono', monospace", textTransform: "uppercase", letterSpacing: "0.08em" }}>
+            Network & Connect
+          </div>
+          <h2 style={{ fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 800, color: "#f0ece4", margin: "8px 0", fontFamily: "'Playfair Display', Georgia, serif" }}>
+            Autonomous Email & Outreach
+          </h2>
+          <p style={{ fontSize: "15px", color: "#71717a", maxWidth: "600px", margin: "0 auto" }}>
+            FormPilot goes beyond filling forms. It acts as an executive career copilot, drafting and dispatching highly personalized emails on your behalf.
+          </p>
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "24px" }}>
+          <div
+            style={{
+              background: "#111114",
+              border: "1px solid rgba(255, 255, 255, 0.07)",
+              borderRadius: "12px",
+              padding: "32px",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
+              <div style={{ padding: "10px", background: "rgba(99, 102, 241, 0.1)", borderRadius: "8px", color: "#818cf8" }}>
+                <Terminal size={24} />
+              </div>
+              <h3 style={{ fontSize: "20px", fontWeight: 700, color: "#f0ece4", margin: 0 }}>Conversational Copilot</h3>
+            </div>
+            <p style={{ fontSize: "14px", color: "#a1a1aa", lineHeight: 1.6, marginBottom: "20px" }}>
+              Chat directly with your AI clone. Ask it to draft cover letters, LinkedIn responses, or emails. Review the draft, and confirm to dispatch the email instantly from your connected inbox.
+            </p>
+            <ul style={techListStyle}>
+              <li>Natural Language Commands</li>
+              <li>Episodic Memory Continuity</li>
+              <li>1-Click Confirmation Dispatch</li>
+            </ul>
+          </div>
+
+          <div
+            style={{
+              background: "#111114",
+              border: "1px solid rgba(255, 255, 255, 0.07)",
+              borderRadius: "12px",
+              padding: "32px",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
+              <div style={{ padding: "10px", background: "rgba(245, 158, 11, 0.1)", borderRadius: "8px", color: "#f59e0b" }}>
+                <Sparkles size={24} />
+              </div>
+              <h3 style={{ fontSize: "20px", fontWeight: 700, color: "#f0ece4", margin: 0 }}>Bulk Cold Emailing</h3>
+            </div>
+            <p style={{ fontSize: "14px", color: "#a1a1aa", lineHeight: 1.6, marginBottom: "20px" }}>
+              Upload a CSV of hiring managers. FormPilot automatically scrapes each target company via Firecrawl, pulls relevant context from your RAG memory, and generates hyper-personalized cold outreach.
+            </p>
+            <ul style={techListStyle}>
+              <li>Firecrawl Website Scraping</li>
+              <li>Dynamic RAG Context Matching</li>
+              <li>Batched Rate-Limit Protection</li>
+            </ul>
           </div>
         </div>
       </section>
