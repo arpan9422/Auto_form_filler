@@ -41,6 +41,7 @@ export function OutreachCampaign() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
+  const [statusFilter, setStatusFilter] = useState('all');
   const limit = 50;
 
   // Global state
@@ -52,9 +53,9 @@ export function OutreachCampaign() {
     if (view === 'list') {
       fetchCampaigns();
     } else if (view === 'details' && selectedCampaignId) {
-      fetchContacts(selectedCampaignId, 1, searchQuery);
+      fetchContacts(selectedCampaignId, 1, searchQuery, statusFilter);
     }
-  }, [view, selectedCampaignId]);
+  }, [view, selectedCampaignId, statusFilter]);
 
   const fetchCampaigns = async () => {
     setLoading(true);
@@ -73,11 +74,11 @@ export function OutreachCampaign() {
     }
   };
 
-  const fetchContacts = async (id: string, currentPage = page, currentSearch = searchQuery) => {
+  const fetchContacts = async (id: string, currentPage = page, currentSearch = searchQuery, currentStatus = statusFilter) => {
     setLoading(true);
     try {
       const token = localStorage.getItem('fp_access_token');
-      const res = await fetch(`http://localhost:5000/api/outreach/campaign/${id}/contacts?page=${currentPage}&limit=${limit}&search=${encodeURIComponent(currentSearch)}`, {
+      const res = await fetch(`http://localhost:5000/api/outreach/campaign/${id}/contacts?page=${currentPage}&limit=${limit}&search=${encodeURIComponent(currentSearch)}&status=${currentStatus}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -85,8 +86,8 @@ export function OutreachCampaign() {
       setContacts(data.contacts || []);
       setTotalPages(data.pagination?.totalPages || 1);
       setPage(data.pagination?.page || 1);
-      if (currentPage === 1 && currentSearch !== searchQuery) {
-        setSelectedContactIds(new Set()); // Reset selection on new search
+      if (currentPage === 1 && (currentSearch !== searchQuery || currentStatus !== statusFilter)) {
+        setSelectedContactIds(new Set()); // Reset selection on new search/filter
       }
     } catch (err: any) {
       setErrorMsg(err.message || 'Failed to load contacts');
@@ -396,6 +397,33 @@ export function OutreachCampaign() {
             </div>
           </div>
 
+          {/* TABS */}
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '16px' }}>
+            {[
+              { id: 'all', label: 'All Contacts' },
+              { id: 'pending', label: 'Unsent' },
+              { id: 'drafted', label: 'Drafted' },
+              { id: 'sent', label: 'Sent' },
+            ].map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => setStatusFilter(tab.id)}
+                style={{
+                  padding: '8px 16px',
+                  background: statusFilter === tab.id ? 'rgba(217, 119, 6, 0.15)' : 'transparent',
+                  color: statusFilter === tab.id ? '#d97706' : '#a09c94',
+                  border: `1px solid ${statusFilter === tab.id ? '#d97706' : 'transparent'}`,
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontWeight: statusFilter === tab.id ? 600 : 400,
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', gap: '16px' }}>
             <div style={{ display: 'flex', gap: '12px', flex: 1 }}>
               <input 
@@ -403,11 +431,11 @@ export function OutreachCampaign() {
                 placeholder="Search name, email, or company..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyDown={(e) => { if(e.key === 'Enter') fetchContacts(selectedCampaignId!, 1, searchQuery) }}
+                onKeyDown={(e) => { if(e.key === 'Enter') fetchContacts(selectedCampaignId!, 1, searchQuery, statusFilter) }}
                 style={{ padding: '8px 12px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '6px', color: '#f0ece4', outline: 'none', width: '300px' }}
               />
               <button 
-                onClick={() => fetchContacts(selectedCampaignId!, 1, searchQuery)}
+                onClick={() => fetchContacts(selectedCampaignId!, 1, searchQuery, statusFilter)}
                 style={{ padding: '8px 16px', background: 'rgba(255,255,255,0.1)', color: '#f0ece4', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '6px', cursor: 'pointer' }}
               >
                 Search
@@ -418,14 +446,14 @@ export function OutreachCampaign() {
               <span style={{ color: '#a09c94', fontSize: '14px' }}>Page {page} of {totalPages}</span>
               <button 
                 disabled={page <= 1 || loading}
-                onClick={() => fetchContacts(selectedCampaignId!, page - 1)}
+                onClick={() => fetchContacts(selectedCampaignId!, page - 1, searchQuery, statusFilter)}
                 style={{ padding: '6px 12px', background: 'rgba(255,255,255,0.1)', color: '#f0ece4', border: 'none', borderRadius: '6px', cursor: (page <= 1 || loading) ? 'not-allowed' : 'pointer' }}
               >
                 Prev
               </button>
               <button 
                 disabled={page >= totalPages || loading}
-                onClick={() => fetchContacts(selectedCampaignId!, page + 1)}
+                onClick={() => fetchContacts(selectedCampaignId!, page + 1, searchQuery, statusFilter)}
                 style={{ padding: '6px 12px', background: 'rgba(255,255,255,0.1)', color: '#f0ece4', border: 'none', borderRadius: '6px', cursor: (page >= totalPages || loading) ? 'not-allowed' : 'pointer' }}
               >
                 Next

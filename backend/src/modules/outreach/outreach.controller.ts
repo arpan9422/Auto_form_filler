@@ -70,6 +70,7 @@ export const getCampaignContacts = async (req: Request, res: Response) => {
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 50;
     const search = (req.query.search as string) || "";
+    const status = (req.query.status as string) || "all";
 
     if (!userId) return res.status(401).json({ error: "Unauthorized" });
 
@@ -86,6 +87,10 @@ export const getCampaignContacts = async (req: Request, res: Response) => {
         { company: { contains: search, mode: "insensitive" } },
         { email: { contains: search, mode: "insensitive" } },
       ];
+    }
+
+    if (status && status !== "all") {
+      whereClause.status = status;
     }
 
     const contacts = await prisma.campaignContact.findMany({
